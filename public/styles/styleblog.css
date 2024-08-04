@@ -1,0 +1,675 @@
+/* VALOR DE RESPALDO:
+Funciona cuando no anda la variable (error de tipeo, por ejemplo:
+se escribe::after
+background: var(--variable, black)
+black sería el valor de respaldo
+
+
+PRIORIDAD EN LOS ESTILOS
+
+/*  Prioridad al más específico::
+
+Selectores de tipo
+Coinciden con el nombre del elemento
+Ej: h1{} ; input{}, se aplicará a cualquier elemento  <input>
+
+Selectores de clase
+Contienen el atributo de class 
+Ej: .index {} selecciona ls que tengan la clase  "index"
+
+Selectores de ID
+#unique {}
+
+Selectores de atributo
+a[title] {}
+
+
+El orden de los estilos:
+
+A) en clases: la último asignada.
+
+Selector de tipo vs de clase
+
+B) a{  }   vs  .nombre-clase
+la clase es + importante que el tipo...
+o sea, prioriza   .nombre-clase
+tipo(generico) clase(específica)
+
+C) id >>  clase
+#  >>  .clase
+
+D) estilo en linea >> id y clase
+
+E) agregando !important tiene maxima prioridad
+
+.texto-azul {
+  color: blue !important
+}
+
+De mayor a menor importancia:
+html(en linea) >> !important >> id  >>  clase >>  tipo  (li >> ul)
+id=" ";  class=" "; a -  tr --ul etc
+#identif;   .clase;    tr;
+*/
+
+
+* {
+  margin: 4px;
+}
+
+/*  */
+body {
+  font-family: sans-serif;
+  background-color: #e4e3e3;
+  padding: 0;
+  margin: 1;
+  font-size: 18px;
+}
+
+header {
+  text-align: center;
+}
+
+#matriculas {
+
+  padding: 10px 0px 25px 25px;
+  margin-bottom: 30px;
+}
+
+#cancion {
+  background-color: rgb(103, 60, 243);
+  margin: 10;
+  padding: 10px;
+  text-align: center;
+  color: #fbfbfd;
+  font-size: larger;
+  margin-bottom: 5px;
+}
+
+h1 {
+  background-color: rgb(63, 63, 63);
+  margin: 10;
+  padding: 10px;
+  text-align: center;
+  color: #fbfbfd;
+  font-size: larger;
+  margin-bottom: 5px;
+}
+
+h2 {
+  margin: 0px;
+  padding: 8px;
+  color: #061e94;
+  font-size: large;
+}
+
+h3 {
+  margin: 0px;
+  padding: 0px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  color: #051774;
+  font-size: 18px
+}
+
+#ingresositio {
+  color: white;
+  text-align: center;
+  background-color: rgba(226, 14, 74, 0.353);
+  text-decoration: none;
+  font-size: 20px;
+  padding: 5px;
+}
+
+hr {
+  width: 90%;
+  height: 2px;
+  background-color: gray;
+  margin: 10px auto;
+  margin-top: 10px;
+}
+
+.noticia {
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #464545;
+}
+
+.otraLista {
+  list-style-type: circle;
+  margin: 10;
+  padding: 10;
+  overflow: hidden;
+}
+
+
+li.barra {
+  float: left;
+}
+
+li.barra a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 2px 2px;
+  text-decoration: none;
+}
+
+li.barra a:hover:not(.active) {
+  background-color: #f80202;
+}
+
+/* li.barra a:hover:(.active) {
+  background-color: #04AA6D;
+} */
+
+li.barra a:hover,
+li.barra a.active {
+  background-color: #04AA6D;
+}
+
+
+ul.desorder {
+  list-style-type: square;
+  margin: 5;
+  padding: 5;
+  overflow: hidden;
+  background-color: #e4e3e3;
+}
+
+li.lisdesor1 {
+  list-style-type: square;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+.noticia {
+  margin-bottom: 10px;
+}
+
+#listacolores {
+  background-color: #e4e3e3;
+}
+
+#listacolores li {
+  display: inline-flex;
+  padding: 8px;
+  font-size: 15px;
+  color: white;
+}
+
+#ingresositio {
+  color: white !important;
+  text-align: center;
+  background-color: rgba(71, 134, 71, 0.353);
+  text-decoration: none;
+}
+
+#pepenono {
+  width: 140px;
+  text-align: center;
+  font-size: 15px;
+  color: rgb(11, 11, 11);
+  text-decoration: none;
+  margin: 3px;
+  padding: 8px 10px;
+  line-height: 20px;
+  background: rgb(114, 130, 95);
+  display: inline-block;
+  box-shadow: 2px 5px 0px #000;
+  border-radius: 10%;
+}
+
+
+div.gallery {
+  margin: 1px;
+  border: 0px solid #ccc;
+  float: left;
+  width: 25vw;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+.centrado {
+  display: flex;
+  justify-content: center;
+}
+
+.bordes-redondeados {
+  border-radius: 50%;
+}
+
+/*
+Border-collapse se utiliza para fusionar los bordes. 
+La representación de los bordes de tabla es dividida en dos categorías en CSS2 - "fusión" y "separación" (collapsed - separated).
+
+En el modelo de fusión, las celdas adyacentes comparten los mismos bordes
+
+En el modelo de separación, cada celda adyacente tiene su propio borde
+La distancia entre cada borde es dado con la propiedad del espaciado de borde.
+
+Valor inicial: separado
+
+Sintaxis
+border-collapse: value
+Valores
+inherit : Define explícitamente el valor como heredada del elemento padre.
+separate : Utiliza el modo de presentación de separación de borde.
+collapse : Utiliza el modo de presentación de fusión de borde
+
+<table border="1" style="border-collapse: collapse" bordercolor="#111111" width="500">
+<table border="1" style="border-collapse: separate" bordercolor="#111111" width="500">
+table{
+    border-collapse
+}
+*/
+
+table {
+  border-collapse: collapse;
+  border: 3px solid black;
+  letter-spacing: 0px;
+  font-size: 0.9rem;
+  margin: 0 auto;
+}
+
+.cumple .tabapertura {
+  border-collapse: collapse;
+  border: 3px solid black;
+  letter-spacing: 0px;
+  font-size: 0.7rem;
+  margin: 0 auto;
+}
+
+td,
+th {
+  border-collapse: collapse;
+  border: 1px dotted rgb(71, 69, 69);
+  padding: 8px 5px;
+  text-align: center;
+}
+
+th {
+  background-color: #c2cff8c9;
+}
+
+
+.tabtor tr:nth-of-type(odd) {
+  background-color: #c7c5c5;
+}
+
+}
+
+#mat {
+  text-align: right;
+}
+
+a {
+  text-decoration: none;
+}
+
+.frase {
+  font: size medium;
+  font-style: italic;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.footer {
+  background-color: #333;
+  color: #FFF;
+  padding: 10px;
+  text-align: center;
+  clear: both;
+}
+
+.bn {
+  text-align: center;
+  font-size: x-large;
+  font-style: initial;
+  font-weight: bolder;
+  background-color: #f80202;
+}
+
+.slider {
+  aspect-ratio: 16 / 10;
+  width: 400px;
+  position: relative;
+  display: flex;
+  overflow: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.slider img {
+  width: 100%;
+  left: 0;
+  position: sticky;
+  object-fit: cover;
+  border-radius: 1px;
+  scroll-snap-align: center;
+}
+
+.slider a {
+  width: 100%;
+  left: 0;
+  position: sticky;
+  object-fit: cover;
+  border-radius: 5px;
+  scroll-snap-align: center;
+}
+
+.submenu0 {
+  width: 150px;
+  text-align: center;
+  font-size: 15px;
+  color: rgb(11, 11, 11);
+  text-decoration: none;
+  margin: 3px;
+  padding: 8px 5px;
+  line-height: 20px;
+  background: rgb(236, 211, 21);
+  display: inline-block;
+  box-shadow: 2px 5px 0px #000;
+  border-radius: 10%;
+}
+
+#pepe {
+  width: 150px;
+  text-align: center;
+  font-size: 15px;
+  color: white;
+  text-decoration: none;
+  margin: 3px;
+  padding: 3px 3px;
+  line-height: 20px;
+  background: black;
+  display: inline-block;
+  /*box-shadow:2px 5px 0px #000;*/
+  border-radius: 5%;
+}
+
+.juntos {
+  /* padding: 0px;
+    margin: 0px;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*con float right van para el otro lado*/
+}
+
+.submenu {
+  width: 85px;
+  text-align: center;
+  font-size: 12px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  margin: 5px;
+  padding: 5px 10px;
+  line-height: 30px;
+  /*background: rgb(9, 148, 202); */
+  /*background: #6e6a69;*/
+  /*background: #ec601f;*/
+  background: #976c1c;
+  display: inline-block;
+  box-shadow: 2px 5px 0px #000;
+  border-radius: 10%;
+}
+
+.submenuFin {
+  width: 85px;
+  text-align: center;
+  font-size: 12px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  margin: 5px;
+  padding: 5px 10px;
+  line-height: 30px;
+  /*background: #FFA500;*/
+  background: #6e6a69;
+  display: inline-block;
+  box-shadow: 2px 5px 0px #000;
+  border-radius: 10%;
+}
+
+
+.submenuVer {
+  width: 85px;
+  text-align: center;
+  font-size: 12px;
+  color: black;
+  text-decoration: none;
+  margin: 5px;
+  padding: 5px 10px;
+  line-height: 30px;
+  background: #bd6cbd;
+  display: inline-block;
+  box-shadow: 2px 5px 0px #000;
+  border-radius: 10%;
+}
+a.submenu:link {
+  color: whitesmoke;
+}
+
+a.submenu:hover {
+  text-decoration: underline;
+  background: black;
+  color: white;
+  box-shadow: 2px 6px 0px #000;
+}
+
+a.submenu:active {
+  background: #ff8000;
+}
+
+.view {
+  background-color: #e4e3e3;
+}
+
+
+.submenu2 {
+  width: 60px;
+  text-align: center;
+  font-size: 12px;
+  color: white;
+  text-decoration: none;
+  margin: 3px;
+  padding: 5px 10px;
+  line-height: 25px;
+  background: rgb(90, 161, 112);
+  display: inline-block;
+  box-shadow: 2px 5px 0px #000;
+  border-radius: 10%;
+}
+
+/*
+.scores {
+  width: 80%;
+  border-collapse: collapse;
+  border: 0px solid white;
+  letter-spacing: 0px;
+  font-size: 0, 9rem;
+  margin: 0 auto;
+  background-color: #e4e3e3;
+  text-align: center;
+}
+
+td.scores,
+th.scores {
+  border-collapse: collapse;
+  border: 0px dotted;
+  padding: 3px 10px;
+  text-align: center;
+  margin: left;
+}
+
+p.scores {
+  text-align: center;
+}
+
+*/
+
+.scores-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.scores-table {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+}
+
+.scores {
+  text-align: center;
+}
+
+.scores img {
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+
+#contenedorCuentaRegresiva {
+  width: 350px;
+  height: 150px;
+  background-color: red;
+  /* Puedes quitar el color de fondo si la imagen lo cubrirá totalmente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-image: url('../assets/images/chacras.png') no-repeat;
+  /* Agrega tu imagen de fondo aquí */
+  background-size: cover;
+  /* Asegura que la imagen cubra completamente el contenedor */
+  background-position: center;
+  /* Centra la imagen en el contenedor */
+  margin: 10px;
+}
+
+#cuentaRegresiva {
+  font-size: 40px;
+  /* Tamaño de los números */
+  font-weight: bold;
+  /* Hacer los números más gruesos */
+  color: black;
+}
+
+/*  VENTANA AUTOMATICA AL INICIO
+/* Estilo del modal (background) */
+.modal-1 {
+  display: none;
+  /* Oculto por defecto */
+  position: fixed;
+  /* Fijo en toda la pantalla */
+  z-index: 1;
+  /* Situado sobre otros contenidos */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Ancho completo */
+  height: 100%;
+  /* Alto completo */
+  overflow: auto;
+  /* Habilita el scroll si es necesario */
+  background-color: rgb(0, 0, 0);
+  /* Fondo negro */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Negro con opacidad */
+}
+
+/* Estilo del contenido del modal */
+.modal-contenido-1 {
+  background-color: #ebede3;
+  margin: 15% auto;
+  /* 15% desde la parte superior y centrado */
+  padding: 15px;
+  border: 5px solid #101010;
+  width: 60%;
+  /* Podrías querer un ancho menor */
+}
+
+#modal-contenido-1 {
+  background-color: #c6f60a;
+}
+
+/* El botón cerrar */
+.cerrar {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.cerrar:hover,
+.cerrar:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*  -------   muestra pelotas ganadas ----*/
+
+.modal-Pelotas {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegúrate de que esté por encima de otros contenidos */
+}
+
+.modal-contenido-Pelotas {
+  background-color: white;
+  /*margin: 10%;*/
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#cerrarPelotas{
+  color: #aaa;
+  /*float: right;*/
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 16px;
+  margin-top: 10px;
+}
+
+#cerrarPelotas:hover,
+#cerrarPelotas:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

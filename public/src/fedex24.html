@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Blog de bolilla</title>
+  <link href="assets/images/bn2.ico" rel="icon">
+
+  <link href="styles/styleblog.css" rel="stylesheet">
+  <link href="styles/styleventana.css" rel="stylesheet">
+
+  <meta name="keywords" content="golf, palos, pelotas">
+  <meta name="description" content="Sitio de bolilla">
+  <meta name="author" content="Sensei">
+  <meta name="copyright" content="Meta Inc.">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+
+  <script>
+    $(function () {
+      $("#header").load("encabezado.html");
+      $("#footer").load("piepagina.html");
+    });
+  </script>
+
+</head>
+
+<body>
+  <div id="header"></div>
+
+<!-- 
+  <section>
+    <a class="submenu" href="#sabados">Sábados</a>
+    <a class="submenu" href="apertura24.html">Apertura</a>
+    <a class="submenu" href="#sierra">Sierra</a>
+    <a class="submenu" href="#ryder">Ryder</a>
+    <a class="submenu" href="#clausura">Clausura</a>
+    <a class="submenu" href="#carilo">Carilo</a>
+    <a class="submenu" href="#bolilla24">Bolilla 24</a>
+    <a class="submenu" href="#fedex">Fedex</a>
+    <a class="submenu" href="bolilla.html">Anual</a>
+  </section> -->
+
+  <section>
+    <!---------------  RESULTADOS ---------------->
+
+    <h1>Fedex 2024</h1>
+
+    <!---------------- FEDEX  ----------------------->
+
+    <section class="noticia">
+      <div id="fedexResul">
+        <p>Acumulado de puntos obtenidos en los 6 torneos programados más los de Sábado Jet.</p>
+        <br>
+
+        <table id="rankingFedex">
+          <colgroup>
+            <col style="background-color: rgb(250, 250, 32)" ;>
+          </colgroup>
+          <tr>
+            <th>Jugador</th>
+            <th>Puntos</th>
+            <th>Detalle</th>
+          </tr>
+
+          <tbody>
+            <tr id="lineaScore">
+              <!-- <td></td> -->
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+
+      <div id="modalGeneral" class="modal" style="display:none;">
+        <p id="tituloModalGeneral"></p>
+        <table id="tablaModalGeneral">
+          <tr>
+            <th>Puntos</th>
+            <th>Pos.</th>
+            <th>Torneo</th>
+          </tr>
+          <tr id="lineaModalGeneral">
+            <td></td>
+          </tr>
+        </table>
+        <br>
+        <button onclick="cerrarModal('modalGeneral')">Cerrar</button>
+      </div>
+    </section>
+    </div>
+  </section>
+
+  <br>
+
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="datos/datosFedex.js"></script>
+  <script src="datos/datosRanking.js"></script>
+  <script src="datos/datosNetos.js"></script>
+  <script src="datos/datosFechas.js"></script>
+  <!--<script src="apps/fedex.js"></script>-->
+  <script src="apps/fedexAuto.js"></script>
+  <script src="apps/sabados.js"></script>
+  <!-- <script src="app8.js"></script> -->
+  <script src="apps/mejores6.js"></script>
+
+  <!-- <script src="armaRanking.js"></script> -->
+
+</body>
+
+</html>

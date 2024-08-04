@@ -1,0 +1,55 @@
+
+.modal {
+  position: fixed; /* Mantén el modal fijo */
+  z-index: 1; /* Colócalo sobre otros elementos */
+  left: 0;
+  top: 20px;
+  width: 60%; /* Anchura completa */
+  /*height: 100%; /* Altura completa */
+  overflow: auto; /* Habilita el scroll si es necesario */
+  background-color: rgb(216, 214, 214); /* Color de fondo */
+  border: 3px solid black;
+  margin: 30px;
+  padding: 5px;
+
+
+}
+
+/* Contenido/Estilo del Modal */
+.modal-content {
+  background-color: #eb1d1d;
+  margin: 15% auto; /* 15% desde la parte superior y centrado */
+  padding: 200px;
+  border: 1px solid #888;
+  width: 80%; /* Podrías querer cambiar esto para adaptarlo a tus necesidades */
+}
+
+table{
+  border-collapse: collapse;
+  border: 3px solid black;
+  letter-spacing: 0px;
+  font-size: 0.9rem;
+  margin: 0 auto;
+}
+
+td,
+th{
+    border-collapse: collapse;
+    border: 1px dotted rgb(71, 69, 69);
+    padding: 8px 5px;
+    text-align: center;
+}
+
+th{
+    background-color: #c2cff8c9;
+}
+
+.modal td{
+  background-color: #fdfdfcc9;
+}
+
+#tituloModalGeneral {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 03vh;
+}

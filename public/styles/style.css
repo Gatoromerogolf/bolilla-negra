@@ -1,0 +1,215 @@
+:root{
+  --variable: rgb(195, 173, 246);
+}
+/*
+table {
+  background-color: white;
+  width: 300px;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+tr, th, td{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+  padding: 10px;
+  border: 1px solid black;
+}
+*/
+
+table {
+  background-color: white;
+  width: 500;
+  margin: 10px;
+  border-collapse: collapse;
+  border: 2px solid black;
+}
+
+tr, th, td{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
+  padding: 8px;
+  border: 1px dotted rgb(7, 7, 7);
+}
+
+body{
+  background: var(--variable, green);
+}
+
+h1{
+  color: black;
+}
+
+h2{
+  color: yellow;
+}
+
+h4{
+  color: green;
+  font-size: 17px;
+}
+
+a{
+  text-decoration: none;
+}
+
+a[href="#parrafo1"]{
+  color:darkgreen;
+}
+
+
+/* img [src="images/auto1.jpg"] {
+  width: 60;
+  border-width: 10px;
+  border-style: solid;
+  border-color: black;
+} */
+
+ol{
+  color: white;
+  list-style-type:decimal-leading-zero;
+  list-style-position: inside;
+}
+ 
+
+
+ul{
+  color: green;
+  font-weight: bold;
+  list-style-type: square
+}
+
+ul ul{
+  color: black;
+  list-style-type:lower-alpha ;
+}
+
+ul ul ul {
+  color: blue;
+  list-style-type:upper-alpha;
+}
+
+#checklist{
+  color:darkgoldenrod;
+  font-style: oblique;
+}
+
+[type="checkbox"]{
+  margin: 10px;
+}
+
+a[href="#radiobuttom"] {
+  color: yellow;
+}
+
+.botones{
+  font-size: 15x;
+}
+
+#contenedor-principal{
+  color: white;
+  padding: 5px;
+  font-size: 15px;
+  background-color: yellow;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.rectangulo{
+  padding: 5px;
+  margin: 5px;
+}
+
+.px {
+  background-color: crimson;
+  width: 200px;
+}
+
+.vw{
+  background-color: blue;
+  width: 20vw; /* 20% ancho ventana del navegador*/
+}
+
+.em{
+  background-color: green;
+  font-size: 30px;
+  width: 10em /* relativo al tamaño de la fuente de su contenedor*/
+}
+
+.elpinguino{
+  --pinguino-barriga: gray;
+  --pinguino-pies: yellow;
+  --variable: rgb(121, 70, 238);
+  background-color: black;
+  position: relative;
+  margin: auto;
+  display: block;
+  margin-top: 5%;
+  width: 300px;
+  height: 300px;
+}
+/* para usar la variable:
+  background: var(--pinguino-pies);*/
+
+.cabeza{
+  top: 50%;
+  left: 50px;
+  background: var(--variable);
+  width: 50px;
+}
+
+footer{
+  font-size: 8px;
+}
+
+
+
+/* VALOR DE RESPALDO:
+Funciona cuando no anda la variable (error de tipeo, por ejemplo:
+se escribe::after
+background: var(--variable, black)
+black sería el valor de respaldo
+
+
+PRIORIDAD EN LOS ESTILOS
+
+/*  se da prioridad al estilo más específico EJ: el estilo de un <li> es más importante que el del <ol>
+Es más importante el selector de clase sobre selector de tipo
+
+Selectores de tipo
+selecciona elementos que coinciden con el nombre del elemento
+Ej: h1{} ; input{}, se aplicará a cualquier elemento  <input>
+
+Selectores de clase
+seleciona elementos que contienen el atributo de class 
+Ej: .index {} selecciona ls que tengan la clase  "index"
+
+Selectores de ID
+#unique {}
+
+Selectores de atributo
+a[title] {}
+
+
+El orden de los estilos:
+
+A) en clases: la último asignada.
+
+Selector de tipo vs de clase
+
+B) a{  }   vs  .nombre-clase
+la clase es + importante que el tipo...
+o sea, prioriza   .nombre-clase
+tipo(generico) clase(específica)
+
+C) id >>  clase
+#  >>  .clase
+
+D) estilo en linea >> id y clase
+
+E) agregando !important tiene maxima prioridad
+
+.texto-azul {
+  color: blue !important
+}
+*/
