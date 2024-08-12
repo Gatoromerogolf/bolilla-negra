@@ -16,6 +16,27 @@
   <meta name="description" content="Sitio de bolilla">
   <meta name="author" content="Sensei">
   <meta name="copyright" content="Meta Inc.">
+
+  <style>
+
+    /* esto elimina las flechitas que aumentan y disminuyen el numero */
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 8px;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -33,203 +54,71 @@
 
   <section>
     <br>
-    <h1>Carga de tarjetas</h1>  
 
- <!-- MODELO DE FORMULARIO-------------------------------->
-
-    <form action="/url-del-programa-que-procesa"  method="get">
-
-   <!-- con method=get, el navegador pasa esto:
-   file:///C:/url-del-programa-que-procesa?texto=va+el+nombre&archivo=BOLILLA+2023.xlsx&email=rgarcia%40consejocaba.org.ar&clave=Flam822&comentario=comentario+chico&comentafix=comentario+grande-->
-
-   <!-- con method=POST, el nvegador pasa esto:
-   file:///C:/url-del-programa-que-procesa
-   y nada más-->
+    <span style="font-size: 12px;">
+    <label for="ultFecha">Ultima:</label>
+    <input id="ultFecha" type="text" placeholder="sabado 8 setiembre"  disabled>
+    <label for="ultFecha">N°</label>
+    <input id="ultNumero" type="number" placeholder="99" maxlength="3" disabled style="width: 3ch"></br>
+    </span>
+      <br>
+    <span style="font-size: 14px;">
+    <label for"fechator">Fecha a registrar: </label><input id="fechaRegistrar" type="date" max="2024-10-31"  min="2024-01-01"></br>
     <br>
-    <label for"fechator">Fecha torneo: </label><input id="date" type="date" max="2024-10-31"  min="2024-01-01"></br>
-    <br>
+    <label for="jugadores">Jugadores p/torneo:</label>
+    <input id="jugadores" type="number" style="width: 3ch">
+    <label for="pelJuego">Pelotas:</label>
+    <input id="pelJuego" type="number" style="width: 3ch">
+    </span>
+
 
     <fieldset>
       <legend>Participantes</legend>
-      <!-- <table>
-        <tr>
-          <td><label for="joaco">Panza.
-            <input
-                type="number"
-                id="panza"
-                name="panza"
-                min="0" max="130">
-              </label></td>
 
-            <td><label for="juancho">Presi
-              <input
-                  type="number"
-                  id="presi"
-                  name="presi"
-                  min="0" max="130">
-              </label></td>
-
-            <td><label for="julito">Sensei
-              <input
-                  type="number"
-                  id="sensei"
-                  name="sensei"
-                  min="0" max="130">
-                </label></td>
-  
-            <td><label for="juancho">Torni
-              <input
-                  type="number"
-                  id="torni"
-                  name="torni"
-                  min="0" max="130">
-          </label></td>
-      </table> -->
-
-      <br>
-
-      <table>
-        <tr>
-          <th class="pregunta-col">Jugador</th>
-          <th class="respuesta-col">Score</th>
-          <th class="respuesta-col">PG</th>
-          <th class="respuesta-col">Orden</th>
-        </tr>
-
-        <tr>
-          <td class="pregunta-col">Diegui</td>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
-        </tr>
-
-        <tr>
-          <td class="pregunta-col">Edu</td>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
-        </tr>
-
-        <tr>
-          <td class="pregunta-col">Fer</td>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
-        </tr>
-
-        <tr>
-          <td class="pregunta-col">Gaby</td>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
-        </tr>
-
-        <tr>
-          <td class="pregunta-col">Joaco</td>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
-        </tr>
-
-        <tr>
-          <td class="pregunta-col">Juancho</td>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
-        </tr>
-
-        <tr>
-          <td class="pregunta-col">Julito</td>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
-        </tr>
-
-        <tr>
-          <td class="pregunta-col">Negro</td>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
-        </tr>
-
-        <tr>
-          <td class="pregunta-col">Panza</td>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
-        </tr>
-
-        <tr>
-          <td class="pregunta-col">Presi</td>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
-        </tr>
-
-        <tr>
-          <td class="pregunta-col">Sensei</td>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
-        </tr>
-
-        <tr>
-          <td class="pregunta-col">Torni</td>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
-          <td class="respuesta-col">
-            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
-        </tr>
+      <h2>Registro de participantes</h2>
+      <table id="tablaJugadores">
+          <thead>
+              <tr>
+                  <th>Nombre</th>
+                  <th>Neto</th>
+                  <th>Pelotas</th>
+                  <th>Orden</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Las filas serán generadas por JavaScript -->
+          </tbody>
       </table>
+      
+      <button onclick="procesarDatos()">Ordenar Datos</button>
       </fieldset>
       
 
-      <br>
-      <button>Enviar</button>
-    </form>
-    <br>
+<fieldset>
+  <h2>Tabla de Resultados</h2>
+  <table id="tablaResultados">
+      <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Neto</th>
+              <th>Pelotas</th>
+              <th>Orden</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Las filas serán generadas por JavaScript -->
+      </tbody>
+  </table>
+  <br>
+  <button onclick="guardarResultados()">Guardar resultados</button>
+</form>
+<br>
+</fieldset>
 
+<br><br>
+  
 
-
-  <br><br>
-
-
-  <script>
+  <!-- <script>
     window.pepe.addEventListener('click', () => {
       window.ventana.showModal()
     })
@@ -237,10 +126,11 @@
     window.hide.addEventListener('click', () => {
       window.ventana.close()
     })
-  </script>
+  </script> -->
 
 </section>
 
+<script src="../js/cargaScores.js"></script>
 </body>
 
 

@@ -437,6 +437,25 @@ app.get('/leerDatosFechas', (req, res) => {
     });
   });
 
+// Ruta para obtener la ultima fecha grabada (sin gira) capitulos ::::::::::::::::::::
+app.get('/leerUltimaFecha', (req, res) => {
+  const query = 'SELECT * FROM fechas WHERE fec < 90 ORDER BY fec DESC LIMIT 1';
+  conexion.query(query, (error, results, fields) => {
+      if (error) {
+        res.status(500).json({ error: 'Error al obtener los DatosFecha' });
+        console.log("error servidor al obtener registros");
+        return;
+      }
+
+      if (results.length > 0) {
+        res.json(results[0]);
+      } else {
+        res.status(404).json({ error: 'No se encontraron registros' });
+      }
+    });
+  });
+
+
 
   // Ruta para obtener los registros de la tabla capitulos ::::::::::::::::::::
 app.get('/leerDatosNetos', (req, res) => {
