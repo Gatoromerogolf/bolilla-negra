@@ -8,7 +8,7 @@
   <title>Blog de bolilla</title>
   <link href="assets/images/bn2.ico" rel="icon">
 
-  <link href="styles/styleblog.css" rel="stylesheet">
+  <link href="../styles/styleblog.css" rel="stylesheet">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,14 +22,11 @@
     <header>
         <nav>
           <ul>
-            <li class="barra"><img src="assets/images/logobolilla.jpeg" width="100" alt="autito"></li>
-            <li class="barra"><a class="active" href="inicial.html">Inicio</a></li>
-            <li class="barra"><a href="giras.html">Giras</a></li>
-            <li class="barra"><a href="locales.html">Locales</a></li>
-            <li class="barra"><a href="bolilla.html">Anual Bolilla</a></li> 
-            <li class="barra"><a href="ryder2024.html">Ryder</a></li> 
-            <li class="barra"><a href="tienda.html">Tienda</a></li> 
-            <li class="barra"><a href="social.html">Sociales</a></li> 
+            <li class="barra"><img src="../assets/images/logobolilla.jpeg" width="100" alt="autito"></li>
+            <li class="barra"><a class="active" href="../index.html">Inicio</a></li>
+            <li></li><br><br>
+            <li class="barra"><a class="active" href="../index.html">Carga de tarjetas</a></li>
+
           </ul>
         </nav>
       </header>
@@ -51,79 +48,10 @@
     <br>
     <label for"fechator">Fecha torneo: </label><input id="date" type="date" max="2024-10-31"  min="2024-01-01"></br>
     <br>
-    <br>
 
     <fieldset>
       <legend>Participantes</legend>
-      <table>
-        <tr>
-          <td><label for="diegui">Diegui
-          <input
-              type="number"
-              id="diegui"
-              name="diegui"
-              min="0" max="130">
-            </label></td>
-
-          <td><label for="edu">Edu
-            <input
-                type="number"
-                id="edu"
-                name="edu"
-                min="0" max="130">
-            </label></td>
-
-          <td><label for="fer">Fer
-            <input
-                type="number"
-                id="fer"
-                name="fer"
-                min="0" max="130">
-            </label></td>
-
-          <td><label for="fer">Gaby
-            <input
-                type="number"
-                id="gaby"
-                name="gaby"
-                min="0" max="130">
-            </label></td>
-        </tr>
-
-        <tr>
-          <td><label for="joaco">Joaco
-            <input
-                type="number"
-                id="joaco"
-                name="joaco"
-                min="0" max="130">
-              </label></td>
-
-            <td><label for="juancho">Juancho
-              <input
-                  type="number"
-                  id="juancho"
-                  name="juancho"
-                  min="0" max="130">
-              </label></td>
-
-            <td><label for="julito">Julito
-              <input
-                  type="number"
-                  id="julito"
-                  name="julito"
-                  min="0" max="130">
-                </label></td>
-  
-            <td><label for="juancho">Negro
-              <input
-                  type="number"
-                  id="negro"
-                  name="negro"
-                  min="0" max="130">
-          </label></td>
-
-
+      <!-- <table>
         <tr>
           <td><label for="joaco">Panza.
             <input
@@ -156,235 +84,150 @@
                   name="torni"
                   min="0" max="130">
           </label></td>
-      </table>
-    </fieldset>
+      </table> -->
+
       <br>
 
-      <fieldset>
-        <legend>Campeón por categoría.</legend>
-        <div>  
-        <label for="lang">Categoria 1</label>
-          <select name="lenguajes" id="nombre">
-            <option value="javascript">Diegui</option>
-            <option value="php">Edu</option>
-            <option value="java">Fer</option>
-            <option value="golang">Gaby</option>
-            <option value="python">Joaco</option>
-            <option value="c#">Juancho</option>
-            <option value="C++">Julito</option>
-            <option value="erlang">Negro</option>
-            <option value="python">Panza</option>
-            <option value="c#">Presi</option>
-            <option value="C++">Sensei</option>
-            <option value="erlang">Torni</option>
-          </select>
-        </div>
-        <div>
-          <label for="lang">Categoria 2</label>
-          <select name="lenguajes" id="nombre">
-            <option value="javascript">Diegui</option>
-            <option value="php">Edu</option>
-            <option value="java">Fer</option>
-            <option value="golang">Gaby</option>
-            <option value="python">Joaco</option>
-            <option value="c#">Juancho</option>
-            <option value="C++">Julito</option>
-            <option value="erlang">Negro</option>
-            <option value="python">Panza</option>
-            <option value="c#">Presi</option>
-            <option value="C++">Sensei</option>
-            <option value="erlang">Torni</option>
-          </select>
-        </div>
-        <div>
-          <label for="lang">Categoria 3</label>
-          <select name="lenguajes" id="nombre">
-            <option value="javascript">Diegui</option>
-            <option value="php">Edu</option>
-            <option value="java">Fer</option>
-            <option value="golang">Gaby</option>
-            <option value="python">Joaco</option>
-            <option value="c#">Juancho</option>
-            <option value="C++">Julito</option>
-            <option value="erlang">Negro</option>
-            <option value="python">Panza</option>
-            <option value="c#">Presi</option>
-            <option value="C++">Sensei</option>
-            <option value="erlang">Torni</option>
-          </select>
-      </div>
+      <table>
+        <tr>
+          <th class="pregunta-col">Jugador</th>
+          <th class="respuesta-col">Score</th>
+          <th class="respuesta-col">PG</th>
+          <th class="respuesta-col">Orden</th>
+        </tr>
+
+        <tr>
+          <td class="pregunta-col">Diegui</td>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
+        </tr>
+
+        <tr>
+          <td class="pregunta-col">Edu</td>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
+        </tr>
+
+        <tr>
+          <td class="pregunta-col">Fer</td>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
+        </tr>
+
+        <tr>
+          <td class="pregunta-col">Gaby</td>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
+        </tr>
+
+        <tr>
+          <td class="pregunta-col">Joaco</td>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
+        </tr>
+
+        <tr>
+          <td class="pregunta-col">Juancho</td>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
+        </tr>
+
+        <tr>
+          <td class="pregunta-col">Julito</td>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
+        </tr>
+
+        <tr>
+          <td class="pregunta-col">Negro</td>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
+        </tr>
+
+        <tr>
+          <td class="pregunta-col">Panza</td>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
+        </tr>
+
+        <tr>
+          <td class="pregunta-col">Presi</td>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
+        </tr>
+
+        <tr>
+          <td class="pregunta-col">Sensei</td>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
+        </tr>
+
+        <tr>
+          <td class="pregunta-col">Torni</td>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="Diegui" min="0" max="130"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="8"></label>
+          <td class="respuesta-col">
+            <div class="radio-container"><input type="number" name="A-12-1" min="0" max="3"></label>
+        </tr>
+      </table>
       </fieldset>
       
-    <fieldset>
-      <legend>Información adicional</legend>
-        <div>
-          <label>Ganador de la ronda</label>
-          <input type="text" name="ganador" list="listanombres" placeholder="Sensei" pattern="">
-        </div>
-        <div>
-          <label>Número telefónico</label>
-          <input type="tel" name="fono" required pattern="[0-9]{3}" placeholder="123">
-        </div>
-        <div>
-          <label>Núm tel c/data list</label>
-          <input type="tel" name="fono" list="listatelefonos" placeholder="(54)11 47755558" pattern="">
-        </div>
-    </fieldset>
-      <br>
 
-    <fieldset>
-      <legend>Seleccionar lenguajes</legend>
-        <label for="lang">Se utiliza - select - </label>
-          <select name="lenguajes" id="lang">
-            <option value="javascript">JavaScript</option>
-            <option value="php">PHP</option>
-            <option value="java">Java</option>
-            <option value="golang">Golang</option>
-            <option value="python">Python</option>
-            <option value="c#">C#</option>
-            <option value="C++">C++</option>
-            <option value="erlang">Erlang</option>
-          </select>
-    </fieldset>
       <br>
       <button>Enviar</button>
     </form>
     <br>
-    <p>fin de formulario</p>
-    <br>
-  <hr>
 
-  <br>
 
-  <button id="pepe"> Consulta de Matrículas</button>
-        <dialog id="ventana" style="padding: 10px;width: 310px; ">
-<!--          <h3>Abrir una ventana acá</h3>
-          <fieldset id="matriculas">-->
-              <legend>Matrículas</legend>
-              <table>
-                <tr>
-                  <td>
-                    <p>Diegui</p>
-                    <p>38.534</p>
-                  </td>
-        
-                  <td>
-                    <p>Edu</p>
-                    <p>93.293</p>
-                  </td>
-        
-                  <td>
-                    <p>Fer</p>
-                    <p>126.578</p>
-                  </td>
-        
-                  <td>
-                    <p>Gaby</p>
-                    <p>119.817</p>
-                  </td>
-                </tr>
-        
-                <tr>
-                  <td>
-                    <p>Joaco</p>
-                    <p>119.807</p>
-                  </td>
-                  
-                  <td>
-                    <p>Juancho</p>
-                    <p>119.811</p>
-                  </td>
-        
-                  <td>
-                    <p>Julito</p>
-                    <p>87.561</p>
-                  </td>
-        
-                  <td>
-                    <p>Negro</p>
-                    <p>136.262</p>
-                  </td>
-                </tr>
-        
-                <tr>
-                  <td>
-                    <p>Panza</p>
-                    <p>114.566</p>
-                  </td>
-        
-                  <td>
-                    <p>Presi</p>
-                    <p>89.474</p>
-                  </td>
-        
-                  <td>
-                    <p>Sensei</p>
-                    <p>97.189</p>
-                  </td>
-        
-                  <td>
-                    <p>Torni</p>
-                    <p>122.252</p>
-                  </td>
-                </tr>
-              </table>
-              <br>
-<!--            </fieldset>-->
-          <button  id="hide">Cerrar ventana</button>
-        </dialog>
 
   <br><br>
 
-  <details>
-    <summary>Apertura (Details). </summary>
-    <p>The details element represents a disclosure widget from which the user can obtain additional information or controls.</p>
-  </details>
-
-  <br><br>
-
-  <hr><hr>
-
-  <br>
-
-  <form  id="formula2">
-    <p>Segundo Formulario</p>
-    <br>
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" placeholder="escribe tu nombre">
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" placeholder="escribe tu mail">
-
-    <label for="mensaje">Mensaje:</label>
-    <textarea id="mensaje" placeholder="escribe tu mensaje"></textarea>
-    
-  </form>
-</section>
-
-<section>
-
-  <datalist id="listatelefonos">
-    <option value="(154) 215-4468">
-    <option value="(154) 254-7863">
-    <option value="(541) 333-7863">
-    <!-- Agrega más opciones aquí -->
-  </datalist>
-
-  <datalist id="listanombres">
-    <option value="Diegui">
-    <option value="Edu">
-    <option value="Fer">
-    <option value="Gaby">
-    <option value="Joaco">
-    <option value="Juancho">
-    <option value="Julieto">
-    <option value="Negro">
-    <option value="Panza">
-    <option value="Presi">
-    <option value="Sensei">
-    <option value="Torni">
-    <!-- Agrega más opciones aquí -->
-  </datalist>
 
   <script>
     window.pepe.addEventListener('click', () => {

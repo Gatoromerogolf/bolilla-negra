@@ -12,3 +12,5 @@ const puntosRanking = [
     {playRkg: 'Sensei', sierra:99, acantilados:82, tulsa:85, pelgan:0},
     {playRkg: 'Joaco', sierra:94, acantilados:93, tulsa:79, pelgan:0},
 ]
+
+module.exports = puntosRanking;

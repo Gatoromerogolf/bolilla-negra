@@ -12,7 +12,7 @@
 
   <title>Blog de bolilla</title>
   <link href="assets/images/bn2.ico" rel="icon">
-  <link rel="stylesheet" href="styles/styleblog.css">
+  <link rel="stylesheet" href="../styles/styleblog.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <!--   <link rel="stylesheet" href="styles/ctareg.css">
  -->
@@ -22,12 +22,29 @@
   <script>
     $(function () {
       //$("#header").load("encabezado.html");
-      $("#footer").load("piepagina.html");
+      $("#footer").load("src/piepagina.html");
     });
   </script>
 
   <!-- <script src="js/saludo.js"></script>-->
 </head>
+
+<header>
+  <nav>
+    <ul>
+      <li class="barra"><a href="/index.html" rel="noreferrer">
+          <img src="../assets/images/logobolilla.jpeg" width="90" style="padding:0px; margin:0px"></a></li>
+      <li class="barra"><a href="index.html">Inicio</a></li>
+      <li class="barra"><a href="src/locales.html">Torneos</a></li>        
+      <li class="barra"><a href="src/giras.html">Giras</a></li>
+      <li class="barra"><a href="src/bolilla.html">Anual</a></li>
+      <li class="barra"><a href="src/ryder2024.html">Ryder</a></li>
+      <li class="barra"><a href="src/tienda.html">Tienda</a></li>
+      <li class="barra"><a href="src/social.html">Sociales</a></li>
+      <li class="barra"><a href="src/proveed.html">Proveedores</a></li>
+    </ul>
+  </nav>
+</header>
 
 <body>
 
@@ -62,48 +79,6 @@
   <p>Mejor score neto del mes y del año, con vigencia a partir del 12 de febrero.</p>
   <p>El Negro es el padrino de esta competencia</p>
 
-  <!-- 
-  <table class="scores">
-    <td class="scores">
-      <p>Torni</p>
-      <img src="assets/images/marco-torni.png" alt="" width=85vh>
-      <p style="font-size: 20px; color:red">64</p>
-      <p>17 Febrero</p>
-    </td>
- 
-    <td class="scores">
-      <p>Diegui</p>
-      <img src="assets/images/marco-diegui.jpg" alt="" width=85vh>
-      <p style="font-size: 20px; color:red"">64</p>
-      <p>02 Marzo</p>      
-    </td>
-
-    <td class="scores">
-      <p>Joaco</p>
-      <img src="assets/images/marco-joaco.jpg" alt="" width=85vh>
-      <p style="font-size: 20px; color:red">68</p>
-      <p>1 Abril</p>
-    </td>
-
-  </table>
-
-  <table class=" scores">
-
-    <td class="scores">
-      <p>Joaco</p>
-      <img src="assets/images/marco-joaco.jpg" alt="" width=85vh>
-      <p style="font-size: 20px; color:red">68</p>
-      <p>4 Mayo</p>
-    </td>
-
-    <td class="scores">
-      <p>Panza</p>
-      <img src="assets/images/marco-panza.png" alt="" width=85vh>
-      <p style="font-size: 20px; color:red">72</p>
-      <p>1 Junio</p>
-    </td>
-
-  </table> -->
 
   <div class="scores-container">
     <div class="scores-table">
@@ -165,7 +140,7 @@
   <p>El jugador de Bolilla que puede exhibir la mayor cantidad de pelotas.</p>
   <p>Al día de la fecha: </p>
   <div class="centrado">
-    <img id="imagenDinamica" src="assets/images/marco-rory.png" alt="" width=250vh>
+    <img id="imagenDinamica" src="assets/images/marco-tiger.png" alt="" width=250vh>
   </div>
   <p>Nuestro compañero <span id="pelotudo">...</span> ha acumulado la cantidad de
     <span id="pelotas" class="centrado" style="font-size: 40px;">...</span> pelotas ganadas.
@@ -468,7 +443,7 @@
 
   <div id="footer"></div>
   <br><br>
-  <a href="menuprueba.html">*</a>
+  <a href="src/menuprueba.html">*</a>
 
 
   <dialog id="ventana" style="padding: 10px;width: 310px; ">
@@ -562,7 +537,6 @@
   </section>
 
 
-
   <div id="modalPelotasGanadas" class="modal-Pelotas" style="display:none">
     <div class="modal-contenido-Pelotas">
       <!-- <p id="tituloModalGeneralPelotas"></p> -->
@@ -578,9 +552,6 @@
       <button id="cerrarPelotas">Cerrar</button>
     </div>
   </div>
-
-
-
 
 
   <div id="miModal1" class="modal-1">
@@ -620,12 +591,13 @@
     </div>
   </div>
 
-  <script src="apps/menuGral.js"></script>
-  <script src="datos/datosNetos.js"></script>
-  <script src="datos/datosRanking.js"></script>
-  <script src="datos/datosFechas.js"></script>
-  <script src="apps/ultimodia.js"></script>
-  <script src="apps/pelotas.js"></script>
+  <!-- <script src="apps/menuGral.js"></script> -->
+  <!-- <script src="datos/datosNetos.js"></script> -->
+  <!-- <script src="datos/datosRanking.js"></script> -->
+  <!-- <script src="datos/datosFechas.js"></script> -->
+  <script src="js/ultimodia.js"></script>
+  <!-- <script src="js/pelotas.js"></script> -->
+
   <!--<script src="ctaregresiva.js"></script> -->
 
 </body>

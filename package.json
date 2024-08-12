@@ -1,22 +1,23 @@
 {
-  "name": "proyecto-bolilla-2-kk",
+  "name": "bolilla-negra",
   "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
+  "main": "src/app.js",
   "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
-
   "dependencies": {
-    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-mysql-session": "^3.0.3",
+    "express-session": "^1.18.0",
     "mysql2": "^3.11.0",
-    "node": "^20.16.0",
-    "nodemon": "^3.1.4"
-  },
+    "node": "^20.16.0"
+  }
 }

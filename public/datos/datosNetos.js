@@ -264,3 +264,5 @@ const players2 = [
     {fec:22, play: 'Sensei', neto:79, pos:0, pg:0, or:0},
     {fec:22, play: 'Torni', neto:72, pos:3, pg:1, or:0}
 ]
+
+module.exports = players2;

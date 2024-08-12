@@ -9,19 +9,17 @@
   overflow: auto; /* Habilita el scroll si es necesario */
   background-color: rgb(216, 214, 214); /* Color de fondo */
   border: 3px solid black;
-  margin: 30px;
+  margin: 20px;
   padding: 5px;
-
-
 }
 
 /* Contenido/Estilo del Modal */
 .modal-content {
   background-color: #eb1d1d;
   margin: 15% auto; /* 15% desde la parte superior y centrado */
-  padding: 200px;
+  padding: 100px;
   border: 1px solid #888;
-  width: 80%; /* Podrías querer cambiar esto para adaptarlo a tus necesidades */
+  width: 60%; /* Podrías querer cambiar esto para adaptarlo a tus necesidades */
 }
 
 table{

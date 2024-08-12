@@ -2,6 +2,8 @@
 // agregarle la cantidad de la gira
 // leer el campo del html y mandarle el valor.
 
+
+
 const filas = 12;
 const columnas = 2;
 
@@ -74,19 +76,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('imagenDinamica').src = imgSrc;
 });
 
-// boton.addEventListener("click", (event) => {
-//   const info = event.target.getAttribute("data-info");
-//   armarDetalleGeneral(info);
-//   const modal = document.getElementById("modalGeneral");
-//   if (modal) {
-//     modal.style.display = "block";
-//   }
-// });
-
-
 
 /* ---------- MUESTRA DETALLE PELOTAS GANADAS ------*/
-
 
 function muestraPelotasGanadas(){
   var modal = document.getElementById("modalPelotasGanadas");
@@ -102,7 +93,6 @@ function muestraPelotasGanadas(){
 }
 
 document.getElementById("detallePelotas").addEventListener("click", muestraPelotasGanadas);
-
 
 
 /* ------   CIERRA VENTANA ----*/

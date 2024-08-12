@@ -1,5 +1,13 @@
 // Planilla de resultados generales de los sábados
 
+
+async function main() {
+  players2 = await leerDatosNetos();
+  fechas = await leerDatosFechas();
+}
+
+main().then (() => { // Ejecuta la función principal
+
 // Obtén la referencia a la tabla en tu HTML
 let tabla = document.getElementById("miTabla");
 
@@ -235,4 +243,44 @@ filasOrdenadas[i + 2] = [];
     const totalDia = filaTotalJugadores.insertCell(-1)
     totalDia.textContent = totalJugadores[j]
   }
+})
 
+async function leerDatosNetos() {
+  try {
+    const response = await fetch(`/leerDatosNetos`);
+    if (response.ok) {
+      const players2 = await response.json();
+      return players2; // Devuelve los datos obtenidos si la respuesta es exitosa
+    } else {
+      console.error(
+        "Error en la respuesta:",
+        response.status,
+        response.statusText
+      );
+      return null;
+    }
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    return null;
+  }
+}
+
+async function leerDatosFechas() {
+  try {
+    const response = await fetch(`/leerDatosFechas`);
+    if (response.ok) {
+      const fechas = await response.json();
+      return fechas; // Devuelve los datos obtenidos si la respuesta es exitosa
+    } else {
+      console.error(
+        "Error en la respuesta:",
+        response.status,
+        response.statusText
+      );
+      return null;
+    }
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    return null;
+  }
+}
