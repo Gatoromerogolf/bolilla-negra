@@ -1,3 +1,4 @@
+
 // Nombres de los jugadores
 const nombresJugadores = [
     "Diegui", "Edu", "Fer", "Gaby", "Joaco",
@@ -5,7 +6,13 @@ const nombresJugadores = [
     "Sensei", "Torni"
 ];
 
+let dateInput = 0;
+let dateTabla = 0;
 let fechaSeleccionada = 0;
+
+let fechaaRegistrar = 0;
+let fecFullTabla = 0;
+let fec = 0;
 
 // Generar la tabla de jugadores
 function generarTablaJugadores() {
@@ -43,34 +50,75 @@ async function buscaUltimaFecha (){
       console.error("Error en la solicitud:", error);
       return null;
     }
-  }   
+}   
 
-  buscaUltimaFecha().then(ultimaFecha => {
-    if (ultimaFecha) {
-      document.getElementById('ultFecha').value = ultimaFecha.textoFecha;
-      document.getElementById('ultNumero').value = ultimaFecha.fec
+buscaUltimaFecha().then(ultimaFecha => {
+if (ultimaFecha) {
+    document.getElementById('ultFecha').value = ultimaFecha.textoFecha;
+    document.getElementById('ultNumero').value = ultimaFecha.fec;
+    fec = ultimaFecha.fec;
+    dateTabla = new Date(ultimaFecha.fechaFull);
+    fecFullTabla = ultimaFecha.fechaFull;
 
-    } else {
-      alert('No se encontró ninguna fecha');
-    }
-  });
+    console.log(`leido de tabla: dateTabla: ${dateTabla} y fecFullTabla ${fecFullTabla}`)
+
+} else {
+    alert('No se encontró ninguna fecha');
+}
+});
 
 
 // Procesar datos ingresados y actualizar la tabla de resultados
 function procesarDatos() {
+
+    document.getElementById("primeraTabla").style.display = "none";
     const tablaJugadores = document.getElementById("tablaJugadores").getElementsByTagName('tbody')[0];
     const tablaResultados = document.getElementById("tablaResultados").getElementsByTagName('tbody')[0];
 
     const fechaRegistrar = document.getElementById('fechaRegistrar')
-    fechaSeleccionada = fechaRegistrar.value;
+    dateInput = parseDateInput(fechaRegistrar.value)
+
+    console.log(`leido de pantalla: dateInput: ${dateInput} y fechaRegistrar: ${fechaRegistrar.value}`)
+    const fechaParaComparar = (fechaRegistrar.value+'T03:00:00Z');
+    fechaaRegistrar = fechaRegistrar.value
+
+    if(fechaParaComparar < fecFullTabla) {
+        alert ('comparar < full')
+    }
+
+    if(fechaParaComparar ==  fecFullTabla) {
+        alert ('comparar = full')
+    }
+
+    if(fechaParaComparar > fecFullTabla) {
+        alert ('comparar > full')
+    }
+    // fechaSeleccionada = fechaRegistrar.value;
+
+    function parseDateInput(input) {
+        const [year, month, day] = input.split('-').map(Number);
+        return new Date(Date.UTC(year, month - 1, day)); // Meses están basados en 0
+    }
     
-    if (fechaSeleccionada){} else {
+    if (dateInput){} else {
         alert('Por favor, seleccionar la fecha a registrar.')
+        document.getElementById("primeraTabla").style.display = "block";
         return};
 
+    if (dateTabla >= dateInput) {
+        alert('La fecha debe ser mayor a la ultima')
+        document.getElementById("primeraTabla").style.display = "block";
+        return};    
+
+    console.log(`leido: ${dateTabla} e ingresado: ${dateInput}`)    
 
     const jugadores = document.getElementById('jugadores');
     const ctddJugadores = Number(jugadores.value.trim());
+    // if (ctddJugadores < 6 || ctddJugadores > 12) {
+    //     alert ('no puede haber ni menos de 6 jugadores ni mas de 12')
+    //     document.getElementById("primeraTabla").style.display = "block";
+    //     return;
+    // }
 
     const pelJuego = document.getElementById('pelJuego');
     let ctddPelotas = Number(pelJuego.value.trim());
@@ -78,7 +126,8 @@ function procesarDatos() {
         ctddPelotas = ctddJugadores
     }
     if (ctddPelotas < ctddJugadores) {
-        alert ('no puede haber menos pelotas que jugadores');
+        alert ('no puede haber menos pelotas que jugadores')
+        document.getElementById("primeraTabla").style.display = "block";
         return;
     }
 
@@ -157,44 +206,91 @@ function procesarDatos() {
 };
 }
 
+function modificarResultados(){
+    document.getElementById("primeraTabla").style.display = "block";
+}
 
 // Función para guardar los resultados y mostrar una ventana de confirmación
 function guardarResultados() {
 
-      // Si el campo de fecha no está vacío
-      if (fechaSeleccionada) {
-        // Convierte el valor a un objeto Date
-        const fecha = new Date(fechaSeleccionada);
+    // Convierte el valor a un objeto Date
+    const fecha = new Date(dateInput);
 
-        // Array con los nombres de los días de la semana
-        const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+    // Array con los nombres de los días de la semana
+    const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
 
-        // Array con los nombres de los meses
-        const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    // Array con los nombres de los meses
+    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
-        // Recupera la información deseada
-        const nombreDia = diasSemana[fecha.getUTCDay()];
-        const numeroDia = fecha.getUTCDate();
-        const numeroMes = fecha.getUTCMonth() + 1;
-        const nombreMes = meses[fecha.getUTCMonth()];
+    // Recupera la información deseada
+    const nombreDia = diasSemana[fecha.getUTCDay()];
+    const numeroDia = fecha.getUTCDate();
+    const numeroMes = fecha.getUTCMonth() + 1;
+    const nombreMes = meses[fecha.getUTCMonth()];
 
-        // Construye el texto descriptivo de la fecha
-        const textoFecha = `${nombreDia} ${numeroDia} de ${nombreMes}`;
+    // Construye el texto descriptivo de la fecha
+    const textoFecha = `${nombreDia} ${numeroDia} de ${nombreMes}`;
 
-        // Muestra la información en la consola o en una alerta
-        console.log(`Nombre del día: ${nombreDia}`);
-        console.log(`Número de día: ${numeroDia}`);
-        console.log(`Número de mes: ${numeroMes}`);
-        console.log(`Texto de la fecha: ${textoFecha}`);
-        alert(`Fecha seleccionada: ${textoFecha}`);
-    } else {
-        alert('Por favor, seleccione una fecha.');
+    alert(`dateInput antes: ${dateInput}`)
+
+    // convierte el formato de fecha para que quede aaaa-mm-dd
+
+    function formatToDateString(dateString) {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
     }
+    
+    dateInput = formatToDateString(dateInput);
 
+    
+    alert (`dateInput despues: ${dateInput}`)
 
+    const datos = { fec, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar }
+    grabarNuevaFecha(datos);
+
+    // Función para escribir los detalles de movimientos en la tabla MySQL
+async function grabarNuevaFecha(datos) {
+
+    // Extraer los valores del objeto datos
+    const { fec, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar } = datos;
+
+    const body = {
+      fecnueva: fec + 1,
+      nombreDia, 
+      numeroDia, 
+      numeroMes, 
+      textoFecha,
+      fechaaRegistrar
+    };
+  
+    try {
+      const response = await fetch("/grabaUltimaFecha", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+        credentials: "include",
+      });
+  
+      const result = await response.json();
+      if (result.success) {
+        console.log("no hay error");
+      } else {
+        throw new Error(result.error || "Error desconocido grabar parciales");
+      }
+    } catch (error) {
+      console.log("Error:", error);
+      // alert("estamos en el error (ins 2): " + error.message);
+      throw error; // Rechaza la promesa en caso de error
+    }
+  }
 
     // Mostrar la ventana de confirmación
-    alert("Gracias por el registro");
+    alert("Se guardó la fecha\nExcelente trabajo\n\n AGUANTE LA HCDT!!!!!!");
 
     // Redirigir a /index.html
     window.location.href = "/index.html";

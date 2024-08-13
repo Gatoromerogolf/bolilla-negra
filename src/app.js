@@ -496,6 +496,43 @@ app.get('/leerPuntosRanking', (req, res) => {
     });
   });
 
+
+
+// Grabacion de ultima fecha ::::::::::::::::::::::::::::::::::::::::::::::::::
+app.post('/grabaUltimaFecha', (req, res) => {
+  // if (!req.session.user){
+  //     return res.status(401).json({ error: 'No estás autenticado' });
+  // }
+  const { fecnueva, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar }  = req.body;
+  console.log (`fecnueva: ${fecnueva}`)
+  const nuevaFecha = 'INSERT INTO fechas (fec, dia, diafecha, mesFecha, textoFecha, fechaFull) VALUES (?, ?, ?, ?, ?, ?)';
+  const datosAPasar = [fecnueva, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar];
+
+  conexion.query(nuevaFecha, datosAPasar, function (error, lista) {
+      if (error) {
+          if (error.code === 'ER_DUP_ENTRY') {
+              res.status(409).json({ error: 'Ya existe una fecha igual' });
+          } else {
+          console.log('Error:', error);
+          res.status(500).json({ error: error.message });
+      }
+      } else {
+          res.status(200).json({ success: true });
+      }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
 // Ruta para generar y descargar el archivo Excel
 // app.get('/descargar-excel', async (req, res) => {
 //   try {

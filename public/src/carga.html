@@ -63,16 +63,16 @@
     </span>
       <br>
     <span style="font-size: 14px;">
-    <label for"fechator">Fecha a registrar: </label><input id="fechaRegistrar" type="date" max="2024-10-31"  min="2024-01-01"></br>
+    <label for"fechator">Fecha torneo: </label><input id="fechaRegistrar" type="date" max="2024-10-31"  min="2024-01-01"></br>
     <br>
     <label for="jugadores">Jugadores p/torneo:</label>
-    <input id="jugadores" type="number" style="width: 3ch">
+    <input id="jugadores" type="number" style="width: 3ch" min="6" max="12">
     <label for="pelJuego">Pelotas:</label>
-    <input id="pelJuego" type="number" style="width: 3ch">
+    <input id="pelJuego" type="number" style="width: 3ch" min="6" max="12">
     </span>
 
 
-    <fieldset>
+    <fieldset id="primeraTabla" style="display: block">
       <legend>Participantes</legend>
 
       <h2>Registro de participantes</h2>
@@ -90,7 +90,7 @@
           </tbody>
       </table>
       
-      <button onclick="procesarDatos()">Ordenar Datos</button>
+      <button onclick="procesarDatos()">Controlar Datos</button>
       </fieldset>
       
 
@@ -111,6 +111,7 @@
   </table>
   <br>
   <button onclick="guardarResultados()">Guardar resultados</button>
+  <button onclick="modificarResultados()">Corregir datos</button>
 </form>
 <br>
 </fieldset>
