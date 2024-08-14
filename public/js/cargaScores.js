@@ -10,6 +10,7 @@ let dateInput = 0;
 let dateTabla = 0;
 let fechaSeleccionada = 0;
 let fechaaRegistrar = 0;
+let fechaSinGuiones = 0;
 let fecFullTabla = 0;
 
 let fec = 0;
@@ -74,7 +75,7 @@ function procesarDatos() {
 
     const fechaRegistrar = document.getElementById('fechaRegistrar')
     const fechaParaComparar = (fechaRegistrar.value);
-    const fechaSinGuiones = fechaParaComparar.split('-').join('');
+    fechaSinGuiones = fechaParaComparar.split('-').join('');
 
     function formatToDateString(dateString) {
         const date = new Date(dateString);
@@ -94,7 +95,9 @@ function procesarDatos() {
     if (dateTablaSinGuiones >= fechaSinGuiones) {
         alert('La fecha debe ser mayor a la ultima')
         document.getElementById("primeraTabla").style.display = "block";
-        return};    
+        return};  
+        
+    fechaaRegistrar = fechaSinGuiones;    
 
     const jugadores = document.getElementById('jugadores');
     const ctddJugadores = Number(jugadores.value.trim());
