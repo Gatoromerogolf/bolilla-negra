@@ -9,9 +9,9 @@ const nombresJugadores = [
 let dateInput = 0;
 let dateTabla = 0;
 let fechaSeleccionada = 0;
-
 let fechaaRegistrar = 0;
 let fecFullTabla = 0;
+
 let fec = 0;
 
 // Generar la tabla de jugadores
@@ -21,12 +21,12 @@ function generarTablaJugadores() {
         let fila = tablaJugadores.insertRow();
         let celdaNombre = fila.insertCell(0);
         let celdaNeto = fila.insertCell(1);
-        let celdaPelotas = fila.insertCell(2);
-        let celdaOrden = fila.insertCell(3);
+        // let celdaPelotas = fila.insertCell(2);
+        let celdaOrden = fila.insertCell(2);
 
         celdaNombre.textContent = nombre;
         celdaNeto.innerHTML = `<input type="number" name="neto" min="0" style="width: 4ch;">`;
-        celdaPelotas.innerHTML = `<input type="number" name="pelotas" min="0" style="width: 3ch;">`;
+        // celdaPelotas.innerHTML = `<input type="number" name="pelotas" min="0" style="width: 3ch;">`;
         celdaOrden.innerHTML = `<input type="number" name="orden" min="0" style="width: 2ch;">`;
     });
 }
@@ -57,11 +57,8 @@ if (ultimaFecha) {
     document.getElementById('ultFecha').value = ultimaFecha.textoFecha;
     document.getElementById('ultNumero').value = ultimaFecha.fec;
     fec = ultimaFecha.fec;
-    dateTabla = new Date(ultimaFecha.fechaFull);
+    // dateTabla = new Date(ultimaFecha.fechaFull);
     fecFullTabla = ultimaFecha.fechaFull;
-
-    console.log(`leido de tabla: dateTabla: ${dateTabla} y fecFullTabla ${fecFullTabla}`)
-
 } else {
     alert('No se encontró ninguna fecha');
 }
@@ -70,55 +67,42 @@ if (ultimaFecha) {
 
 // Procesar datos ingresados y actualizar la tabla de resultados
 function procesarDatos() {
-
     document.getElementById("primeraTabla").style.display = "none";
+    document.getElementById("segundaTabla").style.display = "block";
     const tablaJugadores = document.getElementById("tablaJugadores").getElementsByTagName('tbody')[0];
     const tablaResultados = document.getElementById("tablaResultados").getElementsByTagName('tbody')[0];
 
     const fechaRegistrar = document.getElementById('fechaRegistrar')
-    dateInput = parseDateInput(fechaRegistrar.value)
+    const fechaParaComparar = (fechaRegistrar.value);
+    const fechaSinGuiones = fechaParaComparar.split('-').join('');
 
-    console.log(`leido de pantalla: dateInput: ${dateInput} y fechaRegistrar: ${fechaRegistrar.value}`)
-    const fechaParaComparar = (fechaRegistrar.value+'T03:00:00Z');
-    fechaaRegistrar = fechaRegistrar.value
-
-    if(fechaParaComparar < fecFullTabla) {
-        alert ('comparar < full')
+    function formatToDateString(dateString) {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
     }
+    dateTabla = formatToDateString(fecFullTabla);
+    const dateTablaSinGuiones = dateTabla.split('-').join('');
 
-    if(fechaParaComparar ==  fecFullTabla) {
-        alert ('comparar = full')
-    }
-
-    if(fechaParaComparar > fecFullTabla) {
-        alert ('comparar > full')
-    }
-    // fechaSeleccionada = fechaRegistrar.value;
-
-    function parseDateInput(input) {
-        const [year, month, day] = input.split('-').map(Number);
-        return new Date(Date.UTC(year, month - 1, day)); // Meses están basados en 0
-    }
-    
-    if (dateInput){} else {
-        alert('Por favor, seleccionar la fecha a registrar.')
+    if (fechaParaComparar) {} else {
+        alert('Falta informar la fecha del torneo.')
         document.getElementById("primeraTabla").style.display = "block";
         return};
 
-    if (dateTabla >= dateInput) {
+    if (dateTablaSinGuiones >= fechaSinGuiones) {
         alert('La fecha debe ser mayor a la ultima')
         document.getElementById("primeraTabla").style.display = "block";
         return};    
 
-    console.log(`leido: ${dateTabla} e ingresado: ${dateInput}`)    
-
     const jugadores = document.getElementById('jugadores');
     const ctddJugadores = Number(jugadores.value.trim());
-    // if (ctddJugadores < 6 || ctddJugadores > 12) {
-    //     alert ('no puede haber ni menos de 6 jugadores ni mas de 12')
-    //     document.getElementById("primeraTabla").style.display = "block";
-    //     return;
-    // }
+    if (ctddJugadores < 1 || ctddJugadores > 12) {
+        alert ('no puede haber ni menos de 6 jugadores ni mas de 12')
+        document.getElementById("primeraTabla").style.display = "block";
+        return;
+    }
 
     const pelJuego = document.getElementById('pelJuego');
     let ctddPelotas = Number(pelJuego.value.trim());
@@ -126,11 +110,10 @@ function procesarDatos() {
         ctddPelotas = ctddJugadores
     }
     if (ctddPelotas < ctddJugadores) {
-        alert ('no puede haber menos pelotas que jugadores')
+        alert ('No puede haber menos pelotas que jugadores')
         document.getElementById("primeraTabla").style.display = "block";
         return;
     }
-
 
     // Limpiar la tabla de resultados
     tablaResultados.innerHTML = "";
@@ -141,17 +124,23 @@ function procesarDatos() {
     // Iterar sobre cada fila en la tabla de jugadores
     for (let i = 0; i < tablaJugadores.rows.length; i++) {
         let fila = tablaJugadores.rows[i];
+
         let nombre = fila.cells[0].textContent;
+        console.log (`valor de nombre: ${nombre}`)
         let neto = fila.cells[1].getElementsByTagName('input')[0].value;
-        let pelotas = fila.cells[2].getElementsByTagName('input')[0].value;
-        let orden = fila.cells[3].getElementsByTagName('input')[0].value;
+        console.log (`valor de neto: ${neto}`)
+        // let pelotas = fila.cells[2].getElementsByTagName('input')[0].value;
+        // console.log (`valor de pelotas: ${pelotas}`)
+        let orden = fila.cells[2].getElementsByTagName('input')[0].value;
+        console.log (`valor de orden: ${orden}`)
 
         // Agregar los datos al array si se ha completado al menos un campo
-        if (neto || pelotas || orden) {
+        // if (neto || pelotas || orden) {
+        if (neto || orden) {
             datosJugadores.push({
                 nombre: nombre,
                 neto: neto || '-',
-                pelotas: pelotas || '-',
+                // pelotas: pelotas || '-',
                 orden: orden || '-'
             })
         }
@@ -185,7 +174,7 @@ function procesarDatos() {
         valor2 = 4 }
 
     if (datosJugadores.length !== ctddJugadores) {
-        alert (`No coinciden los scores (${datosJugadores.length}) con la cantidad de jugadores (${jugadores.value})`)
+        alert (`No coinciden los scores: ${datosJugadores.length} con la cantidad de jugadores:${jugadores.value}`)
     } else {
         let indice = 0;    
         // Insertar las filas ordenadas en la tabla de resultados
@@ -203,7 +192,7 @@ function procesarDatos() {
             filaResultado.insertCell(3).textContent = jugador.orden;
             indice ++;
         })
-};
+    };
 }
 
 function modificarResultados(){
@@ -214,7 +203,8 @@ function modificarResultados(){
 function guardarResultados() {
 
     // Convierte el valor a un objeto Date
-    const fecha = new Date(dateInput);
+    // const fecha = new Date(dateInput);
+    const fecha = fechaParaComparar;
 
     // Array con los nombres de los días de la semana
     const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
@@ -244,7 +234,6 @@ function guardarResultados() {
     }
     
     dateInput = formatToDateString(dateInput);
-
     
     alert (`dateInput despues: ${dateInput}`)
 
@@ -252,7 +241,7 @@ function guardarResultados() {
     grabarNuevaFecha(datos);
 
     // Función para escribir los detalles de movimientos en la tabla MySQL
-async function grabarNuevaFecha(datos) {
+    async function grabarNuevaFecha(datos) {
 
     // Extraer los valores del objeto datos
     const { fec, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar } = datos;
