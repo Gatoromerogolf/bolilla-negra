@@ -504,7 +504,6 @@ app.post('/grabaUltimaFecha', (req, res) => {
   //     return res.status(401).json({ error: 'No estás autenticado' });
   // }
   const { fecnueva, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar }  = req.body;
-  console.log (`fecnueva: ${fecnueva}`)
   const nuevaFecha = 'INSERT INTO fechas (fec, dia, diafecha, mesFecha, textoFecha, fechaFull) VALUES (?, ?, ?, ?, ?, ?)';
   const datosAPasar = [fecnueva, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar];
 
@@ -524,6 +523,31 @@ app.post('/grabaUltimaFecha', (req, res) => {
 
 
 
+// Grabacion de ultima fecha ::::::::::::::::::::::::::::::::::::::::::::::::::
+app.post('/grabaNetos', (req, res) => {
+  // if (!req.session.user){
+  //     return res.status(401).json({ error: 'No estás autenticado' });
+  // }
+  const { fecnueva, play, neto, pos, pg, orden }  = req.body;
+  const nuevoNeto = 'INSERT INTO netos (fec, play, neto, pos, pg, orden) VALUES (?, ?, ?, ?, ?, ?)';
+  const datosAPasar = [fecnueva, play, neto, pos, pg, orden];
+
+  console.log (fecnueva, play, neto, pos, pg, orden)
+
+
+  conexion.query(nuevoNeto, datosAPasar, function (error, lista) {
+      if (error) {
+          if (error.code === 'ER_DUP_ENTRY') {
+              res.status(409).json({ error: 'Ya existe un registro igual' });
+          } else {
+          console.log('Error:', error);
+          res.status(500).json({ error: error.message });
+      }
+      } else {
+          res.status(200).json({ success: true });
+      }
+  });
+});
 
 
 

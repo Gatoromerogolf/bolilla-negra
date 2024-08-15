@@ -11,7 +11,11 @@ let dateTabla = 0;
 let fechaSeleccionada = 0;
 let fechaaRegistrar = 0;
 let fechaSinGuiones = 0;
+let fechaParaComparar = 0;
 let fecFullTabla = 0;
+let sumaJugadores = 0;
+
+let datosJugadores = [];
 
 let fec = 0;
 
@@ -74,7 +78,7 @@ function procesarDatos() {
     const tablaResultados = document.getElementById("tablaResultados").getElementsByTagName('tbody')[0];
 
     const fechaRegistrar = document.getElementById('fechaRegistrar')
-    const fechaParaComparar = (fechaRegistrar.value);
+    fechaParaComparar = (fechaRegistrar.value);
     fechaSinGuiones = fechaParaComparar.split('-').join('');
 
     function formatToDateString(dateString) {
@@ -120,9 +124,10 @@ function procesarDatos() {
 
     // Limpiar la tabla de resultados
     tablaResultados.innerHTML = "";
+    sumaJugadores = 0;
 
     // Crear un array para almacenar los datos
-    let datosJugadores = [];
+    datosJugadores = [];
 
     // Iterar sobre cada fila en la tabla de jugadores
     for (let i = 0; i < tablaJugadores.rows.length; i++) {
@@ -139,14 +144,16 @@ function procesarDatos() {
 
         // Agregar los datos al array si se ha completado al menos un campo
         // if (neto || pelotas || orden) {
-        if (neto || orden) {
-            datosJugadores.push({
-                nombre: nombre,
-                neto: neto || '-',
-                // pelotas: pelotas || '-',
-                orden: orden || '-'
-            })
-        }
+        // if (neto || orden) {
+        datosJugadores.push({ //agrega todos
+            nombre: nombre,
+            neto: neto || '-',
+            // pelotas: pelotas || '-',
+            orden: orden || '-'
+        })
+
+            if (neto) {sumaJugadores ++}
+        // }
     }
 
     // Ordenar los datos por el valor de "Neto" y luego por "Orden"
@@ -176,8 +183,9 @@ function procesarDatos() {
         valor1 = 7
         valor2 = 4 }
 
-    if (datosJugadores.length !== ctddJugadores) {
-        alert (`No coinciden los scores: ${datosJugadores.length} con la cantidad de jugadores:${jugadores.value}`)
+    // if (datosJugadores.length !== ctddJugadores) {
+    if (sumaJugadores !== ctddJugadores) {
+    alert (`No coinciden los scores: ${sumaJugadores} con la cantidad de jugadores:${jugadores.value}`)
     } else {
         let indice = 0;    
         // Insertar las filas ordenadas en la tabla de resultados
@@ -193,6 +201,7 @@ function procesarDatos() {
             filaResultado.insertCell(1).textContent = jugador.neto;
             filaResultado.insertCell(2).textContent = jugador.pelotas;
             filaResultado.insertCell(3).textContent = jugador.orden;
+            filaResultado.insertCell(4).textContent = jugador.pos;
             indice ++;
         })
     };
@@ -200,14 +209,14 @@ function procesarDatos() {
 
 function modificarResultados(){
     document.getElementById("primeraTabla").style.display = "block";
+    document.getElementById("segundaTabla").style.display = "none";
 }
 
 // Función para guardar los resultados y mostrar una ventana de confirmación
 function guardarResultados() {
 
-    // Convierte el valor a un objeto Date
-    // const fecha = new Date(dateInput);
-    const fecha = fechaParaComparar;
+    // Convierte el valor a un objeto Date para usar la funcion getUTC
+    const fecha = new Date(fechaParaComparar);
 
     // Array con los nombres de los días de la semana
     const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
@@ -223,23 +232,7 @@ function guardarResultados() {
 
     // Construye el texto descriptivo de la fecha
     const textoFecha = `${nombreDia} ${numeroDia} de ${nombreMes}`;
-
-    alert(`dateInput antes: ${dateInput}`)
-
-    // convierte el formato de fecha para que quede aaaa-mm-dd
-
-    function formatToDateString(dateString) {
-        const date = new Date(dateString);
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    }
-    
-    dateInput = formatToDateString(dateInput);
-    
-    alert (`dateInput despues: ${dateInput}`)
-
+  
     const datos = { fec, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar }
     grabarNuevaFecha(datos);
 
@@ -276,16 +269,88 @@ function guardarResultados() {
       }
     } catch (error) {
       console.log("Error:", error);
-      // alert("estamos en el error (ins 2): " + error.message);
       throw error; // Rechaza la promesa en caso de error
     }
   }
 
+  //  Guarda los netos.
+  indice = 0;
+  let fecnueva = ++fec;
+
+  datosJugadores.forEach(jugador => {
+    if (indice == 0) {
+        jugador.pos = 1}
+    if (indice == 1) {
+        jugador.pos = 2}
+    if (indice == 2) {
+        jugador.pos = 3}
+
+    if (indice > 2) {
+        jugador.pos = 0;
+        jugador.pelotas = 0;
+        jugador.orden = 0;
+    }    
+    if (jugador.neto < 50 || jugador.neto === '-')  {
+        jugador.neto = 0}
+
+    if (jugador.orden === '-')  {
+        jugador.orden = 0}    
+    
+    //  Grabar NETOS
+    let play = jugador.nombre; 
+    let neto = jugador.neto;
+    let pos = jugador.pos;
+    let pg = jugador.pelotas;
+    let orden = jugador.orden;
+
+    const datosNetos = { fecnueva, play, neto, pos, pg, orden }
+    grabarNuevoNeto(datosNetos);
+
+    indice++;
+  })
     // Mostrar la ventana de confirmación
     alert("Se guardó la fecha\nExcelente trabajo\n\n AGUANTE LA HCDT!!!!!!");
 
-    // Redirigir a /index.html
-    window.location.href = "/index.html";
+    // // Redirigir a /index.html
+    // window.location.href = "/index.html";
+
+}
+
+// Función para escribir los detalles de movimientos en la tabla MySQL
+async function grabarNuevoNeto(datosNetos) {
+
+// Extraer los valores del objeto datos
+const { fecnueva, play, neto, pos, pg, orden } = datosNetos;
+
+const body = {
+  fecnueva,
+  play, 
+  neto, 
+  pos, 
+  pg,
+  orden
+};
+
+try {
+  const response = await fetch("/grabaNetos", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+    credentials: "include",
+  });
+
+  const result = await response.json();
+  if (result.success) {
+    console.log("no hay error");
+  } else {
+    throw new Error(result.error || "Error desconocido grabar Netos");
+  }
+} catch (error) {
+    console.log("Error:", error);
+    throw error; // Rechaza la promesa en caso de error
+    }
 }
 
 // Llamar a la función para generar la tabla al cargar la página

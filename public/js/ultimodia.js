@@ -3,21 +3,15 @@ let fechas = [];
 
 async function main() {
   fechas = await leerDatosFechas();
+  ultimaFecha = await buscaUltimaFecha();
   players2 = await leerDatosNetos();
   puntosRanking = await leerPuntosRanking();
 }
 
 main().then (() => { // Ejecuta la función principal
 
-  //  LLENA TABLA:  ULTIMA FECHA DE TORNEO :::::::::::::::::::::::::::::::::::::::::::
-
-  // para ver los nombres de los atributos
-  // const primerVector = fechas[0]
-  // const atributos = Object.keys(primerVector)
-  // console.log (atributos)
-
   const ultDia = document.getElementById("ultimaFecha");
-  const ultFecha = fechas[fechas.length - 3].textoFecha;
+  const ultFecha = ultimaFecha.textoFecha;
 
   ultDia.textContent = ultFecha;
 
@@ -249,3 +243,24 @@ async function leerPuntosRanking() {
     return null;
   }
 }
+
+async function buscaUltimaFecha (){
+  try {
+    const response = await fetch(`/leerUltimaFecha`);
+
+    if (response.ok) {
+      const data = await response.json();
+      return data; // Devuelve los datos obtenidos si la respuesta es exitosa
+    } else {
+      console.error(
+        "Error en la respuesta:",
+        response.status,
+        response.statusText
+      );
+      return null;
+    }
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    return null;
+  }
+} 
