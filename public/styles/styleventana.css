@@ -3,19 +3,19 @@
   position: fixed; /* Mantén el modal fijo */
   z-index: 1; /* Colócalo sobre otros elementos */
   left: 0;
-  top: 20px;
-  width: 60%; /* Anchura completa */
+  top: 5px;
+  width: 70%; /* Anchura completa */
   /*height: 100%; /* Altura completa */
   overflow: auto; /* Habilita el scroll si es necesario */
-  background-color: rgb(216, 214, 214); /* Color de fondo */
+  background-color: rgb(121, 212, 248); /* Color de fondo */
   border: 3px solid black;
-  margin: 20px;
+  margin: 10px;
   padding: 5px;
 }
 
 /* Contenido/Estilo del Modal */
 .modal-content {
-  background-color: #eb1d1d;
+  background-color: #1deb27;
   margin: 15% auto; /* 15% desde la parte superior y centrado */
   padding: 100px;
   border: 1px solid #888;

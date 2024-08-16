@@ -1,16 +1,15 @@
 
 const mysql = require("mysql2");
-// Config dotnev
 require("dotenv").config();
 
 // Crear conexión usando la URL completa
 const conexion = mysql.createConnection({
   host: process.env.MYSQL_HOST,
-  // port: process.env.MYSQL_PORT,
+  port: process.env.MYSQL_PORT,
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DB
-  // connectTimeout: 3000
+  database: process.env.MYSQL_DB,
+  connectTimeout: 10000
 });
 
 conexion.connect((err) => {
@@ -18,7 +17,7 @@ conexion.connect((err) => {
     console.error("CONNECT FAILED", err.code);
     return;
   }
-console.log("CONNECTED to the database");
+console.log("Conectado a la base de datos");
 });
 
 module.exports = { conexion };

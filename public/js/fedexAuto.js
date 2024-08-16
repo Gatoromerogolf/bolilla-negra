@@ -46,6 +46,7 @@ main().then (() => { // Ejecuta la función principal
     if (!matrizFedex[j]) {
       matrizFedex[j] = [];
     }
+    // agrega los puntos de Sierras
     matrizFedex[j][0] = 'Negro';
     matrizFedex[j][1] = 20;
     matrizFedex[j][2] = "1°";
@@ -100,6 +101,8 @@ main().then (() => { // Ejecuta la función principal
     if (!matrizFedex[j]) {
       matrizFedex[j] = [];
     }
+
+    //  agrega los puntos de Ryder
     matrizFedex[j][0] = 'Sensei';
     matrizFedex[j][1] = 10;
     matrizFedex[j][2] = "1°";

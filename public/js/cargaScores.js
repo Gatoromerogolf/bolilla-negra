@@ -312,7 +312,7 @@ function guardarResultados() {
     alert("Se guardó la fecha\nExcelente trabajo\n\n AGUANTE LA HCDT!!!!!!");
 
     // // Redirigir a /index.html
-    // window.location.href = "/index.html";
+    window.location.href = "/index.html";
 
 }
 

@@ -2,6 +2,9 @@
 Funciona cuando no anda la variable (error de tipeo, por ejemplo:
 se escribe::after
 background: var(--variable, black)
+
+
+
 black sería el valor de respaldo
 
 
@@ -60,7 +63,7 @@ id=" ";  class=" "; a -  tr --ul etc
 /*  */
 body {
   font-family: sans-serif;
-  background-color: #e4e3e3;
+  background-color: #e4e3e317;
   padding: 0;
   margin: 1;
   font-size: 18px;
@@ -87,7 +90,7 @@ header {
 }
 
 h1 {
-  background-color: rgb(63, 63, 63);
+  background-color: rgb(81, 83, 252);
   margin: 10;
   padding: 10px;
   text-align: center;
@@ -138,7 +141,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #464545;
+  background-color: #360fe2;
 }
 
 .otraLista {
@@ -429,7 +432,7 @@ a {
   /*background: rgb(9, 148, 202); */
   /*background: #6e6a69;*/
   /*background: #ec601f;*/
-  background: #976c1c;
+  background: #6bec44;
   display: inline-block;
   box-shadow: 2px 5px 0px #000;
   border-radius: 10%;
@@ -445,7 +448,7 @@ a {
   padding: 5px 10px;
   line-height: 30px;
   /*background: #FFA500;*/
-  background: #6e6a69;
+  background: #181717;
   display: inline-block;
   box-shadow: 2px 5px 0px #000;
   border-radius: 10%;
@@ -456,12 +459,12 @@ a {
   width: 85px;
   text-align: center;
   font-size: 12px;
-  color: black;
+  color: rgb(252, 250, 250);
   text-decoration: none;
   margin: 5px;
   padding: 5px 10px;
   line-height: 30px;
-  background: #bd6cbd;
+  background: #4c27f3;
   display: inline-block;
   box-shadow: 2px 5px 0px #000;
   border-radius: 10%;
@@ -639,8 +642,8 @@ p.scores {
   position: fixed;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width: 35%;
+  /*height: 50%;*/
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -651,7 +654,7 @@ p.scores {
 .modal-contenido-Pelotas {
   background-color: white;
   /*margin: 10%;*/
-  padding: 20px;
+  padding: 10px;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   flex-direction: column;
@@ -659,7 +662,7 @@ p.scores {
 }
 
 #cerrarPelotas{
-  color: #aaa;
+  color: #a10606;
   /*float: right;*/
   font-size: 18px;
   font-weight: bold;
