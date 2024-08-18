@@ -1,22 +1,6 @@
 :root{
   --variable: rgb(195, 173, 246);
 }
-/*
-table {
-  background-color: white;
-  width: 300px;
-  margin: 5px;
-  padding: 5px;
-  border: 1px solid black;
-}
-
-tr, th, td{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 15px;
-  padding: 10px;
-  border: 1px solid black;
-}
-*/
 
 table {
   background-color: white;
@@ -58,22 +42,12 @@ a[href="#parrafo1"]{
   color:darkgreen;
 }
 
-
-/* img [src="images/auto1.jpg"] {
-  width: 60;
-  border-width: 10px;
-  border-style: solid;
-  border-color: black;
-} */
-
 ol{
   color: white;
   list-style-type:decimal-leading-zero;
   list-style-position: inside;
 }
  
-
-
 ul{
   color: green;
   font-weight: bold;

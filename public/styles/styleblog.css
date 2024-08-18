@@ -3,10 +3,7 @@ Funciona cuando no anda la variable (error de tipeo, por ejemplo:
 se escribe::after
 background: var(--variable, black)
 
-
-
 black sería el valor de respaldo
-
 
 PRIORIDAD EN LOS ESTILOS
 
