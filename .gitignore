@@ -6,3 +6,4 @@
 
 # ignorar node_modules
 node_modules/
+bfg -1.14.0.jar
