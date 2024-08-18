@@ -85,6 +85,7 @@ app.get('/', (req, res) => {
 
 // Ruta para servir index.html
 app.get('/', (req, res) => {
+res.send ('Hola mundo');  
 res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
