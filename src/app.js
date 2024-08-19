@@ -62,33 +62,26 @@ app.use(session({
 
 // Ruta para servir index.html
 app.get('/', (req, res) => {
+  // res.send ('Hola mundo'); 
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
-
-// Ruta para servir index.html
-app.get('/', (req, res) => {
-res.send ('Hola mundo');  
-res.sendFile(path.join(__dirname, '../public', 'index.html'));
-});
-
-
 app.post('/api/login', (req, res) => {
-const { usuario, password } = req.body;
-console.log (`llegó con ${usuario} y con ${password}`)
-conexion.query('SELECT * FROM users WHERE usuario = ? AND password = ?', [usuario, password], (err, results) => {
+const { username, password } = req.body;
+console.log (`llegó con ${username} y con ${password}`)
+conexion.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, results) => {
     if (err) {
         res.status(500).json({ error: 'Error en la base de datos' });
     } else if (results.length > 0) {
         const user = results[0]; // Accede a la primera fila de los resultados
         req.session.user = {
           id: user.id,
-          username: user.usuario};
+          username: user.username};
         res.status(200).json({ 
           message: 'Login exitoso',
           user: {
             id: user.id,
-            username: user.usuario
+            username: user.username
           }
         }); 
     } else {
@@ -96,7 +89,6 @@ conexion.query('SELECT * FROM users WHERE usuario = ? AND password = ?', [usuari
     }
 });
 })
-
 
 // Ruta para obtener los registros de la tabla FECHAS::::::::::::::::::::
 app.get('/leerDatosFechas', (req, res) => {

@@ -1,7 +1,7 @@
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita el envío del formulario por defecto
     
-    const usuario = document.getElementById('usuario').value;
+    const username = document.getElementById('usuario').value;
     const password = document.getElementById('password').value;
 
     // Realiza la solicitud al servidor para validar las credenciales
@@ -10,13 +10,13 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ usuario, password })
+        body: JSON.stringify({ username, password })
     })
     .then(response => response.json())
     .then(data => {
         if (data.message === 'Login exitoso') {
             // Guardar el nombre de usuario en localStorage
-            localStorage.setItem('usuario', data.user.usuario);
+            localStorage.setItem('usuario', data.user.username);
             window.location.href = '../src/carga.html';
         } else {
             console.error('Credenciales inválidas');
