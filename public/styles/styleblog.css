@@ -429,7 +429,7 @@ a {
   /*background: rgb(9, 148, 202); */
   /*background: #6e6a69;*/
   /*background: #ec601f;*/
-  background: #6bec44;
+  background: #44c5ec;
   display: inline-block;
   box-shadow: 2px 5px 0px #000;
   border-radius: 10%;
@@ -639,7 +639,7 @@ p.scores {
   position: fixed;
   left: 0;
   top: 0;
-  width: 35%;
+  width: 55%;
   /*height: 50%;*/
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
