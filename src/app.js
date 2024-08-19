@@ -65,23 +65,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
-// const options = {
-//   host: process.env.MYSQL_HOST,
-//   port: process.env.MYSQL_PORT,
-//   user: process.env.MYSQL_USER,
-//   password: process.env.MYSQL_PASSWORD,
-//   database: process.env.MYSQL_DB
-// };
-
-// const sessionStore = new MySQLStore(options);
-
-// app.use(session({
-//   secret: process.env.SESSION_SECRET, // Cambia esto por un secreto más seguro en producción
-//   store: sessionStore,
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: { secure: false } // Cambia esto a true si usas HTTPS
-// }));
 
 // Ruta para servir index.html
 app.get('/', (req, res) => {
