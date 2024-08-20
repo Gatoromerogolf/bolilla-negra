@@ -8,6 +8,7 @@ const { conexion } = require("./db");
 const path = require('path');
 const session = require('express-session');
 const MySQLStore = require ('express-mysql-session')(session);
+const cron = require('node-cron');
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // reemplaza por ./db
@@ -34,15 +35,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 // Endpoint para validar credenciales :::::::::::::::::::::::::::::::::::::::::::::::::::
 app.use(cookieParser()); // Configura el middleware para leer cookies
-
-// const options = {
-//   host: viaduct.proxy.rlwy.net,
-//   port: 21820,
-//   user: root,
-//   password: oJVNwXXIFCKCZKWKijLUSccbRQnIjqTC,
-//   database: railway
-// }
-
 
 const sessionStore = new MySQLStore({
     host: process.env.MYSQL_HOST,
@@ -127,6 +119,21 @@ app.get('/leerUltimaFecha', (req, res) => {
     });
   });
 
+//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Definir la tarea cron
+// cron.schedule('0 */4 * * *', () => { cada cuatro horas
+cron.schedule('*/30 * * * *', () => { // cada treinta minutos
+
+  const query = 'DELETE from tablalogs ORDER BY id ASC LIMIT 1';
+
+  conexion.query(query, (err, results) => {
+    if (err) {
+      console.error('Error al eliminar la base de logs:', err);
+      return;
+    }
+    console.log('Registro eliminado correctamente:', results);
+  });
+});
 
 
   // Ruta para obtener los registros de DATOS NETOS ::::::::::::::::::::
