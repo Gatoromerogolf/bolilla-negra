@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 // const mysql = require('mysql2');
-const { conexion } = require("./db");
+const { pool } = require("./db");
 const path = require('path');
 const session = require('express-session');
 const MySQLStore = require ('express-mysql-session')(session);
@@ -61,7 +61,7 @@ app.get('/', (req, res) => {
 app.post('/api/login', (req, res) => {
 const { username, password } = req.body;
 console.log (`llegó con ${username} y con ${password}`)
-conexion.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, results) => {
+pool.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, results) => {
     if (err) {
         res.status(500).json({ error: 'Error en la base de datos' });
     } else if (results.length > 0) {
@@ -86,7 +86,7 @@ conexion.query('SELECT * FROM users WHERE username = ? AND password = ?', [usern
 app.get('/leerDatosFechas', (req, res) => {
   const query = 'SELECT * FROM fechas';
 
-  conexion.query(query, (error, results, fields) => {
+  pool.query(query, (error, results, fields) => {
       if (error) {
         res.status(500).json({ error: 'Error al obtener los DatosFecha' });
         console.log("error servidor al obtener registros");
@@ -104,7 +104,7 @@ app.get('/leerDatosFechas', (req, res) => {
 // Ruta para obtener la ultima fecha grabada (sin gira) ::::::::::::::::::::
 app.get('/leerUltimaFecha', (req, res) => {
   const query = 'SELECT * FROM fechas WHERE fec < 90 ORDER BY fec DESC LIMIT 1';
-  conexion.query(query, (error, results, fields) => {
+  pool.query(query, (error, results, fields) => {
       if (error) {
         res.status(500).json({ error: 'Error al obtener los DatosFecha' });
         console.log("error servidor al obtener registros");
@@ -126,7 +126,7 @@ cron.schedule('*/30 * * * *', () => { // cada treinta minutos
 
   const query = 'DELETE from tablalogs ORDER BY id ASC LIMIT 1';
 
-  conexion.query(query, (err, results) => {
+  pool.query(query, (err, results) => {
     if (err) {
       console.error('Error al eliminar la base de logs:', err);
       return;
@@ -140,7 +140,7 @@ cron.schedule('*/30 * * * *', () => { // cada treinta minutos
 app.get('/leerDatosNetos', (req, res) => {
   const query = 'SELECT * FROM netos';
 
-  conexion.query(query, (error, results, fields) => {
+  pool.query(query, (error, results, fields) => {
       if (error) {
         res.status(500).json({ error: 'Error al obtener los DatosFecha' });
         console.log("error servidor al obtener registros");
@@ -160,7 +160,7 @@ app.get('/leerDatosNetos', (req, res) => {
 app.get('/leerPuntosRanking', (req, res) => {
   const query = 'SELECT * FROM puntosranking';
 
-  conexion.query(query, (error, results, fields) => {
+  pool.query(query, (error, results, fields) => {
       if (error) {
         res.status(500).json({ error: 'Error al obtener los DatosFecha' });
         console.log("error servidor al obtener registros");
@@ -185,7 +185,7 @@ app.post('/grabaUltimaFecha', (req, res) => {
   const nuevaFecha = 'INSERT INTO fechas (fec, dia, diafecha, mesFecha, textoFecha, fechaFull) VALUES (?, ?, ?, ?, ?, ?)';
   const datosAPasar = [fecnueva, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar];
 
-  conexion.query(nuevaFecha, datosAPasar, function (error, lista) {
+  pool.query(nuevaFecha, datosAPasar, function (error, lista) {
       if (error) {
           if (error.code === 'ER_DUP_ENTRY') {
               res.status(409).json({ error: 'Ya existe una fecha igual' });
@@ -212,7 +212,7 @@ app.post('/grabaNetos', (req, res) => {
   console.log (fecnueva, play, neto, pos, pg, orden)
 
 
-  conexion.query(nuevoNeto, datosAPasar, function (error, lista) {
+  pool.query(nuevoNeto, datosAPasar, function (error, lista) {
       if (error) {
           if (error.code === 'ER_DUP_ENTRY') {
               res.status(409).json({ error: 'Ya existe un registro igual' });
