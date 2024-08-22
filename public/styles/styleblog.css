@@ -88,7 +88,8 @@ header {
 }
 
 h1 {
-  background-color: rgb(29, 162, 43);
+  /* background-color: rgb(29, 162, 43); */
+  background-color: #006A30;
   margin: 10;
   padding: 10px;
   text-align: center;
@@ -421,8 +422,8 @@ a {
 .submenu {
   width: 85px;
   text-align: center;
-  font-size: 12px;
-  color: rgb(0, 0, 0);
+  font-size: 15px;
+  color: white;
   text-decoration: none;
   margin: 5px;
   padding: 5px 10px;
@@ -430,7 +431,7 @@ a {
   /*background: rgb(9, 148, 202); */
   /*background: #6e6a69;*/
   /*background: #ec601f;*/
-  background: #44c5ec;
+  background: #0059BA;
   display: inline-block;
   box-shadow: 2px 5px 0px #000;
   border-radius: 10%;
@@ -439,14 +440,14 @@ a {
 .submenuFin {
   width: 85px;
   text-align: center;
-  font-size: 12px;
+  font-size: 15px;
   color: rgb(255, 255, 255);
   text-decoration: none;
   margin: 5px;
   padding: 5px 10px;
   line-height: 30px;
   /*background: #FFA500;*/
-  background: #181717;
+  background: #A22B1B;
   display: inline-block;
   box-shadow: 2px 5px 0px #000;
   border-radius: 10%;
@@ -456,7 +457,7 @@ a {
 .submenuVer {
   width: 85px;
   text-align: center;
-  font-size: 12px;
+  font-size: 15px;
   color: rgb(252, 250, 250);
   text-decoration: none;
   margin: 5px;
