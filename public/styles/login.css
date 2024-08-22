@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:'Roboto', sans-serif;
+  font-family:'Abel', sans-serif;
 }
 
 body{
@@ -18,7 +18,7 @@ body{
 form{
   display: flex;
   flex-direction: column;
-  background:#e6e6e6;
+  background:black;
   background: #006A30;
   text-align: center;
   padding: 30px 30px;
@@ -26,9 +26,10 @@ form{
 }
 
 form .title{
-  font-size: 30px;
-  font-weight: 750;
+  font-size: 20px;
+  font-weight: 600;
   margin-bottom: 30px;
+  color: white;
 }
 
 form label{
@@ -38,7 +39,7 @@ form label{
 
 form label .fa-solid{
   font-size: 20px;
-  color: black;
+  color: white;
   margin-right: 10px;
   line-height: 30px;
 }

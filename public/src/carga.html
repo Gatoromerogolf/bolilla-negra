@@ -4,120 +4,128 @@
 <html lang="en">
 
 <body>
-<head>
-  <title>Blog de bolilla</title>
-  <link href="assets/images/bn2.ico" rel="icon">
 
-  <link href="../styles/styleblog.css" rel="stylesheet">
+  <head>
+    <title>Blog de bolilla</title>
+    <link href="assets/images/bn2.ico" rel="icon">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="golf, palos, pelotas">
-  <meta name="description" content="Sitio de bolilla">
-  <meta name="author" content="Sensei">
-  <meta name="copyright" content="Meta Inc.">
+    <link href="../styles/styleblog.css" rel="stylesheet">
 
-  <style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Courgette&family=Gupter:wght@400;500;700&family=PT+Sans+Narrow:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+      rel="stylesheet">
 
-    /* esto elimina las flechitas que aumentan y disminuyen el numero */
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="golf, palos, pelotas">
+    <meta name="description" content="Sitio de bolilla">
+    <meta name="author" content="Sensei">
+    <meta name="copyright" content="Meta Inc.">
+
+    <style>
+      /* esto elimina las flechitas que aumentan y disminuyen el numero */
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
-        }
+      }
 
-    input[type=number] {
+      input[type=number] {
         -moz-appearance: textfield;
-    }
+      }
 
-    table, th, td {
+      table,
+      th,
+      td {
         border: 1px solid black;
         border-collapse: collapse;
         padding: 8px;
-    }
-  </style>
+      }
+    </style>
 
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav>
-          <ul>
-            <li class="barra"><img src="../assets/images/logobolilla.jpeg" width="100" alt="autito"></li>
-            <li class="barra"><a class="active" href="../index.html">Inicio</a></li>
-            <li></li><br><br>
-            <li class="barra"><a class="active" href="../index.html">Carga de tarjetas</a></li>
+      <nav>
+        <ul>
+          <li class="barra"><img src="../assets/images/logobolilla.jpeg" width="100" alt="autito"></li>
+          <li class="barra"><a class="active" href="../index.html">Inicio</a></li>
+          <li></li><br><br>
+          <li class="barra"><a class="active" href="../index.html">Carga de tarjetas</a></li>
 
-          </ul>
-        </nav>
-      </header>
+        </ul>
+      </nav>
+    </header>
 
-  <section>
-    <span style="font-size: 12px;">
-    <label for="ultFecha">Ultima:</label>
-    <input id="ultFecha" type="text" placeholder="sabado 8 setiembre"  disabled>
-    <label for="ultFecha">N°</label>
-    <input id="ultNumero" type="number" placeholder="99" maxlength="3" disabled style="width: 3ch"></br>
-    </span>
-    <p>Nuevo torneo a registrar</p>
-    <span style="font-size: 14px;">
-    <label for"fechator">Fecha:</label><input id="fechaRegistrar" type="date" max="2024-10-31"  min="2024-01-01">
-    <label for="jugadores">Jugadores:</label>
-    <input id="jugadores" type="number" style="width: 3ch" min="6" max="12">
-    <label for="pelJuego">Pelotas:</label>
-    <input id="pelJuego" type="number" style="width: 3ch" min="6" max="12">
-    </span>
+    <section>
+      <span style="font-size: 12px;">
+        <label for="ultFecha">Ultima:</label>
+        <input id="ultFecha" type="text" placeholder="sabado 8 setiembre" disabled>
+        <label for="ultFecha">N°</label>
+        <input id="ultNumero" type="number" placeholder="99" maxlength="3" disabled style="width: 3ch"></br>
+      </span>
+      <p>Nuevo torneo a registrar</p>
+      <span style="font-size: 14px;">
+        <label for"fechator">Fecha:</label><input id="fechaRegistrar" type="date" max="2024-10-31" min="2024-01-01">
+        <label for="jugadores">Jugadores:</label>
+        <input id="jugadores" type="number" style="width: 3ch" min="6" max="12">
+        <label for="pelJuego">Pelotas:</label>
+        <input id="pelJuego" type="number" style="width: 3ch" min="6" max="12">
+      </span>
 
 
-    <fieldset id="primeraTabla" style="display: block">
-      <legend>Participantes</legend>
+      <fieldset id="primeraTabla" style="display: block">
+        <legend>Participantes</legend>
 
-      <h2>Registro de participantes.</h2>
-      <table id="tablaJugadores">
+        <h2>Registro de participantes.</h2>
+        <table id="tablaJugadores">
           <thead>
-              <tr>
-                  <th>Nombre</th>
-                  <th>Neto</th>
-                  <!-- <th>Pelotas</th> -->
-                  <th>Orden</th>
-              </tr>
+            <tr>
+              <th>Nombre</th>
+              <th>Neto</th>
+              <!-- <th>Pelotas</th> -->
+              <th>Orden</th>
+            </tr>
           </thead>
           <tbody>
-              <!-- Las filas serán generadas por JavaScript -->
+            <!-- Las filas serán generadas por JavaScript -->
           </tbody>
-      </table>
-      
-      <button onclick="procesarDatos()">Controlar Datos</button>
-    </fieldset>
-      
+        </table>
 
-<fieldset id="segundaTabla" style="display: none">
-  <legend>Resultados</legend>
-    <h2>Tabla de Resultados</h2>
-  <table id="tablaResultados">
-      <thead>
-          <tr>
+        <button onclick="procesarDatos()">Controlar Datos</button>
+      </fieldset>
+
+
+      <fieldset id="segundaTabla" style="display: none">
+        <legend>Resultados</legend>
+        <h2>Tabla de Resultados</h2>
+        <table id="tablaResultados">
+          <thead>
+            <tr>
               <th>Nombre</th>
               <th>Neto</th>
               <th>Pelotas</th>
               <th>Orden</th>
-          </tr>
-      </thead>
-      <tbody>
-          <!-- Las filas serán generadas por JavaScript -->
-      </tbody>
-  </table>
-  <br>
-  <button onclick="guardarResultados()">Guardar resultados</button>
-  <button onclick="modificarResultados()">Corregir datos</button>
-</form>
-<br>
-</fieldset>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Las filas serán generadas por JavaScript -->
+          </tbody>
+        </table>
+        <br>
+        <button onclick="guardarResultados()">Guardar resultados</button>
+        <button onclick="modificarResultados()">Corregir datos</button>
+        </form>
+        <br>
+      </fieldset>
 
-<br><br>
-  
+      <br><br>
 
-  <!-- <script>
+
+      <!-- <script>
     window.pepe.addEventListener('click', () => {
       window.ventana.showModal()
     })
@@ -127,10 +135,7 @@
     })
   </script> -->
 
-</section>
+    </section>
 
-<script src="../js/cargaScores.js"></script>
-</body>
-
-
-
+    <script src="../js/cargaScores.js"></script>
+  </body>
