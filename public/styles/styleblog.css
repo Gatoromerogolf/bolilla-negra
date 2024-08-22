@@ -59,7 +59,8 @@ id=" ";  class=" "; a -  tr --ul etc
 
 /*  */
 body {
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
+  font-family: 'Abel';
   background-color: #e4e3e317;
   padding: 0;
   margin: 1;
@@ -87,7 +88,7 @@ header {
 }
 
 h1 {
-  background-color: rgb(81, 83, 252);
+  background-color: rgb(29, 162, 43);
   margin: 10;
   padding: 10px;
   text-align: center;
@@ -138,7 +139,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #360fe2;
+  background-color: #1C9B29;
 }
 
 .otraLista {
@@ -394,15 +395,15 @@ a {
 }
 
 #pepe {
-  width: 150px;
+  width: 130px;
   text-align: center;
   font-size: 15px;
-  color: white;
+  color: black;
   text-decoration: none;
   margin: 3px;
-  padding: 3px 3px;
+  padding: 3px;
   line-height: 20px;
-  background: red;
+  background: rgb(205, 218, 47);
   display: inline-block;
   /*box-shadow:2px 5px 0px #000;*/
   border-radius: 5%;
