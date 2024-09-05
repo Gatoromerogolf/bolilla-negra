@@ -67,7 +67,7 @@
 
 /* Estilo de los botones */
 button {
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 8px 12px;
   background-color: #007bff;
   color: white;
@@ -84,7 +84,7 @@ button:hover {
   display: flex;
   justify-content: center; /* Centra los botones horizontalmente */
   gap: 0px; /* Espacio entre los botones */
-  margin: 20px 0; /* Espacio superior e inferior opcional */
+  margin: 5px 0; /* Espacio superior e inferior opcional */
 }
 
 #expand-btn {
@@ -141,7 +141,7 @@ button:hover {
   <br>
 
   <h1 id="h1-scoresyyy">Sugerencias y Comentarios</h1>
-<p>Estimados integrantes de este ilustre grupo. Desde la HCDT nos complace poner a su disposición esta nueva funcionalidad para que los dichos e ideas geniales de cada integrante puedan ser visualizadas y queden resguardadas en un historial para el recuerdo. Nuestro reconocimiento a Joge que ha sido el impulsor de esta novedad.</p>
+<p>Estimados integrantes de este ilustre grupo. Desde la HCDT nos complace poner a su disposición esta nueva funcionalidad para que cada genialidad de cualquiera de nosotros, pueda quedar registrada hasta el fin de todos los tiempos. Nuestro reconocimiento a Joge que ha sido el impulsor de esta novedad.</p>
 <p>Como primera contribución acercamos algunas opiniones que quizás ayuden a esclarecer tan confuso panorama sobre la calidad de las pelotas, bolas o bochas en juego.</p>
 <br>
 
@@ -153,6 +153,7 @@ button:hover {
     <button id="expand-btn" onclick="loadMoreComments(5)">Ver más</button>
     <button id="collapse-btn" onclick="collapseWindow()" style="display:none;">Ver menos</button>
   </div>
+</div>
   <a id="view-all-btn" href="login.html?redirect=comentarios" style="display:none; padding: 10px 20px; background-color: #0953a1; color: white; text-align: center; text-decoration: none; border-radius: 5px;">Comentar</a>
 
 </div>
@@ -827,6 +828,7 @@ button:hover {
       offset = 0;
       loadInitialComment(); // Volvemos a cargar solo el primer comentario
       document.getElementById('collapse-btn').style.display = 'none'
+      document.getElementById('expand-btn').style.display = 'block'
     }
     
     // Inicializar la carga del primer comentario
