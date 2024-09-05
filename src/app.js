@@ -226,6 +226,88 @@ app.post('/grabaNetos', (req, res) => {
   });
 });
 
+// Ruta para agregar un comentario
+app.post('/agregar-comentario', (req, res) => {
+  const { usuario, comentario, fecha } = req.body;
+
+  if (comentario.length > 500) {
+      return res.status(400).json({ success: false, message: 'El comentario no puede superar los 500 caracteres' });
+  }
+
+  const query = 'INSERT INTO comentarios (usuario, fecha, comentario) VALUES (?, ?, ?)';
+  pool.query(query, [usuario, fecha, comentario], (err, result) => {
+      if (err) throw err;
+      res.json({ success: true, message: 'Comentario agregado correctamente' });
+  });
+});
+
+// // Ruta para obtener los comentarios
+// app.get('/obtener-comentarios', (req, res) => {
+//   const query = `
+//       SELECT * FROM comentarios
+//       WHERE (fecha >= CURDATE() - INTERVAL 15 DAY) 
+//       OR fecha = (SELECT MAX(fecha) FROM comentarios)
+//       ORDER BY fecha DESC
+//   `;
+  
+//   pool.query(query, (err, results) => {
+//       if (err) throw err;
+//       res.json(results);
+//   });
+// });
+
+
+// Ruta para obtener comentarios
+app.get('/comentarios', (req, res) => {
+  const limit = parseInt(req.query.limit) || 1; // Limite de comentarios a mostrar, por defecto 1
+  const offset = parseInt(req.query.offset) || 0; // Cuántos comentarios omitir, por defecto 0
+
+  // Consulta para obtener comentarios de los últimos 15 días, ordenados por fecha descendente
+  const query = `
+    SELECT id, usuario, comentario, fecha
+    FROM comentarios
+    WHERE fecha >= NOW() - INTERVAL 15 DAY
+    ORDER BY fecha DESC
+    LIMIT ? OFFSET ?
+  `;
+
+  pool.query(query, [limit, offset], (error, results) => {
+    if (error) {
+      console.error('Error en la consulta de comentarios:', error);
+      return res.status(500).json({ error: 'Error en la consulta de comentarios' });
+    }
+    
+    // Verificamos si hay más comentarios para mostrar el botón "Ver todos"
+    const checkQuery = `
+      SELECT COUNT(*) as total
+      FROM comentarios
+      WHERE fecha >= NOW() - INTERVAL 15 DAY
+    `;
+    
+    pool.query(checkQuery, (err, countResult) => {
+      if (err) {
+        console.error('Error al contar los comentarios:', err);
+        return res.status(500).json({ error: 'Error al contar los comentarios' });
+      }
+
+      const totalComments = countResult[0].total;
+      res.json({
+        comments: results,
+        hasMore: totalComments > limit + offset // Indica si hay más comentarios para mostrar
+      });
+    });
+  });
+});
+
+
+/* Aquí he agregado los parámetros limit y offset para controlar cuántos comentarios mostrar y desde qué posición comenzar.
+La consulta checkQuery verifica cuántos comentarios totales hay para saber si se debe mostrar el botón "Ver todos". */
+
+
+
+
+
+
 
 // Captura todas las otras rutas para mostrar un 404 :::::::::::::::::::::::::::::::::
 app.get('*', (req, res) => {

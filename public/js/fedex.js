@@ -68,7 +68,6 @@ for (i = 0; i < matrizFx.length; i++) {
   // Agrega la celda con el botón a la fila
   lineaDatosFd.appendChild(celdaBoton);
 }
-
 /* 
 En este ejemplo:
 - Creamos un nuevo elemento `<td>` llamado `celdaBoton`.

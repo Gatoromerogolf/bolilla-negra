@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios</title>
+</head>
+<body>
+    <!-- <div id="login-section">
+        <h2>Login</h2>
+        <input type="text" id="usuario" placeholder="Usuario" />
+        <input type="password" id="password" placeholder="Contraseña" />
+        <button onclick="login()">Ingresar</button>
+    </div> -->
+
+    <div id="comentario-section" style="display:block;">
+        <h2>Agregar Comentario</h2>
+        <textarea id="comentario" maxlength="500" placeholder="Escribe tu comentario"></textarea>
+        <input type="date" id="fecha" />
+        <button onclick="agregarComentario()">Enviar</button>
+    </div>
+
+    <div id="comentarios-section" style="display:none;">
+        <h2>Comentarios Recientes</h2>
+        <ul id="comentarios-lista"></ul>
+    </div>
+
+    <script>
+        function login() {
+            debugger
+            console.log('entro en login')
+            const username = document.getElementById('usuario').value;
+            const password = document.getElementById('password').value;
+
+            fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success === 'Login exitoso') {
+                    document.getElementById('login-section').style.display = 'none';
+                    document.getElementById('comentario-section').style.display = 'block';
+                    document.getElementById('comentarios-section').style.display = 'block';
+                } else {
+                    alert(data.message);
+                }
+            });
+        }
+
+        function agregarComentario() {
+            const usuario = localStorage.getItem('usuario');
+            const comentario = document.getElementById('comentario').value;
+            const fecha = document.getElementById('fecha').value;
+
+            fetch('/agregar-comentario', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ usuario, comentario, fecha })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                obtenerComentarios();
+            });
+        }
+
+        function obtenerComentarios() {
+            fetch('/obtener-comentarios')
+            .then(response => response.json())
+            .then(data => {
+                const lista = document.getElementById('comentarios-lista');
+                lista.innerHTML = '';
+                data.forEach(comentario => {
+                    const item = document.createElement('li');
+                    item.textContent = `${comentario.fecha}: ${comentario.comentario}`;
+                    lista.appendChild(item);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
