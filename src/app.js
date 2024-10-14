@@ -266,7 +266,7 @@ app.get('/comentarios', (req, res) => {
   const query = `
     SELECT id, usuario, comentario, fecha
     FROM comentarios
-    WHERE fecha >= NOW() - INTERVAL 15 DAY
+    WHERE fecha >= NOW() - INTERVAL 90 DAY
     ORDER BY fecha DESC
     LIMIT ? OFFSET ?
   `;

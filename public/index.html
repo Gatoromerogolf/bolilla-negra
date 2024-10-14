@@ -153,7 +153,7 @@ button:hover {
     <button id="collapse-btn" onclick="collapseWindow()" style="display:none;">Ver menos</button>
   </div>
 </div>
-  <a id="view-all-btn" href="login.html?redirect=comentarios" style="display:none; padding: 10px 20px; background-color: #0953a1; color: white; text-align: center; text-decoration: none; border-radius: 5px;">Comentar</a>
+  <a id="view-all-btn" href="login.html?redirect=comentarios" style="display:block; padding: 10px 20px; background-color: #0953a1; color: white; text-align: center; text-decoration: none; border-radius: 5px;">Comentar</a>
 
 </div>
 
@@ -793,7 +793,7 @@ button:hover {
 
     // Función para cargar el primer comentario
     async function loadInitialComment() {
-      const data = await fetchComments(1, 0); // Cargar solo el último comentario
+      const data = await fetchComments(2, 0); // Cargar solo el último comentario
       if (data) {
         if (data.comments.length > 0) {
           firstCommentId = data.comments[0].id; // Guardamos el ID del primer comentario
