@@ -17,86 +17,98 @@
   <!--   <link rel="stylesheet" href="styles/ctareg.css">
  -->
 
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Courgette&family=Gupter:wght@400;500;700&family=PT+Sans+Narrow:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Courgette&family=Gupter:wght@400;500;700&family=PT+Sans+Narrow:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+    rel="stylesheet">
 
- <style>
- /* Estilo de la ventana de comentarios */
-.comments-window {
-  max-height: 400px; /* Ajusta el alto máximo según tus necesidades */
-  border: 1px solid #ccc;
-  padding: 10px;
-  max-height: 300px; /* Altura máxima inicial */
-  overflow-y: auto; /* Ocultar el desbordamiento */
-  transition: max-height 0.5s ease;
-  position: relative;
-}
+  <style>
+    /* Estilo de la ventana de comentarios */
+    .comments-window {
+      max-height: 400px;
+      /* Ajusta el alto máximo según tus necesidades */
+      border: 1px solid #ccc;
+      padding: 10px;
+      max-height: 300px;
+      /* Altura máxima inicial */
+      overflow-y: auto;
+      /* Ocultar el desbordamiento */
+      transition: max-height 0.5s ease;
+      position: relative;
+    }
 
-.comment-list {
-  margin: 0;
-  padding: 0;
-  /* overflow-y: auto; */
-}
+    .comment-list {
+      margin: 0;
+      padding: 0;
+      /* overflow-y: auto; */
+    }
 
-.comment {
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-}
+    .comment {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
 
-.comment p {
-    margin: 0;
-  }
+    .comment p {
+      margin: 0;
+    }
 
-.comment-header {
-  display: flex;
-  justify-content: space-between;
-}
-.comment-date {
-  font-weight: bold;
-}
-.comment-author {
-  font-weight: bold;
-}
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+    }
 
-#expand-btn, #collapse-btn, #view-all-btn {
-    display: block;
-    margin: 10px auto;
-  }
+    .comment-date {
+      font-weight: bold;
+    }
 
-/* Estilo de los botones */
-button {
-  margin-top: 5px;
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
+    .comment-author {
+      font-weight: bold;
+    }
 
-button:hover {
-  background-color: #0056b3;
-}
+    #expand-btn,
+    #collapse-btn,
+    #view-all-btn {
+      display: block;
+      margin: 10px auto;
+    }
 
-.button-container {
-  display: flex;
-  justify-content: center; /* Centra los botones horizontalmente */
-  gap: 0px; /* Espacio entre los botones */
-  margin: 5px 0; /* Espacio superior e inferior opcional */
-}
+    /* Estilo de los botones */
+    button {
+      margin-top: 5px;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
 
-#collapse-btn:hover{
-  background-color: #f05670;
+    button:hover {
+      background-color: #0056b3;
+    }
 
-}
-/* Ocultar el botón de "Mostrar menos" por defecto */
-/* #collapse-btn {
+    .button-container {
+      display: flex;
+      justify-content: center;
+      /* Centra los botones horizontalmente */
+      gap: 0px;
+      /* Espacio entre los botones */
+      margin: 5px 0;
+      /* Espacio superior e inferior opcional */
+    }
+
+    #collapse-btn:hover {
+      background-color: #f05670;
+
+    }
+
+    /* Ocultar el botón de "Mostrar menos" por defecto */
+    /* #collapse-btn {
   display: none;
 } */
-
-</style>
+  </style>
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -118,7 +130,7 @@ button:hover {
       <li class="barra"><a href="/login.html?redirect=carga" rel="noreferrer">
           <img src="../assets/images/logobolilla.jpeg" width="90" style="padding:0px; margin:0px"></a></li>
       <li class="barra"><a href="index.html">Inicio</a></li>
-      <li class="barra"><a href="src/locales.html">Torneos</a></li>        
+      <li class="barra"><a href="src/locales.html">Torneos</a></li>
       <li class="barra"><a href="src/giras.html">Giras</a></li>
       <li class="barra"><a href="src/bolilla.html">Anual</a></li>
       <li class="barra"><a href="src/ryder2024.html">Ryder</a></li>
@@ -133,78 +145,84 @@ button:hover {
   <div id="header-placeholder"></div>
 
   <p style="font-size: 15px">-- Consulta de matrículas:
-    <button id="pepe">Ver Matrículas</button></p>
+    <button id="pepe">Ver Matrículas</button>
+  </p>
   <br>
 
   <h1 id="h1-scoresyyy">Sugerencias y Comentarios</h1>
-<p>Si tenés algo para decir, escribilo haciendo <a href="login.html?redirect=comentarios">click acá:</a></p>
-</div>
-<a id="view-all-btn" href="login.html?redirect=comentarios" style="display: inline-block; padding: 8px 12px; background-color: #3e4eda; color: white; text-align: center; text-decoration: none; border-radius: 5px; font-size: 16px;">Comentar</a>
-</div>
-
-<br>
-<p>Últimos comentarios:</p>
-<div id="comments-window" class="comments-window">
-  <div id="comment-list" class="comment-list">
-    <!-- Aquí se agregarán los comentarios dinámicamente -->
+  <p>Si tenés algo para decir, escribilo haciendo <a href="login.html?redirect=comentarios">click acá:</a></p>
   </div>
-  <div class="button-container">
-    <button id="expand-btn" onclick="loadMoreComments(5)">Ver más</button>
-    <button id="collapse-btn" onclick="collapseWindow()" style="display:none;">Ver menos</button>
+  <a id="view-all-btn" href="login.html?redirect=comentarios"
+    style="display: inline-block; padding: 8px 12px; background-color: #3e4eda; color: white; text-align: center; text-decoration: none; border-radius: 5px; font-size: 16px;">Comentar</a>
   </div>
 
-<h1 id="h1-scoresyyy">Gira CARILO 2024</h1>
-<p>La próxima y última gira del año, CARILO 2024, se realizará desde el Jueves 21 de Noviembre al Domingo 24 de Noviembre.</p>
-<br>
+  <br>
+  <p>Últimos comentarios:</p>
+  <div id="comments-window" class="comments-window">
+    <div id="comment-list" class="comment-list">
+      <!-- Aquí se agregarán los comentarios dinámicamente -->
+    </div>
+    <div class="button-container">
+      <button id="expand-btn" onclick="loadMoreComments(5)">Ver más</button>
+      <button id="collapse-btn" onclick="collapseWindow()" style="display:none;">Ver menos</button>
+    </div>
+  </div>
+  <br>
+
+  <h1 id="h1-scoresyyy">Gira CARILO 2024</h1>
+  <p>La próxima y última gira del año, CARILO 2024, se realizará desde el Jueves 21 de Noviembre al Domingo 24 de
+    Noviembre.</p>
+  <br>
 
   <h1 id="h1-scoresyyy">Torneo CLAUSURA 2024</h1>
-  <p>El torneo CLAUSURA 2024 finaliza el próximo 16 de noviembre, último fin de semana anterior a la gira Cariló 2024.</p>
+  <p>El torneo CLAUSURA 2024 finaliza el próximo 16 de noviembre, último fin de semana anterior a la gira Cariló 2024.
+  </p>
   <br>
 
 
 
-   <!----------- --     Novedades    ------------->
+  <!----------- --     Novedades    ------------->
 
-   <h1 id="eventos">Último torneo disputado</h1>
+  <h1 id="eventos">Último torneo disputado</h1>
 
-   <center>
-     <h3 id="ultimaFecha"></h3>
-   </center>
- 
-   <div style="width:100%px; height: 470px;">
-     <table id="resultadoFecha" style="width: 200px; position: relative;">
-       <thead>
-         <colgroup>
- 
-           <col style="width: 10px;" ;>
-           <col style="background-color: rgb(250, 250, 32)" ;>
-           <col style="width: 10px;" ;>
-           <col style="width: 10px;" ;>
- 
-         <tr>
-           <th>Pos</th>
-           <th id="namePlayer">Player</th>
-           <th>Neto</th>
-           <th>Fedex</th>
-         </tr>
- 
-       </thead>
- 
-       <tbody>
- 
-       </tbody>
-     </table>
-   </div>
- 
-   <p>Ver parciales:</p>
-   <section>
-     <a class="submenu2" href="src/locales.html">Sábados</a>
-     <a class="submenu2" href="src/clausura24.html">Clausura</a>
-     <a class="submenu2" href="src/fedex24.html">Fedex</a>
-     <a class="submenu2" href="src/bolilla.html">Anual</a>
- 
-   </section>
- 
+  <center>
+    <h3 id="ultimaFecha"></h3>
+  </center>
+
+  <div style="width:100%px; height: 470px;">
+    <table id="resultadoFecha" style="width: 200px; position: relative;">
+      <thead>
+        <colgroup>
+
+          <col style="width: 10px;" ;>
+          <col style="background-color: rgb(250, 250, 32)" ;>
+          <col style="width: 10px;" ;>
+          <col style="width: 10px;" ;>
+
+        <tr>
+          <th>Pos</th>
+          <th id="namePlayer">Player</th>
+          <th>Neto</th>
+          <th>Fedex</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+
+  <p>Ver parciales:</p>
+  <section>
+    <a class="submenu2" href="src/locales.html">Sábados</a>
+    <a class="submenu2" href="src/clausura24.html">Clausura</a>
+    <a class="submenu2" href="src/fedex24.html">Fedex</a>
+    <a class="submenu2" href="src/bolilla.html">Anual</a>
+
+  </section>
+
 
 
   <br>
@@ -263,35 +281,35 @@ button:hover {
     </div>
   </div>
 
-    <div class="scores-container">
-      <div class="scores-table">
-        <div class="scores">
-          <p>Negro</p>
-          <img src="assets/images/marconegro-nuevo.png" alt="" width="85vh">
-          <p style="font-size: 20px; color:red">71</p>
-          <p>24 Agosto</p>
-        </div>
-
-        <div class="scores">
-          <p>Negro</p>
-          <img src="assets/images/marconegro-nuevo.png" alt="" width="85vh">
-          <p style="font-size: 20px; color:red">69</p>
-          <p>7 Setiembre</p>
-        </div>
-
-        <div class="scores">
-          <p>Diegui</p>
-          <img src="assets/images/marco-diegui.jpg" alt="" width="85vh">
-          <p style="font-size: 20px; color:red">69</p>
-          <p>12 Octubre</p>
-        </div>
-
+  <div class="scores-container">
+    <div class="scores-table">
+      <div class="scores">
+        <p>Negro</p>
+        <img src="assets/images/marconegro-nuevo.png" alt="" width="85vh">
+        <p style="font-size: 20px; color:red">71</p>
+        <p>24 Agosto</p>
       </div>
+
+      <div class="scores">
+        <p>Negro</p>
+        <img src="assets/images/marconegro-nuevo.png" alt="" width="85vh">
+        <p style="font-size: 20px; color:red">69</p>
+        <p>7 Setiembre</p>
+      </div>
+
+      <div class="scores">
+        <p>Diegui</p>
+        <img src="assets/images/marco-diegui.jpg" alt="" width="85vh">
+        <p style="font-size: 20px; color:red">69</p>
+        <p>12 Octubre</p>
+      </div>
+
     </div>
+  </div>
 
 
 
-    </div>
+  </div>
   </div>
 
 
@@ -315,60 +333,60 @@ button:hover {
   </p>
 
   <br>
-  
-    <!----------- --     LOS PADRINOS    ------------->
 
-    <br>
-    <h1 id="h1-scores">Los PADRINOS de Campo Grande.</h1>
-    <p>Aguila mata Birdie!</p>
-  
-    <div class="scores-container">
-      <div class="scores-table">
-        <div class="scores">
-          <p>Torni</p>
-          <img src="assets/images/hoyo5.png" alt="" width="65px">
-          <p style="font-size: 20px; color:blue">4</p>
-          <p>5 Octubre</p>
-        </div>
-        <div class="scores">
-          <p>Diegui</p>
-          <img src="assets/images/hoyo5.png" alt="" width="65px">
-          <p style="font-size: 20px; color:blue">5</p>
-          <p>13 Julio</p>
-        </div>
-        <div class="scores">
-          <p>Juancho</p>
-          <img src="assets/images/hoyo6.png" alt="" width="65px">
-          <p style="font-size: 20px; color:blue">6</p>
-          <p>27 Julio</p>
-        </div>
+  <!----------- --     LOS PADRINOS    ------------->
+
+  <br>
+  <h1 id="h1-scores">Los PADRINOS de Campo Grande.</h1>
+  <p>Aguila mata Birdie!</p>
+
+  <div class="scores-container">
+    <div class="scores-table">
+      <div class="scores">
+        <p>Torni</p>
+        <img src="assets/images/hoyo5.png" alt="" width="65px">
+        <p style="font-size: 20px; color:blue">4</p>
+        <p>5 Octubre</p>
+      </div>
+      <div class="scores">
+        <p>Diegui</p>
+        <img src="assets/images/hoyo5.png" alt="" width="65px">
+        <p style="font-size: 20px; color:blue">5</p>
+        <p>13 Julio</p>
+      </div>
+      <div class="scores">
+        <p>Juancho</p>
+        <img src="assets/images/hoyo6.png" alt="" width="65px">
+        <p style="font-size: 20px; color:blue">6</p>
+        <p>27 Julio</p>
       </div>
     </div>
+  </div>
 
-    <div class="scores-container">
-      <div class="scores-table">
-        <div class="scores">
-          <p>Joaco</p>
-          <img src="assets/images/hoyo7.png" alt="" width="65px">
-          <p style="font-size: 20px; color:blue">7</p>
-          <p>13 Julio</p>
-        </div>
-        <div class="scores">
-          <p>Negro</p>
-          <img src="assets/images/hoyo17.png" alt="" width="65px">
-          <p style="font-size: 20px; color:blue">17</p>
-          <p>13 Julio</p>
-        </div>
-        <div class="scores">
-          <p>.</p>
-          <img src="assets/images/hoyo17.png" alt="" width="65px">
-          <p style="font-size: 20px; color:blue"></p>
-          <p>.</p>
-        </div>
+  <div class="scores-container">
+    <div class="scores-table">
+      <div class="scores">
+        <p>Joaco</p>
+        <img src="assets/images/hoyo7.png" alt="" width="65px">
+        <p style="font-size: 20px; color:blue">7</p>
+        <p>13 Julio</p>
+      </div>
+      <div class="scores">
+        <p>Negro</p>
+        <img src="assets/images/hoyo17.png" alt="" width="65px">
+        <p style="font-size: 20px; color:blue">17</p>
+        <p>13 Julio</p>
+      </div>
+      <div class="scores">
+        <p>.</p>
+        <img src="assets/images/hoyo17.png" alt="" width="65px">
+        <p style="font-size: 20px; color:blue"></p>
+        <p>.</p>
       </div>
     </div>
-  
-    <br>
+  </div>
+
+  <br>
 
   <br>
   <!----------- --     AGENDA    ------------->
@@ -772,27 +790,27 @@ button:hover {
 
   <!--<script src="ctaregresiva.js"></script> -->
 
-  
+
   <script>
     let offset = 0;
     let hasMore = true;
-    
+
     // Función para obtener los comentarios desde la API
     async function fetchComments(limit, offset) {
-    try {
-      const response = await fetch(`/comentarios?limit=${limit}&offset=${offset}`);
-      if (!response.ok) {
-        throw new Error('Error al obtener los comentarios');
+      try {
+        const response = await fetch(`/comentarios?limit=${limit}&offset=${offset}`);
+        if (!response.ok) {
+          throw new Error('Error al obtener los comentarios');
+        }
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Error al cargar los comentarios:', error);
+        return null;
       }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('Error al cargar los comentarios:', error);
-      return null;
     }
-  }
-    
-  let firstCommentId = null;
+
+    let firstCommentId = null;
 
     // Función para cargar el primer comentario
     async function loadInitialComment() {
@@ -803,27 +821,27 @@ button:hover {
         }
         renderComments(data.comments);
         hasMore = data.hasMore;
-    
+
         // Mostrar el botón "Ver todos" si hay más de 6 comentarios
         if (hasMore) {
           document.getElementById('view-all-btn').style.display = 'inline-block';
         }
       }
     }
-    
+
     // Función para cargar más comentarios (se carga por páginas de 5)
     async function loadMoreComments(limit) {
       if (limit === -1) {
         limit = 100; // Si se quiere ver todo, cargamos hasta 100 comentarios
       }
-      
+
       const data = await fetchComments(limit, offset);
       if (data) {
         // Filtrar el primer comentario para no repetirlo
         const filteredComments = data.comments.filter(comment => comment.id !== firstCommentId);
         renderComments(filteredComments);
         offset += limit; // Incrementamos el offset
-        hasMore = data.hasMore;   
+        hasMore = data.hasMore;
 
         // Si ya no hay más comentarios, ocultamos el botón de "Mostrar más"
         if (!hasMore) {
@@ -832,13 +850,13 @@ button:hover {
 
         document.getElementById('collapse-btn').style.display = 'block'
 
-            // Mostrar el botón "Ver todos" si hay más comentarios
+        // Mostrar el botón "Ver todos" si hay más comentarios
         // if (hasMore) {
         //   document.getElementById('view-all-btn').style.display = 'inline-block';
         // }
       }
     }
-    
+
     // Función para mostrar los comentarios en el HTML
     function renderComments(comments) {
       const commentList = document.getElementById('comment-list');
@@ -855,7 +873,7 @@ button:hover {
         commentList.appendChild(commentDiv);
       });
     }
-    
+
     // Función para contraer la ventana
     function collapseWindow() {
       const commentList = document.getElementById('comment-list');
@@ -865,20 +883,20 @@ button:hover {
       document.getElementById('collapse-btn').style.display = 'none'
       document.getElementById('expand-btn').style.display = 'block'
     }
-    
+
     // Inicializar la carga del primer comentario
     loadInitialComment();
-    </script>
+  </script>
 
 </body>
 
 </html>
 
 
-  <!-- <h1>Falta poco....</h1>
+<!-- <h1>Falta poco....</h1>
   <div id="contenedorCuentaRegresiva">
     <div id="cuentaRegresiva"></div>
   </div> -->
 
-  <!-- <h2>LA HAZAÑA DE LA FECHA.  6 abril.</h2> -->
-  <!-- <a href="assets/images/dieguiAgua.mp4" target="_blank"><video src="assets/images/dieguiAgua.mp4" controls width="98%"></video></a> -->
+<!-- <h2>LA HAZAÑA DE LA FECHA.  6 abril.</h2> -->
+<!-- <a href="assets/images/dieguiAgua.mp4" target="_blank"><video src="assets/images/dieguiAgua.mp4" controls width="98%"></video></a> -->
