@@ -87,10 +87,6 @@ button:hover {
   margin: 5px 0; /* Espacio superior e inferior opcional */
 }
 
-#expand-btn {
-
-}
-
 #collapse-btn:hover{
   background-color: #f05670;
 
@@ -141,9 +137,17 @@ button:hover {
   <br>
 
   <h1 id="h1-scoresyyy">Sugerencias y Comentarios</h1>
-<p>Si tenes algo para decir, escribilo acá:</p>
-<br>
+<p>Si tenes algo para decir, escribilo haciendo <a href="login.html?redirect=comentarios">click acá:</a></p>
+</div>
+<a id="view-all-btn" href="login.html?redirect=comentarios" style="display:flex; padding: 8px 12px; background-color: #3e4eda; color: white; text-align: center; text-decoration: none; border-radius: 5px;">Comentar</a>
+</div>
 
+</div>
+<a id="view-all-btn" href="login.html?redirect=comentarios" style="display:block; padding: 10px 20px; background-color: #3e4eda; color: white; text-align: center; text-decoration: none; border-radius: 5px;">Comentar</a>
+</div>
+
+<br>
+<p>Ultimos comentarios:</p>
 <div id="comments-window" class="comments-window">
   <div id="comment-list" class="comment-list">
     <!-- Aquí se agregarán los comentarios dinámicamente -->
@@ -152,10 +156,6 @@ button:hover {
     <button id="expand-btn" onclick="loadMoreComments(5)">Ver más</button>
     <button id="collapse-btn" onclick="collapseWindow()" style="display:none;">Ver menos</button>
   </div>
-</div>
-  <a id="view-all-btn" href="login.html?redirect=comentarios" style="display:block; padding: 10px 20px; background-color: #0953a1; color: white; text-align: center; text-decoration: none; border-radius: 5px;">Comentar</a>
-
-</div>
 
 <h1 id="h1-scoresyyy">Gira CARILO 2024</h1>
 <p>La próxima y última gira del año, CARILO 2024, se realizará desde el Jueves 21 de Noviembre al Domingo 24 de Noviembre.</p>
