@@ -3,7 +3,9 @@
 function cuentaRegresiva(fechaObjetivo) {
     // Calcular la diferencia entre la fechaObjetivo y ahora
     const actualizarCuentaRegresiva = () => {
-      const ahora = new Date();
+      const ahora = new Date().getTime();
+      console.log("Fecha actual en milisegundos:", ahora);
+      console.log("Fecha objetivo en milisegundos:", fechaObjetivo);
       const diferencia = fechaObjetivo - ahora;
 
       console.log (diferencia)
@@ -15,8 +17,8 @@ function cuentaRegresiva(fechaObjetivo) {
       const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
   
       // Mostrar el resultado en el elemento deseado
-       document.getElementById("cuentaRegresiva").innerHTML = dias + " dias " + horas + " horas "
-      + minutos + "m " + segundos + "s ";
+      document.getElementById("cuentaRegresiva").innerHTML = 
+      `${dias} días ${horas} horas <br> ${minutos} minutos `;
 
   
       // Si la cuenta regresiva termina, mostrar algún mensaje
@@ -32,7 +34,7 @@ function cuentaRegresiva(fechaObjetivo) {
   
   // Establece la fecha objetivo (año, mes, día, hora, minuto, segundo)
   // Nota: Los meses en JavaScript van de 0 a 11, por lo que enero es 0 y diciembre es 11.
-  const fechaObjetivo = new Date("Mar 14, 2024 07:00:00").getTime();
+  const fechaObjetivo = new Date(2024, 10, 21, 7, 0, 0).getTime();
   
   // Iniciar la cuenta regresiva
   cuentaRegresiva(fechaObjetivo);
