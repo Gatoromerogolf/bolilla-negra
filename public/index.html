@@ -25,6 +25,12 @@
 
   <style>
     /* Estilo de la ventana de comentarios */
+
+    .margen-comentarios {
+      margin: 10px;
+    }
+
+
     .comments-window {
       max-height: 400px;
       /* Ajusta el alto máximo según tus necesidades */
@@ -149,35 +155,47 @@
     </p>
     <br>
 
+    <h1>Gira CARILO 2024</h1>
+    <p>La próxima y última gira del año, CARILO 2024, se realizará desde el Jueves 21 de Noviembre al Domingo 24 de
+      Noviembre.</p>
+
+      <h3 style="margin:10px">Falta poco....</h3>
+      <div id="contenedorCuentaRegresiva">
+        <div id="cuentaRegresiva">
+          console.log ('actualizando')
+        </div>
+      </div>
+
     <h1>Sugerencias y Comentarios</h1>
     <p>Si tenés algo para decir, escribilo haciendo <a href="login.html?redirect=comentarios">click acá:</a></p>
-  </div>
-  <a id="view-all-btn" href="login.html?redirect=comentarios"
-    style="display: inline-block; padding: 8px 12px; background-color: #3e4eda; color: white; text-align: center; text-decoration: none; border-radius: 5px; font-size: 16px;">Comentar</a>
+      <div id="margen-comentarios" class="margen-comentarios">
+        <a id="view-all-btn" href="login.html?redirect=comentarios"
+          style="display: inline-block; padding: 8px 12px; background-color: #3e4eda; color: white; text-align: center; text-decoration: none; border-radius: 5px; font-size: 16px;">Comentar</a>
 
-  <br>
-  <p>Últimos comentarios:</p>
-  <div id="comments-window" class="comments-window">
-    <div id="comment-list" class="comment-list">
-      <!-- Aquí se agregarán los comentarios dinámicamente -->
-    </div>
-    <div class="button-container">
-      <button id="expand-btn" onclick="loadMoreComments(5)">Ver más</button>
-      <button id="collapse-btn" onclick="collapseWindow()" style="display:none;">Ver menos</button>
-    </div>
-  </div>
-  <br>
+        <br>
+        <p>Últimos comentarios:</p>
+        <div id="comments-window" class="comments-window">
+          <div id="comment-list" class="comment-list">
+            <!-- Aquí se agregarán los comentarios dinámicamente -->
+          </div>
+          <div class="button-container">
+            <button id="expand-btn" onclick="loadMoreComments(5)">Ver más</button>
+            <button id="collapse-btn" onclick="collapseWindow()" style="display:none;">Ver menos</button>
+          </div>
+        </div>
+      </div>
+      <br>
 
-  <h1>Gira CARILO 2024</h1>
+  <!-- <h1>Gira CARILO 2024</h1>
   <p>La próxima y última gira del año, CARILO 2024, se realizará desde el Jueves 21 de Noviembre al Domingo 24 de
     Noviembre.</p>
-  
-<h3>Falta poco....</h3>
-<div id="contenedorCuentaRegresiva">
-  <div id="cuentaRegresiva">
-  console.log ('actualizando')
-  </div>
-</div>
+
+  <h3>Falta poco....</h3>
+  <div id="contenedorCuentaRegresiva">
+    <div id="cuentaRegresiva">
+      console.log ('actualizando')
+    </div>
+  </div> -->
 
 
   <h1>Torneo CLAUSURA 2024</h1>
@@ -203,12 +221,12 @@
           <col style="width: 10px;" ;>
           <col style="width: 10px;" ;>
 
-          <tr>
-            <th>Pos</th>
-            <th id="namePlayer">Player</th>
-            <th>Neto</th>
-            <th>Fedex</th>
-          </tr>
+        <tr>
+          <th>Pos</th>
+          <th id="namePlayer">Player</th>
+          <th>Neto</th>
+          <th>Fedex</th>
+        </tr>
         </colgroup>
       </thead>
 
@@ -373,7 +391,7 @@
         <p>Edu</p>
         <img src="assets/images/hoyo17.png" alt="" width="65px">
         <p style="font-size: 20px; color:blue">13</p>
-        <p>19  Octubre</p>
+        <p>19 Octubre</p>
       </div>
       <div class="scores">
         <p>Negro</p>
@@ -891,11 +909,11 @@
 
 
 <h1>Falta poco....</h1>
-  <div id="contenedorCuentaRegresiva">
-    <div id="cuentaRegresiva">
+<div id="contenedorCuentaRegresiva">
+  <div id="cuentaRegresiva">
     console.log ('actualizando')
-    </div>
   </div>
+</div>
 
 <!-- <h2>LA HAZAÑA DE LA FECHA.  6 abril.</h2> -->
 <!-- <a href="assets/images/dieguiAgua.mp4" target="_blank"><video src="assets/images/dieguiAgua.mp4" controls width="98%"></video></a> -->
