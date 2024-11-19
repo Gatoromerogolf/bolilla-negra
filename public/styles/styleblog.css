@@ -560,7 +560,7 @@ p.scores {
 
 
 #contenedorCuentaRegresiva {
-  width: 260px;
+  width: 290px;
   height: 150px;
   background-color: yellow;
   /* Puedes quitar el color de fondo si la imagen lo cubrirá totalmente */
@@ -581,7 +581,7 @@ p.scores {
 
 #cuentaRegresiva {
   /* font-size: 40px; */
-  font-size: 1.5em;
+  font-size: 1.8em;
   /* Tamaño de los números */
   font-weight: bold;
   /* Hacer los números más gruesos */
