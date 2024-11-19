@@ -232,7 +232,7 @@ filasOrdenadas[i + 2] = [];
  let filaTotalJugadores = document.getElementById("totalJug");
 
  // saca la cantidad de fechas del parametro de fechas (datos5.js)
- for (j=9; j<(fechas.length + 9); j++){
+ for (j=9; j<(fechas.length + 7); j++){
     totalJugadores[j] = 0; 
     for (i=2; i<14; i++){ 
 

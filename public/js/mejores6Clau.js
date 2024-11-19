@@ -8,7 +8,7 @@ async function main() {
 main().then (() => { // Ejecuta la función principal
   // Crear una matriz de 12 filas por 22 columnas inicializada en cero
   const filasMat = 12;
-  const columnas = 25;
+  const columnas = 18;
   const matriz2 = new Array(filasMat)
     .fill(0)
     .map(() => new Array(columnas).fill(0));
@@ -133,7 +133,7 @@ main().then (() => { // Ejecuta la función principal
   // Agrega el nombre del grupo como la primera celda
   for (i = 0; i < 12; i++) {
     const lineaDatos2 = tablaSeis2.insertRow();
-    for (j = 0; j < 17; j++) {
+    for (j = 0; j < 18; j++) {
       if (matriz2[i][j] === 0) {
         matriz2[i][j] = "--";
       }

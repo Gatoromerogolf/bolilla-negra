@@ -320,7 +320,6 @@ th {
   background-color: #c7c5c5;
 }
 
-}
 
 #mat {
   text-align: right;
@@ -557,7 +556,7 @@ p.scores {
 #contenedorCuentaRegresiva {
   width: 350px;
   height: 150px;
-  background-color: red;
+  background-color: yellow;
   /* Puedes quitar el color de fondo si la imagen lo cubrirá totalmente */
   display: flex;
   justify-content: center;

@@ -1,10 +1,29 @@
 
 async function main() {
-  const { players2, clausura } = await leerDatosNetos();
-  fechas = await leerDatosFechas();
-  puntosRanking = await leerPuntosRanking();
+  const { apertura, clausura } = await leerDatosNetos();
+  const fechas = await leerDatosFechas();
+  const puntosRanking = await leerPuntosRanking();
 
-// main().then (() => { // Ejecuta la función principal
+  console.log("Apertura:", apertura);
+  console.log("Clausura:", clausura);
+  // console.log("Top Apertura (4 menores):", topApertura);
+  // console.log("Top Clausura (4 menores):", topClausura);
+  console.log("Fechas:", fechas);
+  console.log("Puntos Ranking:", puntosRanking);
+}
+
+
+
+main().then (() => { // Ejecuta la función principal
+
+
+  //  hay que leer datosRanking  y llenar una matriz.
+  //  completar los cuatro mejores de apertura
+  //  completar los cuatro mejores de clausura (si no están???)
+  //  sumar los valores
+  //  ordenar la matriz por la suma de valores
+  //  presentar y dar las urras!!!!
+
 
   // Paso 1: Agrupar los datos por jugador, manteniendo solo pares de fec y neto
   const playersData = {};
@@ -12,12 +31,14 @@ async function main() {
   let indRkg = 0;
 
   players2.forEach(({ play, fec, neto }) => {
-    if (!playersData[play]) {
-      playersData[play] = []; //inicializa el arreglo para el jugador play asignándole un nuevo arreglo vacío.
+    if (neto > 0) {
+      // Filtra los pares donde neto es mayor a 0
+      if (!playersData[play]) {
+        playersData[play] = []; //inicializa el arreglo para el jugador play asignándole un nuevo arreglo vacío.
+      }
+      playersData[play].push({ fec, neto }); // Agrega un nuevo objeto al arreglo del jugador play. El objeto tiene dos propiedades: fec y neto. 
     }
-    playersData[play].push({ fec, neto }); // Agrega un nuevo objeto al arreglo del jugador play. El objeto tiene dos propiedades: fec y neto. 
-    }
-  );
+  });
 
   //
   for (play in playersData) {
@@ -26,24 +47,6 @@ async function main() {
     playersData[play].sort((a, b) => a.fec - b.fec);
   }
 
-   // Paso 2: Agrupar los datos por jugador del CLAUSURA, manteniendo solo pares de fec y neto 
-  const playersDataClausura = {};
-  //  let matrizRanking = [];
-  //  let indRkg = 0;
- 
-  clausura.forEach(({ play, fec, neto }) => {
-    if (!playersDataClausura[play]) {
-      playersDataClausura[play] = []; //inicializa el arreglo para el jugador play asignándole un nuevo arreglo vacío.
-    }
-    playersDataClausura[play].push({ fec, neto }); // Agrega un nuevo objeto al arreglo del jugador play. El objeto tiene dos propiedades: fec y neto. 
-  });
- 
-   //
-   for (play in playersDataClausura) {
-     playersDataClausura[play].sort((a, b) => a.neto - b.neto);
-     playersDataClausura[play] = playersDataClausura[play].slice(0, 4);
-     playersDataClausura[play].sort((a, b) => a.fec - b.fec);
-   }
 
   // llena los valores de la gira
   for (const puntosRkg of puntosRanking) {
@@ -59,7 +62,8 @@ async function main() {
     indRkg++;
   }
 
-  // agrega a la matriz 4 valores del apertura
+
+  // agrega a la matriz estos 4 valores
 
   for (play in playersData) {
     let filaBuscada = matrizRanking.findIndex((fila) => fila[0] === play);
@@ -79,25 +83,6 @@ async function main() {
       }
     }
   }
-
-  // agrega a la matriz 4 valores del CLAUSURA
-
-  for (play in playersDataClausura) {
-    let filaBuscada = matrizRanking.findIndex((fila) => fila[0] === play);
-    if(filaBuscada === -1){
-      console.log ("valor no encontrado: " , play)
-    }
-      else{
-      matrizRanking[filaBuscada][9] = playersDataClausura[play][0].neto;
-      matrizRanking[filaBuscada][10] = playersDataClausura[play][1].neto;
-      matrizRanking[filaBuscada][11] = playersDataClausura[play][2].neto;
-      matrizRanking[filaBuscada][12] = playersDataClausura[play][3].neto;
-      for (let jota=9; jota<13; jota++){
-        matrizRanking[filaBuscada][1] += matrizRanking[filaBuscada][jota];
-      }
-    }
-  }
-
   // ordena la matriz por segunda columna
 
   matrizRanking.sort((a, b) => a[1] - b[1]);
@@ -136,21 +121,10 @@ async function main() {
 
     const cuatroAper = lineaRanking.insertCell();
     cuatroAper.textContent = matrizRanking[indRkg][8];
-
-    const unoClau = lineaRanking.insertCell();
-    unoClau.textContent = matrizRanking[indRkg][5];
-
-    const dosClau = lineaRanking.insertCell();
-    dosClau.textContent = matrizRanking[indRkg][6];
-
-    const tresClau = lineaRanking.insertCell();
-    tresClau.textContent = matrizRanking[indRkg][7];
-
-    const cuatroClau = lineaRanking.insertCell();
-    cuatroClau.textContent = matrizRanking[indRkg][8];
-
   }
 
+  // Arma y presenta la tabla vs   primero contra ultimo y así.....
+  
   let lineaRankingVs = document.getElementById("lineaRankingVs");
 
   for (indice = 0; indice < 6; indice++) {
@@ -165,26 +139,31 @@ async function main() {
     nombreCeldaRkg = lineaRankingVs.insertCell();
     nombreCeldaRkg.textContent = matrizRanking[11-indice][0];
   }
-}
-
-main().then(() => {
-  // Aquí sigue el resto del código que necesita que players2 haya sido definido
-}).catch((error) => {
-  console.error("Hubo un error en el proceso: ", error);
-});
+})
 
 async function leerDatosNetos() {
   try {
     const response = await fetch(`/leerDatosNetos`);
     if (response.ok) {
-      const resultados = await response.json();
-      console.log(resultados); // Inspecciona los datos devueltos
-      const players2 = resultados.filter((record) => record.fec < 17 && record.neto > 0);
-      const clausura = resultados.filter(
+      const players2 = await response.json();
+
+      // Filtrar los datos según las condiciones
+      const apertura = players2.filter((record) => record.fec < 17 && record.neto > 0);
+      const clausura = players2.filter(
         (record) => record.fec > 16 && record.fec < 90 && record.neto > 0
       );
 
-      return { players2, clausura }; // Devuelve los datos obtenidos si la respuesta es exitosa
+    //   // Obtener los 4 valores menores de cada conjunto
+    //   const topApertura = apertura
+    //   .sort((a, b) => a.fec - b.fec) // Ordenar por `fec` ascendente
+    //   .slice(0, 4); // Tomar los primeros 4 valores
+
+    // const topClausura = clausura
+    //   .sort((a, b) => a.fec - b.fec) // Ordenar por `fec` ascendente
+    //   .slice(0, 4); // Tomar los primeros 4 valores
+
+      // Retornar ambas variables en un objeto
+      return { apertura, clausura, topApertura, topClausura };
 
     } else {
       console.error(
@@ -199,6 +178,7 @@ async function leerDatosNetos() {
     return null;
   }
 }
+
 
 
 async function leerDatosFechas() {
