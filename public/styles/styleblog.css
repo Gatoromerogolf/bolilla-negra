@@ -59,12 +59,18 @@ id=" ";  class=" "; a -  tr --ul etc
 
 /*  */
 body {
-  /* font-family: sans-serif; */
   font-family: 'Abel';
   background-color: #e4e3e317;
   padding: 0;
   margin: 1;
   font-size: 18px;
+
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0; */
 }
 
 header {
@@ -554,7 +560,7 @@ p.scores {
 
 
 #contenedorCuentaRegresiva {
-  width: 350px;
+  width: 260px;
   height: 150px;
   background-color: yellow;
   /* Puedes quitar el color de fondo si la imagen lo cubrirá totalmente */
@@ -570,11 +576,12 @@ p.scores {
   /* Asegura que la imagen cubra completamente el contenedor */
   background-position: center;
   /* Centra la imagen en el contenedor */
-  margin: 10px;
+  margin: 20px;
 }
 
 #cuentaRegresiva {
-  font-size: 40px;
+  /* font-size: 40px; */
+  font-size: 1.5em;
   /* Tamaño de los números */
   font-weight: bold;
   /* Hacer los números más gruesos */

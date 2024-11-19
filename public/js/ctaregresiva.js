@@ -3,7 +3,9 @@
 function cuentaRegresiva(fechaObjetivo) {
     // Calcular la diferencia entre la fechaObjetivo y ahora
     const actualizarCuentaRegresiva = () => {
-      const ahora = new Date();
+      const ahora = new Date().getTime();
+      console.log("Fecha actual en milisegundos:", ahora);
+      console.log("Fecha objetivo en milisegundos:", fechaObjetivo);
       const diferencia = fechaObjetivo - ahora;
 
       // console.log (diferencia)
