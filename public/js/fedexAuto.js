@@ -153,6 +153,65 @@ main().then (() => { // Ejecuta la función principal
     matrizFedex[j][2] = "1°";
     matrizFedex[j][3] = 91;
 
+
+    //  agrega los puntos de Carilo
+
+    matrizFedex[j][0] = 'Edu';
+    matrizFedex[j][1] = 20;
+    matrizFedex[j][2] = "1°";
+    matrizFedex[j][3] = 92;
+
+    j++;
+    if (!matrizFedex[j]) {
+      matrizFedex[j] = [];
+    }
+    matrizFedex[j][0] = 'Juancho';
+    matrizFedex[j][1] = 15;
+    matrizFedex[j][2] = "2°";
+    matrizFedex[j][3] = 92;
+
+    j++;
+    if (!matrizFedex[j]) {
+      matrizFedex[j] = [];
+    }
+    matrizFedex[j][0] = 'Negro';
+    matrizFedex[j][1] = 10;
+    matrizFedex[j][2] = "3°";
+    matrizFedex[j][3] = 92;
+
+    j++;
+    if (!matrizFedex[j]) {
+      matrizFedex[j] = [];
+    }
+    matrizFedex[j][0] = 'Torni';
+    matrizFedex[j][1] = 8;
+    matrizFedex[j][2] = "4°";
+    matrizFedex[j][3] = 92;
+
+    j++;
+    if (!matrizFedex[j]) {
+      matrizFedex[j] = [];
+    }
+    matrizFedex[j][0] = 'Diegui';
+    matrizFedex[j][1] = 5;
+    matrizFedex[j][2] = "5°";
+    matrizFedex[j][3] = 92;
+
+    j++;
+    if (!matrizFedex[j]) {
+      matrizFedex[j] = [];
+    }
+    matrizFedex[j][0] = 'Julito';
+    matrizFedex[j][1] = 2;
+    matrizFedex[j][2] = "6°";
+    matrizFedex[j][3] = 92;
+
+    j++;
+    if (!matrizFedex[j]) {
+      matrizFedex[j] = [];
+    }
+
+
     const matrizFx = [];
 
     // arma la otra matriz, agrupando por jugador.
@@ -283,14 +342,6 @@ function eliminarFilas() {
 }
 
 
-// --- cerrarModal ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-function cerrarModal(idModal) {
-  const modal = document.getElementById(idModal);
-  if (modal) {
-    modal.style.display = "none";
-  }
-}
-
 
 async function leerDatosNetos() {
   try {
@@ -330,4 +381,28 @@ async function leerDatosFechas() {
     console.error("Error en la solicitud:", error);
     return null;
   }
+}
+
+
+const closeButton = document.querySelector('.close-button');
+
+// Cerrar el modal al hacer clic en el botón de cierre
+closeButton.addEventListener('click', () => {
+  modal.style.display = 'none'; // Ocultar el modal
+});
+
+
+// Cierra el modal al hacer clic fuera de él
+window.onclick = function (event) {
+  const modal = document.getElementById("modalGeneral");
+  if (event.target === modal) {
+    cerrarModal();
+  }
+};
+
+
+// --- cerrarModal ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+function cerrarModal() {
+  const modal = document.getElementById("modalGeneral");
+  modal.style.display = "none";
 }

@@ -69,7 +69,8 @@
         </table>
       </div>
 
-      <div id="modalGeneral" class="modal" style="display:none;">
+
+      <!-- <div id="modalGeneral" class="modal" style="display:none;">
         <p id="tituloModalGeneral"></p>
         <table id="tablaModalGeneral">
           <tr>
@@ -83,12 +84,36 @@
         </table>
         <br>
         <button onclick="cerrarModal('modalGeneral')">Cerrar</button>
+      </div> -->
+
+      <div id="modalGeneral" class="modal" style="display:none;">
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <p id="tituloModalGeneral"></p>
+          <div class="table-container">
+            <table id="tablaModalGeneral">
+              <thead>
+                <tr>
+                  <th>Puntos</th>
+                  <th>Pos.</th>
+                  <th>Torneo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="lineaModalGeneral">
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
+
+
     </section>
-    </div>
-  </section>
+
   <br>
-  </section>
+
   <div id="footer"></div>
   <script src="../js/fedexAuto.js"></script>
 </body>
