@@ -1,9 +1,9 @@
-
 let fechas = [];
 
 async function main() {
   fechas = await leerDatosFechas();
   ultimaFecha = await buscaUltimaFecha();
+  console.log (`ultima fecha : ${ultimaFecha.textoFecha}, numero ${ultimaFecha.fec}`)
   players2 = await leerDatosNetos();
   puntosRanking = await leerPuntosRanking();
 }
@@ -17,7 +17,7 @@ main().then (() => { // Ejecuta la función principal
 
   // obtiene los movimientos de la ultima fecha
 
-  const filteredPlayers = players2.filter(player => player.fec === fechas.length-2);
+  const filteredPlayers = players2.filter(player => player.fec === fechas.length-3);
 
   filteredPlayers.sort((a, b) => {
       // Mueve los elementos con neto igual a 0 al final
@@ -80,7 +80,7 @@ main().then (() => { // Ejecuta la función principal
       buscaroInsertar(matrizPelotas, player.play, player.pg);
     }
 
-    // agregar en la matriz las pelotas de la gira
+    // agregar en la matriz las pelotas de la gira y de la Fedex
     for (player of puntosRanking)
       buscaroInsertar(matrizPelotas, player.playRkg, player.pelgan);
 
