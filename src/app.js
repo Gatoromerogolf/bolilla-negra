@@ -158,7 +158,7 @@ app.get('/leerDatosNetos', (req, res) => {
   
   // Ruta para obtener los registros de PUNTOS RANKING ::::::::::::::::::::
 app.get('/leerPuntosRanking', (req, res) => {
-  const query = 'SELECT * FROM puntosranking';
+  const query = 'SELECT * FROM puntosranking WHERE id < 13';
 
   pool.query(query, (error, results, fields) => {
       if (error) {
