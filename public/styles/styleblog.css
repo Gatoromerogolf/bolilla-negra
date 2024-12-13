@@ -697,3 +697,22 @@ p.scores {
   text-decoration: none;
   cursor: pointer;
 }
+
+.premio-anual {
+  display: flex; /* Alinea los elementos horizontalmente */
+  justify-content: center; /* Centra las imágenes horizontalmente */
+  flex-wrap: wrap; /* Permite que las imágenes se apilen si no hay suficiente espacio */
+  gap: 10px; /* Espacio entre las imágenes */
+}
+
+.premio-anual img {
+  max-width: 50%; /* Las imágenes nunca serán más anchas que su contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+  flex: 1 1 45%; /* Define que ocupen aproximadamente el 45% del espacio disponible */
+}
+
+@media (max-width: 600px) {
+  .premio-anual img {
+    flex: 1 1 100%; /* En pantallas pequeñas, las imágenes ocupan el 100% */
+  }
+}
