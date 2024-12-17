@@ -14,8 +14,11 @@ https://www.tooplate.com/view/2135-mini-finance
   --primary-color:                #E63946;
   --secondary-color:              #F1FAEE;
   --section-bg-color:             #ececec;
+  --section2-bg-color:            #ececec;
   --primary-bg-color:             #E63946;
+  --primary2-bg-color:            #E63946;
   --custom-btn-bg-color:          #A8DADC;
+  --custom-btn-bg-color2:         #17cc71;
   --custom-btn-bg-hover-color:    #1D3557;
   --heading-color:                #1D3557;
   --dark-color:                   #000000;
@@ -24,6 +27,7 @@ https://www.tooplate.com/view/2135-mini-finance
   --link-hover-color:             #E63946;
 
   --body-font-family:             'Unbounded';
+  --body-font-family:             'Abel';
 
   --h1-font-size:                 74px;
   --h2-font-size:                 46px;
@@ -32,7 +36,7 @@ https://www.tooplate.com/view/2135-mini-finance
   --h5-font-size:                 24px;
   --h6-font-size:                 22px;
   --p-font-size:                  18px;
-  --menu-font-size:               14px;
+  --menu-font-size:               16px;
   --btn-font-size:                12px;
   --copyright-font-size:          10px;
 
@@ -121,6 +125,8 @@ a {
 }
 
 a:hover {
+ 
+ 
   color: var(--link-hover-color);
 }
 
@@ -153,6 +159,15 @@ strong {
 
 .custom-block.primary-bg {
   background: var(--primary-bg-color);
+}
+
+.custom-block2.section-bg,
+.section-bg {
+  background-color: var(--section2-bg-color);
+}
+
+.custom-block2.primary-bg {
+  background: var(--primary2-bg-color);
 }
 
 .featured-box {
@@ -710,6 +725,11 @@ strong {
   background: var(--custom-btn-bg-color);
 }
 
+.custom-block-contact2 {
+  background: var(--custom-btn-bg-color2);
+}
+
+
 .custom-block-exchange .border-bottom {
   border-bottom: 1px solid #c6e5e7 !important;
 }
@@ -1147,3 +1167,22 @@ strong {
   }
 }
 
+table {
+  border-collapse: collapse;
+  border: 3px solid black;
+  letter-spacing: 0px;
+  font-size: 0.9rem;
+  margin: 0 auto;
+}
+
+td,
+th {
+  border-collapse: collapse;
+  border: 1px dotted rgb(71, 69, 69);
+  padding: 8px 5px;
+  text-align: center;
+}
+
+th {
+  background-color: #c2cff8c9;
+}
