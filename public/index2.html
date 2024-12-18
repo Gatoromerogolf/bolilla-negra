@@ -24,6 +24,12 @@
     <link href="css/apexcharts.css" rel="stylesheet">
 
     <link href="css/tooplate-mini-finance.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Courgette&family=Gupter:wght@400;500;700&family=PT+Sans+Narrow:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+      rel="stylesheet">
     <!--
 
 Tooplate 2135 Mini Finance
@@ -256,9 +262,23 @@ Bootstrap 5 Dashboard Admin Template
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="calendario25.html">
+                                <i class="bi-question-circle me-2"></i>
+                                Calendario 2025
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index2.html">
+                                <i class="bi-question-circle me-2"></i>
+                                Resumen Deportivo 2024
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="help-center.html">
                                 <i class="bi-question-circle me-2"></i>
-                                Help Center
+                                Otra opción mas
                             </a>
                         </li>
 
@@ -516,189 +536,27 @@ Bootstrap 5 Dashboard Admin Template
                             <div id="chart"></div>
                         </div>
 
-                        <!-- <div class="custom-block custom-block-exchange">
-                            <h5 class="mb-4">Torneos Realizados</h5>
-
-                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
-                                <div class="d-flex align-items-center">
-                                    <img src="images/flag/united-states.png" class="exchange-image img-fluid" alt="">
-
-                                    <div>
-                                        <p>Apertura</p>
-                                        <h6>1 US Dollar</h6>
-                                    </div>
-                                </div>
-
-                                <div class="ms-auto me-4">
-                                    <small>Sell</small>
-                                    <h6>1.0931</h6>
-                                </div>
-
-                                <div>
-                                    <small>Buy</small>
-                                    <h6>1.0821</h6>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
-                                <div class="d-flex align-items-center">
-                                    <img src="images/flag/singapore.png" class="exchange-image img-fluid" alt="">
-
-                                    <div>
-                                        <p>Sierra de los Padres</p>
-                                        <h6>1 Singapore Dollar</h6>
-                                    </div>
-                                </div>
-
-                                <div class="ms-auto me-4">
-                                    <small>Sell</small>
-                                    <h6>0.6901</h6>
-                                </div>
-
-                                <div>
-                                    <small>Buy</small>
-                                    <h6>0.6201</h6>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
-                                <div class="d-flex align-items-center">
-                                    <img src="images/flag/united-kingdom.png" class="exchange-image img-fluid" alt="">
-
-                                    <div>
-                                        <p>Ryder</p>
-                                        <h6>1 British Pound</h6>
-                                    </div>
-                                </div>
-
-                                <div class="ms-auto me-4">
-                                    <small>Sell</small>
-                                    <h6>1.1520</h6>
-                                </div>
-
-                                <div>
-                                    <small>Buy</small>
-                                    <h6>1.1412</h6>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
-                                <div class="d-flex align-items-center">
-                                    <img src="images/flag/australia.png" class="exchange-image img-fluid" alt="">
-
-                                    <div>
-                                        <p>Clausura</p>
-                                        <h6>1 Australian Dollar</h6>
-                                    </div>
-                                </div>
-
-                                <div class="ms-auto me-4">
-                                    <small>Sell</small>
-                                    <h6>0.6110</h6>
-                                </div>
-
-                                <div>
-                                    <small>Buy</small>
-                                    <h6>0.5110</h6>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
-                                <div class="d-flex align-items-center">
-                                    <img src="images/flag/european-union.png" class="exchange-image img-fluid" alt="">
-
-                                    <div>
-                                        <p>Cariló</p>
-                                        <h6>1 Euro</h6>
-                                    </div>
-                                </div>
-
-                                <div class="ms-auto me-4">
-                                    <small>Sell</small>
-                                    <h6>1.1020</h6>
-                                </div>
-
-                                <div>
-                                    <small>Buy</small>
-                                    <h6>1.1010</h6>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
-                                <div class="d-flex align-items-center">
-                                    <img src="images/flag/european-union.png" class="exchange-image img-fluid" alt="">
-
-                                    <div>
-                                        <p>Bolilla 2024</p>
-                                        <h6>1 Euro</h6>
-                                    </div>
-                                </div>
-
-                                <div class="ms-auto me-4">
-                                    <small>Sell</small>
-                                    <h6>1.1020</h6>
-                                </div>
-
-                                <div>
-                                    <small>Buy</small>
-                                    <h6>1.1010</h6>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
-                                <div class="d-flex align-items-center">
-                                    <img src="images/flag/european-union.png" class="exchange-image img-fluid" alt="">
-
-                                    <div>
-                                        <p>Fedex</p>
-                                        <h6>1 Euro</h6>
-                                    </div>
-                                </div>
-
-                                <div class="ms-auto me-4">
-                                    <small>Sell</small>
-                                    <h6>1.1020</h6>
-                                </div>
-
-                                <div>
-                                    <small>Buy</small>
-                                    <h6>1.1010</h6>
-                                </div>
-                            </div>
-                        </div> -->
-
 
 
                     <div class="col-lg-5 col-12">
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
-                            <div class="custom-block-profile-image-wrap mb-4">
-                                <img src="images/medium-shot-happy-man-smiling.jpg"
-                                    class="custom-block-profile-image img-fluid" alt="">
+                            <h5 class="mb-3">Pelotas Ganadas</h5>
+                            <p class="mb-2">Mayor cantidad de pelotas ganadas en los torneos de Sábados</p>
 
-                                <a href="setting.html" class="bi-pencil-square custom-block-edit-icon"></a>
+
+                            <div class="custom-block-profile-image-wrap mb-3">
+                                <img src="images/profile/negro2.png"
+                                    class="custom-block-profile-image img-fluid" alt="">
                             </div>
 
-                            <p class="d-flex flex-wrap mb-2">
-                                <strong>Name:</strong>
-
-                                <span>Thomas Edison</span>
+                            <p class="text-center mb-2">
+                                <strong>Hugo "Negro" González</strong>
                             </p>
 
-                            <p class="d-flex flex-wrap mb-2">
-                                <strong>Email:</strong>
-
-                                <a href="#">
-                                    thomas@site.com
-                                </a>
+                            <p class="text-center mb-2">
+                                <strong>73 pelotas</strong>
                             </p>
 
-                            <p class="d-flex flex-wrap mb-0">
-                                <strong>Phone:</strong>
-
-                                <a href="#">
-                                    (60) 12 345 6789
-                                </a>
-                            </p>
                         </div>
 
                         <div class="custom-block custom-block-bottom d-flex flex-wrap">
@@ -714,7 +572,7 @@ Bootstrap 5 Dashboard Admin Template
                                 <a href="#" class="d-flex flex-column">
                                     <i class="custom-block-icon bi-upc-scan"></i>
 
-                                    <small>Scan & Pay</small>
+                                    <small>Scan `&` Pay</small>
                                 </a>
                             </div>
 
@@ -740,23 +598,22 @@ Bootstrap 5 Dashboard Admin Template
 
                             <div class="d-flex flex-wrap align-items-center mb-4">
                                 <div class="d-flex align-items-center">
-                                    <!-- <img src="images/profile/senior-man-white-sweater-eyeglasses.jpg" -->
                                     <img src="images/profile/joaco3.jpg"
                                         class="profile-image img-fluid" alt="">
 
-                                    <div>
-                                        <p>
-                                            <a href="transation-detail.html">Torni</a>
-                                        </p>
-
-                                        <small class="text-muted">17 Febrero</small>
+                                        <div>
+                                            <p>
+                                                <a href="transation-detail.html">Joaco</a>
+                                            </p>
+    
+                                            <small class="text-muted">17 de Febrero</small>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="ms-auto">
-                                    <!-- <small>05/12/2023</small> -->
-                                    <strong class="d-block text-danger"><span class="me-1"></span>64</strong>
-                                </div>
+    
+                                    <div class="ms-auto">
+                                        <!-- <small>22/8/2023</small> -->
+                                        <strong class="d-block text-success"><span class="me-1">+</span> 64</strong>
+                                    </div>
                             </div>
 
                             <div class="d-flex flex-wrap align-items-center mb-4">
@@ -833,6 +690,8 @@ Bootstrap 5 Dashboard Admin Template
                     </div>
                 </div>
 
+
+
                 <footer class="site-footer">
                     <div class="container">
                         <div class="row">
@@ -856,6 +715,7 @@ Bootstrap 5 Dashboard Admin Template
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/apexcharts.min.js"></script>
     <script src="js/custom.js"></script>
+    <!-- <script src="js/ultimodia.js"></script> -->
 
     <script type="text/javascript">
         var options = {
