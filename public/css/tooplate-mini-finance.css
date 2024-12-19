@@ -18,7 +18,8 @@ https://www.tooplate.com/view/2135-mini-finance
   --primary-bg-color:             #E63946;
   --primary2-bg-color:            #E63946;
   --custom-btn-bg-color:          #A8DADC;
-  --custom-btn-bg-color2:         #17cc71;
+  --custom-btn-bg-color2:         #a5cfba;
+  --custom-btn-bg-color3:         #ebf0b0;
   --custom-btn-bg-hover-color:    #1D3557;
   --heading-color:                #1D3557;
   --dark-color:                   #000000;
@@ -29,7 +30,7 @@ https://www.tooplate.com/view/2135-mini-finance
   --body-font-family:             'Unbounded';
   --body-font-family:             'Abel';
 
-  --h1-font-size:                 74px;
+  --h1-font-size:                 46px;
   --h2-font-size:                 46px;
   --h3-font-size:                 32px;
   --h4-font-size:                 28px;
@@ -225,8 +226,8 @@ strong {
 -----------------------------------------*/
 .profile-image {
   border-radius: var(--border-radius-small);
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   object-fit: cover;
 }
 
@@ -242,7 +243,7 @@ strong {
 
 .custom-block-profile-front .custom-block-profile-image {
   width: 130px;
-  height: 130px;
+  height: 120px;
 }
 
 .custom-block-profile-image {
@@ -256,10 +257,11 @@ strong {
 
 .custom-block .profile-image {
   border-radius: var(--border-radius-medium);
-  width: 64px;
-  height: 64px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  width: 60px;
+  height: 60px;
+  margin-right: 5px;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 .profile-rounded {
@@ -729,6 +731,9 @@ strong {
   background: var(--custom-btn-bg-color2);
 }
 
+.custom-block-contact3 {
+  background: var(--custom-btn-bg-color3);
+}
 
 .custom-block-exchange .border-bottom {
   border-bottom: 1px solid #c6e5e7 !important;
@@ -1186,3 +1191,23 @@ th {
 th {
   background-color: #c2cff8c9;
 }
+
+td {
+  background-color: #ffffffc9;
+}
+
+/* CSS */
+.resaltado {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#score_del_mes td{
+    padding: 0;
+    margin: 0;
+}
+/* .profile-image {
+  display: block;
+  padding: 0;
+  margin: 0;
+} */
