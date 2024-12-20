@@ -41,7 +41,9 @@ Bootstrap 5 Dashboard Admin Template
         <header class="navbar sticky-top flex-md-nowrap">
             <div class="col-md-3 col-lg-3 me-0 px-3 fs-6">
                 <a class="navbar-brand" href="index.html">
-                    <i class="bi-box"></i>
+                    <img src="images/bn.ico" alt="Bolilla Negra Icono"
+                    style="width: 60px; height: 60px; vertical-align: middle;">
+                    <!-- <i class="bi-box"></i> -->
                    Bolilla Negra
                 </a>
             </div>
@@ -50,10 +52,16 @@ Bootstrap 5 Dashboard Admin Template
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0" action="#" method="get" role="form">
+            <!-- <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0" action="#" method="get" role="form">
                 <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
-            </form>
+            </form> -->
 
+            <div
+            class="motivational-text ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0 p-3 border rounded">
+            <p class="mb-0">"Cada golpe es una oportunidad para disfrutar del juego y fortalecer la amistad. Aguante
+                Bolilla!"</p>
+
+        </div>
             <div class="navbar-nav me-lg-2">
                 <div class="nav-item text-nowrap d-flex align-items-center">
                     <div class="dropdown ps-3">
@@ -175,7 +183,7 @@ Bootstrap 5 Dashboard Admin Template
                         </div>
                     </div>
 
-                    <div class="dropdown px-3">
+<!--                     <div class="dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="images/medium-shot-happy-man-smiling.jpg" class="profile-image img-fluid" alt="">
                         </a>
@@ -220,7 +228,7 @@ Bootstrap 5 Dashboard Admin Template
                             </li>
                         </ul>
                     </div>
-                </div>
+ -->                </div>
             </div>
         </header>
 
@@ -264,7 +272,20 @@ Bootstrap 5 Dashboard Admin Template
                                 </a>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="index2.html">
+                                    <i class="bi-gear me-2"></i>
+                                    Nuestra historia
+                                </a>
+                            </li>
+
                             <li class="nav-item featured-box mt-lg-5 mt-4 mb-4">
+                                <img src="images/tipito.jpeg" class="img-fluid" alt=""
+                                    style="width: 190px; height: 190px; vertical-align: middle">
+    
+                                <!-- <a class="btn custom-btn" href="#">Upgrade</a> -->
+                            </li>
+                            <!-- <li class="nav-item featured-box mt-lg-5 mt-4 mb-4">
                                 <img src="images/credit-card.png" class="img-fluid" alt="">
 
                                 <a class="btn custom-btn" href="#">Upgrade</a>
@@ -275,7 +296,7 @@ Bootstrap 5 Dashboard Admin Template
                                     <i class="bi-box-arrow-left me-2"></i>
                                     Logout
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </nav>
@@ -290,18 +311,90 @@ Bootstrap 5 Dashboard Admin Template
                             <div class="custom-block custom-block-profile">
                                 <div class="row">
                                     <div class="col-lg-12 col-12 mb-3">
-                                        <h6>General</h6>
+                                        <h6>Cumpleaños y Jefes</h6>
                                     </div>
 
                                     <div class="col-lg-3 col-12 mb-4 mb-lg-0">
                                         <div class="custom-block-profile-image-wrap">
-                                            <img src="images/medium-shot-happy-man-smiling.jpg" class="custom-block-profile-image img-fluid" alt="">
+                                            <!-- <img src="images/medium-shot-happy-man-smiling.jpg" class="custom-block-profile-image img-fluid" alt=""> -->
+                                            <img src="images/happy-birthday.png" class="custom-block-profile-image img-fluid" alt="">
 
-                                            <a href="setting.html" class="bi-pencil-square custom-block-edit-icon"></a>
+                                            <!-- <a href="setting.html" class="bi-pencil-square custom-block-edit-icon"></a> -->
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-9 col-12">
+                                    <p class="frase">"Se ve claramente en qué mes cada uno tiene que ofrecer una reunión incluyendo algún menú interesante para compartir en este grupo. Somos 12 y hay 12 meses. Alguno tendría que hacerlo días antes o días después."</p>
+                                    <p style="text-align: right; font-size: 13px">Joaquín Berisso - 2023 (dc)</p>
+                                  <br>
+                                  <table id="cumple">
+                                    <tr>
+                                      <th>Señor</th>
+                                      <th>Día</th>
+                                      <th>El jefe</th>
+                                      <th></th>
+                                      <th>Señor</th>
+                                      <th>Día</th>
+                                      <th>El jefe</th>
+                                    </tr>
+                                    <tr>
+                                      <td>Negro</td>
+                                      <td>Ene 12</td>
+                                      <td>Mariela</td>
+                                      <td></td>
+                                      <td>Gaby</td>
+                                      <td>Ago 1</td>
+                                      <td>Mirta</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Fer</td>
+                                      <td>Feb 18</td>
+                                      <td>Cristina</td>
+                                      <td></td>
+                                      <td>Edu</td>
+                                      <td>Ago 4</td>
+                                      <td>Marcela</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Sensei</td>
+                                      <td>Abr 10</td>
+                                      <td>Cecilia</td>
+                                      <td></td>
+                                      <td>Joaco</td>
+                                      <td>Set 6</td>
+                                      <td>Luciana</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Diegui</td>
+                                      <td>Abr 13/5</td>
+                                      <td>Marcela</td>
+                                      <td></td>
+                                      <td>Presi</td>
+                                      <td>Oct 4</td>
+                                      <td>Gabriela</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Juancho</td>
+                                      <td>May 4</td>
+                                      <td>Sandra</td>
+                                      <td></td>
+                                      <td>Julito</td>
+                                      <td>Dic 9</td>
+                                      <td>Roxana</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Torni</td>
+                                      <td>Jun 24</td>
+                                      <td>Fernanda</td>
+                                      <td></td>
+                                      <td>Panza</td>
+                                      <td>Dic 15</td>
+                                      <td>Iris</td>
+                                    </tr>
+                                  </table>
+                                </section>
+                              
+
+                                    <!-- <div class="col-lg-9 col-12">
                                         <p class="d-flex flex-wrap mb-2">
                                             <strong>Name:</strong>
 
@@ -335,11 +428,11 @@ Bootstrap 5 Dashboard Admin Template
 
                                             <span>551 Swanston Street, Melbourne</span>
                                         </p>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
-                            <div class="custom-block custom-block-profile bg-white">
+                            <!-- <div class="custom-block custom-block-profile bg-white">
                                 <h6 class="mb-4">Card Information</h6>
 
                                 <p class="d-flex flex-wrap mb-2">
@@ -365,12 +458,32 @@ Bootstrap 5 Dashboard Admin Template
 
                                     <span>July 18, 2032</span>
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="col-lg-5 col-12">
                             <div class="custom-block custom-block-contact">
-                                <h6 class="mb-4">Still can’t find what you looking for?</h6>
+
+                                <section>
+                                    <h5 id="reflexiones">Reflexiones</h5>
+                                
+                                    <p class="frase">"Con mi mujer nos llevamos bien. Ayer cuando llegué tomamos un café, le conté de nuestro viaje, me
+                                      contó de sus actividades con hijas y nietos. Cenamos temprano, una pechuga de pollo grillada con ensalada de
+                                      tomates. Agua mineral con gas.
+                                      Me acosté temprano.</p><br>
+                                    <p class="frase">
+                                      Dormí como el orto. Me desperté a las 2 de la mañana, me volví a dormir como a las 4, me volví a despertar 7:30.
+                                      Me miré en el espejo, todo demacrado.</p><br>
+                                    <p class="frase">
+                                      Tres días y medio con amigos. Comiendo como cerdos y chupando como esponjas. Por más de cuatro horas diarias,
+                                      empujando un carrito por subidas y bajadas. Dulce de leche, champagne, mariscos, asado, wiskey, pizzas, etc. etc.
+                                      Durante tres noches...dormí como un angelito. No me levanté ni para mear....y a las ocho ya estaba en pie para
+                                      enfrentar una nueva jornada.</p><br>
+                                    <p class="frase"><strong>
+                                        Decime lo que es la vida saludable."</strong></p>
+                                    <p style="text-align: right; font-size: 13px">Anónimo - 2023 (dc)</p>
+                                  </section>
+                                <!-- <h6 class="mb-4">Still can’t find what you looking for?</h6>
 
                                 <p>
                                     <strong>Call us:</strong>
@@ -382,7 +495,7 @@ Bootstrap 5 Dashboard Admin Template
 
                                 <a href="#" class="btn custom-btn custom-btn-bg-white mt-3">
                                     Chat with us
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </div>
@@ -392,8 +505,9 @@ Bootstrap 5 Dashboard Admin Template
                             <div class="row">
                                 
                                 <div class="col-lg-12 col-12">
-                                    <p class="copyright-text">Copyright © Mini Finance 2048 
-                                    - Design: <a rel="sponsored" href="https://www.tooplate.com" target="_blank">Tooplate</a></p>
+                                    <p class="copyright-text">Copyright © Bolilla Negra 2025 
+                                    <!-- - Design: <a rel="sponsored" href="https://www.tooplate.com" target="_blank">Tooplate</a> -->
+                                </p>
                                 </div>
 
                             </div>

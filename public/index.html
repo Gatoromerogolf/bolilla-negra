@@ -1,738 +1,686 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#8f7adas">
-  <meta name="keywords" content="golf, palos, pelotas">
-  <meta name="description" content="Sitio de bolilla">
-  <meta name="author" content="Sensei">
-  <meta name="copyright" content="Meta Inc.">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Blog de bolilla</title>
-  <link href="assets/images/bn.ico" rel="icon">
-  <link rel="stylesheet" href="../styles/styleblog.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <!--   <link rel="stylesheet" href="styles/ctareg.css">
- -->
+    <meta name="description" content="">
+    <meta name="author" content="Tooplate">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Courgette&family=Gupter:wght@400;500;700&family=PT+Sans+Narrow:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
-    rel="stylesheet">
+    <title>Bolilla Negra - Inicio</title>
 
-  <style>
-    /* Estilo de la ventana de comentarios */
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    .margen-comentarios {
-      margin: 10px;
-    }
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap" rel="stylesheet">
 
-    .comments-window {
-      max-height: 400px;
-      /* Ajusta el alto máximo según tus necesidades */
-      border: 1px solid #0d0d0d;
-      padding: 10px;
-      max-height: 300px;
-      /* Altura máxima inicial */
-      overflow-y: auto;
-      /* Ocultar el desbordamiento */
-      transition: max-height 0.5s ease;
-      position: relative;
-    }
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    .comment-list {
-      margin: 0;
-      padding: 0;
-      /* overflow-y: auto; */
-    }
+    <link href="css/bootstrap-icons.css" rel="stylesheet">
 
-    .comment {
-      margin-bottom: 10px;
-      border-bottom: 1px solid #131313;
-      padding-bottom: 10px;
-    }
+    <link href="css/apexcharts.css" rel="stylesheet">
 
-    .comment p {
-      margin: 0;
-    }
+    <link href="css/tooplate-mini-finance.css" rel="stylesheet">
 
-    .comment-header {
-      display: flex;
-      justify-content: space-between;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Courgette&family=Gupter:wght@400;500;700&family=PT+Sans+Narrow:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+        rel="stylesheet">
+    <!--
 
-    .comment-date {
-      font-weight: bold;
-    }
+Tooplate 2135 Mini Finance
 
-    .comment-author {
-      font-weight: bold;
-    }
+https://www.tooplate.com/view/2135-mini-finance
 
-    #expand-btn,
-    #collapse-btn,
-    #view-all-btn {
-      display: block;
-      margin: 10px auto;
-    }
+Bootstrap 5 Dashboard Admin Template
 
-    /* Estilo de los botones */
-    button {
-      margin-top: 5px;
-      padding: 8px 12px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-    }
+-->
 
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    .button-container {
-      display: flex;
-      justify-content: center;
-      /* Centra los botones horizontalmente */
-      gap: 0px;
-      /* Espacio entre los botones */
-      margin: 5px 0;
-      /* Espacio superior e inferior opcional */
-    }
-
-    #collapse-btn:hover {
-      background-color: #f05670;
-
-    }
-
-    /* Ocultar el botón de "Mostrar menos" por defecto */
-    /* #collapse-btn {
-  display: none;
-} */
-  </style>
-
-
-  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous"></script>
-
-  <script>
-    $(function () {
-      //$("#header").load("encabezado.html");
-      $("#footer").load("src/piepagina.html");
-    });
-  </script>
-
-  <!-- <script src="js/saludo.js"></script>-->
 </head>
 
-<header>
-  <nav>
-    <ul>
-      <li class="barra"><a href="/login.html?redirect=carga" rel="noreferrer">
-          <img src="../assets/images/logobolilla.jpeg" width="90" style="padding:0px; margin:0px"></a></li>
-      <li class="barra"><a href="index.html">Inicio</a></li>
-      <li class="barra"><a href="src/locales.html">Torneos</a></li>
-      <li class="barra"><a href="src/giras.html">Giras</a></li>
-      <li class="barra"><a href="src/bolilla.html">Anual</a></li>
-      <li class="barra"><a href="src/ryder2024.html">Ryder</a></li>
-      <li class="barra"><a href="src/tienda.html">Tienda</a></li>
-      <li class="barra"><a href="src/social.html">Sociales</a></li>
-      <li class="barra"><a href="src/proveed.html">Proveedores</a></li>
-    </ul>
-  </nav>
-</header>
-
 <body>
-  <div id="header-placeholder">
-
-    <a href="src/encuesta.html">..</a>
-    <a href="index2.html">--</a>
-
-    <p style="font-size: 15px">-- Consulta de matrículas:
-      <button id="pepe">Ver Matrículas</button>
-    </p>
-    <br>
-
-    <h1>Calendario 2025</h1>
-
-    <p>La HCDT pone a disposición para consulta y presentación de observaciones el Calendario de Torneos 2025.</p>
-    <p>Se analizarán todas las observaciones recibidas hasta el 31 de diciembre de 2024.
-
-      <p>Para consultar el calendario, <a href="src/calendar25.html">ingresar aquí</a></p>
-      <br>
-    <!-- <h1>Gira CARILO 2024</h1>
-    <p>La próxima y última gira del año, CARILO 2024, se realizará desde el Jueves 21 de Noviembre al Domingo 24 de
-      Noviembre.</p>
-
-      <h3 style="margin:10px">Falta poco....</h3>
-      <div id="contenedorCuentaRegresiva">
-        <div id="cuentaRegresiva">
-          console.log ('actualizando')
+    <header class="navbar sticky-top flex-md-nowrap">
+        <div class="col-md-3 col-lg-3 me-0 px-3 fs-6">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/bn.ico" alt="Bolilla Negra Icono"
+                style="width: 60px; height: 60px; vertical-align: middle;">
+                <!-- <i class="bi-box"></i> -->
+                Bolilla Negra
+            </a>
         </div>
-      </div> -->
 
-    <!-- <p style="font-size: 30px; font-weight: bold; text-align: center;">Gran Campeón CARILO 2024</p>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <h1>Ganador: Edu Martin</h1>
-    <br>
-  
-    <center><img src="assets/images/carilo24/Premio-Edu.jpeg" width="100%" alt=""></center> -->
-<!-- <br> -->
+        <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0"
+            action="#" method="get" role="form">
+            <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
+        </form>
 
-    <h1>Sugerencias y Comentarios</h1>
-    <p>Si tenés algo para decir, escribilo haciendo <a href="login.html?redirect=comentarios">click acá:</a></p>
-      <div id="margen-comentarios" class="margen-comentarios">
-        <a id="view-all-btn" href="login.html?redirect=comentarios"
-          style="display: inline-block; padding: 8px 12px; background-color: #3e4eda; color: white; text-align: center; text-decoration: none; border-radius: 5px; font-size: 16px;">Comentar</a>
+        <div class="navbar-nav me-lg-2">
+            <div class="nav-item text-nowrap d-flex align-items-center">
+                <div class="dropdown ps-3">
+                    <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" id="navbarLightDropdownMenuLink">
+                        <i class="bi-bell"></i>
+                        <span
+                            class="position-absolute start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                            <span class="visually-hidden">New alerts</span>
+                        </span>
+                    </a>
 
-        <br>
-        <p>Últimos comentarios:</p>
-        <div id="comments-window" class="comments-window">
-          <div id="comment-list" class="comment-list">
-            <!-- Aquí se agregarán los comentarios dinámicamente -->
-          </div>
-          <div class="button-container">
-            <button id="expand-btn" onclick="loadMoreComments(5)">Ver más</button>
-            <button id="collapse-btn" onclick="collapseWindow()" style="display:none;">Ver menos</button>
-          </div>
-        </div>
-      </div>
-      <br>
+                    <ul class="dropdown-menu dropdown-menu-lg-end notifications-block-wrap bg-white shadow"
+                        aria-labelledby="navbarLightDropdownMenuLink">
+                        <small>Matriculas</small>
 
-  <!-- <h1>Gira CARILO 2024</h1>
-  <p>La próxima y última gira del año, CARILO 2024, se realizará desde el Jueves 21 de Noviembre al Domingo 24 de
-    Noviembre.</p>
+                        <li class="notifications-block border-bottom pb-2 mb-2">
+                            <a class="dropdown-item d-flex  align-items-center" href="#">
+                                <div class="notifications-icon-wrap bg-success">
+                                    <i class="notifications-icon bi-check-circle-fill"></i>
+                                </div>
 
-  <h3>Falta poco....</h3>
-  <div id="contenedorCuentaRegresiva">
-    <div id="cuentaRegresiva">
-      console.log ('actualizando')
-    </div>
-  </div> -->
+                                <div>
+                                    <span>Diegui - 38.534 //</span>
+                                    <span>Edu - 93.293 //</span>
+                                    <span>Fer - 126.578 //</span>
+                                    <span>Gaby - 119.817 //</span>
+                                    <span>Joaco - 119.807 //</span>
+                                    <span>Juancho - 119.811 //</span>
+                                    <span>Julito - 87.561 //</span>
+                                    <span>Negro - 136.262 //</span>
+                                    <span>Panza - 114.566 //</span>
+                                    <span>Presi - 89.474 //</span>
+                                    <span>Sensei - 97.189 //</span>
+                                    <span>Torni - 122.252</span>
+                                </div>
+                            </a>
+                        </li>
 
+                        <!-- <li class="notifications-block border-bottom pb-2 mb-2">
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="notifications-icon-wrap bg-info">
+                                    <i class="notifications-icon bi-folder"></i>
+                                </div>
+
+                                <div>
+                                    <span>Edu - 93.293</span>
+
+                                    <p>10 days ago</p>
+                                </div>
+                            </a>
+                        </li> -->
+
+                        <!-- <li class="notifications-block">
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="notifications-icon-wrap bg-danger">
+                                    <i class="notifications-icon bi-question-circle"></i>
+                                </div>
+
+                                <div>
+                                    <span>Account verification failed.</span>
+
+                                    <p>1 hour ago</p>
+                                </div>
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+
+                <div class="dropdown ps-1">
+                    <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi-three-dots-vertical"></i>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-social bg-white shadow">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-4">
+                                    <a class="dropdown-item text-center" href="#">
+                                        <img src="images/social/search.png" class="profile-image img-fluid" alt="">
+                                        <span class="d-block">Google</span>
+                                    </a>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-4">
+                                    <a class="dropdown-item text-center" href="#">
+                                        <img src="images/social/spotify.png" class="profile-image img-fluid" alt="">
+                                        <span class="d-block">Spotify</span>
+                                    </a>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-4">
+                                    <a class="dropdown-item text-center" href="#">
+                                        <img src="images/social/telegram.png" class="profile-image img-fluid" alt="">
+                                        <span class="d-block">Telegram</span>
+                                    </a>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-4">
+                                    <a class="dropdown-item text-center" href="#">
+                                        <img src="images/social/snapchat.png" class="profile-image img-fluid" alt="">
+                                        <span class="d-block">Snapchat</span>
+                                    </a>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-4">
+                                    <a class="dropdown-item text-center" href="#">
+                                        <img src="images/social/tiktok.png" class="profile-image img-fluid" alt="">
+                                        <span class="d-block">Tiktok</span>
+                                    </a>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-4">
+                                    <a class="dropdown-item text-center" href="#">
+                                        <img src="images/social/youtube.png" class="profile-image img-fluid" alt="">
+                                        <span class="d-block">Youtube</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dropdown px-3">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <img src="images/medium-shot-happy-man-smiling.jpg" class="profile-image img-fluid" alt="">
+                    </a>
+                    <ul class="dropdown-menu bg-white shadow">
+                        <li>
+                            <div class="dropdown-menu-profile-thumb d-flex">
+                                <img src="images/medium-shot-happy-man-smiling.jpg" class="profile-image img-fluid me-3"
+                                    alt="">
+
+                                <div class="d-flex flex-column">
+                                    <small>Bolilla Negra</small>
+                                    <a href="#">hcdt-bolilla@gmail.com</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="login.html">
+                                <i class="bi-person me-2"></i>
+                                Exclusivo HCDT
+                            </a>
+                        </li>
 <!-- 
-  <h1>Torneo CLAUSURA 2024</h1>
-  <p>El torneo CLAUSURA 2024 finaliza el próximo 16 de noviembre, último fin de semana anterior a la gira Cariló 2024.
-  </p>
-  <br> -->
-
-  <!----------- --     Novedades    ------------->
-
-  <h1>Último torneo disputado</h1>
-
-  <center>
-    <h3 id="ultimaFecha"></h3>
-  </center>
-
-  <div style="width:100%px; height: 470px;">
-    <table id="resultadoFecha" style="width: 200px; position: relative;">
-      <thead>
-        <colgroup>
-
-          <col style="width: 10px;" ;>
-          <col style="background-color: rgb(250, 250, 32)" ;>
-          <col style="width: 10px;" ;>
-          <col style="width: 10px;" ;>
-
-        <tr>
-          <th>Pos</th>
-          <th id="namePlayer">Player</th>
-          <th>Neto</th>
-          <th>Fedex</th>
-        </tr>
-        </colgroup>
-      </thead>
-
-      <tbody>
-
-      </tbody>
-    </table>
-  </div>
-
-  <p>Ver parciales:</p>
-  <section>
-    <a class="submenu2" href="src/locales.html">Sábados</a>
-    <a class="submenu2" href="src/clausura24.html">Clausura</a>
-    <a class="submenu2" href="src/fedex24.html">Fedex</a>
-    <a class="submenu2" href="src/bolilla.html">Anual</a>
-
-  </section>
-
-
-
-  <br>
-  <h1 id="h1-scores">Los mejores scores</h1>
-  <p>Mejor score neto del mes y del año, con vigencia a partir del 12 de febrero.</p>
-
-  <table> 
-    <tr>
-      <td>Mes</td>
-      <td>Fecha</td>
-      <td>Score</td>
-      <td>Jugador</td>
-    </tr>
-
-    <tr>
-      <td>Febrero</td>
-      <td>17-02-24</td>
-      <td>64</td>
-      <td>Torni</td>
-    </tr>
-
-    <tr>
-      <td>Marzo</td>
-      <td>02-03-24</td>
-      <td>64</td>
-      <td>Diegui</td>
-    </tr>
-
-    <tr>
-      <td>Abril</td>
-      <td>01-04-24</td>
-      <td>68</td>
-      <td>Joaco</td>
-    </tr>
-
-    <tr>
-      <td>Mayo</td>
-      <td>04-05-24</td>
-      <td>68</td>
-      <td>Joaco</td>
-    </tr>
-
-    <tr>
-      <td>Junio</td>
-      <td>01-06-24</td>
-      <td>70</td>
-      <td>Julito</td>
-    </tr>
-
-    <tr>
-      <td>Julio</td>
-      <td>13-07-24</td>
-      <td>68</td>
-      <td>Joaco</td>
-    </tr>
-
-    <tr>
-      <td>Agosto</td>
-      <td>24-08-24</td>
-      <td>71</td>
-      <td>Negro</td>
-    </tr>
-
-    <tr>
-      <td>Setiembre</td>
-      <td>07-09-24</td>
-      <td>69</td>
-      <td>Negro</td>
-    </tr>
-
-    <tr>
-      <td>Octubre</td>
-      <td>12-10-24</td>
-      <td>69</td>
-      <td>Diegui</td>
-    </tr>
-
-  </table>
-
-
-    <p>El premio al mejor score del año es una caja de pelotas Callaway Super Soft.</p>
-
-  <br>
-
-  <!----------- --    PELOTAS GANADAS   ------------->
-
-  <h1>El hombre con más pelotas.</h1>
-  <p>El jugador de Bolilla que puede exhibir la mayor cantidad de pelotas.</p>
-  <p>Al día de la fecha: </p>
-  <div class="centrado">
-    <img id="imagenDinamica" src="assets/images/marco-tiger.png" alt="" width="250vh">
-  </div>
-  <p>Nuestro compañero <span id="pelotudo">...</span> ha acumulado la cantidad de
-    <span id="pelotas" class="centrado" style="font-size: 40px;">...</span> pelotas ganadas.
-    <button id="detallePelotas">Ver detalle</button>
-  </p>
-
-  <br>
-
-  <!----------- --     LOS PADRINOS    ------------->
-
-  <br>
-  <h1>Los PADRINOS de Campo Grande.</h1>
-  <p>Aguila mata Birdie!</p>
-
-  <table> 
-    <tr>
-      <td>Hoyo</td>
-      <td>Jugador</td>
-      <td>Fecha</td>
-    </tr>
-
-    <tr>
-      <td>4</td>
-      <td>Torni</td>
-      <td>5-10-24</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Diegui</td>
-      <td>13-07-24</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Juancho</td>
-      <td>27-07-24</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Joaco</td>
-      <td>13-07-24</td>
-    </tr>
-    <tr>
-      <td>13</td>
-      <td>Edu</td>
-      <td>19-10-24</td>
-    </tr>
-    <tr>
-      <td>17</td>
-      <td>Negro</td>
-      <td>13-07-24</td>
-    </tr>
-  </table>
-
-  <br>
-  <!----------- --     AGENDA    ------------->
-
-  <h1>Calendario 2024</h1>
-
-  <p>Siete (7) competencias premiables y una clasificación final por acumulación de puntos obtenidos
-    en los diversos torneos.</p>
-  <br>
-  <p>Distribución de premios en pelotas nuevas, pelotas con experiencia homologadas por la Comisión y puntos para el
-    ranking Fedex.</p>
-  <br>
-  <table style="width: 300x; position: relative;">
-    <colgroup>
-      <col style="background-color: rgb(221, 229, 107)" ;>
-    </colgroup>
-
-    <tr>
-      <th rowspan="2" style="width: 20px; position:sticky; left:0;">Torneo</th>
-      <th colspan="2">Pelotas</th>
-      <th colspan="7">Puntos Fedex</th>
-    </tr>
-
-    <tr>
-      <th style="width: 20px">0 Km</th>
-      <th style="width: 20px">100 Km</th>
-      <th style="width: 20px">Tot</th>
-      <th style="width: 5px;">1°</th>
-      <th style="width: 20px">2°</th>
-      <th style="width: 20px">3°</th>
-      <th style="width: 5px;">4°</th>
-      <th style="width: 20px">5°</th>
-      <th style="width: 20px">6°</th>
-    </tr>
-
-    <tr style="background-color: rgb(178, 177, 175);">
-      <td style="width: 20px; position:sticky; left:0;">Sierra</td>
-      <td>6</td>
-      <td>24</td>
-      <td>60</td>
-      <td>20</td>
-      <td>15</td>
-      <td>10</td>
-      <td>8</td>
-      <td>5</td>
-      <td>2</td>
-    </tr>
-
-    <tr style="background-color: rgb(178, 177, 175);">
-      <td style="width: 20px; position:sticky; left:0;">Ryder</td>
-      <td>6</td>
-      <td>30</td>
-      <td>60</td>
-      <td>10</td>
-      <td>10</td>
-      <td>10</td>
-      <td>10</td>
-      <td>10</td>
-      <td>10</td>
-    </tr>
-
-    <tr style="background-color: rgb(178, 177, 175);">
-      <td style="width: 20px; position:sticky; left:0;">Apertura</td>
-      <td>3</td>
-      <td>30</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-
-    <tr style="background-color: rgb(178, 177, 175);">
-      <td style="width: 20px; position:sticky; left:0;">Clausura</td>
-      <td>3</td>
-      <td>30</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-
-    <tr style="background-color: rgb(178, 177, 175);">
-      <td style="width: 20px; position:sticky; left:0;">Carilo</td>
-      <td>6</td>
-      <td>24</td>
-      <td>60</td>
-      <td>20</td>
-      <td>15</td>
-      <td>10</td>
-      <td>8</td>
-      <td>5</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <td style="width: 20px; position:sticky; left:0;">Bolilla 24</td>
-      <td>3</td>
-      <td>18</td>
-      <td>40</td>
-      <td>25</td>
-      <td>15</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-
-    <tr style="background-color: rgb(178, 177, 175);">
-      <td style="width: 20px; position:sticky; left:0;">Sábado Jet</td>
-      <td>-</td>
-      <td>-</td>
-      <td>12</td>
-      <td>6</td>
-      <td>4</td>
-      <td>2</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-
-    <tr style="background-color: rgb(178, 177, 175);">
-      <td style="width: 20px; position:sticky; left:0;">Fedex</td>
-      <td>9</td>
-      <td>-</td>
-    </tr>
-
-    <tr>
-      <td style="width: 20px; position:sticky; left:0;">TOTAL</td>
-      <td>36</td>
-      <td>156</td>
-    </tr>
-  </table>
-  <br>
-  <p style="font-size: 15px"><a href="locales.html">Ver detalle de cada competencia acá o en la sección Torneos.</a>
-  </p>
-
-  <br>
-
-  <h4>Pelotas 0 Km.</h4>
-  <p>Las pelotas nuevas que se entregarán como premio son Wilson Duo Soft:</p>
-
-  <img src="assets/images/wilsonbig.png" width="300px">
-
-  <p>La pelota de golf más suave del mundo.</p>
-  <p>Ha sido diseñada para brindar la distancia que necesita, la sensación que ama y la consistencia que exige.</p>
-  <br>
-
-  <h4>Pelotas homologadas.</h4>
-  <p>Las pelotas experimentadas son analizadas y testeadas en profundidad por la Subcomisión de tecnología de la
-    Comisión de Todo, lo que garantiza que superen satisfactoriamente el nivel de calidad exigido por este grupo de alta
-    gama.</p>
-  <br>
-
-  <h4>Aranceles de Inscripción.</h4>
-  <p>La participación obligatoria en las actividades de este calendario requieren de una inscripción compulsiva de cada
-    miembro, abonando un valor de $15.000 (válidos hasta el 5 de enero 2024). Después Dios dirá.</p>
-  <br>
-  <p>Esta recaudación permitirá adquirir los premios con este detalle.</p>
-  <div>
-    <ul class="desorder">
-      <li class="lisdesor1">36 x Wilson DUO soft: $99.990</li>
-      <li class="lisdesor1">160 carozos x 500 : $80.000</li>
-      <li class="lisdesor1">Total: $180.000</li>
-      <li class="lisdesor1">Individual: 180.000/12 = $15.000.-</li>
-    </ul>
-  </div>
-  <br>
-  <hr>
-  <br>
-  <!-----------  renovacion autoridades ------>
-
-  <h1 id="eleccionCDT">Elección H° Comisión de Todo<br>Renovación de Autoridades.</h1>
-  <br>
-
-  <p><strong>En un acto eleccionario ejemplar, el dia 3 de febrero de 2024, con asistencia plena de los integrantes de
-      Bolilla Negra, en una muestra del espíritu democrático de este grupo, la lista oficialista renovó su mandato, al
-      haber obtenido el 105% de los votos válidos.</strong></p>
-  <br>
-
-  <p>Convocatoria. LLamado a Elecciones</p>
-  <p>Acá, a los 2 dias del año 2024 libertario, se convoca a elecciones para renovación de las autoridades de la
-    Comisión de Todo y sus Subcomisiones.</p>
-  <br>
-  <p>Hasta el momento se ha presentado la lista "JUVENTUD, HONESTIDAD Y FUTURO" que va por su reelección, con
-    importantes cambios en sus puestos directivos.</p>
-  <br>
-  <p>La propuesta de autoridades en esta lista es la siguiente:</p>
-  <ol>
-    <li>Presidente: Juancho Allende</li>
-    <li>Vicepresidente: Sensei García</li>
-    <li>Tesorero: Sandra Furlan</li>
-    <li>Secretario General: Cecilia Chiappari</li>
-  </ol>
-  <br>
-  <p>Resulta evidente que en esta lista se respeta la distribución por género de los cargos ejecutivos.</p>
-  <br>
-
-  <hr>
-  <br>
-
-
-  <section>
-    <h1 id="reflexiones">Reflexiones</h1>
-
-    <p class="frase">"Con mi mujer nos llevamos bien. Ayer cuando llegué tomamos un café, le conté de nuestro viaje, me
-      contó de sus actividades con hijas y nietos. Cenamos temprano, una pechuga de pollo grillada con ensalada de
-      tomates. Agua mineral con gas.
-      Me acosté temprano.</p><br>
-    <p class="frase">
-      Dormí como el orto. Me desperté a las 2 de la mañana, me volví a dormir como a las 4, me volví a despertar 7:30.
-      Me miré en el espejo, todo demacrado.</p><br>
-    <p class="frase">
-      Tres días y medio con amigos. Comiendo como cerdos y chupando como esponjas. Por más de cuatro horas diarias,
-      empujando un carrito por subidas y bajadas. Dulce de leche, champagne, mariscos, asado, wiskey, pizzas, etc. etc.
-      Durante tres noches...dormí como un angelito. No me levanté ni para mear....y a las ocho ya estaba en pie para
-      enfrentar una nueva jornada.</p><br>
-    <p class="frase"><strong>
-        Decime lo que es la vida saludable."</strong></p>
-    <p style="text-align: right; font-size: 13px">Anónimo - 2023 (dc)</p>
-  </section>
-  <br>
-  <hr>
-  <br>
-
-
-  <section>
-    <h1 id="habeas">Habeas Corpus</h1>
-
-    <p class="frase">Ante situaciones de extrema peligrosidad, eliminación de derechos, amenazas a la libertad, a la
-      independencia económica o a la libre circulación, se puede descargar este documento, que luego de los ajustes
-      correspondientes podrá ser intervenido por los integrantes de Bolilla"</p>
-    <br>
-    <a href="assets/docs/notanegro.docx" download="nota negro.docx"> ** Descargar archivo **</a>
-
-  </section>
-
-  <div id="footer"></div>
-  <br><br>
-  <a href="login.html?redirect=comentarios">*</a>
-  <br><br>
-  <a href="src/menuprueba.html">**</a>
-
-
-  <dialog id="ventana" style="padding: 10px;width: 310px; ">
-    <!--<fieldset id="matriculas">-->
-    <legend>Matrículas</legend>
-    <br>
-    <table>
-      <tr>
-        <td>
-          <p>Diegui</p>
-          <p>38.534</p>
-        </td>
-
-        <td>
-          <p>Edu</p>
-          <p>93.293</p>
-        </td>
-
-        <td>
-          <p>Fer</p>
-          <p>126.578</p>
-        </td>
-
-        <td>
-          <p>Gaby</p>
-          <p>119.817</p>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <p>Joaco</p>
-          <p>119.807</p>
-        </td>
-
-        <td>
-          <p>Juancho</p>
-          <p>119.811</p>
-        </td>
-
-        <td>
-          <p>Julito</p>
-          <p>87.561</p>
-        </td>
-
-        <td>
-          <p>Negro</p>
-          <p>136.262</p>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <p>Panza</p>
-          <p>114.566</p>
-        </td>
-
-        <td>
-          <p>Presi</p>
-          <p>89.474</p>
-        </td>
-
-        <td>
-          <p>Sensei</p>
-          <p>97.189</p>
-        </td>
-
-        <td>
-          <p>Torni</p>
-          <p>122.252</p>
-        </td>
-      </tr>
-    </table>
-    <br>
-    <!-- </fieldset>-->
-
-    <button id="hide">Cerrar ventana</button>
-
-  </dialog>
-
-  <section>
+                        <li>
+                            <a class="dropdown-item" href="setting.html">
+                                <i class="bi-gear me-2"></i>
+                                Settings
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="help-center.html">
+                                <i class="bi-question-circle me-2"></i>
+                                Help
+                            </a>
+                        </li> -->
+
+                        <li class="border-top mt-3 pt-2 mx-4">
+                            <a class="dropdown-item ms-0 me-0" href="#">
+                                <i class="bi-box-arrow-left me-2"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-3 d-md-block sidebar collapse">
+                <div class="position-sticky py-4 px-3 sidebar-sticky">
+                    <ul class="nav flex-column h-100">
+                        <li class="nav-item">
+                            <a class="nav-link  active" aria-current="page" href="index.html">
+                                <i class="bi-house-fill me-2"></i>
+                                Inicio
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="wallet.html">
+                                <i class="bi-wallet me-2"></i>
+                                Resultados
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="sociales.html">
+                                <i class="bi-person me-2"></i>
+                                Sociales
+                            </a>
+                        </li>
+
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="setting.html">
+                                <i class="bi-gear me-2"></i>
+                                Settings
+                            </a>
+                        </li> -->
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="calendario25.html">
+                                <i class="bi-calendar3 me-2"></i>
+                                Calendario 2025
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="resumen24.html">
+                                <i class="bi-trophy"></i>
+                                Resumen Deportivo 2024
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index2.html">
+                                <i class="bi-gear me-2"></i>
+                                Nuestra historia
+                            </a>
+                        </li>
+
+                        <li class="nav-item featured-box mt-lg-5 mt-4 mb-4">
+                            <img src="images/tipito.jpeg" class="img-fluid" alt=""
+                                style="width: 190px; height: 190px; vertical-align: middle">
+
+                            <!-- <a class="btn custom-btn" href="#">Upgrade</a> -->
+                        </li>
+
+
+                        <!-- <li class="nav-item featured-box mt-lg-5 mt-4 mb-4">
+                            <img src="images/credit-card.png" class="img-fluid" alt="">
+
+                            <a class="btn custom-btn" href="#">Upgrade</a>
+                        </li>
+
+                        <li class="nav-item border-top mt-auto pt-2">
+                            <a class="nav-link" href="#">
+                                <i class="bi-box-arrow-left me-2"></i>
+                                Logout
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
+                <div class="title-group mb-3">
+                    <h1 class="h2 mb-0">Bienvenidos</h1>
+                </div>
+
+                <div class="row my-4">
+                    <div class="col-lg-7 col-12">
+
+                        <div class="custom-block custom-block-exchange">
+
+                            <h4>Novedades.</h4>
+                            <p>Si tenés algo para decir, escribilo haciendo <a
+                                    href="login.html?redirect=comentarios">click acá:</a></p>
+                            <div id="margen-comentarios" class="margen-comentarios">
+                                <!-- <a id="view-all-btn" href="login.html?redirect=comentarios"
+                                    style="display: inline-block; padding: 8px 12px; background-color: #3e4eda; color: white; text-align: center; text-decoration: none; border-radius: 5px; font-size: 16px;">Comentar</a> -->
+
+                                <p>Últimos comentarios:</p>
+                                <div id="comments-window" class="comments-window">
+                                    <div id="comment-list" class="comment-list">
+                                        <!-- Aquí se agregarán los comentarios dinámicamente -->
+                                    </div>
+                                    <div class="button-container">
+                                        <button id="expand-btn" onclick="loadMoreComments(5)">Ver más</button>
+                                        <button id="collapse-btn" onclick="collapseWindow()" style="display:none;">Ver
+                                            menos</button>
+                                    </div>
+                                </div>
+                            </div>
+
+<!--                             <h4 class="mt-4 mb-4 border-bottom pb-4">Torneos Realizados</h4>
+
+
+                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <!-- <img src="images/flag/european-union.png" class="exchange-image img-fluid" alt=""> -->
+
+                                    <!-- <div>
+                                        <h5>Bolilla 2024</h5>
+                                        <h6>Con Cariló - Doble KO</h6>
+                                    </div>
+                                </div>
+
+                                <div class="ms-auto me-4">
+                                    <small>Ganador</small>
+                                    <h6></h6>
+                                </div>
+
+                                <div>
+                                    <small>Score</small>
+                                    <h6> - -</h6>
+                                </div>
+                            </div> -->
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-5 col-12">
+                        <div class="custom-block custom-block-transations">
+
+                            <h4 class="mb-4">Ultimo torneo disputado</h4>
+
+                            <center>
+                                <h6 id="ultimaFecha"></h6>
+                            </center>
+
+                            <div style="width:100%px; height: 490px;">
+                                <table id="resultadoFecha" style="width: 200px; position: relative;">
+                                    <thead>
+                                        <colgroup>
+
+                                            <col style="width: 10px;" ;>
+                                            <col style="background-color: rgb(250, 250, 32)" ;>
+                                            <col style="width: 10px;" ;>
+                                            <col style="width: 10px;" ;>
+
+                                        <tr>
+                                            <th>Pos</th>
+                                            <th id="namePlayer">Player</th>
+                                            <th>Neto</th>
+                                            <th>Fedex</th>
+                                        </tr>
+                                        </colgroup>
+                                    </thead>
+
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <!--     
+                            <div class="border-top pt-4 mt-4 text-center">
+                                <a class="btn custom-btn" href="wallet.html">
+                                    View all transations
+                                    <i class="bi-arrow-up-right-circle-fill ms-2"></i>
+                                </a>
+                            </div> -->
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row my-4">
+                    <div class="col-lg-4 col-12">
+
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <h5 class="mb-3">Pelotas Ganadas</h5>
+                            <p class="mb-2">El jugador que puede exhibir la mayor cantidad de pelotas ganadas al día de la fecha:</p>
+
+
+                            <div class="custom-block-profile-image-wrap mb-3">
+                                <img id="imagenDinamica" src="assets/images/marco-tiger.png" class="custom-block-profile-image img-fluid"
+                                    alt="">
+                            </div>
+
+                            <!-- <p class="text-center mb-2">
+                                <strong>Hugo "Negro" González</strong>
+                            </p>
+
+                            <p class="text-center mb-2">
+                                <strong>73 pelotas</strong>
+                            </p> -->
+
+
+
+                            <!-- <p>Al día de la fecha: </p>
+                            <div class="centrado">
+                              <img id="imagenDinamica" src="assets/images/marco-tiger.png" alt="" width="250vh">
+                            </div> -->
+                            <p>Nuestro compañero <span id="pelotudo">...</span> ha acumulado la cantidad de
+                              <span id="pelotas" class="centrado" style="font-size: 40px;">...</span> pelotas ganadas.
+                              <!-- <button id="detallePelotas">Ver detalle</button> -->
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-12">
+
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <h5 class="mb-3">Aguila mata Birdie</h5>
+                            <p class="mb-2">Los Padrinos de Campo Grande 2025</p>
+                            <table>
+                                <tr>
+                                    <td>Hoyo</td>
+                                    <td>Jugador</td>
+                                    <td>Fecha</td>
+                                </tr>
+
+                                <tr>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+                                <tr>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+                                <tr>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+                                <tr>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+                                <tr>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 col-12">
+
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <h5 class="mb-3">Mejor score del mes</h5>
+                            <table id="score_del_mes1">
+                                <tr>
+                                    <td>Mes</td>
+                                    <td>Dia</td>
+                                    <td>Score</td>
+                                    <td>Jugador</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Febrero</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Marzo</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Abril</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Mayo</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Junio</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Julio</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Agosto</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Setiembre</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Octubre</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="custom-block custom-block-bottom d-flex flex-wrap">
+                    <div class="custom-block-bottom-item">
+                        <!-- <a href="#" class="d-flex flex-column">
+                            <i class="custom-block-icon bi-wallet"></i>
+                            <small>Top up</small>
+                        </a> -->
+                    </div>
+
+                    <div class="custom-block-bottom-item">
+                        <!-- <a href="#" class="d-flex flex-column">
+                            <i class="custom-block-icon bi-upc-scan"></i>
+                            <small>Scan `&` Pay</small>
+                        </a> -->
+                    </div>
+
+                    <div class="custom-block-bottom-item">
+                        <!-- <a href="#" class="d-flex flex-column">
+                            <i class="custom-block-icon bi-send"></i>
+                            <small>Send</small>
+                        </a> -->
+                    </div>
+
+                    <div class="custom-block-bottom-item">
+                        <!-- <a href="#" class="d-flex flex-column">
+                            <i class="custom-block-icon bi-arrow-down"></i>
+                            <small>Request</small>
+                        </a> -->
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-12">
+                    <!-- <div class="custom-block custom-block-transations">
+
+            <!-- <div class="border-top pt-4 mt-4 text-center">
+                <a class="btn custom-btn" href="wallet.html">
+                    View all transations
+                    <i class="bi-arrow-up-right-circle-fill ms-2"></i>
+                </a>
+            </div> -->
+                </div>
+
+                <!-- <div class="custom-block primary-bg">
+            <h5 class="text-white mb-4">Send Money</h5>
+
+            <a href="#">
+                <img src="images/profile/young-woman-with-round-glasses-yellow-sweater.jpg"
+                    class="profile-image img-fluid" alt="">
+            </a>
+
+            <a href="#">
+                <img src="images/profile/young-beautiful-woman-pink-warm-sweater.jpg" class="profile-image img-fluid"
+                    alt="">
+            </a>
+
+            <a href="#">
+                <img src="images/profile/senior-man-white-sweater-eyeglasses.jpg" class="profile-image img-fluid"
+                    alt="">
+            </a>
+
+            <div class="profile-rounded">
+                <a href="#">
+                    <i class="profile-rounded-icon bi-plus"></i>
+                </a>
+            </div>
+        </div> -->
+        </div>
+
+
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12 col-12">
+                        <p class="copyright-text">Copyright © Mini Finance 2048
+                            - Design: <a rel="sponsored" href="https://www.tooplate.com" target="_blank">Tooplate</a>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+        </main>
+
+    </div>
+    </div>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/apexcharts.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/ultimodia.js"></script>
+
+
+    
+  <!-- <section>
     <script>
       window.pepe.addEventListener('click', () => {
         window.ventana.showModal()
@@ -742,7 +690,7 @@
         window.ventana.close()
       })
     </script>
-  </section>
+  </section> -->
 
 
   <div id="modalPelotasGanadas" class="modal-Pelotas" style="display:none">
@@ -762,53 +710,7 @@
   </div>
 
 
-  <div id="miModal1" class="modal-1">
-    <div class="modal-contenido-1">
-      <span class="cerrar">&times;</span>
-      <h3>Scores a mejorar el 13.04</h3>
-      <ol>
-        <li>Negro: 76</li><br>
-        <li>Torni: 77</li><br>
-        <li>Edu: 82</li><br>
-        <li>Gaby: 84</li><br>
-        <li>Juancho: 85</li><br>
-        <li>Sensei:87</li><br>
-
-      </ol>
-    </div>
-  </div>
-
-
-  <div id="miModal2" class="modal-1">
-    <div class="modal-contenido-1" id="modal-contenido-1">
-      <span class="cerrar">&times;</span>
-      <h3>Los elegidos del Master</h3>
-      <ol>
-        <li>Juancho: Rory</li><br>
-        <li>Torni: Clark</li><br>
-        <li>Panza: Rory</li><br>
-        <li>Diegui: Schauffele</li><br>
-        <li>Negro: Rory</li><br>
-        <li>Julito: Clark</li><br>
-        <li>Edu: Scheffler</li><br>
-        <li>Joaco: Finau</li><br>
-        <li>Fer: Clark Kent (S)</li><br>
-        <li>Gaby: Scheffler</li><br>
-
-      </ol>
-    </div>
-  </div>
-
-  <!-- <script src="apps/menuGral.js"></script> -->
-  <!-- <script src="datos/datosNetos.js"></script> -->
-  <!-- <script src="datos/datosRanking.js"></script> -->
-  <!-- <script src="datos/datosFechas.js"></script> -->
-  <script src="js/ultimodia.js"></script>
-  <!-- <script src="js/pelotas.js"></script> -->
-
-  <!-- <script src="js/ctaregresiva.js"></script> -->
-
-
+  
   <script>
     let offset = 0;
     let hasMore = true;
@@ -905,11 +807,7 @@
     // Inicializar la carga del primer comentario
     loadInitialComment();
   </script>
-  </div>
+
 </body>
 
 </html>
-
-
-<!-- <h2>LA HAZAÑA DE LA FECHA.  6 abril.</h2> -->
-<!-- <a href="assets/images/dieguiAgua.mp4" target="_blank"><video src="assets/images/dieguiAgua.mp4" controls width="98%"></video></a> -->
