@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Mini Finance - Wallet Page</title>
+        <title>Bolilla Negra - Resultados</title>
 
         <!-- CSS FILES -->      
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +23,12 @@
         <link href="css/apexcharts.css" rel="stylesheet">
 
         <link href="css/tooplate-mini-finance.css" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Courgette&family=Gupter:wght@400;500;700&family=PT+Sans+Narrow:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+            rel="stylesheet">
 <!--
 
 Tooplate 2135 Mini Finance
@@ -38,18 +44,23 @@ Bootstrap 5 Dashboard Admin Template
         <header class="navbar sticky-top flex-md-nowrap">
             <div class="col-md-3 col-lg-3 me-0 px-3 fs-6">
                 <a class="navbar-brand" href="index.html">
-                    <i class="bi-box"></i>
-                    Mini Finance
+                    <img src="images/bn.ico" alt="Bolilla Negra Icono" style="width: 60px; height: 60px; vertical-align: middle;">
+                    Bolilla Negra
                 </a>
+                
             </div>
 
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0" action="#" method="get" role="form">
+            <!-- <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0" action="#" method="get" role="form">
                 <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
-            </form>
+            </form> -->
+
+            <div class="motivational-text ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0 p-3 border rounded">
+                <p class="mb-0">"Cada golpe es una oportunidad para disfrutar del juego y fortalecer la amistad.  Aguante Bolilla!"</p>
+            </div>
 
             <div class="navbar-nav me-lg-2">
                 <div class="nav-item text-nowrap d-flex align-items-center">
@@ -219,67 +230,75 @@ Bootstrap 5 Dashboard Admin Template
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="index.html">
                                     <i class="bi-house-fill me-2"></i>
-                                    Overview
+                                    Inicio
                                 </a>
                             </li>
-
+    
                             <li class="nav-item">
                                 <a class="nav-link active" href="wallet.html">
                                     <i class="bi-wallet me-2"></i>
-                                    My Wallet
+                                    Resultados
                                 </a>
                             </li>
-
+    
                             <li class="nav-item">
-                                <a class="nav-link" href="profile.html">
+                                <a class="nav-link" href="sociales.html">
                                     <i class="bi-person me-2"></i>
-                                    Profile
+                                    Sociales
                                 </a>
                             </li>
-
+    
                             <li class="nav-item">
                                 <a class="nav-link" href="setting.html">
                                     <i class="bi-gear me-2"></i>
                                     Settings
                                 </a>
                             </li>
-
+    
                             <li class="nav-item">
-                                <a class="nav-link" href="help-center.html">
-                                    <i class="bi-question-circle me-2"></i>
-                                    Help Center
+                                <a class="nav-link" href="calendario25.html">
+                                    <i class="bi-calendar3 me-2"></i>
+                                    Calendario 2025
                                 </a>
                             </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="resumen24.html">
+                                    <i class="bi-trophy"></i>
+                                    Resumen Deportivo 2024
+                                </a>
+                            </li>
+    
 
                             <li class="nav-item featured-box mt-lg-5 mt-4 mb-4">
-                                <img src="images/credit-card.png" class="img-fluid" alt="">
+                                <img src="images/tipito.jpeg" class="img-fluid" alt="" style="width: 190px; height: 190px; vertical-align: middle">
 
-                                <a class="btn custom-btn" href="#">Upgrade</a>
+                                <!-- <a class="btn custom-btn" href="#">Upgrade</a> -->
                             </li>
 
-                            <li class="nav-item border-top mt-auto pt-2">
+                            <!-- <li class="nav-item border-top mt-auto pt-2">
                                 <a class="nav-link" href="#">
                                     <i class="bi-box-arrow-left me-2"></i>
                                     Logout
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </nav>
 
                 <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
                     <div class="title-group mb-3">
-                        <h1 class="h2 mb-0">Wallet</h1>
+                        <h1 class="h2 mb-0">Resultados</h1>
                     </div>
 
                     <div class="row my-4">
                         <div class="col-lg-12 col-12">
                             <div class="custom-block bg-white">
-                                <h5 class="mb-4">Account Activities</h5>
+                                <h5 class="mb-4">Torneo de Sábados</h5>
 
                                 <div class="table-responsive">
                                     <table class="account-table table">
-                                        <thead>
+                                        <!-- <thead>
                                             <tr>
                                                 <th scope="col">Date</th>
 
@@ -511,10 +530,263 @@ Bootstrap 5 Dashboard Admin Template
                                                         Pending
                                                     </span>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
+
+
+
+    <!---------------  APERTURA ---------------->
+
+    <div style="display: none;">
+        <table id="miTabla">
+          <thead>
+            <colgroup>
+              <col style="background-color: rgb(250, 250, 32)" ;>
+              <!--<col style="width: 5px;" ;>
+          <col style="width: 5px;" ;>
+          <col style="width: 5px;" ;>
+          <col style="width: 5px;" ;>-->
+            </colgroup>
+  
+            <tr>
+              <th id="namePlayer1" rowspan="2" style="position:sticky; left:0;">Player</th>
+              <th colspan="4">Medallas</th>
+              <th rowspan="2">PG</th>
+              <th rowspan="2">Tarj</th>
+              <th rowspan="2">Ptos</th>
+              <th rowspan="2">Prom</th>
+              <th colspan="5">Febrero</th>
+              <th colspan="4">Marzo</th>
+              <th colspan="4">Abril</th>
+              <th colspan="3">Mayo</th>
+              <th colspan="5">Junio</th>
+              <th colspan="2">Julio</th>
+              <th colspan="3">Agosto</th>
+              <th colspan="4">Setiembre</th>
+              <th colspan="4">Octubre</th>
+              <th colspan="4">Noviembre</th>
+  
+            </tr>
+  
+            <tr>
+              <th>Tot</th>
+              <th>1*</th>
+              <th>2*</th>
+              <th>3*</th>
+              <th>03</th>
+              <th>10</th>
+              <th>17</th>
+              <th>24</th>
+              <th>02</th>
+              <th>09</th>
+              <th>23</th>
+              <th>30</th>
+              <th>01</th>
+              <th>06</th>
+              <th>20</th>
+              <th>27</th>
+              <th>04</th>
+              <th>11</th>
+              <th>18</th>
+              <th>01</th>
+              <th>08</th>
+              <th>15</th>
+              <th>22</th>
+              <th>29</th>
+              <th>13</th>
+              <th>27</th>
+              <th>10</th>
+              <th>24</th>
+              <th>07</th>
+              <th>28</th>
+              <th>05</th>
+              <th>12</th>
+              <th>19</th>
+              <th>26</th>
+              <th>02</th>
+              <th>9</th>
+              <th>16</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr>
+              <td>Diegui</td>
+            </tr>
+            <tr>
+              <td>Edu</td>
+            </tr>
+            <tr>
+              <td>Fer</td>
+            </tr>
+            <tr>
+              <td>Gaby</td>
+            </tr>
+            <tr>
+              <td>Joaco</td>
+            </tr>
+            <tr>
+              <td>Juancho</td>
+            </tr>
+            <tr>
+              <td>Julito</td>
+            </tr>
+            <tr>
+              <td>Negro</td>
+            </tr>
+            <tr>
+              <td>Panza</td>
+            </tr>
+            <tr>
+              <td>Presi</td>
+            </tr>
+            <tr>
+              <td>Sensei</td>
+            </tr>
+            <tr>
+              <td>Torni</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!---------     RESULTADOS TORNEO SABADOS QUE SE MUESTRA -------->
+  
+      <div id="aperturaResul"></div>
+      <!-- <h3>Torneo de Sábados.</h3> -->
+  
+      <div style="width:100%px; height: 610px; overflow-x: scroll;">
+        <table id="tablaOrdenada" style="width: 400px; position: relative;">
+          <thead>
+            <colgroup>
+              <col style="background-color: rgb(250, 250, 32); position:sticky; left:0;">
+              <col style="width: 15px;" ;>
+              <col style="width: 15px;" ;>
+              <col style="width: 15px;" ;>
+              <col style="width: 15px;" ;>
+              <col style="width: 15px;" ;>
+              <col style="width: 15px;" ;>
+              <col style="width: 15px;" ;>
+              <col style="background-color: rgb(203, 250, 32)" ;>
+            </colgroup>
+  
+            <tr>
+              <th id="namePlayer" rowspan="2" style="position:sticky; left:0;">Player</th>
+              <th colspan="4">Medallas</th>
+              <th rowspan="2">PG</th>
+              <th rowspan="2">Tarj</th>
+              <th rowspan="2">Tot</th>
+              <th rowspan="2">Prom</th>
+              <th colspan="5">Febrero</th>
+              <th colspan="4">Marzo</th>
+              <th colspan="4">Abril</th>
+              <th colspan="3">Mayo</th>
+              <th colspan="5">Junio</th>
+              <th colspan="2">Julio</th>
+              <th colspan="2">Agosto</th>
+              <th colspan="2">Setiembre</th>
+              <th colspan="4">Octubre</th>
+              <!-- <th colspan="3">Noviembre</th> -->
+            </tr>
+  
+            <tr>
+              <th>Tot</th>
+              <th> 1°</th>
+              <th> 2° </th>
+              <th> 3° </th>
+              <th>03</th>
+              <th>10</th>
+              <th>13</th>
+              <th>17</th>
+              <th>24</th>
+              <th>02</th>
+              <th>09</th>
+              <th>23</th>
+              <th>30</th>
+              <th>01</th>
+              <th>06</th>
+              <th>20</th>
+              <th>27</th>
+              <th>04</th>
+              <th>11</th>
+              <th>18</th>
+              <th>01</th>
+              <th>08</th>
+              <th>15</th>
+              <th>22</th>
+              <th>29</th>
+              <th>13</th>
+              <th>27</th>
+              <th>10</th>
+              <th>24</th>
+              <th>07</th>
+              <th>28</th>
+              <th>05</th>
+              <th>12</th>
+              <th>19</th>
+              <th>26</th>
+              <!-- <th>02</th>
+              <th>09</th>
+              <th>16</th> -->
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+  
+          <tr id="totalJug">
+            <th colspan="9">Total de jugadores</th>
+          </tr>
+  
+        </table>
+      </div>
+      <br>
+      <hr> <br>
+  
+
+
+
+
+
+
 
                                 <nav aria-label="Page navigation example">
                                         <ul class="pagination justify-content-center mb-0">
@@ -696,5 +968,6 @@ Bootstrap 5 Dashboard Admin Template
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/apexcharts.min.js"></script>
         <script src="js/custom.js"></script>
+        <script src="../js/sabados.js"></script>
     </body>
 </html>
