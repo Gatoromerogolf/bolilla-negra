@@ -1211,3 +1211,89 @@ td {
   padding: 0;
   margin: 0;
 } */
+
+/*  estilo de comentarios */
+    .margen-comentarios {
+      margin: 10px;
+    }
+
+
+    .comments-window {
+      max-height: 400px;
+      /* Ajusta el alto máximo según tus necesidades */
+      border: 1px solid #0c0c0c;
+      padding: 10px;
+      max-height: 500px;
+      /* Altura máxima inicial */
+      overflow-y: auto;
+      /* Ocultar el desbordamiento */
+      transition: max-height 0.5s ease;
+      position: relative;
+      background-color: #e0e0e5;
+    }
+
+    .comment-list {
+      margin: 0;
+      padding: 0;
+      /* overflow-y: auto; */
+    }
+
+    .comment {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #0d0d0d;
+      padding-bottom: 10px;
+    }
+
+    .comment p {
+      margin: 0;
+    }
+
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .comment-date {
+      font-weight: bold;
+    }
+
+    .comment-author {
+      font-weight: bold;
+    }
+
+    #expand-btn,
+    #collapse-btn,
+    #view-all-btn {
+      display: block;
+      margin: 10px auto;
+    }
+
+    /* Estilo de los botones */
+    button {
+      margin-top: 5px;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      /* Centra los botones horizontalmente */
+      gap: 0px;
+      /* Espacio entre los botones */
+      margin: 5px 0;
+      /* Espacio superior e inferior opcional */
+    }
+
+    #collapse-btn:hover {
+      background-color: #f05670;
+
+    }

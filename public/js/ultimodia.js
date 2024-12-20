@@ -122,7 +122,7 @@ main().then (() => { // Ejecuta la función principal
           imgSrc = "assets/images/marco-diegui.png";
           break;
         case "Negro":
-          imgSrc = "assets/images/marco-negro.png";
+          imgSrc = "images/profile/negro2.png";
           break;
         case "Torni":
           imgSrc = "assets/images/marco-torni.png";
@@ -153,7 +153,7 @@ main().then (() => { // Ejecuta la función principal
       llenaModalAMostrar();
       modal.style.display = "block";
     }
-    document.getElementById("detallePelotas").addEventListener("click", muestraPelotasGanadas);
+    // document.getElementById("detallePelotas").addEventListener("click", muestraPelotasGanadas);
 
 
     /* ------   CIERRA VENTANA --------------------------------------------------------*/
