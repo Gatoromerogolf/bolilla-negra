@@ -47,7 +47,7 @@ Bootstrap 5 Dashboard Admin Template
         <div class="col-md-3 col-lg-3 me-0 px-3 fs-6">
             <a class="navbar-brand" href="index.html">
                 <img src="images/bn.ico" alt="Bolilla Negra Icono"
-                style="width: 60px; height: 60px; vertical-align: middle;">
+                    style="width: 60px; height: 60px; vertical-align: middle;">
                 <!-- <i class="bi-box"></i> -->
                 Bolilla Negra
             </a>
@@ -59,10 +59,16 @@ Bootstrap 5 Dashboard Admin Template
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0"
+        <!-- <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0"
             action="#" method="get" role="form">
             <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
-        </form>
+        </form> -->
+
+        <div
+            class="motivational-text ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0 p-3 border rounded">
+            <p class="mb-0">"Cada golpe es una oportunidad para disfrutar del juego y fortalecer la amistad. Aguante
+                Bolilla!"</p>
+        </div>
 
         <div class="navbar-nav me-lg-2">
             <div class="nav-item text-nowrap d-flex align-items-center">
@@ -212,7 +218,7 @@ Bootstrap 5 Dashboard Admin Template
                                 Exclusivo HCDT
                             </a>
                         </li>
-<!-- 
+                        <!-- 
                         <li>
                             <a class="dropdown-item" href="setting.html">
                                 <i class="bi-gear me-2"></i>
@@ -255,6 +261,13 @@ Bootstrap 5 Dashboard Admin Template
                             <a class="nav-link" href="wallet.html">
                                 <i class="bi-wallet me-2"></i>
                                 Resultados
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="jugadoranual.html">
+                                <i class="bi-award-fill me-2"></i>
+                                Jugador del Año
                             </a>
                         </li>
 
@@ -347,14 +360,14 @@ Bootstrap 5 Dashboard Admin Template
                                 </div>
                             </div>
 
-<!--                             <h4 class="mt-4 mb-4 border-bottom pb-4">Torneos Realizados</h4>
+                            <!--                             <h4 class="mt-4 mb-4 border-bottom pb-4">Torneos Realizados</h4>
 
 
                             <div class="d-flex align-items-center border-bottom pb-3 mb-3">
                                 <div class="d-flex align-items-center">
                                     <!-- <img src="images/flag/european-union.png" class="exchange-image img-fluid" alt=""> -->
 
-                                    <!-- <div>
+                            <!-- <div>
                                         <h5>Bolilla 2024</h5>
                                         <h6>Con Cariló - Doble KO</h6>
                                     </div>
@@ -428,12 +441,13 @@ Bootstrap 5 Dashboard Admin Template
 
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
                             <h5 class="mb-3">Pelotas Ganadas</h5>
-                            <p class="mb-2">El jugador que puede exhibir la mayor cantidad de pelotas ganadas al día de la fecha:</p>
+                            <p class="mb-2">El jugador que puede exhibir la mayor cantidad de pelotas ganadas al día de
+                                la fecha:</p>
 
 
                             <div class="custom-block-profile-image-wrap mb-3">
-                                <img id="imagenDinamica" src="assets/images/marco-tiger.png" class="custom-block-profile-image img-fluid"
-                                    alt="">
+                                <img id="imagenDinamica" src="assets/images/marco-tiger.png"
+                                    class="custom-block-profile-image img-fluid" alt="">
                             </div>
 
                             <!-- <p class="text-center mb-2">
@@ -451,8 +465,8 @@ Bootstrap 5 Dashboard Admin Template
                               <img id="imagenDinamica" src="assets/images/marco-tiger.png" alt="" width="250vh">
                             </div> -->
                             <p>Nuestro compañero <span id="pelotudo">...</span> ha acumulado la cantidad de
-                              <span id="pelotas" class="centrado" style="font-size: 40px;">...</span> pelotas ganadas.
-                              <!-- <button id="detallePelotas">Ver detalle</button> -->
+                                <span id="pelotas" class="centrado" style="font-size: 40px;">...</span> pelotas ganadas.
+                                <!-- <button id="detallePelotas">Ver detalle</button> -->
                             </p>
 
                         </div>
@@ -679,8 +693,8 @@ Bootstrap 5 Dashboard Admin Template
     <script src="js/ultimodia.js"></script>
 
 
-    
-  <!-- <section>
+
+    <!-- <section>
     <script>
       window.pepe.addEventListener('click', () => {
         window.ventana.showModal()
@@ -693,120 +707,120 @@ Bootstrap 5 Dashboard Admin Template
   </section> -->
 
 
-  <div id="modalPelotasGanadas" class="modal-Pelotas" style="display:none">
-    <div class="modal-contenido-Pelotas">
-      <!-- <p id="tituloModalGeneralPelotas"></p> -->
-      <table id="tablaModalGeneralPelotas">
-        <tr>
-          <th>Nombre</th>
-          <th>Cantidad</th>
-        </tr>
-        <tr id="lineaModalGeneralPelotas">
-          <!-- <td></td> -->
-        </tr>
-      </table>
-      <button id="cerrarPelotas">Cerrar</button>
+    <div id="modalPelotasGanadas" class="modal-Pelotas" style="display:none">
+        <div class="modal-contenido-Pelotas">
+            <!-- <p id="tituloModalGeneralPelotas"></p> -->
+            <table id="tablaModalGeneralPelotas">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                </tr>
+                <tr id="lineaModalGeneralPelotas">
+                    <!-- <td></td> -->
+                </tr>
+            </table>
+            <button id="cerrarPelotas">Cerrar</button>
+        </div>
     </div>
-  </div>
 
 
-  
-  <script>
-    let offset = 0;
-    let hasMore = true;
 
-    // Función para obtener los comentarios desde la API
-    async function fetchComments(limit, offset) {
-      try {
-        const response = await fetch(`/comentarios?limit=${limit}&offset=${offset}`);
-        if (!response.ok) {
-          throw new Error('Error al obtener los comentarios');
-        }
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        console.error('Error al cargar los comentarios:', error);
-        return null;
-      }
-    }
+    <script>
+        let offset = 0;
+        let hasMore = true;
 
-    let firstCommentId = null;
-
-    // Función para cargar el primer comentario
-    async function loadInitialComment() {
-      const data = await fetchComments(2, 0); // Cargar solo el último comentario
-      if (data) {
-        if (data.comments.length > 0) {
-          firstCommentId = data.comments[0].id; // Guardamos el ID del primer comentario
-        }
-        renderComments(data.comments);
-        hasMore = data.hasMore;
-
-        // Mostrar el botón "Ver todos" si hay más de 6 comentarios
-        if (hasMore) {
-          document.getElementById('view-all-btn').style.display = 'inline-block';
-        }
-      }
-    }
-
-    // Función para cargar más comentarios (se carga por páginas de 5)
-    async function loadMoreComments(limit) {
-      if (limit === -1) {
-        limit = 100; // Si se quiere ver todo, cargamos hasta 100 comentarios
-      }
-
-      const data = await fetchComments(limit, offset);
-      if (data) {
-        // Filtrar el primer comentario para no repetirlo
-        const filteredComments = data.comments.filter(comment => comment.id !== firstCommentId);
-        renderComments(filteredComments);
-        offset += limit; // Incrementamos el offset
-        hasMore = data.hasMore;
-
-        // Si ya no hay más comentarios, ocultamos el botón de "Mostrar más"
-        if (!hasMore) {
-          document.getElementById('expand-btn').style.display = 'none';
+        // Función para obtener los comentarios desde la API
+        async function fetchComments(limit, offset) {
+            try {
+                const response = await fetch(`/comentarios?limit=${limit}&offset=${offset}`);
+                if (!response.ok) {
+                    throw new Error('Error al obtener los comentarios');
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error al cargar los comentarios:', error);
+                return null;
+            }
         }
 
-        document.getElementById('collapse-btn').style.display = 'block'
+        let firstCommentId = null;
 
-        // Mostrar el botón "Ver todos" si hay más comentarios
-        // if (hasMore) {
-        //   document.getElementById('view-all-btn').style.display = 'inline-block';
-        // }
-      }
-    }
+        // Función para cargar el primer comentario
+        async function loadInitialComment() {
+            const data = await fetchComments(2, 0); // Cargar solo el último comentario
+            if (data) {
+                if (data.comments.length > 0) {
+                    firstCommentId = data.comments[0].id; // Guardamos el ID del primer comentario
+                }
+                renderComments(data.comments);
+                hasMore = data.hasMore;
 
-    // Función para mostrar los comentarios en el HTML
-    function renderComments(comments) {
-      const commentList = document.getElementById('comment-list');
-      comments.forEach(comment => {
-        const commentDiv = document.createElement('div');
-        commentDiv.classList.add('comment');
-        commentDiv.innerHTML = `
+                // Mostrar el botón "Ver todos" si hay más de 6 comentarios
+                if (hasMore) {
+                    document.getElementById('view-all-btn').style.display = 'inline-block';
+                }
+            }
+        }
+
+        // Función para cargar más comentarios (se carga por páginas de 5)
+        async function loadMoreComments(limit) {
+            if (limit === -1) {
+                limit = 100; // Si se quiere ver todo, cargamos hasta 100 comentarios
+            }
+
+            const data = await fetchComments(limit, offset);
+            if (data) {
+                // Filtrar el primer comentario para no repetirlo
+                const filteredComments = data.comments.filter(comment => comment.id !== firstCommentId);
+                renderComments(filteredComments);
+                offset += limit; // Incrementamos el offset
+                hasMore = data.hasMore;
+
+                // Si ya no hay más comentarios, ocultamos el botón de "Mostrar más"
+                if (!hasMore) {
+                    document.getElementById('expand-btn').style.display = 'none';
+                }
+
+                document.getElementById('collapse-btn').style.display = 'block'
+
+                // Mostrar el botón "Ver todos" si hay más comentarios
+                // if (hasMore) {
+                //   document.getElementById('view-all-btn').style.display = 'inline-block';
+                // }
+            }
+        }
+
+        // Función para mostrar los comentarios en el HTML
+        function renderComments(comments) {
+            const commentList = document.getElementById('comment-list');
+            comments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `
           <div class="comment-header">
             <span class="comment-author">${comment.usuario}</span>
             <span class="comment-date">${new Date(comment.fecha).toLocaleDateString()}</span>
           </div>
           <p><span style="font-size:15px">${comment.comentario}</span></p>
         `;
-        commentList.appendChild(commentDiv);
-      });
-    }
+                commentList.appendChild(commentDiv);
+            });
+        }
 
-    // Función para contraer la ventana
-    function collapseWindow() {
-      const commentList = document.getElementById('comment-list');
-      commentList.innerHTML = ''; // Limpiamos los comentarios
-      offset = 0;
-      loadInitialComment(); // Volvemos a cargar solo el primer comentario
-      document.getElementById('collapse-btn').style.display = 'none'
-      document.getElementById('expand-btn').style.display = 'block'
-    }
+        // Función para contraer la ventana
+        function collapseWindow() {
+            const commentList = document.getElementById('comment-list');
+            commentList.innerHTML = ''; // Limpiamos los comentarios
+            offset = 0;
+            loadInitialComment(); // Volvemos a cargar solo el primer comentario
+            document.getElementById('collapse-btn').style.display = 'none'
+            document.getElementById('expand-btn').style.display = 'block'
+        }
 
-    // Inicializar la carga del primer comentario
-    loadInitialComment();
-  </script>
+        // Inicializar la carga del primer comentario
+        loadInitialComment();
+    </script>
 
 </body>
 
