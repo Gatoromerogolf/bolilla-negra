@@ -847,7 +847,7 @@ strong {
 
 .account-table>:not(caption)>*>* {
   border-bottom: 0;
-  padding: 15px 10px;
+  padding: 10px 10px;
 }
 
 .account-table thead {
