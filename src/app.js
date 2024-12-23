@@ -200,6 +200,31 @@ app.post('/grabaUltimaFecha', (req, res) => {
 });
 
 
+app.delete('/eliminaFecha', (req, res) => {
+  // if (!req.session.user) {
+  //   return res.status(401).json({ error: 'No estás autenticado' });
+  // }
+
+  const { fec } = req.body; // Recibe la fecha que deseas eliminar
+
+  const eliminaFechaQuery = 'DELETE FROM fechas WHERE fec = ?';
+
+  // pool.query(eliminaFechaQuery, [fec], function (error, result) {
+  //   if (error) {
+  //     console.log('Error:', error);
+  //     return res.status(500).json({ error: 'Error al eliminar la fecha' });
+  //   }
+
+  //   if (result.affectedRows === 0) {
+  //     return res.status(404).json({ error: 'No se encontró la fecha especificada' });
+  //   }
+
+  //   res.status(200).json({ success: true, message: 'Fecha eliminada correctamente' });
+  // });
+});
+
+
+
 // Grabacion de NETOS ::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post('/grabaNetos', (req, res) => {
   // if (!req.session.user){
@@ -304,6 +329,25 @@ app.get('/comentarios', (req, res) => {
 La consulta checkQuery verifica cuántos comentarios totales hay para saber si se debe mostrar el botón "Ver todos". */
 
 
+app.delete('/comentarios/:id', async (req, res) => {
+  const commentId = req.params.id;
+  const query = 'DELETE FROM comentarios WHERE id = ?';
+
+  pool.query(query, [commentId], (err, results) => {
+    if (err) {
+      console.error('Error al eliminar el comentario:', err);
+      return res.status(500).send({ message: 'Error al eliminar el comentario' });
+    }
+
+    // Verifica si se eliminó el comentario
+    if (results.affectedRows > 0) {
+      console.log('Comentario eliminado correctamente:', results);
+      res.status(200).send({ message: 'Comentario eliminado' });
+    } else {
+      res.status(404).send({ message: 'Comentario no encontrado' });
+    }
+  });
+});
 
 
 

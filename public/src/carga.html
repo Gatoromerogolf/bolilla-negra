@@ -65,7 +65,8 @@
         <label for="ultFecha">Ultima:</label>
         <input id="ultFecha" type="text" placeholder="sabado 8 setiembre" disabled>
         <label for="ultFecha">N°</label>
-        <input id="ultNumero" type="number" placeholder="99" maxlength="3" disabled style="width: 3ch"></br>
+        <input id="ultNumero" type="number" placeholder="99" maxlength="3" disabled style="width: 3ch">
+        <button onclick="eliminarDatos(fec)">Elimina Ultima fecha</button>
       </span>
       <p>Nuevo torneo a registrar</p>
       <span style="font-size: 14px;">
@@ -78,9 +79,9 @@
 
 
       <fieldset id="primeraTabla" style="display: block">
-        <legend>Participantes</legend>
+        <legend style="font-size: 30px;">Participantes</legend>
 
-        <h2>Registro de participantes.</h2>
+        <!-- <h2>Registro de participantes.</h2> -->
         <table id="tablaJugadores">
           <thead>
             <tr>
@@ -96,6 +97,7 @@
         </table>
 
         <button onclick="procesarDatos()">Controlar Datos</button>
+
       </fieldset>
 
 

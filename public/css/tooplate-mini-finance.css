@@ -1290,7 +1290,18 @@ td {
       gap: 0px;
       /* Espacio entre los botones */
       margin: 5px 0;
-      /* Espacio superior e inferior opcional */
+      /* Espacio s
+      uperior e inferior opcional */
+    }
+
+    .delete-btn {
+      padding: 5px 10px;  /* Reduce el tamaño del padding (espaciado interno) */
+      font-size: 12px;    /* Ajusta el tamaño de la fuente */
+      height: 25px;       /* Establece una altura específica */
+      width: auto;        /* Ajusta el ancho del botón de acuerdo con el contenido */
+      border-radius: 5px; /* Si quieres bordes redondeados */
+      cursor: pointer;    /* Hace que el cursor cambie al pasar sobre el botón */
+      background-color: #fb94a0;
     }
 
     #collapse-btn:hover {

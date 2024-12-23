@@ -360,30 +360,6 @@ Bootstrap 5 Dashboard Admin Template
                                 </div>
                             </div>
 
-                            <!--                             <h4 class="mt-4 mb-4 border-bottom pb-4">Torneos Realizados</h4>
-
-
-                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
-                                <div class="d-flex align-items-center">
-                                    <!-- <img src="images/flag/european-union.png" class="exchange-image img-fluid" alt=""> -->
-
-                            <!-- <div>
-                                        <h5>Bolilla 2024</h5>
-                                        <h6>Con Cariló - Doble KO</h6>
-                                    </div>
-                                </div>
-
-                                <div class="ms-auto me-4">
-                                    <small>Ganador</small>
-                                    <h6></h6>
-                                </div>
-
-                                <div>
-                                    <small>Score</small>
-                                    <h6> - -</h6>
-                                </div>
-                            </div> -->
-
 
                         </div>
                     </div>
@@ -757,9 +733,9 @@ Bootstrap 5 Dashboard Admin Template
                 hasMore = data.hasMore;
 
                 // Mostrar el botón "Ver todos" si hay más de 6 comentarios
-                if (hasMore) {
-                    document.getElementById('view-all-btn').style.display = 'inline-block';
-                }
+                // if (hasMore) {
+                //     document.getElementById('view-all-btn').style.display = 'inline-block';
+                // }
             }
         }
 
@@ -798,12 +774,13 @@ Bootstrap 5 Dashboard Admin Template
                 const commentDiv = document.createElement('div');
                 commentDiv.classList.add('comment');
                 commentDiv.innerHTML = `
-          <div class="comment-header">
-            <span class="comment-author">${comment.usuario}</span>
-            <span class="comment-date">${new Date(comment.fecha).toLocaleDateString()}</span>
-          </div>
-          <p><span style="font-size:15px">${comment.comentario}</span></p>
-        `;
+                <div class="comment-header">
+                    <span class="comment-author">${comment.usuario}</span>
+                    <span class="comment-date">${new Date(comment.fecha).toLocaleDateString()}</span>
+                </div>
+                <p><span style="font-size:15px">${comment.comentario}</span></p>
+                <button class="delete-btn" onclick="deleteComment(${comment.id})">Eliminar</button>
+                `;
                 commentList.appendChild(commentDiv);
             });
         }
@@ -820,6 +797,30 @@ Bootstrap 5 Dashboard Admin Template
 
         // Inicializar la carga del primer comentario
         loadInitialComment();
+
+
+        async function deleteComment(commentId) {
+            const confirmar = confirm(`¿Estás seguro de que deseas eliminar este comentario?`);
+            if (!confirmar) return;
+
+            try {
+                const response = await fetch(`/comentarios/${commentId}`, {
+                    method: 'DELETE'
+                });
+                if (!response.ok) {
+                    throw new Error('Error al eliminar el comentario');
+                }
+
+                // Eliminar el comentario del DOM después de la respuesta exitosa
+                const commentElement = document.querySelector(`.comment button[onclick="deleteComment(${commentId})"]`).parentElement;
+                commentElement.remove();
+                alert('Comentario eliminado exitosamente');
+            } catch (error) {
+                console.error('Error al eliminar el comentario:', error);
+                alert('No se pudo eliminar el comentario. Por favor, inténtalo de nuevo.');
+            }
+        }
+
     </script>
 
 </body>
