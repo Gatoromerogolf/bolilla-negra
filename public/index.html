@@ -368,11 +368,18 @@ Bootstrap 5 Dashboard Admin Template
                     <div class="col-lg-5 col-12">
                         <div class="custom-block custom-block-transations">
 
-                            <h4 class="mb-4">Ultimo torneo disputado</h4>
-
                             <center>
+                                <h4 class="mb-4">Ultimo torneo disputado</h4>
+
                                 <h6 id="ultimaFecha"></h6>
+
+                                <span style="font-size: 1rem; font-weight: bold;">Jugadores:</span>
+                                <span id="ctddJugadores" style="font-size: 1rem; font-weight: bold;">...</span>
+                                <span style="font-size: 1rem; font-weight: bold; margin-left: 30px;">  Pelotas:</span>
+                                <span id="ctddPelotas" style="font-size: 1rem; font-weight: bold;">...</span>
+
                             </center>
+
 
                             <div style="width:100%px; height: 490px;">
                                 <table id="resultadoFecha" style="width: 200px; position: relative;">
@@ -383,13 +390,15 @@ Bootstrap 5 Dashboard Admin Template
                                             <col style="background-color: rgb(250, 250, 32)" ;>
                                             <col style="width: 10px;" ;>
                                             <col style="width: 10px;" ;>
+                                            <col style="width: 10px;" ;>
 
-                                        <tr>
-                                            <th>Pos</th>
-                                            <th id="namePlayer">Player</th>
-                                            <th>Neto</th>
-                                            <th>Fedex</th>
-                                        </tr>
+                                            <tr>
+                                                <th>Pos</th>
+                                                <th id="namePlayer">Player</th>
+                                                <th>Neto</th>
+                                                <th>Pelotas</th>
+                                                <th>Puntos</th>
+                                            </tr>
                                         </colgroup>
                                     </thead>
 

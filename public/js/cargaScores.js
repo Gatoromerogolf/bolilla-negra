@@ -1,9 +1,17 @@
-
 // Nombres de los jugadores
 const nombresJugadores = [
-  "Diegui", "Edu", "Fer", "Gaby", "Joaco",
-  "Juancho", "Julito", "Negro", "Panza", "Presi",
-  "Sensei", "Torni"
+  "Diegui",
+  "Edu",
+  "Fer",
+  "Gaby",
+  "Joaco",
+  "Juancho",
+  "Julito",
+  "Negro",
+  "Panza",
+  "Presi",
+  "Sensei",
+  "Torni",
 ];
 
 let dateInput = 0;
@@ -14,6 +22,8 @@ let fechaSinGuiones = 0;
 let fechaParaComparar = 0;
 let fecFullTabla = 0;
 let sumaJugadores = 0;
+let ctddPelotas = 0;
+let ctddJugadores = 0;
 
 let datosJugadores = [];
 
@@ -24,8 +34,10 @@ let fec = 0;
 -----------------------------------------*/
 // Generar la tabla de jugadores
 function generarTablaJugadores() {
-  const tablaJugadores = document.getElementById("tablaJugadores").getElementsByTagName('tbody')[0];
-  nombresJugadores.forEach(nombre => {
+  const tablaJugadores = document
+    .getElementById("tablaJugadores")
+    .getElementsByTagName("tbody")[0];
+  nombresJugadores.forEach((nombre) => {
     let fila = tablaJugadores.insertRow();
     let celdaNombre = fila.insertCell(0);
     let celdaNeto = fila.insertCell(1);
@@ -67,111 +79,118 @@ async function buscaUltimaFecha() {
   BUSCA ULTIMA FECHA               
 -----------------------------------------*/
 
-buscaUltimaFecha().then(ultimaFecha => {
+buscaUltimaFecha().then((ultimaFecha) => {
   if (ultimaFecha) {
-    document.getElementById('ultFecha').value = ultimaFecha.textoFecha;
-    document.getElementById('ultNumero').value = ultimaFecha.fec;
+    document.getElementById("ultFecha").value = ultimaFecha.textoFecha;
+    document.getElementById("ultNumero").value = ultimaFecha.fec;
     fec = ultimaFecha.fec;
     // dateTabla = new Date(ultimaFecha.fechaFull);
     fecFullTabla = ultimaFecha.fechaFull;
-
   } else {
-    alert('No se encontró ninguna fecha');
+    alert("No se encontró ninguna fecha");
   }
 });
-
 
 /*---------------------------------------
   ELIMINAR DATOS                
 -----------------------------------------*/
-
-
 function eliminarDatos(fec) {
-  const confirmar = confirm(`¿Estás seguro de que deseas eliminar el registro de fecha N°: ${fec}?`);
-    
+  const confirmar = confirm(
+    `¿Estás seguro de que deseas eliminar el registro de fecha N°: ${fec}?`
+  );
+
   if (!confirmar) {
-      // Si el usuario no confirma, salir de la función
-      return;
+    // Si el usuario no confirma, salir de la función
+    return;
   }
 
-    alert(`elimina registro, ${fec}`) 
-    fetch('/eliminaFecha', {
-      method: 'DELETE', // Método HTTP
-      headers: {
-        'Content-Type': 'application/json' // Tipo de contenido
-      },
-      body: JSON.stringify({ fec }) // Convertir el cuerpo a JSON
+  alert(`elimina registro, ${fec}`);
+  fetch("/eliminaFecha", {
+    method: "DELETE", // Método HTTP
+    headers: {
+      "Content-Type": "application/json", // Tipo de contenido
+    },
+    body: JSON.stringify({ fec }), // Convertir el cuerpo a JSON
+  })
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((err) => {
+          throw err;
+        });
+      }
+      return response.json(); // Parsear la respuesta JSON
     })
-      .then(response => {
-        if (!response.ok) {
-          return response.json().then(err => { throw err; });
-        }
-        return response.json(); // Parsear la respuesta JSON
-      })
-      .then(data => {
-        console.log('Fecha eliminada correctamente:', data.message);
-        alert('Fecha eliminada correctamente');
-      })
-      .catch(error => {
-        console.error('Error al eliminar la fecha:', error.error || error.message);
-        alert(`Error: ${error.error || 'No se pudo eliminar la fecha'}`);
-      });
-  }
-  
+    .then((data) => {
+      console.log("Fecha eliminada correctamente:", data.message);
+      alert("Fecha eliminada correctamente");
+    })
+    .catch((error) => {
+      console.error(
+        "Error al eliminar la fecha:",
+        error.error || error.message
+      );
+      alert(`Error: ${error.error || "No se pudo eliminar la fecha"}`);
+    });
+}
 
 /*---------------------------------------
   PROCESAR DATOS               
 -----------------------------------------*/
 // Procesar datos ingresados y actualizar la tabla de resultados
-function procesarDatos(){ 
+function procesarDatos() {
   document.getElementById("primeraTabla").style.display = "none";
   document.getElementById("segundaTabla").style.display = "block";
-  const tablaJugadores = document.getElementById("tablaJugadores").getElementsByTagName('tbody')[0];
-  const tablaResultados = document.getElementById("tablaResultados").getElementsByTagName('tbody')[0];
+  const tablaJugadores = document
+    .getElementById("tablaJugadores")
+    .getElementsByTagName("tbody")[0];
+  const tablaResultados = document
+    .getElementById("tablaResultados")
+    .getElementsByTagName("tbody")[0];
 
-  const fechaRegistrar = document.getElementById('fechaRegistrar')
-  fechaParaComparar = (fechaRegistrar.value);
-  fechaSinGuiones = fechaParaComparar.split('-').join('');
+  const fechaRegistrar = document.getElementById("fechaRegistrar");
+  fechaParaComparar = fechaRegistrar.value;
+  fechaSinGuiones = fechaParaComparar.split("-").join("");
 
   function formatToDateString(dateString) {
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   }
   dateTabla = formatToDateString(fecFullTabla);
-  const dateTablaSinGuiones = dateTabla.split('-').join('');
+  const dateTablaSinGuiones = dateTabla.split("-").join("");
 
-  if (fechaParaComparar) { } else {
-    alert('Falta informar la fecha del torneo.')
-    document.getElementById("primeraTabla").style.display = "block";
-    return
-  };
-
-  if (dateTablaSinGuiones >= fechaSinGuiones) {
-    alert('La fecha debe ser mayor a la ultima')
-    document.getElementById("primeraTabla").style.display = "block";
-    return
-  };
-
-  fechaaRegistrar = fechaSinGuiones;
-
-  const jugadores = document.getElementById('jugadores');
-  const ctddJugadores = Number(jugadores.value.trim());
-  if (ctddJugadores < 1 || ctddJugadores > 12) {
-    alert('no puede haber ni menos de 6 jugadores ni mas de 12')
+  if (fechaParaComparar) {
+  } else {
+    alert("Falta informar la fecha del torneo.");
     document.getElementById("primeraTabla").style.display = "block";
     return;
   }
 
-  const pelJuego = document.getElementById('pelJuego');
-  let ctddPelotas = Number(pelJuego.value.trim());
+  if (dateTablaSinGuiones >= fechaSinGuiones) {
+    alert("La fecha debe ser mayor a la ultima");
+    document.getElementById("primeraTabla").style.display = "block";
+    return;
+  }
+
+  fechaaRegistrar = fechaSinGuiones;
+
+  const jugadores = document.getElementById("jugadores");
+  ctddJugadores = Number(jugadores.value.trim());
+  if (ctddJugadores < 1 || ctddJugadores > 12) {
+    alert("no puede haber ni menos de 6 jugadores ni mas de 12");
+    document.getElementById("primeraTabla").style.display = "block";
+    return;
+  }
+
+  const pelJuego = document.getElementById("pelJuego");
+  ctddPelotas = Number(pelJuego.value.trim());
   if (ctddPelotas == 0) {
-    ctddPelotas = ctddJugadores
+    ctddPelotas = ctddJugadores;
   }
   if (ctddPelotas < ctddJugadores) {
-    alert('No puede haber menos pelotas que jugadores')
+    alert("No puede haber menos pelotas que jugadores");
     document.getElementById("primeraTabla").style.display = "block";
     return;
   }
@@ -188,34 +207,37 @@ function procesarDatos(){
     let fila = tablaJugadores.rows[i];
 
     let nombre = fila.cells[0].textContent;
-    console.log(`valor de nombre: ${nombre}`)
-    let neto = fila.cells[1].getElementsByTagName('input')[0].value;
-    console.log(`valor de neto: ${neto}`)
+    console.log(`valor de nombre: ${nombre}`);
+    let neto = fila.cells[1].getElementsByTagName("input")[0].value;
+    console.log(`valor de neto: ${neto}`);
     // let pelotas = fila.cells[2].getElementsByTagName('input')[0].value;
     // console.log (`valor de pelotas: ${pelotas}`)
-    let orden = fila.cells[2].getElementsByTagName('input')[0].value;
-    console.log(`valor de orden: ${orden}`)
+    let orden = fila.cells[2].getElementsByTagName("input")[0].value;
+    console.log(`valor de orden: ${orden}`);
 
     // Agregar los datos al array si se ha completado al menos un campo
     // if (neto || pelotas || orden) {
     // if (neto || orden) {
-    datosJugadores.push({ //agrega todos
+    datosJugadores.push({
+      //agrega todos
       nombre: nombre,
-      neto: neto || '-',
+      neto: neto || "-",
       // pelotas: pelotas || '-',
-      orden: orden || '-'
-    })
+      orden: orden || "-",
+    });
 
-    if (neto) { sumaJugadores++ }
+    if (neto) {
+      sumaJugadores++;
+    }
     // }
   }
 
   // Ordenar los datos por el valor de "Neto" y luego por "Orden"
   datosJugadores.sort((a, b) => {
-    const netoA = a.neto === '-' ? Infinity : parseInt(a.neto);
-    const netoB = b.neto === '-' ? Infinity : parseInt(b.neto);
-    const ordenA = a.orden === '-' ? Infinity : parseInt(a.orden);
-    const ordenB = b.orden === '-' ? Infinity : parseInt(b.orden);
+    const netoA = a.neto === "-" ? Infinity : parseInt(a.neto);
+    const netoB = b.neto === "-" ? Infinity : parseInt(b.neto);
+    const ordenA = a.orden === "-" ? Infinity : parseInt(a.orden);
+    const ordenB = b.orden === "-" ? Infinity : parseInt(b.orden);
 
     if (netoA === netoB) {
       return ordenA - ordenB;
@@ -236,35 +258,44 @@ function procesarDatos(){
     valor2 = 3;
   }
   if (ctddPelotas == 12) {
-    valor1 = 7
-    valor2 = 4
+    valor1 = 7;
+    valor2 = 4;
   }
 
   // if (datosJugadores.length !== ctddJugadores) {
   if (sumaJugadores !== ctddJugadores) {
-    alert(`No coinciden los scores: ${sumaJugadores} con la cantidad de jugadores:${jugadores.value}`)
+    alert(
+      `No coinciden los scores: ${sumaJugadores} con la cantidad de jugadores:${jugadores.value}`
+    );
   } else {
     let indice = 0;
     // Insertar las filas ordenadas en la tabla de resultados
-    datosJugadores.forEach(jugador => {
+    datosJugadores.forEach((jugador) => {
       let filaResultado = tablaResultados.insertRow();
       if (indice == 0) {
-        jugador.pelotas = valor1
+        jugador.pelotas = valor1;
       }
       if (indice == 1) {
-        jugador.pelotas = valor2
+        jugador.pelotas = valor2;
       }
       if (indice == 2) {
-        jugador.pelotas = 1
+        jugador.pelotas = 1;
       }
+
+      if (jugador.neto > 0) {
+        jugador.orden = indice + 1;
+        jugador.anual = ctddJugadores - indice;
+      }
+
       filaResultado.insertCell(0).textContent = jugador.nombre;
       filaResultado.insertCell(1).textContent = jugador.neto;
-      filaResultado.insertCell(2).textContent = jugador.pelotas;
-      filaResultado.insertCell(3).textContent = jugador.orden;
-      filaResultado.insertCell(4).textContent = jugador.pos;
+      filaResultado.insertCell(2).textContent = jugador.orden;
+      filaResultado.insertCell(3).textContent = jugador.pelotas;
+      // filaResultado.insertCell(4).textContent = jugador.pos;
+      filaResultado.insertCell(4).textContent = jugador.anual;
       indice++;
-    })
-  };
+    });
+  }
 }
 
 /*---------------------------------------
@@ -275,21 +306,40 @@ function modificarResultados() {
   document.getElementById("segundaTabla").style.display = "none";
 }
 
-
 /*---------------------------------------
   GUARDAR RESULTADOS               
 -----------------------------------------*/
 // Función para guardar los resultados y mostrar una ventana de confirmación
 function guardarResultados() {
-
   // Convierte el valor a un objeto Date para usar la funcion getUTC
   const fecha = new Date(fechaParaComparar);
 
   // Array con los nombres de los días de la semana
-  const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  const diasSemana = [
+    "domingo",
+    "lunes",
+    "martes",
+    "miércoles",
+    "jueves",
+    "viernes",
+    "sábado",
+  ];
 
   // Array con los nombres de los meses
-  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const meses = [
+    "enero",
+    "febrero",
+    "marzo",
+    "abril",
+    "mayo",
+    "junio",
+    "julio",
+    "agosto",
+    "septiembre",
+    "octubre",
+    "noviembre",
+    "diciembre",
+  ];
 
   // Recupera la información deseada
   const nombreDia = diasSemana[fecha.getUTCDay()];
@@ -300,14 +350,31 @@ function guardarResultados() {
   // Construye el texto descriptivo de la fecha
   const textoFecha = `${nombreDia} ${numeroDia} de ${nombreMes}`;
 
-  const datos = { fec, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar }
+  const datos = {
+    fec,
+    nombreDia,
+    numeroDia,
+    numeroMes,
+    textoFecha,
+    fechaaRegistrar,
+    ctddPelotas,
+    ctddJugadores,
+  };
   grabarNuevaFecha(datos);
 
   // Función para escribir los detalles de movimientos en la tabla MySQL
   async function grabarNuevaFecha(datos) {
-
     // Extraer los valores del objeto datos
-    const { fec, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar } = datos;
+    const {
+      fec,
+      nombreDia,
+      numeroDia,
+      numeroMes,
+      textoFecha,
+      fechaaRegistrar,
+      ctddPelotas,
+      ctddJugadores,
+    } = datos;
 
     const body = {
       fecnueva: fec + 1,
@@ -315,7 +382,9 @@ function guardarResultados() {
       numeroDia,
       numeroMes,
       textoFecha,
-      fechaaRegistrar
+      fechaaRegistrar,
+      ctddPelotas,
+      ctddJugadores,
     };
 
     try {
@@ -344,28 +413,34 @@ function guardarResultados() {
   indice = 0;
   let fecnueva = ++fec;
 
-  datosJugadores.forEach(jugador => {
+  datosJugadores.forEach((jugador) => {
     if (indice == 0) {
-      jugador.pos = 1
+      jugador.pos = 1;
     }
     if (indice == 1) {
-      jugador.pos = 2
+      jugador.pos = 2;
     }
     if (indice == 2) {
-      jugador.pos = 3
+      jugador.pos = 3;
     }
 
     if (indice > 2) {
-      jugador.pos = 0;
+      jugador.pos = indice + 1;
       jugador.pelotas = 0;
       jugador.orden = 0;
     }
-    if (jugador.neto < 50 || jugador.neto === '-') {
-      jugador.neto = 0
+    if (jugador.neto < 50 || jugador.neto === "-") {
+      jugador.neto = 0;
     }
 
-    if (jugador.orden === '-') {
-      jugador.orden = 0
+    if (jugador.orden === "-") {
+      jugador.orden = 0;
+    }
+
+    if (jugador.neto > 50) {
+      jugador.anual = ctddJugadores - indice;
+    } else {
+      jugador.anual = 0;
     }
 
     //  Grabar NETOS
@@ -374,29 +449,27 @@ function guardarResultados() {
     let pos = jugador.pos;
     let pg = jugador.pelotas;
     let orden = jugador.orden;
+    let anual = jugador.anual;
 
-    const datosNetos = { fecnueva, play, neto, pos, pg, orden }
+    const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual };
     grabarNuevoNeto(datosNetos);
 
     indice++;
-  })
+  });
   // Mostrar la ventana de confirmación
   alert("Se guardó la fecha\nExcelente trabajo\n\n AGUANTE LA HCDT!!!!!!");
 
   // // Redirigir a /index.html
   window.location.href = "/index.html";
-
 }
 
 /*---------------------------------------
     GRABAR NUEVO NETO               
 -----------------------------------------*/
-
 // Función para escribir los detalles de movimientos en la tabla MySQL
 async function grabarNuevoNeto(datosNetos) {
-
   // Extraer los valores del objeto datos
-  const { fecnueva, play, neto, pos, pg, orden } = datosNetos;
+  const { fecnueva, play, neto, pos, pg, orden, anual } = datosNetos;
 
   const body = {
     fecnueva,
@@ -404,7 +477,8 @@ async function grabarNuevoNeto(datosNetos) {
     neto,
     pos,
     pg,
-    orden
+    orden,
+    anual,
   };
 
   try {
@@ -428,7 +502,6 @@ async function grabarNuevoNeto(datosNetos) {
     throw error; // Rechaza la promesa en caso de error
   }
 }
-
 
 /*---------------------------------------
   CARGA LA PAGINA               

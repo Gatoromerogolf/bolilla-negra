@@ -11,9 +11,13 @@ async function main() {
 main().then (() => { // Ejecuta la función principal
 
   const ultDia = document.getElementById("ultimaFecha");
+  const ctdJug = document.getElementById("ctddJugadores");
+  const ctdPel = document.getElementById("ctddPelotas")
   const ultFecha = ultimaFecha.textoFecha;
 
   ultDia.textContent = ultFecha;
+  ctdJug.textContent = ultimaFecha.jugadores;
+  ctdPel.textContent = ultimaFecha.pelotas;
 
   // obtiene los movimientos de la ultima fecha
 
@@ -48,22 +52,28 @@ main().then (() => { // Ejecuta la función principal
     nombrePlayer.textContent = filteredPlayers[i-1].play;
 
     let netoPlayer = filaResultado.insertCell(-1);
-    netoPlayer.textContent = filteredPlayers[i-1].neto;
+    netoPlayer.textContent = filteredPlayers[i-1].neto > 0 ? filteredPlayers[i - 1].neto : "--";;
 
-    let fedex = filaResultado.insertCell(-1);
-    switch (i) {
-      case 1:
-        fedex.textContent = 6;
-        break;
-      case 2:
-        fedex.textContent = 4;
-        break;
-      case 3:
-          fedex.textContent = 2;
-          break;
-      default:
-        fedex.textContent = "--";
-        break;}
+    let pelotas = filaResultado.insertCell(-1);
+    pelotas.textContent = filteredPlayers[i - 1].pg > 0 ? filteredPlayers[i - 1].pg : "--";
+
+    let puntos = filaResultado.insertCell(-1);
+    puntos.textContent = filteredPlayers[i-1].anual;
+
+
+    // switch (i) {
+    //   case 1:
+    //     fedex.textContent = 6;
+    //     break;
+    //   case 2:
+    //     fedex.textContent = 4;
+    //     break;
+    //   case 3:
+    //       fedex.textContent = 2;
+    //       break;
+    //   default:
+    //     fedex.textContent = "--";
+    //     break;}
     }
 
   //  LLENA SECCION:  EL HOMBRE CON  MAS PELOTAS  :::::::::::::::::::::::::::::::::::::::::::

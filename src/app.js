@@ -178,12 +178,13 @@ app.get('/leerPuntosRanking', (req, res) => {
 
 // Grabacion de ultima fecha ::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post('/grabaUltimaFecha', (req, res) => {
+
   // if (!req.session.user){
   //     return res.status(401).json({ error: 'No estás autenticado' });
   // }
-  const { fecnueva, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar }  = req.body;
-  const nuevaFecha = 'INSERT INTO fechas (fec, dia, diafecha, mesFecha, textoFecha, fechaFull) VALUES (?, ?, ?, ?, ?, ?)';
-  const datosAPasar = [fecnueva, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar];
+  const { fecnueva, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar, ctddPelotas, ctddJugadores }  = req.body;
+  const nuevaFecha = 'INSERT INTO fechas (fec, dia, diafecha, mesFecha, textoFecha, fechaFull, pelotas, jugadores) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+  const datosAPasar = [fecnueva, nombreDia, numeroDia, numeroMes, textoFecha, fechaaRegistrar, ctddPelotas, ctddJugadores];
 
   pool.query(nuevaFecha, datosAPasar, function (error, lista) {
       if (error) {
@@ -230,11 +231,11 @@ app.post('/grabaNetos', (req, res) => {
   // if (!req.session.user){
   //     return res.status(401).json({ error: 'No estás autenticado' });
   // }
-  const { fecnueva, play, neto, pos, pg, orden }  = req.body;
-  const nuevoNeto = 'INSERT INTO netos (fec, play, neto, pos, pg, orden) VALUES (?, ?, ?, ?, ?, ?)';
-  const datosAPasar = [fecnueva, play, neto, pos, pg, orden];
+  const { fecnueva, play, neto, pos, pg, orden, anual }  = req.body;
+  const nuevoNeto = 'INSERT INTO netos (fec, play, neto, pos, pg, orden, anual) VALUES (?, ?, ?, ?, ?, ?, ?)';
+  const datosAPasar = [fecnueva, play, neto, pos, pg, orden, anual];
 
-  console.log (fecnueva, play, neto, pos, pg, orden)
+  console.log (fecnueva, play, neto, pos, pg, orden, anual)
 
 
   pool.query(nuevoNeto, datosAPasar, function (error, lista) {
