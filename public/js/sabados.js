@@ -1,8 +1,26 @@
 // Planilla de resultados generales de los sábados
 
+const div = document.querySelector('div[data-año]');
+let año = div ? div.getAttribute('data-año') : null;
+
+// alert (`El año es: ${año}`);
+
 
 async function main() {
-  players2 = await leerDatosNetos();
+
+  const resultados = await leerDatosNetos();
+  if (!resultados || resultados.length === 0) {
+    console.error("No se obtuvieron datos de leerDatosNetos o están vacíos.");
+    return;
+  }
+
+
+  if (año === "2025") {
+    players2 = resultados.filter(resultado => resultado.fec > 31)
+  } else {
+    players2 = resultados.filter(resultado => resultado.fec < 32)
+  }
+
   fechas = await leerDatosFechas();
 }
 
@@ -256,8 +274,10 @@ async function leerDatosNetos() {
   try {
     const response = await fetch(`/leerDatosNetos`);
     if (response.ok) {
-      const players2 = await response.json();
-      return players2; // Devuelve los datos obtenidos si la respuesta es exitosa
+      // const players2 = await response.json();
+      // return players2; // Devuelve los datos obtenidos si la respuesta es exitosa
+      const resultados = await response.json();
+      return resultados; // Devuelve los datos obtenidos si la respuesta es exitosa
     } else {
       console.error(
         "Error en la respuesta:",
