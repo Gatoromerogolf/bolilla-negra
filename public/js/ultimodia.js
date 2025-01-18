@@ -164,6 +164,12 @@ main().then (() => { // Ejecuta la función principal
       case "Panza":
           imgSrc = "images/profile/Panza.png";
           break;
+      case "Julito":
+          imgSrc = "images/profile/Julito.png";
+          break;
+      case "Sensei":
+        imgSrc = "images/profile/Sensei.png";
+        break;
       // Agrega más casos según sea necesario
       default:
           imgSrc = "images/profile/marco-tiger.png";
