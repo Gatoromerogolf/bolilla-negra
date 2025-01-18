@@ -143,9 +143,6 @@ main().then (() => { // Ejecuta la función principal
     let valor = matrizPelotas[0][0]; 
     let imgSrc;
     switch (valor) {
-      case "Diegui":
-          imgSrc = "images/profile/Diegui.png"
-          break;
       case "Negro":
           imgSrc = "images/profile/Negro.png";
           break;
@@ -159,11 +156,14 @@ main().then (() => { // Ejecuta la función principal
           imgSrc = "images/profile/Joaco.png";
           break;
       case "Juancho":
-        imgSrc = "images/profile/Juancho.png";
-        break;
+          imgSrc = "images/profile/Juancho.png";
+          break;
+      case "Diegui":
+          imgSrc = "images/profile/Diegui.png"
+          break;
       case "Panza":
-        imgSrc = "images/profile/Panza.png";
-        break;
+          imgSrc = "images/profile/Panza.png";
+          break;
       // Agrega más casos según sea necesario
       default:
           imgSrc = "images/profile/marco-tiger.png";
