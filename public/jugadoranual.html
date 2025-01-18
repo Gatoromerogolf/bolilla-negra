@@ -12,19 +12,12 @@
 
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap" rel="stylesheet">
-
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <link href="css/bootstrap-icons.css" rel="stylesheet">
-
     <link href="css/apexcharts.css" rel="stylesheet">
-
     <link href="css/tooplate-mini-finance.css" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -47,9 +40,9 @@ Bootstrap 5 Dashboard Admin Template
             <a class="navbar-brand" href="index.html">
                 <img src="images/bn.ico" alt="Bolilla Negra Icono"
                     style="width: 60px; height: 60px; vertical-align: middle;">
+                <!-- <i class="bi-box"></i> -->
                 Bolilla Negra
             </a>
-
         </div>
 
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
@@ -57,10 +50,6 @@ Bootstrap 5 Dashboard Admin Template
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <!-- <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0" action="#" method="get" role="form">
-                <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
-            </form> -->
 
         <div
             class="motivational-text ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0 p-3 border rounded">
@@ -72,7 +61,7 @@ Bootstrap 5 Dashboard Admin Template
             <div class="nav-item text-nowrap d-flex align-items-center">
                 <div class="dropdown ps-3">
                     <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                        aria-expanded="false" id="navbarLightDropdownMenuLink">
                         <i class="bi-bell"></i>
                         <span
                             class="position-absolute start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
@@ -80,38 +69,55 @@ Bootstrap 5 Dashboard Admin Template
                         </span>
                     </a>
 
-                    <ul class="dropdown-menu notifications-block-wrap bg-white shadow">
-                        <small>Notifications</small>
+                    <ul class="dropdown-menu dropdown-menu-lg-end notifications-block-wrap bg-white shadow"
+                        aria-labelledby="navbarLightDropdownMenuLink">
+                        <small>Matriculas</small>
 
                         <li class="notifications-block border-bottom pb-2 mb-2">
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex  align-items-center" href="#">
                                 <div class="notifications-icon-wrap bg-success">
                                     <i class="notifications-icon bi-check-circle-fill"></i>
                                 </div>
 
-                                <div>
-                                    <span>Your account has been created successfuly.</span>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>Diegui - 38.534</p>
+                                            <p>Edu - 93.293</p>
+                                            <p>Fer - 126.578</p>
+                                            <p>Gaby - 119.817</p>
+                                            <p>Joaco - 119.807</p>
+                                            <p>Juancho - 119.811</p>
+                                        </div>
 
-                                    <p>12 days ago</p>
+                                        <div class="col">
+                                            <p>Julito - 87.561</p>
+                                            <p>Negro - 136.262</p>
+                                            <p>Panza - 114.566</p>
+                                            <p>Sensei - 97.189</p>
+                                            <p>Torni - 122.252</p>
+                                            <p>Vacante - 999.999</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </a>
                         </li>
 
-                        <li class="notifications-block border-bottom pb-2 mb-2">
+                        <!-- <li class="notifications-block border-bottom pb-2 mb-2">
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="notifications-icon-wrap bg-info">
                                     <i class="notifications-icon bi-folder"></i>
                                 </div>
 
                                 <div>
-                                    <span>Please check. We have sent a Daily report.</span>
+                                    <span>Edu - 93.293</span>
 
                                     <p>10 days ago</p>
                                 </div>
                             </a>
-                        </li>
+                        </li> -->
 
-                        <li class="notifications-block">
+                        <!-- <li class="notifications-block">
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="notifications-icon-wrap bg-danger">
                                     <i class="notifications-icon bi-question-circle"></i>
@@ -123,7 +129,7 @@ Bootstrap 5 Dashboard Admin Template
                                     <p>1 hour ago</p>
                                 </div>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 
@@ -182,7 +188,7 @@ Bootstrap 5 Dashboard Admin Template
                     </div>
                 </div>
 
-                <!-- <div class="dropdown px-3">
+                <div class="dropdown px-3">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <img src="images/medium-shot-happy-man-smiling.jpg" class="profile-image img-fluid" alt="">
@@ -194,32 +200,19 @@ Bootstrap 5 Dashboard Admin Template
                                     alt="">
 
                                 <div class="d-flex flex-column">
-                                    <small>Thomas</small>
-                                    <a href="#">thomas@site.com</a>
+                                    <small>Bolilla Negra</small>
+                                    <a href="#">hcdt-bolilla@gmail.com</a>
                                 </div>
                             </div>
                         </li>
 
                         <li>
-                            <a class="dropdown-item" href="profile.html">
+                            <a class="dropdown-item" href="login2.html?redirect=carga">
                                 <i class="bi-person me-2"></i>
-                                Profile
+                                Exclusivo HCDT
                             </a>
                         </li>
 
-                        <li>
-                            <a class="dropdown-item" href="setting.html">
-                                <i class="bi-gear me-2"></i>
-                                Settings
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="help-center.html">
-                                <i class="bi-question-circle me-2"></i>
-                                Help
-                            </a>
-                        </li>
 
                         <li class="border-top mt-3 pt-2 mx-4">
                             <a class="dropdown-item ms-0 me-0" href="#">
@@ -228,7 +221,7 @@ Bootstrap 5 Dashboard Admin Template
                             </a>
                         </li>
                     </ul>
-                </div> -->
+                </div>
             </div>
         </div>
     </header>
@@ -266,13 +259,6 @@ Bootstrap 5 Dashboard Admin Template
                             </a>
                         </li>
 
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="setting.html">
-                                <i class="bi-gear me-2"></i>
-                                Settings
-                            </a>
-                        </li> -->
-
                         <li class="nav-item">
                             <a class="nav-link" href="calendario25.html">
                                 <i class="bi-calendar3 me-2"></i>
@@ -297,16 +283,8 @@ Bootstrap 5 Dashboard Admin Template
                         <li class="nav-item featured-box mt-lg-3 mt-2 mb-4">
                             <img src="images/tipito.jpeg" class="img-fluid" alt=""
                                 style="width: 190px; height: 190px; vertical-align: middle">
-
-                            <!-- <a class="btn custom-btn" href="#">Upgrade</a> -->
                         </li>
 
-                        <!-- <li class="nav-item border-top mt-auto pt-2">
-                                <a class="nav-link" href="#">
-                                    <i class="bi-box-arrow-left me-2"></i>
-                                    Logout
-                                </a>
-                            </li> -->
                     </ul>
                 </div>
             </nav>
@@ -319,360 +297,63 @@ Bootstrap 5 Dashboard Admin Template
                 <div class="row my-4">
                     <div class="col-lg-12 col-12">
                         <div class="custom-block bg-white">
-                            <p class="mb-4">En esta sección se reflejará en forma dinámica la clasificación, según puntaje, para Jugador del Año.</p>
-                            <p class="mt- mb-2">(A continuación a modo de ejemplo, al finalizar la gira Sierra:)</p>
-
+                            <!-- <p class="mb-4">En esta sección se reflejará en forma dinámica la clasificación, según puntaje, para Jugador del Año.</p> -->
                             <div class="table-responsive"> 
-                                <table class="account-table table">
+                                <table class="account-table table" id="tablaAnual">
                                     <thead>
-                                            <tr>
-                                                <th scope="col">Pos</th>
+                                        <tr>
+                                            <th scope="col">Pos</th>
+                                            <th scope="col">Player</th>
+                                            <th scope="col">Puntos</th>
+                                            <th scope="col">Sábados</th>
+                                            <th scope="col">Score</th>
+                                            <th scope="col">Sierra</th>
+                                            <th scope="col">Ryder</th>
+                                            <th scope="col">Apertura</th>
+                                            <th scope="col">Clausura</th>
+                                            <th scope="col">Cariló</th>
+                                            <th scope="col">Desafío</th>
+                                        </tr>
+                                    </thead>
 
-                                                <th scope="col">Player</th>
-
-                                                <th scope="col">Puntos</th>
-
-                                                <th scope="col">Sábados</th>
-
-                                                <th scope="col">Sierra</th>
-
-                                                <th scope="col">Ryder</th>
-
-                                                <th scope="col">Apertura</th>
-                                                
-                                                <th scope="col">Sierra</th>
-
-                                                <th scope="col">Ryder</th>
-
-                                                <th scope="col">Apertura</th>
-                                                
-                                                <th scope="col">Clausura</th>
-
-                                                <th scope="col">Cariló</th>
-
-                                                <th scope="col">Desafío</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row">1</td>
-
-                                                <td scope="row">Juancho</td>
-
-                                                <td scope="row">193</td>
-
-                                                <td scope="row">160</td>
-
-                                                <td scope="row">25</td>
-
-                                                <td scope="row">8</td>
-
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td scope="row">2</td>
-
-                                                <td scope="row">Sensei</td>
-
-                                                <td scope="row">176</td>
-
-                                                <td scope="row">151</td>
-
-                                                <td scope="row">17</td>
-
-                                                <td scope="row">8</td>
-
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td scope="row">3</td>
-
-                                                <td scope="row">Panza</td>
-
-                                                <td scope="row">98</td>
-
-                                                <td scope="row">85</td>
-
-                                                <td scope="row">13</td>
-
-                                                <td scope="row">--</td>
-
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                            </tr>
-
-                                            
-                                            <tr>
-                                                <td scope="row">4</td>
-
-                                                <td scope="row">....</td>
-
-                                                <td scope="row">...</td>
-
-                                                <td scope="row">...</td>
-
-                                                <td scope="row">...</td>
-
-                                                <td scope="row">--</td>
-
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                            </tr>
-                                            
-                                            
-                                            <tr>
-                                                <td scope="row">...</td>
-
-                                                <td scope="row">....</td>
-
-                                                <td scope="row">...</td>
-
-                                                <td scope="row">...</td>
-
-                                                <td scope="row">...</td>
-
-                                                <td scope="row">--</td>
-
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td scope="row">11</td>
-
-                                                <td scope="row">Negro</td>
-
-                                                <td scope="row">8</td>
-
-                                                <td scope="row">...</td>
-
-                                                <td scope="row">...</td>
-
-                                                <td scope="row">8</td>
-
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                                <td scope="row">---</td>
-                                            </tr>
-
+                                    <tbody>
+                                        <tr></tr>
                                     </tbody>
                                 </table>
                             </div>
-
-
-
-
-                            <!-- <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center mb-0">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">Prev</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="page-item active" aria-current="page">
-                                        <a class="page-link" href="#">1</a>
-                                    </li>
-
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">2</a>
-                                    </li>
-
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">3</a>
-                                    </li>
-
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">4</a>
-                                    </li>
-
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav> -->
                         </div>
                     </div>
 
-                    <!-- <div class="col-lg-7 col-12">
-                        <div class="custom-block custom-block-balance">
-                            <small>Your Balance</small>
-
-                            <h2 class="mt-2 mb-3">$254,800</h2>
-
-                            <div class="custom-block-numbers d-flex align-items-center">
-                                <span>****</span>
-                                <span>****</span>
-                                <span>****</span>
-                                <p>2560</p>
-                            </div>
-
-                            <div class="d-flex">
-                                <div>
-                                    <small>Valid Date</small>
-                                    <p>12/2028</p>
-                                </div>
-
-                                <div class="ms-auto">
-                                    <small>Card Holder</small>
-                                    <p>Thomas</p>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <div class="custom-block custom-block-bottom d-flex flex-wrap">
-                            <div class="custom-block-bottom-item">
-                                <!-- <a href="#" class="d-flex flex-column">
-                                    <i class="custom-block-icon bi-wallet"></i>
-
-                                    <small>Top up</small>
-                                </a> -->
-                            </div>
-
-                            <div class="custom-block-bottom-item">
-                                <!-- <a href="#" class="d-flex flex-column">
-                                    <i class="custom-block-icon bi-upc-scan"></i>
-
-                                    <small>Scan & Pay</small>
-                                </a> -->
-                            </div>
-
-                            <div class="custom-block-bottom-item">
-                                <!-- <a href="#" class="d-flex flex-column">
-                                    <i class="custom-block-icon bi-send"></i>
-
-                                    <small>Send</small>
-                                </a> -->
-                            </div>
-
-                            <div class="custom-block-bottom-item">
-                                <!-- <a href="#" class="d-flex flex-column">
-                                    <i class="custom-block-icon bi-arrow-down"></i>
-
-                                    <small>Request</small>
-                                </a> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- <div class="col-lg-5 col-12">
-                        <div class="custom-block custom-block-transations">
-                            <h5 class="mb-4">Recent Transations</h5> -->
-<!-- 
-                            <div class="d-flex flex-wrap align-items-center mb-4">
-                                <div class="d-flex align-items-center">
-                                    <img src="images/profile/senior-man-white-sweater-eyeglasses.jpg"
-                                        class="profile-image img-fluid" alt="">
-
-                                    <div>
-                                        <p>
-                                            <a href="transation-detail.html">Daniel Jones</a>
-                                        </p>
-
-                                        <small class="text-muted">C2C Transfer</small>
-                                    </div>
-                                </div>
-
-                                <div class="ms-auto">
-                                    <small>05/12/2023</small>
-                                    <strong class="d-block text-danger"><span class="me-1">-</span> $250</strong>
-                                </div>
-                            </div> -->
-
-                            <!-- <div class="d-flex flex-wrap align-items-center mb-4">
-                                <div class="d-flex align-items-center">
-                                    <img src="images/profile/young-beautiful-woman-pink-warm-sweater.jpg"
-                                        class="profile-image img-fluid" alt="">
-
-                                    <div>
-                                        <p>
-                                            <a href="transation-detail.html">Public Bank</a>
-                                        </p>
-
-                                        <small class="text-muted">Mobile Reload</small>
-                                    </div>
-                                </div>
-
-                                <div class="ms-auto">
-                                    <small>22/8/2023</small>
-                                    <strong class="d-block text-success"><span class="me-1">+</span> $280</strong>
-                                </div>
-                            </div> -->
-
-                            <!-- <div class="d-flex flex-wrap align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <img src="images/profile/young-woman-with-round-glasses-yellow-sweater.jpg"
-                                        class="profile-image img-fluid" alt="">
-
-                                    <div>
-                                        <p><a href="transation-detail.html">Store</a></p>
-
-                                        <small class="text-muted">Payment Received</small>
-                                    </div>
-                                </div>
-
-                                <div class="ms-auto">
-                                    <small>22/8/2023</small>
-                                    <strong class="d-block text-success"><span class="me-1">+</span> $280</strong>
-                                </div>
-                            </div> -->
+                    <div class="custom-block custom-block-bottom d-flex flex-wrap">
+                        <div class="custom-block-bottom-item">
                         </div>
 
+                        <div class="custom-block-bottom-item">
+                        </div>
+
+                        <div class="custom-block-bottom-item">
+                        </div>
+
+                        <div class="custom-block-bottom-item">
+                        </div>
                     </div>
                 </div>
-
-                <footer class="site-footer">
-                    <div class="container">
-                        <div class="row">
-
-                            <div class="col-lg-12 col-12">
-                                <p class="copyright-text">Copyright © Mini Finance 2048
-                                    - Design: <a rel="sponsored" href="https://www.tooplate.com"
-                                        target="_blank">Tooplate</a></p>
-                            </div>
-
-                        </div>
-                    </div>
-                </footer>
             </main>
-
         </div>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12 col-12">
+                        <p class="copyright-text">Copyright © Mini Finance 2048
+                            - Design: <a rel="sponsored" href="https://www.tooplate.com"
+                                target="_blank">Tooplate</a></p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- JAVASCRIPT FILES -->
@@ -680,8 +361,8 @@ Bootstrap 5 Dashboard Admin Template
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/apexcharts.min.js"></script>
     <script src="js/custom.js"></script>
-    <script src="../js/sabados.js"></script>
-    <script src="../js/mejores6.js"></script>
+    <script src="../js/anual.js"></script>
+
 </body>
 
 </html>

@@ -72,7 +72,6 @@ Bootstrap 5 Dashboard Admin Template
                     <ul class="dropdown-menu dropdown-menu-lg-end notifications-block-wrap bg-white shadow"
                         aria-labelledby="navbarLightDropdownMenuLink">
                         <small>Matriculas</small>
-
                         <li class="notifications-block border-bottom pb-2 mb-2">
                             <a class="dropdown-item d-flex  align-items-center" href="#">
                                 <div class="notifications-icon-wrap bg-success">
@@ -102,34 +101,6 @@ Bootstrap 5 Dashboard Admin Template
                                 </div>
                             </a>
                         </li>
-
-                        <!-- <li class="notifications-block border-bottom pb-2 mb-2">
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="notifications-icon-wrap bg-info">
-                                    <i class="notifications-icon bi-folder"></i>
-                                </div>
-
-                                <div>
-                                    <span>Edu - 93.293</span>
-
-                                    <p>10 days ago</p>
-                                </div>
-                            </a>
-                        </li> -->
-
-                        <!-- <li class="notifications-block">
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="notifications-icon-wrap bg-danger">
-                                    <i class="notifications-icon bi-question-circle"></i>
-                                </div>
-
-                                <div>
-                                    <span>Account verification failed.</span>
-
-                                    <p>1 hour ago</p>
-                                </div>
-                            </a>
-                        </li> -->
                     </ul>
                 </div>
 
@@ -213,7 +184,6 @@ Bootstrap 5 Dashboard Admin Template
                             </a>
                         </li>
 
-
                         <li class="border-top mt-3 pt-2 mx-4">
                             <a class="dropdown-item ms-0 me-0" href="#">
                                 <i class="bi-box-arrow-left me-2"></i>
@@ -291,39 +261,27 @@ Bootstrap 5 Dashboard Admin Template
 
             <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
                 <div class="title-group mb-3">
-                    <h1 class="h2 mb-0">Detalle de participación</h1>
+                    <h1 class="h2 mb-0">Detalle de pelotas ganadas</h1>
                 </div>
 
                 <div class="row my-4">
                     <div class="col-lg-12 col-12">
                         <div class="custom-block custom-block-transation-detail bg-white">
-                            <div class="d-flex flex-wrap align-items-center border-bottom pb-3 mb-3">
+                            <!-- <div class="d-flex flex-wrap align-items-center border-bottom pb-3 mb-3">
                                 <div class="d-flex align-items-center">
-                                    <!-- <img src="images/profile/default.png" id="fotoDetalle" class="custom-block-profile-image img-fluid" alt="no encontró"> -->
+                                    <img src="images/profile/default.png" id="fotoDetalle" class="custom-block-profile-image img-fluid" alt="no encontró">
                                     <img src="images/profile/default.png" id="fotoDetalle" class="custom-block-profile-image img-fluid" alt="no encontró" style="object-fit: cover; object-position: top;">
-
                                     <div class="ms-lg-3">
                                         <p>Jugador
-
                                         <small id="playerName" class="text-muted"></small></p>
                                     </div>
                                 </div>
-
-                                <!-- <div class="ms-auto">
-                                    <small>Acumulado</small>
-                                    <strong class="d-block text-success"><span id="totalPuntos" class="me-1"></span></strong>
-                                </div> -->
-
-                                <!-- <div class="ms-auto">
-                                    <p><small>Puntos acumulados:</small>
-                                    <strong class="d-block text-success"><span id="totalPuntos" class="me-1"></span></strong></p>
-                                </div> -->
 
                                 <div class="ms-auto">
                                     <p>Puntos acumulados:
                                     <strong id="totalPuntos" >45</strong></p>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div>
                                 <button class="bi-arrow-left-circle-fill" onclick="goBack()" style="float: right;">Volver</button>
@@ -331,15 +289,16 @@ Bootstrap 5 Dashboard Admin Template
                             <div class="row my-4">
                                 <div class="col-lg-12 col-12">
                                     <div class="custom-block bg-white">
+
                                         <!-- <p class="mb-4">En esta sección se reflejará en forma dinámica la clasificación, según puntaje, para Jugador del Año.</p> -->
                                         <div class="table-responsive"> 
-                                            <table class="account-table table" id="tablaDetalle">
+                                            <table class="account-table table" id="tablaDetallePelotas">
                                                 <thead>
                                                     <tr>
+                                                        <th scope="col">Jugador</th>
                                                         <th scope="col">Fecha torneo</th>
-                                                        <th scope="col">Jugadores</th>
-                                                        <th scope="col">Posición</th>
-                                                        <th scope="col">Puntos</th>
+                                                        <th scope="col">Pelotas ganadas</th>
+                                                        <th scope="col">Total</th>
                                                     </tr>
                                                 </thead>
             
@@ -359,10 +318,10 @@ Bootstrap 5 Dashboard Admin Template
                     <div class="container">
                         <div class="row">
                             
-                            <div class="col-lg-12 col-12">
+                            <!-- <div class="col-lg-12 col-12">
                                 <p class="copyright-text">Copyright © Mini Finance 2048 
                                 - Design: <a rel="sponsored" href="https://www.tooplate.com" target="_blank">Tooplate</a></p>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
@@ -376,7 +335,7 @@ Bootstrap 5 Dashboard Admin Template
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/apexcharts.min.js"></script>
     <script src="js/custom.js"></script>
-    <script src="../js/anual-detalle.js"></script>
+    <!-- <script src="../js/anual-detalle.js"></script> -->
 
     <script>
         function goBack() {
@@ -384,6 +343,123 @@ Bootstrap 5 Dashboard Admin Template
         }
     </script>
 
+
+<script>
+    // Recupera la matriz con total de pelotas
+    const matrizRecuperada = JSON.parse(sessionStorage.getItem('miMatriz'));
+    console.table (matrizRecuperada);
+
+    async function main() {
+        fechas = await leerDatosFechas();
+
+        const resultados = await leerDatosNetos();
+        let año = "2025"; 
+
+        if (año === "2025") {
+            players2 = resultados.filter((resultado) => resultado.fec > 31);
+        } else {
+            players2 = resultados.filter((resultado) => resultado.fec < 32);
+        }
+
+        pelotasGanadas = players2.filter((player => player.pg > 0))
+
+        }
+
+main().then (() => { 
+    pelotasGanadas.forEach (item => {
+        const fechaEncontrada = fechas.find(fecha => fecha.fec === item.fec)
+        item.textoFecha = fechaEncontrada.textoFecha;
+    })
+
+    console.table (pelotasGanadas);
+
+    let tablaAnual = document.getElementById("tablaDetallePelotas");
+    let tbody = tablaAnual.querySelector("tbody"); // Selecciona el tbody de la tabla
+
+    matrizRecuperada.forEach (jugador => {
+        
+        if (jugador[1] > 0) {
+
+        const filaTitulo = tbody.insertRow();
+        filaTitulo.classList.add('titulo-jugador'); // Clase para estilizar la fila de título
+
+        const celdaFoto = filaTitulo.insertCell();
+        const img = document.createElement('img');
+        
+        img.src = `images/profile/${jugador[0]}.png`; // Cambia la ruta a la de tus imágenes
+        img.alt = `Foto de ${jugador[0]}`;
+        img.classList.add('custom-block-profile-image', 'img-fluid'); // Agrega múltiples clases correctamente
+        img.style.objectFit = "cover"; // Establece object-fit usando la propiedad style
+        img.style.objectPosition = "top"; // Establece object-position usando la propiedad style
+
+        celdaFoto.appendChild(img);
+
+        const celdaNombre = filaTitulo.insertCell();
+        celdaNombre.innerHTML = `<strong style="font-size: larger;">${jugador[0]}</strong>`;
+        celdaNombre.colSpan = 2; // Combina las columnas para el nombre y el total
+
+        const celdaTotal = filaTitulo.insertCell();
+        celdaTotal.innerHTML = `<strong style="font-size: larger;">${jugador[1]}</strong>`;
+        
+        pelotasGanadas.forEach (item => {
+            if (item.play == jugador[0]){
+            // Crea una fila en la tabla
+                const fila = tbody.insertRow();
+                const celdaJugador = fila.insertCell();
+                celdaJugador.textContent = ' ';
+
+                const celdaFecha = fila.insertCell();
+                celdaFecha.textContent = item.textoFecha;
+
+                const celdaPelotas = fila.insertCell();
+                celdaPelotas.textContent = item.pg;
+            }
+        })
+}})
+})
+
+
+async function leerDatosFechas() {
+  try {
+    const response = await fetch(`/leerDatosFechas`);
+    if (response.ok) {
+      const fechas = await response.json();
+      return fechas; // Devuelve los datos obtenidos si la respuesta es exitosa
+    } else {
+      console.error(
+        "Error en la respuesta:",
+        response.status,
+        response.statusText
+      );
+      return null;
+    }
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    return null;
+  }
+}
+
+async function leerDatosNetos() {
+  try {
+    const response = await fetch(`/leerDatosNetos`);
+    if (response.ok) {
+                const resultados = await response.json();
+                return resultados; // Devuelve los datos obtenidos si la respuesta es exitosa
+    } else {
+      console.error(
+        "Error en la respuesta:",
+        response.status,
+        response.statusText
+      );
+      return null;
+    }
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    return null;
+  }
+}
+
+</script>
 </body>
 
 </html>

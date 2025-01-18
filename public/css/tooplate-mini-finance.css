@@ -228,7 +228,7 @@ strong {
   border-radius: var(--border-radius-small);
   width: 30px;
   height: 30px;
-  object-fit: cover;
+  object-fit:cover;
 }
 
 .custom-block-profile-image-wrap {
@@ -1308,3 +1308,10 @@ td {
       background-color: #f05670;
 
     }
+
+
+    .bi-arrow-left-circle-fill::before {
+      content: "\f129"; /* Código del icono para "arrow-left-circle-fill" */
+      font-family: 'Bootstrap Icons'; /* Asegúrate de que Bootstrap Icons esté cargado */
+      margin-right: 5px; /* Espaciado entre el icono y el texto */
+  }

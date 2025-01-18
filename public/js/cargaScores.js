@@ -43,11 +43,13 @@ function generarTablaJugadores() {
     let celdaNeto = fila.insertCell(1);
     // let celdaPelotas = fila.insertCell(2);
     let celdaOrden = fila.insertCell(2);
+    let celdaNpt = fila.insertCell(3);
 
     celdaNombre.textContent = nombre;
     celdaNeto.innerHTML = `<input type="number" name="neto" min="0" style="width: 4ch;">`;
     // celdaPelotas.innerHTML = `<input type="number" name="pelotas" min="0" style="width: 3ch;">`;
     celdaOrden.innerHTML = `<input type="number" name="orden" min="0" style="width: 2ch;">`;
+    celdaNpt.innerHTML = `<input type="number" name="orden" min="0" max="1" style="width: 2ch;">`;
   });
 }
 
@@ -78,7 +80,6 @@ async function buscaUltimaFecha() {
 /*---------------------------------------
   BUSCA ULTIMA FECHA               
 -----------------------------------------*/
-
 buscaUltimaFecha().then((ultimaFecha) => {
   if (ultimaFecha) {
     document.getElementById("ultFecha").value = ultimaFecha.textoFecha;
@@ -184,16 +185,18 @@ function procesarDatos() {
     return;
   }
 
-  const pelJuego = document.getElementById("pelJuego");
-  ctddPelotas = Number(pelJuego.value.trim());
-  if (ctddPelotas == 0) {
-    ctddPelotas = ctddJugadores;
-  }
-  if (ctddPelotas < ctddJugadores) {
-    alert("No puede haber menos pelotas que jugadores");
-    document.getElementById("primeraTabla").style.display = "block";
-    return;
-  }
+  const ctddPelotas = ctddJugadores;
+  alert (`cantidad de pelotas ${ctddPelotas}`)
+  // const pelJuego = document.getElementById("pelJuego");
+  // ctddPelotas = Number(pelJuego.value.trim());
+  // if (ctddPelotas == 0) {
+  //   ctddPelotas = ctddJugadores;
+  // }
+  // if (ctddPelotas < ctddJugadores) {
+  //   alert("No puede haber menos pelotas que jugadores");
+  //   document.getElementById("primeraTabla").style.display = "block";
+  //   return;
+  // }
 
   // Limpiar la tabla de resultados
   tablaResultados.innerHTML = "";
@@ -214,6 +217,8 @@ function procesarDatos() {
     // console.log (`valor de pelotas: ${pelotas}`)
     let orden = fila.cells[2].getElementsByTagName("input")[0].value;
     console.log(`valor de orden: ${orden}`);
+    let npt = fila.cells[3].getElementsByTagName("input")[0].value;
+    console.log(`no presento tarjeta:  ${npt}`);
 
     // Agregar los datos al array si se ha completado al menos un campo
     // if (neto || pelotas || orden) {
@@ -224,12 +229,13 @@ function procesarDatos() {
       neto: neto || "-",
       // pelotas: pelotas || '-',
       orden: orden || "-",
+      npt: npt || "-"
     });
 
-    if (neto) {
+    if (neto || npt) {
       sumaJugadores++;
     }
-    // }
+
   }
 
   // Ordenar los datos por el valor de "Neto" y luego por "Orden"
@@ -291,8 +297,8 @@ function procesarDatos() {
       filaResultado.insertCell(1).textContent = jugador.neto;
       filaResultado.insertCell(2).textContent = jugador.orden;
       filaResultado.insertCell(3).textContent = jugador.pelotas;
-      // filaResultado.insertCell(4).textContent = jugador.pos;
       filaResultado.insertCell(4).textContent = jugador.anual;
+      filaResultado.insertCell(5).textContent = jugador.npt;
       indice++;
     });
   }
@@ -450,8 +456,10 @@ function guardarResultados() {
     let pg = jugador.pelotas;
     let orden = jugador.orden;
     let anual = jugador.anual;
+    let npt = jugador.npt;
+    npt = (npt == 1) ? 1 : 0; // Asigna 1 si npt es = a 1, sino asigna 0.
 
-    const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual };
+    const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual, npt };
     grabarNuevoNeto(datosNetos);
 
     indice++;
@@ -469,7 +477,7 @@ function guardarResultados() {
 // Función para escribir los detalles de movimientos en la tabla MySQL
 async function grabarNuevoNeto(datosNetos) {
   // Extraer los valores del objeto datos
-  const { fecnueva, play, neto, pos, pg, orden, anual } = datosNetos;
+  const { fecnueva, play, neto, pos, pg, orden, anual, npt } = datosNetos;
 
   const body = {
     fecnueva,
@@ -479,6 +487,7 @@ async function grabarNuevoNeto(datosNetos) {
     pg,
     orden,
     anual,
+    npt,
   };
 
   try {
