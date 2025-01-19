@@ -286,18 +286,18 @@ Bootstrap 5 Dashboard Admin Template
                             <div>
                                 <button class="bi-arrow-left-circle-fill" onclick="goBack()" style="float: right;">Volver</button>
                             </div>
+
                             <div class="row my-4">
                                 <div class="col-lg-12 col-12">
                                     <div class="custom-block bg-white">
 
-                                        <!-- <p class="mb-4">En esta sección se reflejará en forma dinámica la clasificación, según puntaje, para Jugador del Año.</p> -->
                                         <div class="table-responsive"> 
                                             <table class="account-table table" id="tablaDetallePelotas">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">Jugador</th>
-                                                        <th scope="col">Fecha torneo</th>
-                                                        <th scope="col">Pelotas ganadas</th>
+                                                        <!-- <th scope="col">Fecha torneo</th>
+                                                        <th scope="col">Pelotas ganadas</th> -->
                                                         <th scope="col">Total</th>
                                                     </tr>
                                                 </thead>
@@ -365,6 +365,10 @@ Bootstrap 5 Dashboard Admin Template
 
         }
 
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// ::::::::::::::::::  main then
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 main().then (() => { 
     pelotasGanadas.forEach (item => {
         const fechaEncontrada = fechas.find(fecha => fecha.fec === item.fec)
@@ -379,6 +383,9 @@ main().then (() => {
     matrizRecuperada.forEach (jugador => {
         
         if (jugador[1] > 0) {
+
+        const lineaVacia = tbody.insertRow();
+        lineaVacia.innerHTML = ".";
 
         const filaTitulo = tbody.insertRow();
         filaTitulo.classList.add('titulo-jugador'); // Clase para estilizar la fila de título
@@ -395,18 +402,18 @@ main().then (() => {
         celdaFoto.appendChild(img);
 
         const celdaNombre = filaTitulo.insertCell();
-        celdaNombre.innerHTML = `<strong style="font-size: larger;">${jugador[0]}</strong>`;
+        celdaNombre.innerHTML = `<strong style="font-size: larger;">${jugador[0]} : ${jugador[1]} </strong>`;
         celdaNombre.colSpan = 2; // Combina las columnas para el nombre y el total
 
-        const celdaTotal = filaTitulo.insertCell();
-        celdaTotal.innerHTML = `<strong style="font-size: larger;">${jugador[1]}</strong>`;
+        // const celdaTotal = filaTitulo.insertCell();
+        // celdaTotal.innerHTML = `<strong style="font-size: larger;">${jugador[1]}</strong>`;
         
         pelotasGanadas.forEach (item => {
             if (item.play == jugador[0]){
             // Crea una fila en la tabla
                 const fila = tbody.insertRow();
-                const celdaJugador = fila.insertCell();
-                celdaJugador.textContent = ' ';
+                // const celdaJugador = fila.insertCell();
+                // celdaJugador.textContent = ' ';
 
                 const celdaFecha = fila.insertCell();
                 celdaFecha.textContent = item.textoFecha;
@@ -418,6 +425,9 @@ main().then (() => {
 }})
 })
 
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// ::::::::::::::::::  leer datos Fechas
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 async function leerDatosFechas() {
   try {
@@ -438,6 +448,10 @@ async function leerDatosFechas() {
     return null;
   }
 }
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// ::::::::::::::::::  leer datos Netos
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 async function leerDatosNetos() {
   try {
