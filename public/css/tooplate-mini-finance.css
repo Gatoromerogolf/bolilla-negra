@@ -1315,3 +1315,8 @@ td {
       font-family: 'Bootstrap Icons'; /* Asegúrate de que Bootstrap Icons esté cargado */
       margin-right: 5px; /* Espaciado entre el icono y el texto */
   }
+
+  .fila-separadora {
+    height: 10px; /* Ajusta la altura según necesites */
+    background-color: #f1f1f1; /* Color de fondo para resaltar el separador */
+}

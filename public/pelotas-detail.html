@@ -322,12 +322,6 @@ Bootstrap 5 Dashboard Admin Template
                 <footer class="site-footer">
                     <div class="container">
                         <div class="row">
-                            
-                            <!-- <div class="col-lg-12 col-12">
-                                <p class="copyright-text">Copyright © Mini Finance 2048 
-                                - Design: <a rel="sponsored" href="https://www.tooplate.com" target="_blank">Tooplate</a></p>
-                            </div> -->
-
                         </div>
                     </div>
                 </footer>
@@ -389,8 +383,12 @@ main().then (() => {
         
         if (jugador[1] > 0) {
 
-        const lineaVacia = tbody.insertRow();
-        lineaVacia.innerHTML = ".";
+        const lineaSeparadora = tbody.insertRow();
+        lineaSeparadora.classList.add('fila-separadora'); // Clase para la fila separadora
+
+        const celdaSeparadora = lineaSeparadora.insertCell();
+        celdaSeparadora.colSpan = 2; // Extiende la celda a lo largo de las columnas
+        celdaSeparadora.innerHTML = '&nbsp;'; // Añade un espacio no rompible para que la fila tome altura
 
         const filaTitulo = tbody.insertRow();
         filaTitulo.classList.add('titulo-jugador'); // Clase para estilizar la fila de título
