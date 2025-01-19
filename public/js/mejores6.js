@@ -89,7 +89,6 @@ main().then(() => { // Ejecuta la función principal
     }
     // console.table (playersData)
 
-
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 //:::::::::::::: agrega suma netos y promedio
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -120,8 +119,6 @@ main().then(() => { // Ejecuta la función principal
 
     }
 
-    // console.log ("players data antes del sort")
-    // console.table (playersData)
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 //:::::::::::::: ordena por promedio ascendente
@@ -132,134 +129,7 @@ main().then(() => { // Ejecuta la función principal
             playersData[key].sort((a, b) => a.promedios - b.promedios);
         }
     }
-
 // 
-
-// // Recorre los datos de los jugadores
-// for (const nombreGrupo in playersData) {
-//     if (playersData.hasOwnProperty(nombreGrupo)) {
-//         // Crea una nueva fila en la tabla
-//         let nuevaFila = document.createElement("tr");
-
-//         // Agrega el nombre del grupo como la primera celda
-//         let celdaPlayer = document.createElement("td");
-//         celdaPlayer.textContent = nombreGrupo;
-//         nuevaFila.appendChild(celdaPlayer);
-
-//         // Agrega la celda de suma de puntos
-//         let sumaPuntos = document.createElement("td");
-//         sumaPuntos.textContent = playersData[nombreGrupo].sumaNetos;
-//         nuevaFila.appendChild(sumaPuntos);
-
-//         // Agrega la celda de promedios
-//         let promedios = document.createElement("td");
-//         promedios.textContent = playersData[nombreGrupo].promedios;
-//         nuevaFila.appendChild(promedios);
-
-//         // Agrega las celdas adicionales (suponiendo que hay un array de datos adicionales)
-//         // playersData[nombreGrupo].data.forEach(function(item) {
-//         //     let neto = document.createElement("td");
-//         //     neto.textContent = item.neto;
-//         //     nuevaFila.appendChild(neto);
-//         // });
-
-//         for (j = 3; j < playersData.length; j++) {
-//         let neto = document.createElement("td");
-//         neto.textContent = playersData[nombreGrupo][j].neto;
-//         nuevaFila.appendChild(neto);
-//         }
-
-//         // Añade la nueva fila al tbody
-//         tbody.appendChild(nuevaFila);
-//     }
-// }
-
-
-
-
-
-
-
-
-
-    // // Selecciona el tbody donde se agregarán las filas
-    // let tbody = document.querySelector("#tablaSeis2 tbody");
-    // // let lineaDatos = document.getElementById("lineaScore2");
-
-    // for (const nombreGrupo in playersData) {
-    //     if (playersData.hasOwnProperty(nombreGrupo)) {
-    //         const longitudGrupo = playersData[nombreGrupo].length;
-    //         // Crea una nueva fila (línea de datos) en la tabla
-    //         // const lineaDatos = tablaSeis.insertRow();
-    //         let nuevaFila = document.createElement("tr");
-
-    //         // Agrega el nombre del grupo como la primera celda
-    //         let celdaPlayer = document.createElement("td");
-    //         // const nombreCelda = lineaDatos.insertCell(0);
-    //         celdaPlayer.textContent = nombreGrupo;
-    //         // nombreCelda.textContent = "sensei";
-    //         nuevaFila.appendChild(celdaPlayer);
-
-    //         let sumaPuntos = document.createElement("td");
-    //         sumaPuntos.textContent = playersData[nombreGrupo].sumaNetos;
-    //         nuevaFila.appendChild(sumaPuntos);
-
-    //         let promedios = document.createElement("td");
-    //         promedios.textContent = playersData[nombreGrupo].promedios;
-    //         nuevaFila.appendChild(promedios);
-
-    //         for (j = 3; j < playersData.length; j++) {
-    //                 neto = document.createElement("td");
-    //                 neto.textContent = playersData[nombreGrupo][indice].neto;
-    //                 nuevaFila.appendChild(neto);
-    //         }
-
-            // for (j = 32; j < 36; j++) {
-            //     let posicion = j - 32;
-            //     let casillero = j + 2;
-            //     indice = posicionValor(playersData[nombreGrupo], j);
-            //     if (indice === -1) {
-            //         // let vacio = lineaDatos.insertCell(posicion);
-            //         let vacio = document.createElement("td");
-            //         vacio.textContent = "--";
-            //     } else {
-            //         // neto = lineaDatos.insertCell(posicion);
-            //         neto = document.createElement("td");
-            //         neto.textContent = playersData[nombreGrupo][indice].neto;
-            //     }
-            // }
-
-            // function tieneValor(objetos, valorBuscado) {
-            //     return objetos.some((objeto) => objeto.fec === valorBuscado);
-            // }
-
-            // for (j = 1; j < 18; j++) {
-            //     let casillero = j + 2;
-            //     indice = posicionValor(playersData[nombreGrupo], j);
-            //     if (indice === -1) {
-            //         let vacio = lineaDatos.insertCell(casillero);
-            //         vacio.textContent = "--";
-            //     } else {
-            //         neto = lineaDatos.insertCell(casillero);
-            //         neto.textContent = playersData[nombreGrupo][indice].neto;
-            //     }
-            // }
-
-            // hay que buscar en que fechas tiene netos... 1, 2, 3 etc.
-            // se asocia que 1 es la primera fecha (3 febrero, 2 10 febrero etc.)
-            // Como se quiere llenar toda la matriz, el valor buscado es j que indicaria primera, segunda, tercera etc. fecha.... Se busca entonces si player tiene score en la fecha j
-            // ubica la posición en que se encuentra el valor buscado
-
-            // function posicionValor(objetos, valorBuscado) {
-            //     return objetos.findIndex((objeto) => objeto.fec === valorBuscado);
-            // }
-
-            // esta funcion pregunta si existe el valor buscado ( no la usamos )
-            // function tieneValor(objetos, valorBuscado) {
-            //     return objetos.some((objeto) => objeto.fec === valorBuscado);
-            // }
-    //     }
-    // }
 
     i = 0;
     j = 0;
@@ -274,13 +144,6 @@ main().then(() => { // Ejecuta la función principal
 
     i = 0;
     let col = 0;
-    // for (const elemento in playersData) {
-    //     for (j = 0; j < playersData[elemento].length; j++) {
-    //         col = playersData[elemento][j].fec + 3 - 31;
-    //         matriz2[i][col] = playersData[elemento][j].neto;
-    //     }
-    //     i++;
-    // }
 
     for (const elemento in playersData) {
         // Asegura que haya una fila en la matriz para este índice
@@ -299,16 +162,6 @@ main().then(() => { // Ejecuta la función principal
         }
         i++;
     }
-
-
-
-
-
-
-
-
-
-
 
 
     // console.log ("sale depues de algo")
