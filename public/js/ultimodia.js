@@ -40,22 +40,31 @@ main().then (() => { // Ejecuta la función principal
   console.log("Registros filtrados:");
   filteredPlayers.forEach(player => console.log(player));
 
+  // filteredPlayers.sort((a, b) => {
+  //     // Mueve los elementos con neto igual a 0 al final
+  //     if (a.neto === 0) return 1;
+  //     if (b.neto === 0) return -1;
+
+  //     // Ordena primero por neto de forma ascendente
+  //     if (a.neto < b.neto) return -1;
+  //     if (a.neto > b.neto) return 1;
+
+  //     // Si el neto es el mismo, ordena por or de forma ascendente
+  //     if (a.or < b.or) return -1;
+  //     if (a.or > b.or) return 1;
+
+  //     // Si tanto neto como or son iguales, mantiene el orden original
+  //     return 0;
+  // });
+
   filteredPlayers.sort((a, b) => {
-      // Mueve los elementos con neto igual a 0 al final
-      if (a.neto === 0) return 1;
-      if (b.neto === 0) return -1;
+    // Ordena primero por pos de forma ascendente
+    if (a.pos < b.pos) return -1;
+    if (a.pos > b.pos) return 1;
 
-      // Ordena primero por neto de forma ascendente
-      if (a.neto < b.neto) return -1;
-      if (a.neto > b.neto) return 1;
-
-      // Si el neto es el mismo, ordena por or de forma ascendente
-      if (a.or < b.or) return -1;
-      if (a.or > b.or) return 1;
-
-      // Si tanto neto como or son iguales, mantiene el orden original
-      return 0;
-  });
+    // Si los valores de pos son iguales, mantiene el orden original
+    return 0;
+});
 
   console.log ("filtered " + filteredPlayers )
   const tabResultado = document.getElementById("resultadoFecha").getElementsByTagName("tbody")[0];
