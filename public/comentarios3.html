@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios</title>
+    <style>
+        /* Estilos similares a los anteriores */
+    </style>
+</head>
+<body>
+    <div class="comments-container">
+        <h2>Comentarios</h2>
+        <div id="comments-list"></div>
+        <textarea id="new-comment" rows="4" placeholder="Escribe un comentario..."></textarea><br>
+        <button id="submit-comment">Publicar</button>
+        <button id="show-more" class="hidden">Ver más</button>
+    </div>
+
+    <script src="manageComments.js"></script>
+</body>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const commentsList = document.getElementById('comments-list');
+    const submitCommentButton = document.getElementById('submit-comment');
+    let displayedComments = 3;
+
+    async function loadComments() {
+        try {
+            const response = await fetch('/api/comments'); // Ruta para obtener comentarios desde el servidor
+            const comments = await response.json();
+
+            commentsList.innerHTML = '';
+            comments.slice(0, displayedComments).forEach(comment => {
+                const commentElement = document.createElement('div');
+                commentElement.className = "comment";
+                commentElement.innerHTML = `
+                    <div class="comment-meta">
+                        <strong>${comment.user}</strong> - ${new Date(comment.date).toLocaleString()}
+                    </div>
+                    <p>${comment.text}</p>
+                    ${comment.user === currentUser ? `<button onclick="deleteComment(${comment.id})">Eliminar</button>` : ""}
+                `;
+                commentsList.appendChild(commentElement);
+            });
+
+            document.getElementById('show-more').classList.toggle('hidden', displayedComments >= comments.length);
+        } catch (error) {
+            console.error('Error loading comments:', error);
+        }
+    }
+
+    submitCommentButton.addEventListener("click", async () => {
+        const newCommentText = document.getElementById('new-comment').value;
+        if (newCommentText) {
+            try {
+                await fetch('/api/comments', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: newCommentText })
+                });
+                loadComments();
+            } catch (error) {
+                console.error('Error posting comment:', error);
+            }
+        }
+    });
+
+    window.deleteComment = async (id) => {
+        try {
+            await fetch(`/api/comments/${id}`, { method: 'DELETE' });
+            loadComments();
+        } catch (error) {
+            console.error('Error deleting comment:', error);
+        }
+    };
+
+    loadComments();
+});
+
+
+</script>
+</html>
