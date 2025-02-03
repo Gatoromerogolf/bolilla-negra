@@ -156,7 +156,7 @@ main().then (() => { // Ejecuta la función principal
           imgSrc = "images/profile/Negro.png";
           break;
       case "Torni":
-          imgSrc = "images/profile/torni.png";
+          imgSrc = "images/profile/Torni.png";
           break;
       case "Gaby":
           imgSrc = "images/profile/Gaby.png";
