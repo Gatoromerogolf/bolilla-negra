@@ -165,13 +165,19 @@ main().then(() => { // Ejecuta la función principal
         matriz.push(filaMatriz);
     });
 
-    // Llamada al método sort() con la función de comparación
+    console.log("Matriz antes de ordenar:", JSON.stringify(matriz));
     matriz.sort(compararPorColumna9);
+
+    console.log("Matriz después de ordenar:", JSON.stringify(matriz));
+    // Llamada al método sort() con la función de comparación
 
     // Función de comparación para ordenar por la columna 9 (índice 8)
     function compararPorColumna9(filaA, filaB) {
-        const valorA = parseFloat(filaA[8]);
-        const valorB = parseFloat(filaB[8]);
+        // const valorA = parseFloat(filaA[8]);
+        // const valorB = parseFloat(filaB[8]);
+        // return valorA - valorB;
+        const valorA = parseFloat(filaA[8].replace(",", ".")) || 0; 
+        const valorB = parseFloat(filaB[8].replace(",", ".")) || 0;
         return valorA - valorB;
     }
 
