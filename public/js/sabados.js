@@ -173,11 +173,11 @@ main().then(() => { // Ejecuta la función principal
 
     // Función de comparación para ordenar por la columna 9 (índice 8)
     function compararPorColumna9(filaA, filaB) {
-        // const valorA = parseFloat(filaA[8]);
-        // const valorB = parseFloat(filaB[8]);
+        const valorA = parseFloat(filaA[8]);
+        const valorB = parseFloat(filaB[8]);
         // return valorA - valorB;
-        const valorA = parseFloat(filaA[8].replace(",", ".")) || 0; 
-        const valorB = parseFloat(filaB[8].replace(",", ".")) || 0;
+        // const valorA = parseFloat(filaA[8].replace(",", ".")) || 0; 
+        // const valorB = parseFloat(filaB[8].replace(",", ".")) || 0;
         return valorA - valorB;
     }
 
