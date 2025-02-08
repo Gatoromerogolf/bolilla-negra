@@ -186,6 +186,7 @@ main().then(() => { // Ejecuta la función principal
                         matriz2[i][j] = "--";
                     }
                     const celdagral = lineaDatos2.insertCell(-1);
+                    celdagral.style.width = "10px";
                     celdagral.textContent = matriz2[i][j];
                     if (matriz2[i][j] == "--") {
                         celdagral.style.backgroundColor = "white";
