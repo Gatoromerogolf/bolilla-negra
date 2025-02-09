@@ -408,11 +408,19 @@ strong {
   padding: 58px 0 0;
 }
 
-.sidebar-sticky {
-  height: calc(100vh - 58px);
+/* .sidebar-sticky {
+
+  height: auto !important;
+  max-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
+} */
+
+.sidebar-sticky {
+  height: 100vh; /* Asegura que ocupa toda la pantalla */
+  overflow-y: auto; /* Permite desplazamiento si es necesario */
+  overflow-x: hidden; /* Evita el desplazamiento horizontal */
 }
 
 .logo-image {
@@ -488,8 +496,22 @@ strong {
   left: auto;
 }
 
+#sidebarMenu {
+  /* overflow-y: auto !important; */
+  max-height: 100vh; */
+  position: fixed; /* Fija el menú en su posición */
+  width: 250px; /*Ajusta el ancho según necesites*/
+  /*height: 100vh; /* Que ocupe toda la pantalla */
+  /*overflow-y: auto; /* Permite el desplazamiento */
+  /*z-index: 1020; /* Asegura que quede por encima de otros elementos */
+
+
+}
+
+
 #sidebarMenu .nav {
   flex-wrap: inherit;
+  padding-top: 20px; /* Ajusta este valor según necesites */
 }
 
 #sidebarMenu .nav-link {
