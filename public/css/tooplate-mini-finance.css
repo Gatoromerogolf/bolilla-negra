@@ -1342,3 +1342,17 @@ td {
     height: 10px; /* Ajusta la altura según necesites */
     background-color: #f1f1f1; /* Color de fondo para resaltar el separador */
 }
+
+#hoyoNegro {
+  background-color: black !important;
+  color: white !important;
+  border-collapse: collapse;
+}
+
+#hoyoNegro th, #hoyoNegro td {
+  background-color: black !important; /* Fondo negro para todas las celdas */
+  color: white !important; /* Texto blanco */
+  border: 1px solid white; /* Bordes blancos para mejor visibilidad */
+  text-align: center;
+  padding: 8px;
+}

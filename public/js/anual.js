@@ -63,7 +63,9 @@ main().then(() => {
     const ganadoresScore = localStorage.getItem('ganadoresScore');
     if (ganadoresScore) {
         const matrizGanadoresScore = JSON.parse(ganadoresScore);
-        console.log(matrizGanadoresScore); // [ ["player1", 10], ["player2", 15], ["player3", 20] ]
+        console.log(`matriz ganadores score ${matrizGanadoresScore}`); // [ ["player1", 10], ["player2", 15], ["player3", 20] ]
+        for (let i = 0; i < 12; i++) { // borrra los acumuladores
+            matrizValores[i][4] = 0;}
         matrizGanadoresScore.forEach (ganador => {
             const player = ganador [0];
             const puntos = parseFloat(ganador [1]); 
@@ -72,7 +74,6 @@ main().then(() => {
                 if (matrizValores[i][1] == player) {
                     matrizValores[i][4] = (parseFloat(matrizValores[i][4]) || 0) + puntos;
                     }
-                    else {matrizValores[i][4] = 0}
             }
         })
     }
