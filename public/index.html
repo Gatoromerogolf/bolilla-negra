@@ -322,7 +322,7 @@ Bootstrap 5 Dashboard Admin Template
                     </div>
 
                     <div class="col-lg-5 col-12">
-                        <div class="custom-block custom-block-transations">
+                        <div class="custom-block custom-block-transations"> 
                             <center>
                                 <h4 class="mb-4">Ultimo torneo disputado</h4>
                                 <div>
@@ -371,26 +371,45 @@ Bootstrap 5 Dashboard Admin Template
 
                     <div class="col-lg-5 col-12"> -->
                         <!-- <div class="col-lg-4 col-12"> -->
-                            <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
-                                <h5 class="mb-3">Mejor score del mes</h5>
-                                <table id="tablaMejorScore">
-                                    <thead>
-                                        <tr>
-                                            <th>Mes</th>
-                                            <th>Dia</th>
-                                            <th>Score</th>
-                                            <th>Player</th>
-                                            <th>Jugad</th>
-                                            <th>Puntos</th>
-                                        </tr>
-                                    </thead>                                    
-                                    <tbody id="tbodyScore">
-                                        <tr></tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <h5 class="mb-3">Mejor score del mes</h5>
+                            <table id="tablaMejorScore">
+                                <thead>
+                                    <tr>
+                                        <th>Mes</th>
+                                        <th>Dia</th>
+                                        <th>Score</th>
+                                        <th>Player</th>
+                                        <th>Jugad</th>
+                                        <th>Puntos</th>
+                                    </tr>
+                                </thead>                                    
+                                <tbody id="tbodyScore">
+                                    <tr></tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <!-- </div> -->
 
+                            <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                                <h5 class="mb-3">Pelotas Ganadas</h5>
+                                <p class="mb-2">El jugador con la mayor cantidad de pelotas ganadas al día de
+                                    la fecha:</p>
+                                <div class="custom-block-profile-image-wrap mb-3">
+                                    <img id="imagenDinamica" src="images/profile/marco-tiger.png"
+                                        class="custom-block-profile-image img-fluid" alt="">
+                                </div>
+                                <p>Nuestro compañero <span id="pelotudo">...</span> ha acumulado la cantidad de
+                                    <span id="pelotas" class="centrado" style="font-size: 40px;">...</span> pelotas ganadas.
+                                    <!-- <button id="detallePelotas">Ver detalle</button> -->
+                                </p>
+                                <div class="border-top pt-4 mt-4 text-center">
+                                    <a class="btn custom-btn" href="pelotas-detail.html">
+                                        Ver detalles
+                                        <i class="bi-arrow-up-right-circle-fill ms-2"></i>
+                                    </a>
+                                </div>
+                            </div>
                     </div>
                 </div>
 
@@ -417,19 +436,18 @@ Bootstrap 5 Dashboard Admin Template
                         </div>
                     </div>
 
-                    <!-- <div class="col-lg-4 col-12"> -->
-                    <div class="col-lg-4 col-12">
+                    <!-- <div class="col-lg-4 col-12">
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
                             <h5 class="mb-3">El 1 de Grillo mata Birdie</h5>
                             <p class="mb-2">Los Padrinos de Campo Grande 2025</p>
                             <table>
                                 <tr>
                                     <th>#</th>
-                                    <th>Jugador</th>
+                                    <th>Player</th>
                                     <th>Fecha</th>
                                     <th></th>
                                     <th>#</th>
-                                    <th>Jugador</th>
+                                    <th>Player</th>
                                     <th>Fecha</th>
 
                                 </tr>
@@ -516,13 +534,12 @@ Bootstrap 5 Dashboard Admin Template
                                 </tr>
                             </table>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-lg-4 col-12">
+                    <!-- <div class="col-lg-4 col-12">
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
                             <h5 class="mb-3">El hoyo negro....</h5>
-                            <p>Dedicado al que peor haya jugado un hoyo.</p>
-                            <p class="mb-2">Se debe superar una cantidad mínima de golpes, según el handicap.</p>
+                            <p class="mb-2">El que más golpes hizo en un hoyo, según su handicap.</p>
                             <table>
                                 <tr>
                                     <th>HDCP</th>
@@ -645,13 +662,250 @@ Bootstrap 5 Dashboard Admin Template
                                 </tr>
                             </table>
                         </div>
+                    </div> -->
+
+                    <div class="col-lg-4 col-12">
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <h5 class="mb-3">Birdies y Negros</h5>
+                            <p class="mb-2">Una de cal y una de arena.</p>
+                            <table>
+                                <colgroup>
+                                    <col>
+                                    <col>
+                                    <col style="background-color: rgb(250, 250, 32)" ;>
+                                    <col>
+                                    <col>
+                                    <col style="background-color: black" ;>
+                                    <col>
+                                </colgroup>
+                                <tr>
+                                    <th rowspan="2">#</th>
+                                    <th colspan="2">Birdie</th>
+                                    <th colspan="4">Hoyo negro</th>
+                                </tr>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Player</th>
+                                    <th>Date</th>
+                                    <th>Player</th>
+                                    <th>Score</th>
+                                    <th>Par</th>
+                                </tr>
+
+                                <tr>
+                                    <td>1</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>2</td>
+                                    <td>01-02</td>
+                                    <td>Torni</td>
+                                    <td>15-03</td>
+                                    <td>Sensei</td>
+                                    <td style="background-color: black; color: white">16</td>
+                                    <td>4</td>
+                                </tr>
+
+                                <tr>
+                                    <td>3</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>15-03</td>
+                                    <td>Negro</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>5</td>
+                                    <td>15-03</td>
+                                    <td>Torni</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>6</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>01-02</td>
+                                    <td>Torni</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>8</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>9</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>11</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>12</td>
+                                    <td>15-03</td>
+                                    <td>Negro</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>14</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>15</td>
+                                    <td>15-03</td>
+                                    <td>Torni</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>16</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>17</td>
+                                    <td>08.02</td>
+                                    <td>Sensei</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>18</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                                                
+                            </table>
+                            
+                            <p class="mt-2 mb-3">Para el hoyo negro se computa quien haya superado una cantidad mínima de golpes, según su handicap y hoyo jugado.</p>
+                            <table>
+                                <tr>
+                                    <th>HDCP</th>
+                                    <th>Par 3</th>
+                                    <th>Par 4</th>
+                                    <th>Par 5</th>
+                                </tr>
+
+                                <tr>
+                                    <td>0 - 11</td>
+                                    <td>6</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>12 - 22</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>23 - 50</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                </tr>
+                            </table>
+
+                        </div>
                     </div>
+
 
                     <div class="col-lg-4 col-12">
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
                             <h5 class="mb-3">La vuelta Colapinto</h5>
-                            <p>Pensar en el karting en lugar del golf</p>
-                            <p class="mb-2">Para quienes en su vuelta sumen al par, más golpes que una vez y media su handicap.</p>
+                            <p class="mb-2">Para quienes en su vuelta hagan un gross mayor a la suma del par más una vez y media su handicap.</p>
                             <table>
                                 <tr>
                                     <th>Date</th>
