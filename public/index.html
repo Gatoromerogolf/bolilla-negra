@@ -47,7 +47,8 @@ Bootstrap 5 Dashboard Admin Template
 
         <div
             class="motivational-text ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0 p-3 border rounded">
-            <p class="mb-0" style="font-size: 14px;">"Cada golpe es una oportunidad para disfrutar del juego y fortalecer la amistad. Aguante
+            <p class="mb-0" style="font-size: 14px;">"Cada golpe es una oportunidad para disfrutar del juego y
+                fortalecer la amistad. Aguante
                 Bolilla!"</p>
         </div>
 
@@ -246,7 +247,7 @@ Bootstrap 5 Dashboard Admin Template
                                 Nuestra historia
                             </a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </nav>
@@ -258,7 +259,7 @@ Bootstrap 5 Dashboard Admin Template
 
                 <div class="row my-4">
                     <div class="col-lg-7 col-12">
-                        <div class="custom-block custom-block-exchange">
+                        <div class="custom-block custom-block-exchange"> <!-- Presupuesto y Gastos -->
                             <h5>Presupuesto de gastos Gira Sierra y Premios 2025</h5>
                             <!-- <img src="images/presupuesto.png" class="img-fluid"
                             alt="" style="width: 190px; height: 190px; vertical-align: middle"> -->
@@ -277,7 +278,7 @@ Bootstrap 5 Dashboard Admin Template
                             <p class="mb-2">(*) Ricky solo aporta para Sierra, no para los premios.</p>
                         </div>
 
-                        <div class="custom-block custom-block-exchange">
+                        <div class="custom-block custom-block-exchange"> <!-- Novedades -->
                             <h4>Novedades.</h4>
 
                             <p>Si tenés algo para decir, escribilo haciendo <a
@@ -302,7 +303,7 @@ Bootstrap 5 Dashboard Admin Template
                     </div>
 
                     <div class="col-lg-5 col-12">
-                        <div class="custom-block custom-block-transations"> 
+                        <div class="custom-block custom-block-transations"> <!-- ultimo torneo disputado -->
                             <center>
                                 <h4 class="mb-4">Ultimo torneo disputado</h4>
                                 <div>
@@ -324,14 +325,14 @@ Bootstrap 5 Dashboard Admin Template
                                             <col style="width: 10px;" ;>
                                             <col style="width: 10px;" ;>
 
-                                            <tr>
-                                                <th>Pos</th>
-                                                <th id="namePlayer">Player</th>
-                                                <th>Neto</th>
-                                                <th>Pelotas</th>
-                                                <th>Puntos</th>
-                                                <th>NPT</th>
-                                            </tr>
+                                        <tr>
+                                            <th>Pos</th>
+                                            <th id="namePlayer">Player</th>
+                                            <th>Neto</th>
+                                            <th>Pelotas</th>
+                                            <th>Puntos</th>
+                                            <th>NPT</th>
+                                        </tr>
                                         </colgroup>
                                     </thead>
 
@@ -339,7 +340,7 @@ Bootstrap 5 Dashboard Admin Template
                                     </tbody>
                                 </table>
                             </div>
-                                
+
                             <div class="border-top pt-4 mt-4 text-center">
                                 <a class="btn custom-btn" href="wallet.html">
                                     Ver todos los resultados
@@ -349,6 +350,7 @@ Bootstrap 5 Dashboard Admin Template
                         </div>
 
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <!-- mejor Score del mes -->
                             <h5 class="mb-3">Mejor score del mes</h5>
                             <table id="tablaMejorScore">
                                 <thead>
@@ -360,39 +362,68 @@ Bootstrap 5 Dashboard Admin Template
                                         <th>Jugad</th>
                                         <th>Puntos</th>
                                     </tr>
-                                </thead>                                    
+                                </thead>
                                 <tbody id="tbodyScore">
                                     <tr></tr>
                                 </tbody>
                             </table>
                         </div>
 
-                            <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
-                                <h5 class="mb-3">Pelotas Ganadas</h5>
-                                <p class="mb-2">El jugador con la mayor cantidad de pelotas ganadas al día de
-                                    la fecha:</p>
-                                <div class="custom-block-profile-image-wrap mb-3">
-                                    <img id="imagenDinamica" src="images/profile/marco-tiger.png"
-                                        class="custom-block-profile-image img-fluid" alt="">
-                                </div>
-                                <p>Nuestro compañero <span id="pelotudo">...</span> ha acumulado la cantidad de
-                                    <span id="pelotas" class="centrado" style="font-size: 40px;">...</span> pelotas ganadas.
-                                    <!-- <button id="detallePelotas">Ver detalle</button> -->
-                                </p>
-                                <div class="border-top pt-4 mt-4 text-center">
-                                    <a class="btn custom-btn" href="pelotas-detail.html">
-                                        Ver detalles
-                                        <i class="bi-arrow-up-right-circle-fill ms-2"></i>
-                                    </a>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-
-                <div class="row my-4">
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
-                            <h5 class="mb-3">El hoyo negro....</h5>
-                            <p class="mb-2">El que más golpes hizo en un hoyo, según su handicap.</p>
+                            <!-- pelotas ganadas -->
+                            <h5 class="mb-3">Pelotas Ganadas</h5>
+                            <p class="mb-2">El jugador con la mayor cantidad de pelotas ganadas al día de
+                                la fecha:</p>
+                            <div class="custom-block-profile-image-wrap mb-3">
+                                <img id="imagenDinamica" src="images/profile/marco-tiger.png"
+                                    class="custom-block-profile-image img-fluid" alt="">
+                            </div>
+                            <p>Nuestro compañero <span id="pelotudo">...</span> ha acumulado la cantidad de
+                                <span id="pelotas" class="centrado" style="font-size: 40px;">...</span> pelotas ganadas.
+                                <!-- <button id="detallePelotas">Ver detalle</button> -->
+                            </p>
+                            <div class="border-top pt-4 mt-4 text-center">
+                                <a class="btn custom-btn" href="pelotas-detail.html">
+                                    Ver detalles
+                                    <i class="bi-arrow-up-right-circle-fill ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <!-- Birdies y negros -->
+                            <h5 class="mb-3">Birdies y Negros</h5>
+                            <p class="mb-2">Una de cal y una de arena.</p>
+                            <table id="berdinegro">
+                                <thead>
+                                    <colgroup>
+                                        <col>
+                                        <col>
+                                        <col style="background-color: rgb(250, 250, 32)" ;>
+                                        <col>
+                                        <col>
+                                        <col style="background-color: black" ;>
+                                        <col>
+                                    </colgroup>
+                                    <tr>
+                                        <th rowspan="2">#</th>
+                                        <th colspan="2">Birdie</th>
+                                        <th colspan="4">Hoyo negro</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Player</th>
+                                        <th>Date</th>
+                                        <th>Player</th>
+                                        <th>Score</th>
+                                        <th>Par</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                            <p class="mt-2 mb-3">Para el hoyo negro se computa quien haya superado una cantidad mínima
+                                de golpes, según su handicap y hoyo jugado.</p>
                             <table>
                                 <tr>
                                     <th>HDCP</th>
@@ -420,105 +451,9 @@ Bootstrap 5 Dashboard Admin Template
                                     <td>10</td>
                                 </tr>
                             </table>
-                            <br>
-                            <table id="hoyoNegro" style="background-color: black !important; color: white; border-collapse: collapse;">
-                                <tr style="background-color: black; color: white;">
-                                    <th>#</th>
-                                    <th>Par</th>
-                                    <th>Score</th>
-                                    <th>Player</th>
-                                    <th>|</th>
-                                    <th>Score</th>
-                                    <th>Player</th>
-                                </tr>
-                                <tr style="background-color: black !important; color: white;">
-                                    <td>1-10</td>
-                                    <td>4</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>|</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td>2-11</td>
-                                    <td>4</td>
-                                    <td>16</td>
-                                    <td>Sensei</td>
-                                    <td>|</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>3-12</td>
-                                    <td>4</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>|</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>4-13</td>
-                                    <td>3</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>|</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>5-14</td>
-                                    <td>5</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>|</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>6-15</td>
-                                    <td>4</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>|</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>7-16</td>
-                                    <td>5</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>|</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>8-17</td>
-                                    <td>3</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>|</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>9-18</td>
-                                    <td>4</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>|</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </table>
                         </div>
-                    <!-- </div> -->
 
-                    <div class="col-lg-4 col-12">
-                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                        <!-- <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
                             <h5 class="mb-3">Birdies y Negros</h5>
                             <p class="mb-2">Una de cal y una de arena.</p>
                             <table>
@@ -719,10 +654,11 @@ Bootstrap 5 Dashboard Admin Template
                                     <td></td>
                                     <td></td>
                                 </tr>
-                                                                
+
                             </table>
-                            
-                            <p class="mt-2 mb-3">Para el hoyo negro se computa quien haya superado una cantidad mínima de golpes, según su handicap y hoyo jugado.</p>
+
+                            <p class="mt-2 mb-3">Para el hoyo negro se computa quien haya superado una cantidad mínima
+                                de golpes, según su handicap y hoyo jugado.</p>
                             <table>
                                 <tr>
                                     <th>HDCP</th>
@@ -751,14 +687,13 @@ Bootstrap 5 Dashboard Admin Template
                                 </tr>
                             </table>
 
-                        </div>
-                    </div>
+                        </div> -->
 
-
-                    <div class="col-lg-4 col-12">
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <!-- La vuelta Colapinto -->
                             <h5 class="mb-3">La vuelta Colapinto</h5>
-                            <p class="mb-2">Para quienes en su vuelta hagan un gross mayor a la suma del par más una vez y media su handicap.</p>
+                            <p class="mb-2">Para quienes en su vuelta hagan un gross mayor a la suma del par más una vez
+                                y media su handicap.</p>
                             <table>
                                 <tr>
                                     <th>Date</th>
@@ -978,6 +913,7 @@ Bootstrap 5 Dashboard Admin Template
     <script src="js/apexcharts.min.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/ultimodia.js" defer></script>
+    <script src="js/berdinegro.js" defer></script>
     <!-- <script src="js/pelotas.js"></script> -->
 
 </body>

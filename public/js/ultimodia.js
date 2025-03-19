@@ -1,6 +1,6 @@
 let fechas = [];
 let mejoresScore = [];
-let ultimaFeha = [];
+let ultimaFecha = [];
 
 async function main() {
   fechas = await leerDatosFechas();

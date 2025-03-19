@@ -10,32 +10,27 @@ const session = require('express-session');
 const MySQLStore = require ('express-mysql-session')(session);
 const cron = require('node-cron');
 
-// ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// reemplaza por ./db
-// const mysql = require('mysql2');
-// const conexion = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'Flam822',
-//   database: 'bolilla_negra'
-// });
-// conexion.connect((err) => {
-//   if (err) throw err;
-//   console.log('Conectado a la base de datos MySQL')});
-//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::.
-
 const app = express();
 
-// Middleware para parsear el cuerpo de las solicitudes::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Middleware para parsear el cuerpo de las solicitudes
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Middleware para servir archivos estáticos::::::::::::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Middleware para servir archivos estáticos
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Endpoint para validar credenciales :::::::::::::::::::::::::::::::::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Endpoint para validar credenciales 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.use(cookieParser()); // Configura el middleware para leer cookies
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// bse de datos
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 const sessionStore = new MySQLStore({
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT,
@@ -52,12 +47,17 @@ app.use(session({
     cookie: { secure: false } // Cambia esto a true si usas HTTPS
 }));
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // Ruta para servir index.html
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/', (req, res) => {
   // res.send ('Hola mundo'); 
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// login
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post('/api/login', (req, res) => {
 const { username, password } = req.body;
 console.log (`llegó con ${username} y con ${password}`)
@@ -82,7 +82,9 @@ pool.query('SELECT * FROM users WHERE username = ? AND password = ?', [username,
 });
 })
 
-// Ruta para obtener los registros de la tabla FECHAS::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Ruta para obtener los registros de la tabla FECHAS
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/leerDatosFechas', (req, res) => {
   const query = 'SELECT * FROM fechas';
 
@@ -101,7 +103,9 @@ app.get('/leerDatosFechas', (req, res) => {
     });
   });
 
-// Ruta para obtener la ultima fecha grabada (sin gira) ::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Ruta para obtener la ultima fecha grabada (sin gira) 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/leerUltimaFecha', (req, res) => {
   const query = 'SELECT * FROM fechas WHERE fec < 90 ORDER BY fec DESC LIMIT 1';
   pool.query(query, (error, results, fields) => {
@@ -119,8 +123,9 @@ app.get('/leerUltimaFecha', (req, res) => {
     });
   });
 
-//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // Definir la tarea cron
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // cron.schedule('0 */4 * * *', () => { cada cuatro horas
 cron.schedule('*/30 * * * *', () => { // cada treinta minutos
 
@@ -135,8 +140,9 @@ cron.schedule('*/30 * * * *', () => { // cada treinta minutos
   });
 });
 
-
-  // Ruta para obtener los registros de DATOS NETOS ::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Ruta para obtener los registros de DATOS NETOS
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/leerDatosNetos', (req, res) => {
   const query = 'SELECT * FROM netos';
 
@@ -155,8 +161,31 @@ app.get('/leerDatosNetos', (req, res) => {
     });
   });
 
-  
-  // Ruta para obtener los registros de PUNTOS RANKING ::::::::::::::::::::
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Ruta para obtener los berdisnegros
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+app.get('/leerBerdiNegro', (req, res) => {
+  const query = 'SELECT * FROM berdinegro';
+
+  pool.query(query, (error, results, fields) => {
+      if (error) {
+        res.status(500).json({ error: 'Error al obtener los BerdiNegro' });
+        console.log("error servidor al obtener registros");
+        return;
+      }
+
+      if (results.length > 0) {
+        res.json(results);
+      } else {
+        res.status(404).json({ error: 'No se encontraron registros' });
+      }
+    });
+  });
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Ruta para obtener los registros de PUNTOS RANKING 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/leerPuntosRanking', (req, res) => {
   const query = 'SELECT * FROM puntosranking WHERE id < 13';
 
@@ -175,8 +204,9 @@ app.get('/leerPuntosRanking', (req, res) => {
     });
   });
 
-
-// Grabacion de ultima fecha ::::::::::::::::::::::::::::::::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Grabacion de ultima fecha 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post('/grabaUltimaFecha', (req, res) => {
 
   // if (!req.session.user){
@@ -200,33 +230,18 @@ app.post('/grabaUltimaFecha', (req, res) => {
   });
 });
 
-
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//  elimina fecha
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.delete('/eliminaFecha', (req, res) => {
-  // if (!req.session.user) {
-  //   return res.status(401).json({ error: 'No estás autenticado' });
-  // }
 
   const { fec } = req.body; // Recibe la fecha que deseas eliminar
-
   const eliminaFechaQuery = 'DELETE FROM fechas WHERE fec = ?';
-
-  // pool.query(eliminaFechaQuery, [fec], function (error, result) {
-  //   if (error) {
-  //     console.log('Error:', error);
-  //     return res.status(500).json({ error: 'Error al eliminar la fecha' });
-  //   }
-
-  //   if (result.affectedRows === 0) {
-  //     return res.status(404).json({ error: 'No se encontró la fecha especificada' });
-  //   }
-
-  //   res.status(200).json({ success: true, message: 'Fecha eliminada correctamente' });
-  // });
 });
 
-
-
-// Grabacion de NETOS ::::::::::::::::::::::::::::::::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Grabacion de NETOS 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post('/grabaNetos', (req, res) => {
   // if (!req.session.user){
   //     return res.status(401).json({ error: 'No estás autenticado' });
@@ -236,7 +251,6 @@ app.post('/grabaNetos', (req, res) => {
   const datosAPasar = [fecnueva, play, neto, pos, pg, orden, anual, npt];
 
   console.log (fecnueva, play, neto, pos, pg, orden, anual, npt)
-
 
   pool.query(nuevoNeto, datosAPasar, function (error, lista) {
       if (error) {
@@ -252,7 +266,9 @@ app.post('/grabaNetos', (req, res) => {
   });
 });
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // Ruta para agregar un comentario
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post('/agregar-comentario', (req, res) => {
   const { usuario, comentario, fecha } = req.body;
 
@@ -267,23 +283,9 @@ app.post('/agregar-comentario', (req, res) => {
   });
 });
 
-// // Ruta para obtener los comentarios
-// app.get('/obtener-comentarios', (req, res) => {
-//   const query = `
-//       SELECT * FROM comentarios
-//       WHERE (fecha >= CURDATE() - INTERVAL 15 DAY) 
-//       OR fecha = (SELECT MAX(fecha) FROM comentarios)
-//       ORDER BY fecha DESC
-//   `;
-  
-//   pool.query(query, (err, results) => {
-//       if (err) throw err;
-//       res.json(results);
-//   });
-// });
-
-
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // Ruta para obtener comentarios
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/comentarios', (req, res) => {
   const limit = parseInt(req.query.limit) || 1; // Limite de comentarios a mostrar, por defecto 1
   const offset = parseInt(req.query.offset) || 0; // Cuántos comentarios omitir, por defecto 0
@@ -325,11 +327,12 @@ app.get('/comentarios', (req, res) => {
   });
 });
 
-
 /* Aquí he agregado los parámetros limit y offset para controlar cuántos comentarios mostrar y desde qué posición comenzar.
 La consulta checkQuery verifica cuántos comentarios totales hay para saber si se debe mostrar el botón "Ver todos". */
 
-
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// comentarios   delete
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.delete('/comentarios/:id', async (req, res) => {
   const commentId = req.params.id;
   const query = 'DELETE FROM comentarios WHERE id = ?';
@@ -350,18 +353,13 @@ app.delete('/comentarios/:id', async (req, res) => {
   });
 });
 
-
-
-
-
-// Captura todas las otras rutas para mostrar un 404 :::::::::::::::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Captura todas las otras rutas para mostrar un 404 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('*', (req, res) => {
   res.status(404).send('Page Not Found');
 });
 
-
 // Use PORT provided in environment or default to 3000
 const port = process.env.PORT || 3000;
-
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
-
