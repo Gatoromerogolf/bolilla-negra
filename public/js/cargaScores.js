@@ -41,13 +41,11 @@ function generarTablaJugadores() {
     let fila = tablaJugadores.insertRow();
     let celdaNombre = fila.insertCell(0);
     let celdaNeto = fila.insertCell(1);
-    // let celdaPelotas = fila.insertCell(2);
     let celdaOrden = fila.insertCell(2);
     let celdaNpt = fila.insertCell(3);
 
     celdaNombre.textContent = nombre;
     celdaNeto.innerHTML = `<input type="number" name="neto" min="0" style="width: 4ch;">`;
-    // celdaPelotas.innerHTML = `<input type="number" name="pelotas" min="0" style="width: 3ch;">`;
     celdaOrden.innerHTML = `<input type="number" name="orden" min="0" style="width: 2ch;">`;
     celdaNpt.innerHTML = `<input type="number" name="orden" min="0" max="1" style="width: 2ch;">`;
   });
@@ -85,7 +83,6 @@ buscaUltimaFecha().then((ultimaFecha) => {
     document.getElementById("ultFecha").value = ultimaFecha.textoFecha;
     document.getElementById("ultNumero").value = ultimaFecha.fec;
     fec = ultimaFecha.fec;
-    // dateTabla = new Date(ultimaFecha.fechaFull);
     fecFullTabla = ultimaFecha.fechaFull;
   } else {
     alert("No se encontró ninguna fecha");
@@ -187,18 +184,6 @@ function procesarDatos() {
 
   const ctddPelotas = ctddJugadores;
   alert (`cantidad de pelotas ${ctddPelotas}`)
-  // const pelJuego = document.getElementById("pelJuego");
-  // ctddPelotas = Number(pelJuego.value.trim());
-  // if (ctddPelotas == 0) {
-  //   ctddPelotas = ctddJugadores;
-  // }
-  // if (ctddPelotas < ctddJugadores) {
-  //   alert("No puede haber menos pelotas que jugadores");
-  //   document.getElementById("primeraTabla").style.display = "block";
-  //   return;
-  // }
-
-  // Limpiar la tabla de resultados
   tablaResultados.innerHTML = "";
   sumaJugadores = 0;
 
@@ -213,21 +198,16 @@ function procesarDatos() {
     console.log(`valor de nombre: ${nombre}`);
     let neto = fila.cells[1].getElementsByTagName("input")[0].value;
     console.log(`valor de neto: ${neto}`);
-    // let pelotas = fila.cells[2].getElementsByTagName('input')[0].value;
-    // console.log (`valor de pelotas: ${pelotas}`)
     let orden = fila.cells[2].getElementsByTagName("input")[0].value;
     console.log(`valor de orden: ${orden}`);
     let npt = fila.cells[3].getElementsByTagName("input")[0].value;
     console.log(`no presento tarjeta:  ${npt}`);
 
     // Agregar los datos al array si se ha completado al menos un campo
-    // if (neto || pelotas || orden) {
-    // if (neto || orden) {
     datosJugadores.push({
       //agrega todos
       nombre: nombre,
       neto: neto || "-",
-      // pelotas: pelotas || '-',
       orden: orden || "-",
       npt: npt || "-"
     });

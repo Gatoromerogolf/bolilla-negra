@@ -66,14 +66,13 @@
       <input id="ultNumero" type="number" placeholder="99" maxlength="3" disabled style="width: 3ch">
       <button onclick="eliminarDatos(fec)">Elimina Ultima fecha</button>
     </span>
+    <a href="#berdisynegro">Birdies y Negros</a>
     <p>Nuevo torneo a registrar</p>
     <span style="font-size: 14px;">
       <label for="fechaRegistrar">Fecha:</label>
       <input id="fechaRegistrar" type="date" max="2025-10-31" min="2025-01-01">
       <label for="jugadores">Jugadores:</label>
       <input id="jugadores" type="number" style="width: 3ch" min="6" max="12">
-      <!-- <label for="pelJuego">Pelotas:</label>
-      <input id="pelJuego" type="number" style="width: 3ch" min="6" max="12"> -->
     </span>
 
 
@@ -100,7 +99,6 @@
 
   </fieldset>
 
-
   <fieldset id="segundaTabla" style="display: none">
     <legend>Resultados</legend>
     <h2>Tabla de Resultados</h2>
@@ -122,26 +120,79 @@
     <br>
     <button onclick="guardarResultados()">Guardar resultados</button>
     <button onclick="modificarResultados()">Corregir datos</button>
-    <!-- </form> -->
     <br>
   </fieldset>
 
       <br><br>
 
-
-      <!-- <script>
-    window.pepe.addEventListener('click', () => {
-      window.ventana.showModal()
-    })
-  
-    window.hide.addEventListener('click', () => {
-      window.ventana.close()
-    })
-  </script> -->
-
     </section>
 
+    <h2 id="berdisynegro">Carga de birdies y hoyos negros</h2>
+    <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+      <!-- Birdies y negros -->
+      <h5 class="mb-3">Birdies y Negros</h5>
+      <p class="mb-2">Una de cal y una de arena.</p>
+      <table id="berdinegro">
+          <thead>
+              <colgroup>
+                  <col>
+                  <col>
+                  <col style="background-color: rgb(250, 250, 32)" ;>
+                  <col>
+                  <col>
+                  <col style="background-color: black" ;>
+                  <col>
+              </colgroup>
+              <tr>
+                  <th rowspan="2">#</th>
+                  <th colspan="2">Birdie</th>
+                  <th colspan="4">Hoyo negro</th>
+              </tr>
+              <tr>
+                  <th>Date</th>
+                  <th>Player</th>
+                  <th>Date</th>
+                  <th>Player</th>
+                  <th>Score</th>
+                  <th>Par</th>
+              </tr>
+          </thead>
+          <tbody></tbody>
+      </table>
+
+      <p class="mt-2 mb-3">Para el hoyo negro se computa quien haya superado una cantidad mínima
+          de golpes, según su handicap y hoyo jugado.</p>
+      <table>
+          <tr>
+              <th>HDCP</th>
+              <th>Par 3</th>
+              <th>Par 4</th>
+              <th>Par 5</th>
+          </tr>
+
+          <tr>
+              <td>0 - 11</td>
+              <td>6</td>
+              <td>7</td>
+              <td>8</td>
+          </tr>
+          <tr>
+              <td>12 - 22</td>
+              <td>7</td>
+              <td>8</td>
+              <td>9</td>
+          </tr>
+          <tr>
+              <td>23 - 50</td>
+              <td>8</td>
+              <td>9</td>
+              <td>10</td>
+          </tr>
+      </table>
+  </div>
     <script src="../js/cargaScores.js"></script>
+    <script src="../js/berdinegro.js"></script>
+
 
   </body>
 
