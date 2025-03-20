@@ -4,196 +4,208 @@
 <html lang="en">
 
 <body>
-  <head>
-    <title>Blog de bolilla</title>
-    <link href="assets/images/bn2.ico" rel="icon">
 
-    <link href="../styles/styleblog.css" rel="stylesheet">
+    <head>
+        <title>Blog de bolilla</title>
+        <link href="assets/images/bn2.ico" rel="icon">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Courgette&family=Gupter:wght@400;500;700&family=PT+Sans+Narrow:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
-      rel="stylesheet">
+        <link href="../styles/styleblog.css" rel="stylesheet">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="golf, palos, pelotas">
-    <meta name="description" content="Sitio de bolilla">
-    <meta name="author" content="Sensei">
-    <meta name="copyright" content="Meta Inc.">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Courgette&family=Gupter:wght@400;500;700&family=PT+Sans+Narrow:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+            rel="stylesheet">
 
-    <style>
-      /* esto elimina las flechitas que aumentan y disminuyen el numero */
-      input[type=number]::-webkit-inner-spin-button,
-      input[type=number]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="golf, palos, pelotas">
+        <meta name="description" content="Sitio de bolilla">
+        <meta name="author" content="Sensei">
+        <meta name="copyright" content="Meta Inc.">
 
-      input[type=number] {
-        -moz-appearance: textfield;
-      }
+        <style>
+            /* esto elimina las flechitas que aumentan y disminuyen el numero */
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
 
-      table,
-      th,
-      td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 8px;
-      }
-    </style>
+            input[type=number] {
+                -moz-appearance: textfield;
+            }
 
-  </head>
+            table,
+            th,
+            td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 8px;
+            }
+        </style>
 
-  <header>
-    <nav>
-      <ul>
-        <li class="barra"><img src="../assets/images/logobolilla.jpeg" width="100" alt="autito"></li>
-        <li class="barra"><a class="active" href="../index.html">Inicio</a></li>
-        <li></li><br><br>
-        <li class="barra"><a class="active" href="../index.html">Carga de tarjetas</a></li>
+    </head>
 
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <nav>
+            <ul>
+                <li class="barra"><img src="../assets/images/logobolilla.jpeg" width="100" alt="autito"></li>
+                <li class="barra"><a class="active" href="../index.html">Inicio</a></li>
+                <li></li><br><br>
+                <li class="barra"><a class="active" href="../index.html">Carga de tarjetas</a></li>
 
-  <section>
-    <span style="font-size: 12px;">
-      <label for="ultFecha">Ultima:</label>
-      <input id="ultFecha" type="text" placeholder="sabado 8 setiembre" disabled>
-      <label for="ultFecha">N°</label>
-      <input id="ultNumero" type="number" placeholder="99" maxlength="3" disabled style="width: 3ch">
-      <button onclick="eliminarDatos(fec)">Elimina Ultima fecha</button>
-    </span>
-    <a href="#berdisynegro">Birdies y Negros</a>
-    <p>Nuevo torneo a registrar</p>
-    <span style="font-size: 14px;">
-      <label for="fechaRegistrar">Fecha:</label>
-      <input id="fechaRegistrar" type="date" max="2025-10-31" min="2025-01-01">
-      <label for="jugadores">Jugadores:</label>
-      <input id="jugadores" type="number" style="width: 3ch" min="6" max="12">
-    </span>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <span style="font-size: 12px;">
+            <label for="ultFecha">Ultima:</label>
+            <input id="ultFecha" type="text" placeholder="sabado 8 setiembre" disabled>
+            <label for="ultFecha">N°</label>
+            <input id="ultNumero" type="number" placeholder="99" maxlength="3" disabled style="width: 3ch">
+            <button onclick="eliminarDatos(fec)">Elimina Ultima fecha</button>
+        </span>
+
+        <h2>Nuevo torneo a registrar</h2>
+        <span style="font-size: 14px;">
+            <label for="fechaRegistrar">Fecha:</label>
+            <input id="fechaRegistrar" type="date" max="2025-10-31" min="2025-01-01">
+            <label for="jugadores">Jugadores:</label>
+            <input id="jugadores" type="number" style="width: 4ch; min-height: 18px; padding: 10px 5px" min="6" max="12">
+        </span>
 
 
-  <fieldset id="primeraTabla" style="display: block">
-    <legend style="font-size: 30px;">Participantes</legend>
+        <fieldset id="primeraTabla" style="display: block">
+            <legend style="font-size: 30px;">Participantes</legend>
+            <table id="tablaJugadores">
+                <thead>
+                    <tr>
+                        <th>Nombres</th>
+                        <th>Neto</th>
+                        <th>Orden</th>
+                        <th>LP-NPT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las filas serán generadas por JavaScript -->
+                </tbody>
+            </table>
 
-    <!-- <h2>Registro de participantes.</h2> -->
-    <table id="tablaJugadores">
-      <thead>
-        <tr>
-          <th>Nombres</th>
-          <th>Neto</th>
-          <!-- <th>Pelotas</th> -->
-          <th>Orden</th>
-          <th>LP-NPT</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Las filas serán generadas por JavaScript -->
-      </tbody>
-    </table>
+            <legend style="font-size: 30px;">Berdies y Negros</legend>
+            <table id="tablaBerdies">
+                <thead>
+                    <tr>
+                        <th>Hoyo</th>
+                        <th>Nombre</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las filas serán generadas por JavaScript -->
+                </tbody>
+            </table>
+            <button onclick="procesarDatos()">Controlar Datos</button>
 
-    <button onclick="procesarDatos()">Controlar Datos</button>
+        </fieldset>
 
-  </fieldset>
+        <fieldset id="segundaTabla" style="display: none">
+            <legend>Resultados</legend>
+            <h2>Tabla de Resultados</h2>
+            <table id="tablaResultados">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Neto</th>
+                        <th>Orden</th>
+                        <th>Pelotas</th>
+                        <th>Puntos</th>
+                        <th>NPT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las filas serán generadas por JavaScript -->
+                </tbody>
+            </table>
+            <br>
+            <button onclick="guardarResultados()">Guardar resultados</button>
+            <button onclick="modificarResultados()">Corregir datos</button>
+            <br>
+        </fieldset>
 
-  <fieldset id="segundaTabla" style="display: none">
-    <legend>Resultados</legend>
-    <h2>Tabla de Resultados</h2>
-    <table id="tablaResultados">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Neto</th>
-          <th>Orden</th>
-          <th>Pelotas</th>
-          <th>Puntos</th>
-          <th>NPT</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Las filas serán generadas por JavaScript -->
-      </tbody>
-    </table>
-    <br>
-    <button onclick="guardarResultados()">Guardar resultados</button>
-    <button onclick="modificarResultados()">Corregir datos</button>
-    <br>
-  </fieldset>
-
-      <br><br>
+        <br><br>
 
     </section>
 
-    <h2 id="berdisynegro">Carga de birdies y hoyos negros</h2>
+
     <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
-      <!-- Birdies y negros -->
-      <h5 class="mb-3">Birdies y Negros</h5>
-      <p class="mb-2">Una de cal y una de arena.</p>
-      <table id="berdinegro">
-          <thead>
-              <colgroup>
-                  <col>
-                  <col>
-                  <col style="background-color: rgb(250, 250, 32)" ;>
-                  <col>
-                  <col>
-                  <col style="background-color: black" ;>
-                  <col>
-              </colgroup>
-              <tr>
-                  <th rowspan="2">#</th>
-                  <th colspan="2">Birdie</th>
-                  <th colspan="4">Hoyo negro</th>
-              </tr>
-              <tr>
-                  <th>Date</th>
-                  <th>Player</th>
-                  <th>Date</th>
-                  <th>Player</th>
-                  <th>Score</th>
-                  <th>Par</th>
-              </tr>
-          </thead>
-          <tbody></tbody>
-      </table>
+        <!-- Birdies y negros -->
+        <h3 class="mb-3">Birdies y Negros</h3>
+        <p class="mb-2">Una de cal y una de arena.</p>
+        <table id="berdinegro">
+            <thead>
+                <colgroup>
+                    <col>
+                    <col>
+                    <col style="background-color: rgb(250, 250, 32)" ;>
+                    <col>
+                    <col>
+                    <col style="background-color: black" ;>
+                    <col>
+                </colgroup>
+                <tr>
+                    <th rowspan="2">#</th>
+                    <th colspan="2">Birdie</th>
+                    <th colspan="4">Hoyo negro</th>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <th>Player</th>
+                    <th>Date</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                    <th>Par</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
 
-      <p class="mt-2 mb-3">Para el hoyo negro se computa quien haya superado una cantidad mínima
-          de golpes, según su handicap y hoyo jugado.</p>
-      <table>
-          <tr>
-              <th>HDCP</th>
-              <th>Par 3</th>
-              <th>Par 4</th>
-              <th>Par 5</th>
-          </tr>
+        <p class="mt-2 mb-3">Para el hoyo negro se computa quien haya superado una cantidad mínima
+            de golpes, según su handicap y hoyo jugado.</p>
+        <table>
+            <tr>
+                <th>HDCP</th>
+                <th>Par 3</th>
+                <th>Par 4</th>
+                <th>Par 5</th>
+            </tr>
 
-          <tr>
-              <td>0 - 11</td>
-              <td>6</td>
-              <td>7</td>
-              <td>8</td>
-          </tr>
-          <tr>
-              <td>12 - 22</td>
-              <td>7</td>
-              <td>8</td>
-              <td>9</td>
-          </tr>
-          <tr>
-              <td>23 - 50</td>
-              <td>8</td>
-              <td>9</td>
-              <td>10</td>
-          </tr>
-      </table>
-  </div>
-    <script src="../js/cargaScores.js"></script>
+            <tr>
+                <td>0 - 11</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>12 - 22</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>23 - 50</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+            </tr>
+        </table>
+    </div>
     <script src="../js/berdinegro.js"></script>
+    <script src="../js/cargaScores.js"></script>
 
 
-  </body>
+
+</body>
 
 </html>

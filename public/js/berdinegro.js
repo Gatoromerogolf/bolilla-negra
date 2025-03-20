@@ -1,9 +1,7 @@
-
+var berdiNegro;  //se define globalmente y la puedo usar en otro js
 
 async function main() {
     berdiNegro = await leerDatosBerdiNegro();
-    console.log(berdiNegro[0].hoyo)
-    console.log(berdiNegro[0]["berdi-fecha"]);
 }
 
 main().then(() => {
@@ -94,7 +92,7 @@ async function leerDatosBerdiNegro() {
         const response = await fetch(`/leerBerdiNegro`);
         if (response.ok) {
             const data = await response.json(); // Convertir response a JSON
-            console.table(data)
+            // console.table(data)
             return data; // Devuelve los datos obtenidos si la respuesta es exitosa
         } else {
             console.error(
