@@ -1,17 +1,9 @@
 // Nombres de los jugadores
 const nombresJugadores = [
-    "Diegui",
-    "Edu",
-    "Fer",
-    "Gaby",
-    "Joaco",
-    "Juancho",
-    "Julito",
-    "Negro",
-    "Panza",
-    "Presi",
-    "Sensei",
-    "Torni",
+    "Diegui", "Edu", "Fer", "Gaby",
+    "Joaco", "Juancho", "Julito",
+    "Negro", "Panza", "Presi",
+    "Sensei", "Torni",
 ];
 
 let errorBerdi = false;
@@ -25,9 +17,7 @@ let fecFullTabla = 0;
 let sumaJugadores = 0;
 let ctddPelotas = 0;
 let ctddJugadores = 0;
-
 let datosJugadores = [];
-
 let fec = 0;
 
 /*---------------------------------------
@@ -317,24 +307,22 @@ function validacionBerdiNegro() {
         let nombre = nombreInput ? nombreInput.value : "";
         let score = scoreInput ? scoreInput.value : "";
 
-        console.log(`valor de hoyo: ${hoyo}, nombre: ${nombre}, score: ${score}`);
+        if (hoyo) {
+            if (!score) {
+                console.log(`es un birdie ${nombre}, hoyo ${hoyo}`)
+            } else {
+                console.log(`es un negro ${nombre}, hoyo ${hoyo}, score: ${score}`)
+            }
 
-        if (!score) {
-            console.log(`es un birdie ${nombre}, hoyo ${hoyo}`)
-        } else {
-            console.log(`es un negro ${nombre}, hoyo ${hoyo}, score: ${score}`)
-        }
+            // se fija los datos para ese hoyo.
+            let registro = berdiNegro.find(reg => reg.hoyo == hoyo);
 
-        // se fija si ya hay datos para ese hoyo.
-        let registro = berdiNegro.find(reg => reg.hoyo == hoyo);
-
-        if (!registro) {
-            alert(`hoyo ${hoyo} nuevo con novedades`)
-        } else {
-            if (registro[berdiFecha] !== null) {
-                alert(`No papá!! Ya existe un birdie de ${registro[berdiPlayer]} en el hoyo ${hoyo}`)
-                errorBerdi = true;
-                return// si ya hay otro birdie, mensaje de error
+            if (!score) {
+                if (registro.berdiFecha !== null) {
+                    alert(`No papá!! Ya existe un birdie de ${registro.berdiPlayer} en el hoyo ${hoyo}`)
+                    errorBerdi = true;
+                    return// si ya hay otro birdie, mensaje de error
+                }
             }
         }
     }
@@ -356,40 +344,24 @@ function guardarResultados() {
     // Convierte el valor a un objeto Date para usar la funcion getUTC
     const fecha = new Date(fechaParaComparar);
 
-    // Array con los nombres de los días de la semana
     const diasSemana = [
-        "domingo",
-        "lunes",
-        "martes",
-        "miércoles",
-        "jueves",
-        "viernes",
-        "sábado",
+        "domingo", "lunes", "martes", "miércoles", "jueves",
+        "viernes", "sábado",
     ];
 
-    // Array con los nombres de los meses
     const meses = [
-        "enero",
-        "febrero",
-        "marzo",
-        "abril",
-        "mayo",
-        "junio",
-        "julio",
-        "agosto",
-        "septiembre",
-        "octubre",
-        "noviembre",
+        "enero", "febrero", "marzo", "abril", "mayo", "junio",
+        "julio", "agosto", "septiembre", "octubre", "noviembre",
         "diciembre",
     ];
 
-    // Recupera la información deseada
     const nombreDia = diasSemana[fecha.getUTCDay()];
     const numeroDia = fecha.getUTCDate();
     const numeroMes = fecha.getUTCMonth() + 1;
     const nombreMes = meses[fecha.getUTCMonth()];
+    const fechaBerdiNegro = numeroDia + "-" + numeroMes;
+    alert(`fecha Berdi  ${fechaBerdiNegro}`)
 
-    // Construye el texto descriptivo de la fecha
     const textoFecha = `${nombreDia} ${numeroDia} de ${nombreMes}`;
 
     const datos = {
@@ -404,54 +376,8 @@ function guardarResultados() {
     };
     grabarNuevaFecha(datos);
 
-    // Función para escribir los detalles de movimientos en la tabla MySQL
-    async function grabarNuevaFecha(datos) {
-        // Extraer los valores del objeto datos
-        const {
-            fec,
-            nombreDia,
-            numeroDia,
-            numeroMes,
-            textoFecha,
-            fechaaRegistrar,
-            ctddPelotas,
-            ctddJugadores,
-        } = datos;
 
-        const body = {
-            fecnueva: fec + 1,
-            nombreDia,
-            numeroDia,
-            numeroMes,
-            textoFecha,
-            fechaaRegistrar,
-            ctddPelotas,
-            ctddJugadores,
-        };
-
-        try {
-            const response = await fetch("/grabaUltimaFecha", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(body),
-                credentials: "include",
-            });
-
-            const result = await response.json();
-            if (result.success) {
-                console.log("no hay error");
-            } else {
-                throw new Error(result.error || "Error desconocido grabar parciales");
-            }
-        } catch (error) {
-            console.log("Error:", error);
-            throw error; // Rechaza la promesa en caso de error
-        }
-    }
-
-    //  Guarda los netos.
+    // 📌 Guarda los netos.
     indice = 0;
     let fecnueva = ++fec;
 
@@ -501,48 +427,44 @@ function guardarResultados() {
         indice++;
     });
 
-    // 🔸 guarda berdis y negros
+    // 📌 actualiza berdis y negros
 
     const filas = document.querySelectorAll("#tablaBerdies tbody tr");
 
     for (let i = 0; i < filas.length; i++) {
         let fila = filas[i];
-
+        // 📌Selecciona los campos de la tabla
         let hoyoInput = fila.cells[0].querySelector("input");
         let nombreInput = fila.cells[1].querySelector("input");
         let scoreInput = fila.cells[2].querySelector("input");
 
-        // Verificar si los inputs existen antes de acceder a .value
+        // 📌Verifica si los inputs existen antes de acceder a .value
         let hoyo = hoyoInput ? hoyoInput.value : "";
         let nombre = nombreInput ? nombreInput.value : "";
         let score = scoreInput ? scoreInput.value : "";
 
-        // se fija si ya hay datos para ese hoyo.
+        // 📌Selecciona el hoyo informado
         let registro = berdiNegro.find(reg => reg.hoyo == hoyo);
 
-        if (!registro) {  //como no existe el hoyo, crea el registro.
-            // en la creación tiene que mandar el par del hoyo.
-            let par = calculaPar(hoyo)
-            if (!score) {  // crea con berdi
-                crearBerdi()
-            } else { // crea con negro
-                crearNegro()
-            }
-        }
-        else { // como ya existe el hoyo, actualiza los campos
+        if (hoyo) {
             if (score) {
+                registro.negroFecha = fechaBerdiNegro;
+                registro.negroPlayer = nombre;
+                registro.negroScore= score;
                 actualizarNegro(hoyo, registro.negroFecha, registro.negroPlayer, registro.negroScore)
             } else {
+                registro.berdiFecha = fechaBerdiNegro;
+                registro.berdiPlayer = nombre;
                 actualizarBerdi(hoyo, registro.berdiFecha, registro.berdiPlayer)
             }
         }
     }
 
-//  🔸 Mostrar la ventana de confirmación
-alert("Se guardó la fecha\nExcelente trabajo\n\n AGUANTE LA HCDT!!!!!!");
+    //  📌 Mostrar la ventana de confirmación
+    alert("Se guardó la fecha\nExcelente trabajo\n\n AGUANTE LA HCDT!!!!!!");
 
-// // Redirigir a /index.html
-window.location.href = "/index.html";
+    // // Redirigir a /index.html
+    window.location.href = "/index.html";
 }
 
 /*---------------------------------------
@@ -570,24 +492,24 @@ async function actualizarNegro(hoyo, negroFecha, negroPlayer, negroScore) {
 /*---------------------------------------
 // 🔸   CALCULA PAR               
 -----------------------------------------*/
-function calculaPar(hoyo) {
-    let par;  
-    switch (hoyo) {
-        case 1: case 2: case 3: case 6: case 9:
-        case 10: case 11: case 12: case 15: case 18:
-            par = 4;
-            break;
-        case 4: case 8: case 13: case 17:
-            par = 3;
-            break;
-        case 5: case 7: case 14: case 16:
-            par = 5;
-            break;
-        default:
-            par = 99;
-    }
-    return par; // Aquí retornamos el valor
-}
+// function calculaPar(hoyo) {
+//     let par;  
+//     switch (hoyo) {
+//         case 1: case 2: case 3: case 6: case 9:
+//         case 10: case 11: case 12: case 15: case 18:
+//             par = 4;
+//             break;
+//         case 4: case 8: case 13: case 17:
+//             par = 3;
+//             break;
+//         case 5: case 7: case 14: case 16:
+//             par = 5;
+//             break;
+//         default:
+//             par = 99;
+//     }
+//     return par; // Aquí retornamos el valor
+// }
 
 /*---------------------------------------
 // 🔸 GRABAR NUEVO NETO               
@@ -623,6 +545,56 @@ async function grabarNuevoNeto(datosNetos) {
             console.log("no hay error");
         } else {
             throw new Error(result.error || "Error desconocido grabar Netos");
+        }
+    } catch (error) {
+        console.log("Error:", error);
+        throw error; // Rechaza la promesa en caso de error
+    }
+}
+
+/*---------------------------------------
+// 🔸   grabar Nueva Fecha           
+-----------------------------------------*/
+// Función para escribir los detalles de movimientos en la tabla MySQL
+async function grabarNuevaFecha(datos) {
+    // Extraer los valores del objeto datos
+    const {
+        fec,
+        nombreDia,
+        numeroDia,
+        numeroMes,
+        textoFecha,
+        fechaaRegistrar,
+        ctddPelotas,
+        ctddJugadores,
+    } = datos;
+
+    const body = {
+        fecnueva: fec + 1,
+        nombreDia,
+        numeroDia,
+        numeroMes,
+        textoFecha,
+        fechaaRegistrar,
+        ctddPelotas,
+        ctddJugadores,
+    };
+
+    try {
+        const response = await fetch("/grabaUltimaFecha", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+            credentials: "include",
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            console.log("no hay error");
+        } else {
+            throw new Error(result.error || "Error desconocido grabar parciales");
         }
     } catch (error) {
         console.log("Error:", error);

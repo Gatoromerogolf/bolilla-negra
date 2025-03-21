@@ -13,23 +13,23 @@ const cron = require('node-cron');
 const app = express();
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Middleware para parsear el cuerpo de las solicitudes
+// 📢 Middleware para parsear el cuerpo de las solicitudes
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Middleware para servir archivos estáticos
+// 📢 Middleware para servir archivos estáticos
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.use(express.static(path.join(__dirname, '../public')));
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Endpoint para validar credenciales 
+// 📢 Endpoint para validar credenciales 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.use(cookieParser()); // Configura el middleware para leer cookies
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// bse de datos
+// 📢 base de datos
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 const sessionStore = new MySQLStore({
     host: process.env.MYSQL_HOST,
@@ -39,6 +39,9 @@ const sessionStore = new MySQLStore({
     database: process.env.MYSQL_DB
 });
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 sesión del usuario?
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.use(session({
     secret: process.env.SESSION_SECRET, // Cambia esto por un secreto más seguro en producción
     store: sessionStore,
@@ -48,7 +51,7 @@ app.use(session({
 }));
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Ruta para servir index.html
+// 📢 Ruta para servir index.html
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/', (req, res) => {
     // res.send ('Hola mundo'); 
@@ -56,7 +59,7 @@ app.get('/', (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// login
+// 📢 login
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
@@ -84,7 +87,7 @@ app.post('/api/login', (req, res) => {
 })
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Ruta para obtener los registros de la tabla FECHAS
+// 📢 Ruta para obtener los registros de la tabla FECHAS
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/leerDatosFechas', (req, res) => {
     const query = 'SELECT * FROM fechas';
@@ -105,7 +108,7 @@ app.get('/leerDatosFechas', (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Ruta para obtener la ultima fecha grabada (sin gira) 
+// 📢 Ruta para obtener la ultima fecha grabada (sin gira) 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/leerUltimaFecha', (req, res) => {
     const query = 'SELECT * FROM fechas WHERE fec < 90 ORDER BY fec DESC LIMIT 1';
@@ -125,7 +128,7 @@ app.get('/leerUltimaFecha', (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Definir la tarea cron
+// 📢 Definir la tarea cron
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // cron.schedule('0 */4 * * *', () => { cada cuatro horas
 cron.schedule('*/30 * * * *', () => { // cada treinta minutos
@@ -142,7 +145,7 @@ cron.schedule('*/30 * * * *', () => { // cada treinta minutos
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Ruta para obtener los registros de DATOS NETOS
+// 📢 Ruta para obtener los registros de DATOS NETOS
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/leerDatosNetos', (req, res) => {
     const query = 'SELECT * FROM netos';
@@ -162,9 +165,8 @@ app.get('/leerDatosNetos', (req, res) => {
     });
 });
 
-
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Ruta para obtener los berdisnegros
+// 📢 Ruta para obtener los berdisnegros
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/leerBerdiNegro', (req, res) => {
     const query = 'SELECT * FROM berdinegro';
@@ -184,9 +186,42 @@ app.get('/leerBerdiNegro', (req, res) => {
     });
 });
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 actualiza Berdi Negro
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// app.post('/actualizaBerdiNegro', (req, res) => {
+//     const { hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore } = req.body;
+
+//     // Validar que todos los campos existen
+//     if (![hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore].every(Boolean)) {
+//         return res.status(400).json({ error: 'Faltan campos obligatorios' });
+//     }
+
+//     // Consulta de actualización
+//     const query = `
+//     UPDATE berdinegro 
+//     SET berdiFecha = ?, berdiPlayer = ?, negroFecha = ?, negroPlayer = ?, negroScore = ? 
+//     WHERE hoyo = ?
+//     `;
+
+//     const valores = [berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, hoyo];
+
+//     pool.query(query, valores, (error, result) => {
+//         if (error) {
+//             console.error('Error en la actualización:', error);
+//             return res.status(500).json({ error: 'Error interno en la base de datos' });
+//         }
+
+//         if (result.affectedRows === 0) {
+//             return res.status(404).json({ error: 'No se encontró el hoyo especificado' });
+//         }
+
+//         res.status(200).json({ success: true, message: 'Datos actualizados correctamente' });
+//     });
+// });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Grabacion de ultima fecha 
+// 📢 Grabacion de ultima fecha 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post('/grabaUltimaFecha', (req, res) => {
 
@@ -211,17 +246,8 @@ app.post('/grabaUltimaFecha', (req, res) => {
     });
 });
 
-
-
-
-
-
-
-
-
-
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Ruta para obtener los registros de PUNTOS RANKING 
+// 📢 Ruta para obtener los registros de PUNTOS RANKING 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/leerPuntosRanking', (req, res) => {
     const query = 'SELECT * FROM puntosranking WHERE id < 13';
@@ -242,40 +268,40 @@ app.get('/leerPuntosRanking', (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-//  📢 Ruta para agregar hoyo con berdi y/o negro 
+// 📢 Ruta para agregar hoyo con berdi y/o negro 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-app.post('/creaBerdiNegro', (req, res) => {
+// app.post('/creaBerdiNegro', (req, res) => {
 
-    // if (!req.session.user){
-    //     return res.status(401).json({ error: 'No estás autenticado' });
-    // }
-    const { hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, negroPar } = req.body;
+//     // if (!req.session.user){
+//     //     return res.status(401).json({ error: 'No estás autenticado' });
+//     // }
+//     const { hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, negroPar } = req.body;
 
-    // Validar que todos los campos existen
-    if (![hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, negroPar].every(Boolean)) {
-        return res.status(400).json({ error: 'Faltan campos obligatorios' });
-    }
+//     // Validar que todos los campos existen
+//     if (![hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, negroPar].every(Boolean)) {
+//         return res.status(400).json({ error: 'Faltan campos obligatorios' });
+//     }
 
-    const nuevoBerdiNegro = 'INSERT INTO berdinegro (hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, negroPar) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    const datosAPasar = [hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, negroPar];
+//     const nuevoBerdiNegro = 'INSERT INTO berdinegro (hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, negroPar) VALUES (?, ?, ?, ?, ?, ?, ?)';
+//     const datosAPasar = [hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, negroPar];
 
-    pool.query(nuevoBerdiNegro, datosAPasar, function (error, lista) {
-        if (error) {
-            if (error.code === 'ER_DUP_ENTRY') {
-                res.status(409).json({ error: 'Ya existe un hoyo igual' });
-            }
-            else {
-                console.log('Error:', error);
-                res.status(500).json({ error: error.message });
-            }
-        } else {
-            res.status(200).json({ success: true });
-        }
-    });
-});
+//     pool.query(nuevoBerdiNegro, datosAPasar, function (error, lista) {
+//         if (error) {
+//             if (error.code === 'ER_DUP_ENTRY') {
+//                 res.status(409).json({ error: 'Ya existe un hoyo igual' });
+//             }
+//             else {
+//                 console.log('Error:', error);
+//                 res.status(500).json({ error: error.message });
+//             }
+//         } else {
+//             res.status(200).json({ success: true });
+//         }
+//     });
+// });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-//  📢 actualiza Berdi Negro
+// 📢 actualiza Berdi Negro variable !!!!!!!
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post('/actualizaBerdiNegro', (req, res) => {
     const { hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore } = req.body;
@@ -334,10 +360,8 @@ app.post('/actualizaBerdiNegro', (req, res) => {
     });
 });
 
-
-
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-//  📢 elimina fecha
+// 📢 elimina fecha
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.delete('/eliminaFecha', (req, res) => {
 
@@ -346,7 +370,7 @@ app.delete('/eliminaFecha', (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📅  Grabacion de NETOS 
+// 📢 Grabacion de NETOS 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post('/grabaNetos', (req, res) => {
     // if (!req.session.user){
@@ -373,7 +397,7 @@ app.post('/grabaNetos', (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Ruta para agregar un comentario
+// 📢 Ruta para agregar un comentario
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post('/agregar-comentario', (req, res) => {
     const { usuario, comentario, fecha } = req.body;
@@ -390,7 +414,7 @@ app.post('/agregar-comentario', (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Ruta para obtener comentarios
+// 📢 Ruta para obtener comentarios
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('/comentarios', (req, res) => {
     const limit = parseInt(req.query.limit) || 1; // Limite de comentarios a mostrar, por defecto 1
@@ -437,7 +461,7 @@ app.get('/comentarios', (req, res) => {
 La consulta checkQuery verifica cuántos comentarios totales hay para saber si se debe mostrar el botón "Ver todos". */
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// comentarios   delete
+// 📢 comentarios   delete
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.delete('/comentarios/:id', async (req, res) => {
     const commentId = req.params.id;
@@ -460,7 +484,7 @@ app.delete('/comentarios/:id', async (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Captura todas las otras rutas para mostrar un 404 
+// 📢 Captura todas las otras rutas para mostrar un 404 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get('*', (req, res) => {
     res.status(404).send('Page Not Found');

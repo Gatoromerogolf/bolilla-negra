@@ -57,7 +57,7 @@ main().then(() => {
             fechaNegro.textContent = registro.negroFecha ?? "--";
     
             let playerNegro = filaResultado.insertCell(-1);
-            playerNegro.textContent = registro.negrPlayer ?? "--";
+            playerNegro.textContent = registro.negroPlayer ?? "--";
 
             let scoreNegro = filaResultado.insertCell(-1);
             scoreNegro.textContent = registro.negroScore ?? "--";
