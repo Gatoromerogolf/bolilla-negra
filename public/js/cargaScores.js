@@ -339,6 +339,7 @@ function validacionBerdiNegro() {
         }
     }
 }
+
 /*---------------------------------------
 // 🔸   MODIFICAR RESULTADOS               
 -----------------------------------------*/
@@ -587,7 +588,6 @@ function calculaPar(hoyo) {
     }
     return par; // Aquí retornamos el valor
 }
-
 
 /*---------------------------------------
 // 🔸 GRABAR NUEVO NETO               

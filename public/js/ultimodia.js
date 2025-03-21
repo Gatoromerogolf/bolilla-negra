@@ -40,23 +40,6 @@ main().then (() => { // Ejecuta la función principal
   console.log("Registros filtrados:");
   filteredPlayers.forEach(player => console.log(player));
 
-  // filteredPlayers.sort((a, b) => {
-  //     // Mueve los elementos con neto igual a 0 al final
-  //     if (a.neto === 0) return 1;
-  //     if (b.neto === 0) return -1;
-
-  //     // Ordena primero por neto de forma ascendente
-  //     if (a.neto < b.neto) return -1;
-  //     if (a.neto > b.neto) return 1;
-
-  //     // Si el neto es el mismo, ordena por or de forma ascendente
-  //     if (a.or < b.or) return -1;
-  //     if (a.or > b.or) return 1;
-
-  //     // Si tanto neto como or son iguales, mantiene el orden original
-  //     return 0;
-  // });
-
   filteredPlayers.sort((a, b) => {
     // Ordena primero por pos de forma ascendente
     if (a.pos < b.pos) return -1;
@@ -66,7 +49,7 @@ main().then (() => { // Ejecuta la función principal
     return 0;
 });
 
-  console.log ("filtered " + filteredPlayers )
+  console.log ("filtered " + filteredPlayers[0][0] )
   const tabResultado = document.getElementById("resultadoFecha").getElementsByTagName("tbody")[0];
 
   for (let i = 1; i < 13; i++) {
@@ -344,6 +327,7 @@ async function leerDatosFechas() {
   }
 }
 
+
 async function leerDatosNetos() {
   try {
     const response = await fetch(`/leerDatosNetos`);
@@ -366,6 +350,7 @@ async function leerDatosNetos() {
   }
 }
 
+
 async function leerPuntosRanking() {
   try {
     const response = await fetch(`/leerPuntosRanking`);
@@ -385,6 +370,7 @@ async function leerPuntosRanking() {
     return null;
   }
 }
+
 
 async function buscaUltimaFecha (){
   try {

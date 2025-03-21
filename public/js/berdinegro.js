@@ -2,6 +2,7 @@ var berdiNegro;  //se define globalmente y la puedo usar en otro js
 
 async function main() {
     berdiNegro = await leerDatosBerdiNegro();
+    console.table (berdiNegro)
 }
 
 main().then(() => {
@@ -47,19 +48,19 @@ main().then(() => {
         if (registro) {
             let fechaBerdi = filaResultado.insertCell(-1);
             fechaBerdi.textContent = "--";
-            fechaBerdi.textContent = registro["berdi-fecha"] ?? "--";
+            fechaBerdi.textContent = registro.berdiFecha ?? "--";
     
             let playerBerdi = filaResultado.insertCell(-1);
-            playerBerdi.textContent = registro["berdi-player"] ?? "--";
+            playerBerdi.textContent = registro.berdiPlayer ?? "--";
 
             let fechaNegro = filaResultado.insertCell(-1);
-            fechaNegro.textContent = registro["negro-fecha"] ?? "--";
+            fechaNegro.textContent = registro.negroFecha ?? "--";
     
             let playerNegro = filaResultado.insertCell(-1);
-            playerNegro.textContent = registro["negro-player"] ?? "--";
+            playerNegro.textContent = registro.negrPlayer ?? "--";
 
             let scoreNegro = filaResultado.insertCell(-1);
-            scoreNegro.textContent = registro["negro-score"] ?? "--";
+            scoreNegro.textContent = registro.negroScore ?? "--";
 
             let parNegro = filaResultado.insertCell(-1);
             parNegro.textContent = par;
