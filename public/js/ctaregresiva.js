@@ -34,7 +34,7 @@ function cuentaRegresiva(fechaObjetivo) {
   
   // Establece la fecha objetivo (año, mes, día, hora, minuto, segundo)
   // Nota: Los meses en JavaScript van de 0 a 11, por lo que enero es 0 y diciembre es 11.
-  const fechaObjetivo = new Date(2024, 10, 21, 7, 0, 0).getTime();
+  const fechaObjetivo = new Date(2025, 3, 2, 7, 0, 0).getTime();
   
   // Iniciar la cuenta regresiva
   cuentaRegresiva(fechaObjetivo);
