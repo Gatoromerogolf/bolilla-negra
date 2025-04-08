@@ -49,13 +49,11 @@ main().then(() => {
       if (matrizValores[i][1] == textoBuscado) {
         matrizValores[i][3] += player.anual;
         break;
-      } else if (
-        matrizValores[i][1] == "" ||
-        matrizValores[i][1] == undefined
-      ) {
-        matrizValores[i][1] = textoBuscado;
-        matrizValores[i][3] = player.anual;
-        break; // Sal del loop después de asignar y sumar
+      } else if
+        (matrizValores[i][1] == "" || matrizValores[i][1] == undefined) {
+            matrizValores[i][1] = textoBuscado;
+            matrizValores[i][3] = player.anual;
+            break; // Sal del loop después de asignar y sumar
       }
     }
   }

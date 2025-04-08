@@ -5,13 +5,13 @@
 //     <script src="../js/sabados.js"></script>  
 //</div> */}
 
-// const div = document.querySelector("div[data-año]");
-// let año = div ? div.getAttribute("data-año") : null;
-
 let año = "2025" // el año que viene cambiamos
+let players2 = [];
+let giras = [];
 
 async function main() {
     const resultados = await leerDatosNetos();
+    giras = await leerDatosGiras();
     if (!resultados || resultados.length === 0) {
         console.error("No se obtuvieron datos de leerDatosNetos o están vacíos.");
         return;
@@ -27,24 +27,22 @@ async function main() {
 }
 
 main().then(() => {
-    // Ejecuta la función principal
-
-    // let tabla = document.getElementById("miTabla");
 
     let matrizValores = Array.from({ length: 12 }, () => ["", 0]); // Cada fila tendrá un arreglo con valores iniciales
 
-    const sumaPuntos = [];
-    const sumaSabados = [];
-    const sumaSierra = [];
-    const sumaRyder = [];
-    const sumaApertura = [];
-    const sumaClausura = [];
-    const sumaCarilo = [];
-    const sumaDesafio = [];
+    // const sumaPuntos = [];
+    // const sumaSabados = [];
+    // const sumaSierra = [];
+    // const sumaRyder = [];
+    // const sumaApertura = [];
+    // const sumaClausura = [];
+    // const sumaCarilo = [];
+    // const sumaDesafio = [];
 
     //  Arma la matriz con los nombres de los jugadores
     //  suma los valores anuales obtenidos en cada sábado
     for (const player of players2) {
+        if (player.play !== "Presi") {
         const textoBuscado = player.play;
         for (let i = 0; i < 12; i++) {
             if (matrizValores[i][1] == textoBuscado) {
@@ -52,35 +50,64 @@ main().then(() => {
                 break;
             } else if
                 (matrizValores[i][1] == "" || matrizValores[i][1] == undefined) {
-                    matrizValores[i][1] = textoBuscado;
-                    matrizValores[i][3] = player.anual;
-                    break; // Sal del loop después de asignar y sumar
-                }
-        }
+                matrizValores[i][1] = textoBuscado;
+                matrizValores[i][3] = player.anual;
+                break; // Sal del loop después de asignar y sumar
+            }
+        }}
     }
 
     //  leo el localstorage con los puntos por mejor score mensual.
     const ganadoresScore = localStorage.getItem('ganadoresScore');
     if (ganadoresScore) {
         const matrizGanadoresScore = JSON.parse(ganadoresScore);
-        console.log(`matriz ganadores score ${matrizGanadoresScore}`); // [ ["player1", 10], ["player2", 15], ["player3", 20] ]
         for (let i = 0; i < 12; i++) { // borrra los acumuladores
-            matrizValores[i][4] = 0;}
-        matrizGanadoresScore.forEach (ganador => {
-            const player = ganador [0];
-            const puntos = parseFloat(ganador [1]); 
+            matrizValores[i][4] = 0;
+        }
+        matrizGanadoresScore.forEach(ganador => {
+            const player = ganador[0];
+            const puntos = parseFloat(ganador[1]);
 
             for (let i = 0; i < 12; i++) {
                 if (matrizValores[i][1] == player) {
                     matrizValores[i][4] = (parseFloat(matrizValores[i][4]) || 0) + puntos;
-                    }
+                }
             }
         })
     }
 
-    for (let i = 0; i < 12; i++) {
-    matrizValores[i][2] = matrizValores[i][3] + matrizValores[i][4];
+    //  tengo que agregar a la matriz los valores de las giras y torneos
+    for (const jugador of giras) {
+        const textoBuscado = jugador.Jugador;
+        for (let i = 0; i < 12; i++) {
+            if (matrizValores[i][1] == textoBuscado) {
+                matrizValores[i][5] = parseFloat(jugador.Sierra);
+                matrizValores[i][6] = jugador.Ryder;
+                matrizValores[i][9] = jugador.Carilo;
+                matrizValores[i][10] = jugador.Desafio;
+
+                matrizValores[i][7] = 0;
+                matrizValores[i][8] = 0;
+                break;
+            }
+        }
     }
+
+    for (let i = 0; i < 11; i++) {
+        // Asegurate de que empiece en número (y no en undefined o string)
+        matrizValores[i][2] = 0;
+    
+        for (let j = 3; j < 11; j++) {
+            const valor = matrizValores[i][j];
+            // esto por si hay algun valor NaN
+            if (isNaN(valor)) {
+                console.warn(`Valor inválido en matrizValores[${i}][${j}]:`, valor);
+            } else {
+                matrizValores[i][2] += valor;
+            }
+        }
+    }
+    
 
     // Llamada al método sort() con la función de comparación
     matrizValores.sort(compararPorColumna2);
@@ -92,21 +119,20 @@ main().then(() => {
         return valorB - valorA;
     }
     for (let i = 0; i < 12; i++) {
-        matrizValores[i][0] = i+1;
+        matrizValores[i][0] = i + 1;
     }
 
-    console.table(matrizValores);
 
     let tablaAnual = document.getElementById("tablaAnual");
     let tbody = tablaAnual.querySelector("tbody"); // Selecciona el tbody de la tabla
-    
+
     // Limpia cualquier fila existente en tbody
     tbody.innerHTML = "";
-    
+
     // Itera sobre los valores de la matriz y crea filas y celdas
     for (let i = 0; i < matrizValores.length; i++) {
         let fila = tbody.insertRow(); // Crea una nueva fila
-    
+
         // Itera sobre cada valor en la fila de la matriz y crea celdas
         for (let j = 0; j < matrizValores[i].length; j++) {
             let celda = fila.insertCell(j); // Crea una nueva celda en la posición j
@@ -128,7 +154,7 @@ async function leerDatosNetos() {
         const response = await fetch(`/leerDatosNetos`);
         if (response.ok) {
             const resultados = await response.json();
-            return resultados; 
+            return resultados;
         } else {
             console.error(
                 "Error en la respuesta:",
@@ -144,17 +170,13 @@ async function leerDatosNetos() {
 }
 
 async function leerDatosFechas() {
-    console.log("entro a leer datosfechas");
     try {
         const response = await fetch(`/leerDatosFechas`);
         if (response.ok) {
             const fechas = await response.json();
-            console.log(fechas[0]);
-
             const fechasFiltradas = fechas.filter(
                 (fecha) => fecha.fec > 31 && fecha.fec < 90
             );
-            console.log(`primera filtrada: ${JSON.stringify(fechasFiltradas[0])}`); // Muestra la primera fecha filtrada
 
             return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
         } else {
@@ -167,6 +189,26 @@ async function leerDatosFechas() {
         }
     } catch (error) {
         console.error("Error en la solicitud:", error);
+        return null;
+    }
+}
+
+async function leerDatosGiras() {
+    try {
+        const results = await fetch(`/leerDatosGiras`);
+        if (results.ok) {
+            const resultadosGira = await results.json();
+            return resultadosGira;
+        } else {
+            console.error(
+                "Error en la respuesta:",
+                results.status,
+                results.statusText
+            );
+            return null;
+        }
+    } catch (error) {
+        console.error("Error en la solicitud lectura Gira:", error);
         return null;
     }
 }
