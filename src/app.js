@@ -165,6 +165,31 @@ app.get('/leerDatosNetos', (req, res) => {
     });
 });
 
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 Ruta para obtener los registros de DATOS GIRAS
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+app.get('/leerDatosGiras', (req, res) => {
+    const query = 'SELECT * FROM giras';
+
+    pool.query(query, (error, results, fields) => {
+        if (error) {
+            res.status(500).json({ error: 'Error al obtener los DatosGiras' });
+            console.log("error servidor al obtener registros");
+            return;
+        }
+
+        if (results.length > 0) {
+            console.log(results); // Para ver todo el array
+            console.log(results[0]); // Para ver solo la primera fila
+            console.log(Object.keys(results[0])); // Para ver las propiedades (columnas)
+            res.json(results);
+        } else {
+            res.status(404).json({ error: 'No se encontraron registros Giras' });
+        }
+    });
+});
+
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 Ruta para obtener los berdisnegros
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
