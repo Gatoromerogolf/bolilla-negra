@@ -508,6 +508,107 @@ app.delete('/comentarios/:id', async (req, res) => {
     });
 });
 
+
+
+const router = express.Router();
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 Obtener todas las canchas
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+// app.get('/api/canchas', async (req, res) => {
+//     try {
+//         const [rows] = await db.query('SELECT id, nombre FROM canchas');
+//         res.json(rows);
+//     } catch (err) {
+//         res.status(500).json({ error: 'Error al obtener canchas' });
+//     }
+// });
+
+
+
+
+app.get('/api/canchas', (req, res) => {
+    const query = 'SELECT * FROM canchas';
+
+    pool.query(query, (error, results, fields) => {
+        if (error) {
+            console.error("Error servidor al obtener canchas:", error);
+            res.status(500).json({ error: 'Error al obtener las canchas' });
+            return;
+        }
+
+        if (results.length > 0) {
+            res.json(results);
+        } else {
+            res.status(404).json({ error: 'No se encontraron registros' });
+        }
+    });
+});
+
+
+
+
+
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 Obtener hoyos (par y handicap) para una cancha
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+app.get('/hoyos/:idCancha', async (req, res) => {
+    const idCancha = req.params.idCancha;
+    try {
+        const [rows] = await db.query(
+            'SELECT numero_hoyo, par, handicap FROM hoyos WHERE id_cancha = ? ORDER BY numero_hoyo',
+            [idCancha]
+        );
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: 'Error al obtener hoyos' });
+    }
+});
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 Guardar resultados de un jugador
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// Guardar resultados de un jugador
+router.post('/guardar-scores', async (req, res) => {
+    const { fecha, jugador, scores } = req.body;
+
+    if (!fecha || !jugador || !Array.isArray(scores) || scores.length !== 18) {
+        return res.status(400).json({ error: 'Datos incompletos o inválidos' });
+    }
+
+    const conn = await db.getConnection();
+    try {
+        await conn.beginTransaction();
+
+        for (const s of scores) {
+            await conn.query(
+                'INSERT INTO golpesPorHoyo (fecha, jugador, hoyo, gross) VALUES (?, ?, ?, ?)',
+                [fecha, jugador, s.hoyo, s.gross]
+            );
+        }
+
+        await conn.commit();
+        res.json({ message: 'Resultados guardados correctamente' });
+    } catch (err) {
+        await conn.rollback();
+        res.status(500).json({ error: 'Error al guardar resultados' });
+    } finally {
+        conn.release();
+    }
+});
+
+
+
+
+
+
+
+
+
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 Captura todas las otras rutas para mostrar un 404 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

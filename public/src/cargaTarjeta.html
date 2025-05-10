@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carga de Scores - Golf</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+    }
+    select, input[type="number"], button {
+      margin: 0.5rem;
+      padding: 0.4rem;
+    }
+    table {
+      border-collapse: collapse;
+      margin-top: 1rem;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 0.5rem;
+    }
+    .birdie { background-color: #87CEFA; }
+    .eagle { background-color: #FFFF99; }
+    .bogey { background-color: #D2B48C; }
+    .double { background-color: #FF7F7F; }
+  </style>
+</head>
+<body>
+  <h1>Carga de Scores</h1>
+
+  <label>Fecha:
+    <input type="date" id="fecha" />
+  </label>
+
+  <label>Cancha:
+    <select id="canchaSelect"></select>
+  </label>
+
+  <label>Jugador:
+    <select id="jugadorSelect">
+      <option value="">Seleccionar</option>
+      <option value="Jugador 1">Diegui</option>
+      <option value="Jugador 2">Edu</option>
+      <option value="Jugador 3">Fer</option>
+      <option value="Jugador 4">Gaby</option>
+      <option value="Jugador 5">Joaco</option>
+      <option value="Jugador 6">Juancho</option>
+      <option value="Jugador 7">Julito</option>
+      <option value="Jugador 8">Negro</option>
+      <option value="Jugador 9">Panza</option>
+      <option value="Jugador 10">Presi</option>
+      <option value="Jugador 11">Sensei</option>
+      <option value="Jugador 12">Torni</option>
+
+      <!-- Agregá hasta 11 -->
+    </select>
+  </label>
+
+  <table id="scoreTable">
+    <thead>
+      <tr><th>Hoyo</th><th>Par</th><th>HCP</th><th>Golpes</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <button onclick="guardarResultados()">Guardar Resultados</button>
+
+  <script>
+    let hoyos = [];
+
+    async function cargarCanchas() {
+      const res = await fetch('/api/canchas');
+      const data = await res.json();
+      const select = document.getElementById('canchaSelect');
+      data.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.id;
+        opt.textContent = c.nombre;
+        select.appendChild(opt);
+      });
+    }
+
+    document.getElementById('canchaSelect').addEventListener('change', async () => {
+      const canchaId = document.getElementById('canchaSelect').value;
+      const res = await fetch(`/api/hoyos/${canchaId}`);
+      hoyos = await res.json();
+      renderTabla();
+    });
+
+    function renderTabla() {
+      const tbody = document.querySelector('#scoreTable tbody');
+      tbody.innerHTML = '';
+      hoyos.forEach(h => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${h.numero_hoyo}</td>
+          <td>${h.par}</td>
+          <td>${h.handicap}</td>
+          <td><input type="number" min="1" onchange="actualizarColor(this, ${h.par})"></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function actualizarColor(input, par) {
+      const valor = parseInt(input.value);
+      input.className = '';
+      if (!isNaN(valor)) {
+        const diff = valor - par;
+        if (diff === -2) input.classList.add('eagle');
+        else if (diff === -1) input.classList.add('birdie');
+        else if (diff === 1) input.classList.add('bogey');
+        else if (diff >= 2) input.classList.add('double');
+      }
+    }
+
+    async function guardarResultados() {
+      const fecha = document.getElementById('fecha').value;
+      const jugador = document.getElementById('jugadorSelect').value;
+      if (!fecha || !jugador) return alert('Falta completar fecha o jugador');
+
+      const inputs = document.querySelectorAll('#scoreTable input');
+      if (inputs.length !== 18) return alert('No hay 18 hoyos cargados');
+
+      const scores = [];
+      for (let i = 0; i < inputs.length; i++) {
+        const val = parseInt(inputs[i].value);
+        if (isNaN(val)) return alert(`Falta cargar el hoyo ${i + 1}`);
+        scores.push({ hoyo: i + 1, gross: val });
+      }
+
+      const body = {
+        fecha,
+        jugador,
+        scores
+      };
+
+      const res = await fetch('/api/guardar-scores', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      const result = await res.json();
+      alert(result.message);
+    }
+
+    cargarCanchas();
+  </script>
+</body>
+</html>
