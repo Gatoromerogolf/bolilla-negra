@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carga de Scores - Golf</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 2rem;
+        }
+
+        select,
+        input[type="number"],
+        button {
+            margin: 0.5rem;
+            padding: 0.4rem;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .birdie {
+            background-color: #87CEFA;
+        }
+
+        .eagle {
+            background-color: #FFFF99;
+        }
+
+        .bogey {
+            background-color: #D2B48C;
+        }
+
+        .double {
+            background-color: #FF7F7F;
+        }
+
+        .cargado {
+            color: gray;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Carga de Scores</h1>
+
+    <label>Fecha:
+        <input type="date" id="fecha" />
+    </label>
+
+    <label>Cancha:
+        <select id="canchaSelect"></select>
+    </label>
+
+    <label>Jugador:
+        <select id="jugadorSelect">
+            <option value="">Seleccionar</option>
+            <option value="Jugador 1">Diegui</option>
+            <option value="Jugador 2">Edu</option>
+            <option value="Jugador 3">Fer</option>
+            <option value="Jugador 4">Gaby</option>
+            <option value="Jugador 5">Joaco</option>
+            <option value="Jugador 6">Juancho</option>
+            <option value="Jugador 7">Julito</option>
+            <option value="Jugador 8">Negro</option>
+            <option value="Jugador 9">Panza</option>
+            <option value="Jugador 10">Presi</option>
+            <option value="Jugador 11">Sensei</option>
+            <option value="Jugador 12">Torni</option>
+
+            <!-- Agregá hasta 11 -->
+        </select>
+    </label>
+
+    <label>Handicap:
+        <input type="number" id="handicap" min="0" />
+    </label>
+
+    <table id="scoreTable">
+        <thead>
+            <tr>
+                <th>Hoyo</th>
+                <th>Par</th>
+                <th>HCP</th>
+                <th>Golpes</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <button onclick="guardarResultados()" id="guardarBtn" style="display:none">Guardar Resultados</button>
+
+    <script>
+        let hoyos = [];
+
+        async function verificarTodoCompleto() {
+            const fecha = document.getElementById('fecha').value;
+            const jugador = document.getElementById('jugadorSelect').value;
+            const cancha = document.getElementById('canchaSelect').value;
+            const handicap = document.getElementById('handicap').value;
+            const inputs = document.querySelectorAll('#scoreTable input');
+
+            if (!fecha || !jugador || !cancha || !handicap) {
+                document.getElementById('guardarBtn').style.display = 'none';
+                return;
+            }
+
+            if (inputs.length !== 18) {
+                document.getElementById('guardarBtn').style.display = 'none';
+                return;
+            }
+
+            for (let i = 0; i < inputs.length; i++) {
+                if (isNaN(parseInt(inputs[i].value))) {
+                    document.getElementById('guardarBtn').style.display = 'none';
+                    return;
+                }
+            }
+
+            // Verificar si ya existe la tarjeta
+            const res = await fetch(`/api/tarjetas/existe?jugador=${encodeURIComponent(jugador)}&fecha=${fecha}&cancha=${cancha}`);
+            const data = await res.json();
+
+            if (data.existe) {
+                document.getElementById('guardarBtn').style.display = 'none';
+                alert("Ya existe una tarjeta cargada para este jugador en esta fecha y cancha.");
+            } else {
+                document.getElementById('guardarBtn').style.display = 'inline-block';
+            }
+        }
+
+        document.getElementById('fecha').addEventListener('change', verificarTodoCompleto);
+        document.getElementById('canchaSelect').addEventListener('change', verificarTodoCompleto);
+        document.getElementById('jugadorSelect').addEventListener('change', verificarTodoCompleto);
+        document.getElementById('handicap').addEventListener('input', verificarTodoCompleto);
+        document.querySelector('#scoreTable').addEventListener('input', verificarTodoCompleto);
+
+        async function marcarJugadoresConTarjeta() {
+            const fecha = document.getElementById('fecha').value;
+            const cancha = document.getElementById('canchaSelect').value;
+
+            console.log("entro por aca");
+            if (!fecha || !cancha) return;
+
+            try {
+                const res = await fetch(`/api/tarjetas/jugadores-cargados?fecha=${fecha}&cancha=${cancha}`);
+                const cargados = await res.json(); // Array de "Jugador 1", "Jugador 5", etc.
+
+                console.log("cargdos:", cargados)
+
+                const select = document.getElementById('jugadorSelect');
+                Array.from(select.options).forEach(opt => {
+                    opt.classList.remove('cargado');
+                    opt.disabled = false;
+
+                    if (cargados.includes(opt.value)) {
+                        opt.classList.add('cargado');
+                        opt.disabled = true;
+                        opt.textContent = `✅ ${opt.textContent.replace(/^✅ /, '')}`;
+                    } else {
+                        opt.textContent = opt.textContent.replace(/^✅ /, '');
+                    }
+                });
+
+                // Reset selección si el jugador estaba elegido pero ahora está deshabilitado
+                const selected = select.value;
+                if (cargados.includes(selected)) {
+                    select.value = '';
+                }
+
+            } catch (err) {
+                console.error('Error al marcar jugadores cargados:', err);
+            }
+        }
+
+
+        document.getElementById('fecha').addEventListener('change', marcarJugadoresConTarjeta);
+        document.getElementById('canchaSelect').addEventListener('change', marcarJugadoresConTarjeta);
+
+        async function cargarCanchas() {
+            const res = await fetch('/api/canchas');
+            const data = await res.json();
+            const select = document.getElementById('canchaSelect');
+
+            // Limpiar por si ya hay opciones previas
+            select.innerHTML = '';
+
+            // Opción inicial
+            const optInicial = document.createElement('option');
+            optInicial.value = '';
+            optInicial.textContent = 'Seleccionar cancha...';
+            optInicial.disabled = true;
+            optInicial.selected = true;
+            select.appendChild(optInicial);
+
+            // Agregar las canchas disponibles
+            data.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = c.nombre;
+                select.appendChild(opt);
+            });
+        }
+
+        document.getElementById('canchaSelect').addEventListener('change', async () => {
+            const canchaId = document.getElementById('canchaSelect').value;
+            console.log('Cancha seleccionada:', canchaId); // 👈 Verificá este valor
+            if (!canchaId) return;
+
+            const res = await fetch(`/api/hoyos/${canchaId}`);
+            hoyos = await res.json();
+            console.log('Hoyos recibidos:', hoyos); // 👈 Verifica que el array tenga datos
+
+            if (!Array.isArray(hoyos)) {
+                console.error("Error al obtener hoyos:", hoyos.error);
+                alert("No se pudieron cargar los hoyos de esta cancha.");
+                return;
+            }
+
+            renderTabla();
+        });
+
+        function renderTabla() {
+            const tbody = document.querySelector('#scoreTable tbody');
+            tbody.innerHTML = '';
+            hoyos.forEach(h => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+          <td>${h.hoyo}</td>
+          <td>${h.par}</td>
+          <td>${h.handicap}</td>
+          <td><input type="number" min="1" onchange="actualizarColor(this, ${h.par})"></td>
+        `;
+                tbody.appendChild(tr);
+            });
+            // 👉 Llamar a verificar si se debe mostrar el botón
+            verificarTodoCompleto();
+        }
+
+        function actualizarColor(input, par) {
+            const valor = parseInt(input.value);
+            input.className = '';
+            if (!isNaN(valor)) {
+                const diff = valor - par;
+                if (diff === -2) input.classList.add('eagle');
+                else if (diff === -1) input.classList.add('birdie');
+                else if (diff === 1) input.classList.add('bogey');
+                else if (diff >= 2) input.classList.add('double');
+            }
+        }
+
+        async function guardarResultados() {
+            const fecha = document.getElementById('fecha').value;
+            const jugador = document.getElementById('jugadorSelect').value;
+            const cancha = document.getElementById('canchaSelect').value; // Asegúrate de tener este select en tu HTML
+            const handicap = parseInt(document.getElementById('handicap').value); // Asegúrate de tener este campo
+
+            if (!fecha || !jugador || !cancha || isNaN(handicap)) {
+                return alert('Falta completar fecha, jugador, cancha o handicap');
+            }
+
+            const inputs = document.querySelectorAll('#scoreTable input');
+            if (inputs.length !== 18) return alert('No hay 18 hoyos cargados');
+
+            const hoyos = [];
+            for (let i = 0; i < inputs.length; i++) {
+                const val = parseInt(inputs[i].value);
+                if (isNaN(val)) return alert(`Falta cargar el hoyo ${i + 1}`);
+                hoyos.push({ hoyo: i + 1, golpes: val }); // Cambiado de "gross" a "golpes"
+            }
+
+            const body = {
+                jugador,
+                fecha,
+                cancha: parseInt(cancha),
+                handicap,
+                hoyos
+            };
+
+            try {
+                const res = await fetch('/api/tarjetas', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+
+                const result = await res.json();
+                alert(result.message || 'Tarjeta grabada');
+            } catch (err) {
+                console.error('Error al guardar la tarjeta:', err);
+                alert('Error al guardar la tarjeta');
+            }
+        }
+
+
+        cargarCanchas();
+    </script>
+</body>
+
+</html>

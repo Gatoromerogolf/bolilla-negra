@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,73 +10,161 @@
       font-family: sans-serif;
       margin: 2rem;
     }
-    select, input[type="number"], button {
+
+    select,
+    input[type="number"],
+    button {
       margin: 0.5rem;
       padding: 0.4rem;
     }
+
     table {
       border-collapse: collapse;
       margin-top: 1rem;
       width: 100%;
     }
-    th, td {
+
+    th,
+    td {
       border: 1px solid #ccc;
       text-align: center;
       padding: 0.5rem;
     }
-    .birdie { background-color: #87CEFA; }
-    .eagle { background-color: #FFFF99; }
-    .bogey { background-color: #D2B48C; }
-    .double { background-color: #FF7F7F; }
+
+    .birdie {
+      background-color: #87CEFA;
+    }
+
+    .eagle {
+      background-color: #FFFF99;
+    }
+
+    .bogey {
+      background-color: #D2B48C;
+    }
+
+    .double {
+      background-color: #FF7F7F;
+    }
+
+    .cargado {
+      color: gray;
+      font-style: italic;
+    }
   </style>
 </head>
+
 <body>
   <h1>Carga de Scores</h1>
 
-  <label>Fecha:
+  <!-- Formulario -->
+  <!-- Primera línea: Fecha y Cancha -->
+  <div style="margin-bottom: 1em;">
+    <label for="fecha">Fecha:</label>
     <input type="date" id="fecha" />
-  </label>
 
-  <label>Cancha:
-    <select id="canchaSelect"></select>
-  </label>
-
-  <label>Jugador:
-    <select id="jugadorSelect">
-      <option value="">Seleccionar</option>
-      <option value="Jugador 1">Diegui</option>
-      <option value="Jugador 2">Edu</option>
-      <option value="Jugador 3">Fer</option>
-      <option value="Jugador 4">Gaby</option>
-      <option value="Jugador 5">Joaco</option>
-      <option value="Jugador 6">Juancho</option>
-      <option value="Jugador 7">Julito</option>
-      <option value="Jugador 8">Negro</option>
-      <option value="Jugador 9">Panza</option>
-      <option value="Jugador 10">Presi</option>
-      <option value="Jugador 11">Sensei</option>
-      <option value="Jugador 12">Torni</option>
-
-      <!-- Agregá hasta 11 -->
+    <label for="canchaSelect">Cancha:</label>
+    <select id="canchaSelect">
+      <option value="">Seleccionar cancha...</option>
     </select>
-  </label>
+  </div>
 
-  <table id="scoreTable">
-    <thead>
-      <tr><th>Hoyo</th><th>Par</th><th>HCP</th><th>Golpes</th></tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <form id="tarjetaForm">
+    <!-- Segunda línea: Jugador (siempre visible), y oculto inicialmente handicap + tarjeta -->
+    <div style="margin-bottom: 1em;">
+      <label for="jugadorSelect">Jugador:</label>
+      <select id="jugadorSelect">
+        <option value="">Seleccionar jugador</option>
+        <option value="Diegui">Diegui</option>
+        <option value="Edu">Edu</option>
+        <option value="Fer">Fer</option>
+        <option value="Gaby">Gaby</option>
+        <option value="Joaco">Joaco</option>
+        <option value="Juancho">Juancho</option>
+        <option value="Julito">Julito</option>
+        <option value="Negro">Negro</option>
+        <option value="Panza">Panza</option>
+        <option value="Presi">Presi</option>
+        <option value="Sensei">Sensei</option>
+        <option value="Torni">Torni</option>
+      </select>
+    </div>
 
-  <button onclick="guardarResultados()">Guardar Resultados</button>
+    <!-- Handicap (oculto inicialmente) -->
+    <div id="handicapContainer" style="display: none; margin-bottom: 1em;">
+      <label for="handicap">Handicap:</label>
+      <input type="number" id="handicap" />
+    </div>
+
+    <!-- Tarjeta de score (oculta inicialmente) -->
+    <div id="tarjetaContainer" style="display: none;">
+      <!-- Tabla de scores -->
+      <table id="scoreTable">
+        <thead>
+          <tr>
+            <th>Hoyo</th>
+            <th>Par</th>
+            <th>HCP</th>
+            <th>Golpes</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="totales">
+      <p>Total Gross (1-9): <span id="totalGross1to9">0</span></p>
+      <p>Total Gross (10-18): <span id="totalGross10to18">0</span></p>
+      <p>Total Gross (1-18): <span id="totalGross">0</span></p>
+      <!-- <p>Handicap: <input type="number" id="handicap" value="0" /></p> -->
+      <p>Total Neto: <span id="totalNeto">0</span></p>
+    </div>
+
+    <button id="guardarBtn" onclick="guardarResultados()" style="display:none">Guardar Resultados</button>
+  </form>
 
   <script>
     let hoyos = [];
 
+    // Eventos iniciales
+    document.getElementById('fecha').addEventListener('change', verificarTodoCompleto);
+    document.getElementById('canchaSelect').addEventListener('change', verificarTodoCompleto);
+    // document.getElementById('jugadorSelect').addEventListener('change', verificarTodoCompleto);
+
+    document.getElementById('jugadorSelect').addEventListener('change', function () {
+      const jugadorSeleccionado = this.value;
+      const handicapContainer = document.getElementById('handicapContainer');
+      const tarjetaContainer = document.getElementById('tarjetaContainer');
+
+      if (jugadorSeleccionado) {
+        handicapContainer.style.display = 'block';
+        tarjetaContainer.style.display = 'block';
+      } else {
+        handicapContainer.style.display = 'none';
+        tarjetaContainer.style.display = 'none';
+      }
+    });
+
+    document.getElementById('handicap').addEventListener('input', verificarTodoCompleto);
+    document.querySelector('#scoreTable').addEventListener('input', verificarTodoCompleto);
+
+    document.getElementById('fecha').addEventListener('change', marcarJugadoresConTarjeta);
+    document.getElementById('canchaSelect').addEventListener('change', marcarJugadoresConTarjeta);
+
+    // Cargar opciones de canchas
     async function cargarCanchas() {
       const res = await fetch('/api/canchas');
       const data = await res.json();
       const select = document.getElementById('canchaSelect');
+      select.innerHTML = '';
+
+      const optInicial = document.createElement('option');
+      optInicial.value = '';
+      optInicial.textContent = 'Seleccionar cancha...';
+      optInicial.disabled = true;
+      optInicial.selected = true;
+      select.appendChild(optInicial);
+
       data.forEach(c => {
         const opt = document.createElement('option');
         opt.value = c.id;
@@ -84,31 +173,110 @@
       });
     }
 
+    // Cargar hoyos de la cancha seleccionada
     document.getElementById('canchaSelect').addEventListener('change', async () => {
       const canchaId = document.getElementById('canchaSelect').value;
+      if (!canchaId) return;
+
       const res = await fetch(`/api/hoyos/${canchaId}`);
       hoyos = await res.json();
+
+      if (!Array.isArray(hoyos)) {
+        alert("No se pudieron cargar los hoyos de esta cancha.");
+        return;
+      }
+
       renderTabla();
     });
 
+    // Verifica si todos los campos están completos para mostrar el botón
+    async function verificarTodoCompleto() {
+      const fecha = document.getElementById('fecha').value;
+      const jugador = document.getElementById('jugadorSelect').value;
+      const cancha = document.getElementById('canchaSelect').value;
+      const handicap = document.getElementById('handicap').value;
+      const inputs = document.querySelectorAll('#scoreTable input');
+
+      const btn = document.getElementById('guardarBtn');
+      if (!fecha || !jugador || !cancha || !handicap || inputs.length !== 18) {
+        btn.style.display = 'none';
+        return;
+      }
+
+      for (let input of inputs) {
+        if (isNaN(parseInt(input.value))) {
+          btn.style.display = 'none';
+          return;
+        }
+      }
+
+      const res = await fetch(`/api/tarjetas/verificar?jugador=${encodeURIComponent(jugador)}&fecha=${fecha}&cancha=${cancha}`);
+      const data = await res.json();
+
+      if (data.existe) {
+        btn.style.display = 'none';
+        alert("Ya existe una tarjeta cargada para este jugador en esta fecha y cancha.");
+      } else {
+        btn.style.display = 'inline-block';
+      }
+    }
+
+    // Marcar jugadores que ya tienen tarjeta cargada
+    async function marcarJugadoresConTarjeta() {
+      const fecha = document.getElementById('fecha').value;
+      const cancha = document.getElementById('canchaSelect').value;
+      if (!fecha || !cancha) return;
+
+      try {
+        const res = await fetch(`/api/tarjetas/jugadores-cargados?fecha=${fecha}&cancha=${cancha}`);
+        const cargados = await res.json();
+
+        const select = document.getElementById('jugadorSelect');
+        Array.from(select.options).forEach(opt => {
+          opt.classList.remove('cargado');
+          opt.disabled = false;
+
+          if (cargados.includes(opt.value)) {
+            opt.classList.add('cargado');
+            opt.disabled = true;
+            opt.textContent = `✅ ${opt.textContent.replace(/^✅ /, '')}`;
+          } else {
+            opt.textContent = opt.textContent.replace(/^✅ /, '');
+          }
+        });
+
+        if (cargados.includes(select.value)) {
+          select.value = '';
+        }
+      } catch (err) {
+        console.error('Error al marcar jugadores cargados:', err);
+      }
+    }
+
+    // Renderizar la tabla de hoyos
     function renderTabla() {
       const tbody = document.querySelector('#scoreTable tbody');
       tbody.innerHTML = '';
+
       hoyos.forEach(h => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${h.numero_hoyo}</td>
+          <td>${h.hoyo}</td>
           <td>${h.par}</td>
           <td>${h.handicap}</td>
-          <td><input type="number" min="1" onchange="actualizarColor(this, ${h.par})"></td>
+          <td><input type="number" class="gross" min="1" onchange="actualizarColor(this, ${h.par})"></td>
         `;
         tbody.appendChild(tr);
       });
+
+      verificarTodoCompleto();
     }
 
+    // Colorear según score
     function actualizarColor(input, par) {
       const valor = parseInt(input.value);
       input.className = '';
+
       if (!isNaN(valor)) {
         const diff = valor - par;
         if (diff === -2) input.classList.add('eagle');
@@ -118,38 +286,83 @@
       }
     }
 
+    // Guardar resultados
     async function guardarResultados() {
       const fecha = document.getElementById('fecha').value;
       const jugador = document.getElementById('jugadorSelect').value;
-      if (!fecha || !jugador) return alert('Falta completar fecha o jugador');
+      const cancha = document.getElementById('canchaSelect').value;
+      const handicap = parseInt(document.getElementById('handicap').value);
+
+      if (!fecha || !jugador || !cancha || isNaN(handicap)) {
+        return alert('Falta completar fecha, jugador, cancha o handicap');
+      }
 
       const inputs = document.querySelectorAll('#scoreTable input');
       if (inputs.length !== 18) return alert('No hay 18 hoyos cargados');
 
-      const scores = [];
+      const hoyos = [];
       for (let i = 0; i < inputs.length; i++) {
         const val = parseInt(inputs[i].value);
         if (isNaN(val)) return alert(`Falta cargar el hoyo ${i + 1}`);
-        scores.push({ hoyo: i + 1, gross: val });
+        hoyos.push({ hoyo: i + 1, golpes: val });
       }
 
       const body = {
-        fecha,
         jugador,
-        scores
+        fecha,
+        cancha: parseInt(cancha),
+        handicap,
+        hoyos
       };
 
-      const res = await fetch('/api/guardar-scores', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      });
+      try {
+        const res = await fetch('/api/tarjetas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
 
-      const result = await res.json();
-      alert(result.message);
+        const result = await res.json();
+        alert(result.message || 'Tarjeta grabada');
+      } catch (err) {
+        console.error('Error al guardar resultados:', err);
+      }
     }
 
+    document.getElementById('tarjetaForm').addEventListener('input', calcularTotales);
+
+    function calcularTotales() {
+      // Obtener los valores de los hoyos
+      const hoyos = Array.from(document.querySelectorAll('.gross'));
+
+      console.log('Cantidad de inputs .gross:', hoyos.length); // Verifica que sean 18
+      const handicap = parseInt(document.getElementById('handicap').value) || 0;
+
+      // Sumar Gross de los hoyos (1-9 y 10-18)
+      const gross1to9 = hoyos.slice(0, 9).reduce((acc, input) => acc + (parseInt(input.value) || 0), 0);
+      const gross10to18 = hoyos.slice(9, 18).reduce((acc, input) => acc + (parseInt(input.value) || 0), 0);
+
+      // Calcular el Total Gross (1-18)
+      const totalGross = gross1to9 + gross10to18;
+
+      // Calcular el Total Neto (Gross Total - Handicap)
+      const totalNeto = totalGross - handicap;
+
+      // Actualizar los valores de los totales en el HTML
+      document.getElementById('totalGross1to9').textContent = gross1to9;
+      document.getElementById('totalGross10to18').textContent = gross10to18;
+      document.getElementById('totalGross').textContent = totalGross;
+      document.getElementById('totalNeto').textContent = totalNeto;
+
+      // Activar el botón de guardar si todos los hoyos tienen valores
+      const allFieldsFilled = hoyos.every(input => input.value.trim() !== "");
+      const validGross = totalGross > 0 && totalNeto > 0;
+      document.getElementById('guardarBtn').disabled = !(allFieldsFilled && validGross);
+    }
+
+    // Inicializar
     cargarCanchas();
   </script>
 </body>
+
 </html>
