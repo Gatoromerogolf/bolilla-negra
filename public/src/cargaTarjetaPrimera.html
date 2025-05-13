@@ -57,37 +57,38 @@
 <body>
     <h1>Carga de Scores</h1>
 
-    <label>Fecha:
-        <input type="date" id="fecha" />
-    </label>
+    <span style="font-size: 14px;">
+        <label>Fecha:</label>
+        <input type="date" id="fecha" max="2025-10-31" min="2025-01-01">
 
-    <label>Cancha:
-        <select id="canchaSelect"></select>
-    </label>
+        <label>Cancha:
+            <select id="canchaSelect"></select>
+        </label>
 
-    <label>Jugador:
-        <select id="jugadorSelect">
-            <option value="">Seleccionar</option>
-            <option value="Jugador 1">Diegui</option>
-            <option value="Jugador 2">Edu</option>
-            <option value="Jugador 3">Fer</option>
-            <option value="Jugador 4">Gaby</option>
-            <option value="Jugador 5">Joaco</option>
-            <option value="Jugador 6">Juancho</option>
-            <option value="Jugador 7">Julito</option>
-            <option value="Jugador 8">Negro</option>
-            <option value="Jugador 9">Panza</option>
-            <option value="Jugador 10">Presi</option>
-            <option value="Jugador 11">Sensei</option>
-            <option value="Jugador 12">Torni</option>
+        <label>Jugador:
+            <select id="jugadorSelect">
+                <option value="">Seleccionar</option>
+                <option value="Jugador 1">Diegui</option>
+                <option value="Jugador 2">Edu</option>
+                <option value="Jugador 3">Fer</option>
+                <option value="Jugador 4">Gaby</option>
+                <option value="Jugador 5">Joaco</option>
+                <option value="Jugador 6">Juancho</option>
+                <option value="Jugador 7">Julito</option>
+                <option value="Jugador 8">Negro</option>
+                <option value="Jugador 9">Panza</option>
+                <option value="Jugador 10">Presi</option>
+                <option value="Jugador 11">Sensei</option>
+                <option value="Jugador 12">Torni</option>
 
-            <!-- Agregá hasta 11 -->
-        </select>
-    </label>
+                <!-- Agregá hasta 11 -->
+            </select>
+        </label>
 
-    <label>Handicap:
-        <input type="number" id="handicap" min="0" />
-    </label>
+        <label>Handicap:
+            <input type="number" id="handicap" min="0" />
+        </label>
+    </span>
 
     <table id="scoreTable">
         <thead>

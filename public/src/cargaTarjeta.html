@@ -2,6 +2,8 @@
 <html lang="es">
 
 <head>
+  <link href="assets/images/bn2.ico" rel="icon">
+  <link href="../styles/styleblog.css" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Carga de Scores - Golf</title>
@@ -62,86 +64,109 @@
       color: gray;
       font-style: italic;
     }
+
+    /* esto elimina las flechitas que aumentan y disminuyen el numero */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
   </style>
 </head>
 
 <body>
-  <h1>Carga de Scores</h1>
+  <div style="font-size: 12px; display: flex; align-items: center; gap: 5px;">
+    <label for="ultFecha">Última:</label>
+    <input id="ultFecha" type="text" placeholder="sabado 8 setiembre" disabled>
+    <label for="ultNumero">N°</label>
+    <input id="ultNumero" type="number" placeholder="99" maxlength="3" disabled style="width: 5ch">
+  </div>
+
+  <h2>Carga de Scores</h2>
 
   <!-- Formulario -->
   <!-- Primera línea: Fecha y Cancha -->
-  <div style="margin-bottom: 1em;">
-    <label for="fecha">Fecha:</label>
-    <input type="date" id="fecha" />
+  <span style="font-size: 14px;">
+    <div>
+      <!-- <div style="margin-bottom: 1em"> -->
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" />
 
-    <label for="canchaSelect">Cancha:</label>
-    <select id="canchaSelect">
-      <!-- <option value="">Seleccionar</option> -->
-    </select>
-  </div>
+      <label for="canchaSelect">Cancha:</label>
+      <select id="canchaSelect"></select>
 
-  <div style="margin-bottom: 1em;">
-    <label for="fecha">Total Jugadores:</label>
-    <input type="number" id="totJugadores" class="gross">
-  </div>
+      <label for="totJugadores">Total Jugadores:</label>
+      <input type="number" id="totJugadores" style="width: 25px">
+    </div>
+  </span>
 
-  <form id="tarjetaForm">
-    <!-- Segunda línea: Jugador (siempre visible), y oculto inicialmente handicap + tarjeta -->
-    <div style="display: flex; gap: 20px;">
-      <div style="margin-bottom: 1em;">
-        <label for="jugadorSelect">Jugador</label>
-        <select id="jugadorSelect">
-          <option value="">Seleccionar</option>
-          <option value="Diegui">Diegui</option>
-          <option value="Edu">Edu</option>
-          <option value="Fer">Fer</option>
-          <option value="Gaby">Gaby</option>
-          <option value="Joaco">Joaco</option>
-          <option value="Juancho">Juancho</option>
-          <option value="Julito">Julito</option>
-          <option value="Negro">Negro</option>
-          <option value="Panza">Panza</option>
-          <option value="Presi">Presi</option>
-          <option value="Sensei">Sensei</option>
-          <option value="Torni">Torni</option>
-        </select>
+  <!-- <fieldset id="primeraTabla" style="display: block"> -->
+  <fieldset id="primeraTabla" style="display: block; width: 60%; margin: 0 auto;">
+    <legend style="font-size: 30px;">Participantes</legend>
+    <form id="tarjetaForm">
+      <!-- Segunda línea: Jugador (siempre visible), y oculto inicialmente handicap + tarjeta -->
+      <div style="display: flex; gap: 20px;">
+        <div style="margin-bottom: 1em;">
+          <label for="jugadorSelect">Jugador</label>
+          <select id="jugadorSelect">
+            <option value="">Seleccionar</option>
+            <option value="Diegui">Diegui</option>
+            <option value="Edu">Edu</option>
+            <option value="Fer">Fer</option>
+            <option value="Gaby">Gaby</option>
+            <option value="Joaco">Joaco</option>
+            <option value="Juancho">Juancho</option>
+            <option value="Julito">Julito</option>
+            <option value="Negro">Negro</option>
+            <option value="Panza">Panza</option>
+            <option value="Presi">Presi</option>
+            <option value="Sensei">Sensei</option>
+            <option value="Torni">Torni</option>
+          </select>
+        </div>
+
+        <!-- Handicap (oculto inicialmente) -->
+        <div id="handicapContainer" style="display: none; margin-bottom: 1em;">
+          <label for="handicap">Handicap</label>
+          <input type="number" id="handicap" style="width: 30px;">
+        </div>
       </div>
 
-      <!-- Handicap (oculto inicialmente) -->
-      <div id="handicapContainer" style="display: none; margin-bottom: 1em;">
-        <label for="handicap">Handicap</label>
-        <input type="number" id="handicap" style="width: 30px;">
+
+      <!-- Tarjeta de score (oculta inicialmente) -->
+      <div id="tarjetaContainer" style="display: none;">
+        <!-- Tabla de scores -->
+        <table id="scoreTable">
+          <thead>
+            <tr>
+              <th>Hoyo</th>
+              <th>Par</th>
+              <th>HCP</th>
+              <th>Golpes</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
-    </div>
 
+      <div id="totales" style="display: flex; gap: 20px;">
+        <p>Ida: <span id="totalGross1to9"><strong>0</strong></span></p>
+        <p>Vuelta: <span id="totalGross10to18"><strong>0</strong></span></p>
+        <p>Gross: <span id="totalGross"><strong>0</strong></span></p>
+        <p>Total Neto: <span id="totalNeto"><strong>0</strong></span></p>
+      </div>
 
-    <!-- Tarjeta de score (oculta inicialmente) -->
-    <div id="tarjetaContainer" style="display: none;">
-      <!-- Tabla de scores -->
-      <table id="scoreTable">
-        <thead>
-          <tr>
-            <th>Hoyo</th>
-            <th>Par</th>
-            <th>HCP</th>
-            <th>Golpes</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-
-    <div id="totales" style="display: flex; gap: 20px;">
-      <p>Ida: <span id="totalGross1to9"><strong>0</strong></span></p>
-      <p>Vuelta: <span id="totalGross10to18"><strong>0</strong></span></p>
-      <p>Gross: <span id="totalGross"><strong>0</strong></span></p>
-      <p>Total Neto: <span id="totalNeto"><strong>0</strong></span></p>
-    </div>
-
-    <button id="guardarBtn" onclick="guardarResultados()" style="display:none">Guardar Resultados</button>
-  </form>
+      <button id="guardarBtn" onclick="guardarResultados()" style="display:none">Guardar Resultados</button>
+    </form>
+  </fieldset>
 
   <script>
+    // 🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎       
+
     let hoyos = [];
 
     // Eventos iniciales
@@ -169,6 +194,10 @@
     document.getElementById('fecha').addEventListener('change', marcarJugadoresConTarjeta);
     document.getElementById('canchaSelect').addEventListener('change', marcarJugadoresConTarjeta);
 
+
+//-----------------------------------------------------
+// 🥎  cargarCanchas            
+//-----------------------------------------------------
     // Cargar opciones de canchas
     async function cargarCanchas() {
       const res = await fetch('/api/canchas');
@@ -191,6 +220,9 @@
       });
     }
 
+//-----------------------------------------------------
+// 🥎  getElementById('canchaSelect').addEventListener('change'            
+//-----------------------------------------------------
     // Cargar hoyos de la cancha seleccionada
     document.getElementById('canchaSelect').addEventListener('change', async () => {
       const canchaId = document.getElementById('canchaSelect').value;
@@ -207,6 +239,9 @@
       renderTabla();
     });
 
+//-----------------------------------------------------
+// 🥎  verificarTodoCompleto             
+//-----------------------------------------------------
     // Verifica si todos los campos están completos para mostrar el botón
     async function verificarTodoCompleto() {
       const fecha = document.getElementById('fecha').value;
@@ -239,6 +274,9 @@
       }
     }
 
+//-----------------------------------------
+// 🥎  marcarJugadoresConTarjeta               
+//-----------------------------------------
     // Marcar jugadores que ya tienen tarjeta cargada
     async function marcarJugadoresConTarjeta() {
       const fecha = document.getElementById('fecha').value;
@@ -271,6 +309,9 @@
       }
     }
 
+//-----------------------------------------
+// 🥎  renderTabla               
+//-----------------------------------------
     // Renderizar la tabla de hoyos
     function renderTabla() {
       const tbody = document.querySelector('#scoreTable tbody');
@@ -290,6 +331,9 @@
       verificarTodoCompleto();
     }
 
+//-----------------------------------------
+// 🥎  actualizarColor              
+//-----------------------------------------
     // Colorear según score
     function actualizarColor(input, par) {
       const valor = parseInt(input.value);
@@ -305,6 +349,9 @@
       }
     }
 
+//-----------------------------------------
+// 🥎  guardarResultados               
+//-----------------------------------------
     // Guardar resultados
     async function guardarResultados() {
       const fecha = document.getElementById('fecha').value;
@@ -346,10 +393,17 @@
       } catch (err) {
         console.error('Error al guardar resultados:', err);
       }
+
+      document.getElementById('fecha').disabled = true;
+      document.getElementById('canchaSelect').disabled = true;
+      document.getElementById('totJugadores').disabled = true;
     }
 
     document.getElementById('tarjetaForm').addEventListener('input', calcularTotales);
 
+//-----------------------------------------
+// 🥎  calcularTotales               
+//-----------------------------------------
     function calcularTotales() {
       // Obtener los valores de los hoyos
       const hoyos = Array.from(document.querySelectorAll('.gross'));
@@ -381,6 +435,45 @@
 
     // Inicializar
     cargarCanchas();
+
+/*---------------------------------------
+// 🔸 ASYNC BUSCA ULTIMA FECHA               
+-----------------------------------------*/
+    async function buscaUltimaFecha() {
+      try {
+        const response = await fetch(`/leerUltimaFecha`);
+
+        if (response.ok) {
+          const data = await response.json();
+          return data; // Devuelve los datos obtenidos si la respuesta es exitosa
+        } else {
+          console.error(
+            "Error en la respuesta:",
+            response.status,
+            response.statusText
+          );
+          return null;
+        }
+      } catch (error) {
+        console.error("Error en la solicitud:", error);
+        return null;
+      }
+    }
+
+/*---------------------------------------
+// 🔸 BUSCA ULTIMA FECHA               
+-----------------------------------------*/
+    buscaUltimaFecha().then((ultimaFecha) => {
+      if (ultimaFecha) {
+        document.getElementById("ultFecha").value = ultimaFecha.textoFecha;
+        document.getElementById("ultNumero").value = ultimaFecha.fec;
+        fec = ultimaFecha.fec;
+        fecFullTabla = ultimaFecha.fechaFull;
+      } else {
+        alert("No se encontró ninguna fecha");
+      }
+    });
+
   </script>
 </body>
 
