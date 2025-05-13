@@ -21,30 +21,41 @@
     table {
       border-collapse: collapse;
       margin-top: 1rem;
-      width: 100%;
+      width: 20%;
     }
 
     th,
     td {
       border: 1px solid #ccc;
       text-align: center;
-      padding: 0.5rem;
+      padding: 0;
+      height: 20px;
+    }
+
+    .gross {
+      width: 30px;
+      /* o menos si querés */
+      text-align: center;
     }
 
     .birdie {
       background-color: #87CEFA;
+      width: 30px;
     }
 
     .eagle {
       background-color: #FFFF99;
+      width: 30px;
     }
 
     .bogey {
       background-color: #D2B48C;
+      width: 30px;
     }
 
     .double {
       background-color: #FF7F7F;
+      width: 30px;
     }
 
     .cargado {
@@ -65,36 +76,44 @@
 
     <label for="canchaSelect">Cancha:</label>
     <select id="canchaSelect">
-      <option value="">Seleccionar cancha...</option>
+      <!-- <option value="">Seleccionar</option> -->
     </select>
+  </div>
+
+  <div style="margin-bottom: 1em;">
+    <label for="fecha">Total Jugadores:</label>
+    <input type="number" id="totJugadores" class="gross">
   </div>
 
   <form id="tarjetaForm">
     <!-- Segunda línea: Jugador (siempre visible), y oculto inicialmente handicap + tarjeta -->
-    <div style="margin-bottom: 1em;">
-      <label for="jugadorSelect">Jugador:</label>
-      <select id="jugadorSelect">
-        <option value="">Seleccionar jugador</option>
-        <option value="Diegui">Diegui</option>
-        <option value="Edu">Edu</option>
-        <option value="Fer">Fer</option>
-        <option value="Gaby">Gaby</option>
-        <option value="Joaco">Joaco</option>
-        <option value="Juancho">Juancho</option>
-        <option value="Julito">Julito</option>
-        <option value="Negro">Negro</option>
-        <option value="Panza">Panza</option>
-        <option value="Presi">Presi</option>
-        <option value="Sensei">Sensei</option>
-        <option value="Torni">Torni</option>
-      </select>
+    <div style="display: flex; gap: 20px;">
+      <div style="margin-bottom: 1em;">
+        <label for="jugadorSelect">Jugador</label>
+        <select id="jugadorSelect">
+          <option value="">Seleccionar</option>
+          <option value="Diegui">Diegui</option>
+          <option value="Edu">Edu</option>
+          <option value="Fer">Fer</option>
+          <option value="Gaby">Gaby</option>
+          <option value="Joaco">Joaco</option>
+          <option value="Juancho">Juancho</option>
+          <option value="Julito">Julito</option>
+          <option value="Negro">Negro</option>
+          <option value="Panza">Panza</option>
+          <option value="Presi">Presi</option>
+          <option value="Sensei">Sensei</option>
+          <option value="Torni">Torni</option>
+        </select>
+      </div>
+
+      <!-- Handicap (oculto inicialmente) -->
+      <div id="handicapContainer" style="display: none; margin-bottom: 1em;">
+        <label for="handicap">Handicap</label>
+        <input type="number" id="handicap" style="width: 30px;">
+      </div>
     </div>
 
-    <!-- Handicap (oculto inicialmente) -->
-    <div id="handicapContainer" style="display: none; margin-bottom: 1em;">
-      <label for="handicap">Handicap:</label>
-      <input type="number" id="handicap" />
-    </div>
 
     <!-- Tarjeta de score (oculta inicialmente) -->
     <div id="tarjetaContainer" style="display: none;">
@@ -112,12 +131,11 @@
       </table>
     </div>
 
-    <div id="totales">
-      <p>Total Gross (1-9): <span id="totalGross1to9">0</span></p>
-      <p>Total Gross (10-18): <span id="totalGross10to18">0</span></p>
-      <p>Total Gross (1-18): <span id="totalGross">0</span></p>
-      <!-- <p>Handicap: <input type="number" id="handicap" value="0" /></p> -->
-      <p>Total Neto: <span id="totalNeto">0</span></p>
+    <div id="totales" style="display: flex; gap: 20px;">
+      <p>Ida: <span id="totalGross1to9"><strong>0</strong></span></p>
+      <p>Vuelta: <span id="totalGross10to18"><strong>0</strong></span></p>
+      <p>Gross: <span id="totalGross"><strong>0</strong></span></p>
+      <p>Total Neto: <span id="totalNeto"><strong>0</strong></span></p>
     </div>
 
     <button id="guardarBtn" onclick="guardarResultados()" style="display:none">Guardar Resultados</button>
@@ -160,7 +178,7 @@
 
       const optInicial = document.createElement('option');
       optInicial.value = '';
-      optInicial.textContent = 'Seleccionar cancha...';
+      optInicial.textContent = 'Seleccionar';
       optInicial.disabled = true;
       optInicial.selected = true;
       select.appendChild(optInicial);
@@ -279,6 +297,7 @@
 
       if (!isNaN(valor)) {
         const diff = valor - par;
+        input.classList.add('gross');
         if (diff === -2) input.classList.add('eagle');
         else if (diff === -1) input.classList.add('birdie');
         else if (diff === 1) input.classList.add('bogey');
