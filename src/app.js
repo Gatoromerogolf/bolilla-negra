@@ -665,6 +665,7 @@ app.post("/api/tarjetas", (req, res) => {
       console.error("Error al grabar la tarjeta:", error);
       return res.status(500).json({ error: "Error al grabar la tarjeta" });
     }
+    console.log("tarjeta grabada con éxito")
     res.json({ message: "Tarjeta guardada con éxito" });
   });
 
