@@ -605,7 +605,7 @@ app.get("/api/canchas", (req, res) => {
 
 app.get("/api/hoyos/:idCancha", async (req, res) => {
   const idCancha = req.params.idCancha;
-  console.log(`cancha recibida  ${idCancha}`);
+  // console.log(`cancha recibida  ${idCancha}`);
   const query =
     "SELECT hoyo, par, handicap FROM hoyos WHERE cancha_id = ? ORDER BY hoyo";
 
@@ -638,6 +638,8 @@ app.get("/api/hoyos/:idCancha", async (req, res) => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // Guardar resultados de un jugador
 app.post("/api/tarjetas", (req, res) => {
+
+  console.log ('entro a grabar tarjeta')
   const { jugador, fecha, cancha, handicap, hoyos } = req.body;
 
   if (!jugador || !fecha || !cancha || !handicap || !Array.isArray(hoyos)) {
@@ -665,6 +667,8 @@ app.post("/api/tarjetas", (req, res) => {
     }
     res.json({ message: "Tarjeta guardada con éxito" });
   });
+
+  console.log ('termino de grabar la tarjeta')
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -707,10 +711,10 @@ app.get("/api/tarjetas/verificar", (req, res) => {
 
 app.get("/api/tarjetas/jugadores-cargados", async (req, res) => {
   const { fecha, cancha } = req.query;
-  console.log("👉 Ruta /api/tarjetas/jugadores-cargados llamada con:", {
-    fecha,
-    cancha,
-  });
+  // console.log("👉 Ruta /api/tarjetas/jugadores-cargados llamada con:", {
+  //   fecha,
+  //   cancha,
+  // });
 
   const query = "SELECT jugador FROM tarjetas WHERE fecha = ? AND cancha = ?";
 
@@ -720,7 +724,6 @@ app.get("/api/tarjetas/jugadores-cargados", async (req, res) => {
       return res.status(500).json({ error: "Error al mirar cargados" });
     }
 
-    console.log("✅ Resultados de jugadores cargados:", results);
     const jugadores = results.map((r) => r.jugador);
     res.json(jugadores);
   });

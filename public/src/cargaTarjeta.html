@@ -23,14 +23,14 @@
         table {
             border-collapse: collapse;
             margin-top: 1rem;
-            width: 20%;
+            width: 35%;
         }
 
         th,
         td {
             border: 1px solid #ccc;
             text-align: center;
-            padding: 0;
+            padding: 1;
             height: 20px;
         }
 
@@ -109,11 +109,15 @@
     </span>
 
     <!-- <fieldset id="primeraTabla" style="display: block"> -->
-    <fieldset id="primeraTablaFS" style="display: none; width: 60%; margin: 0 auto;">
-        <legend style="font-size: 30px;">Participantes</legend>
+    <fieldset id="primeraTablaFS" style="display: none; width: 60%; margin: 0 auto; font-size: 14px;">
+        <legend style="font-size: 20px;">Participantes</legend>
         <form id="tarjetaForm">
+            <div id="faltaCargarDiv" style="display: none; margin-bottom: 1em;">
+                <label for="faltan">Faltan:</label>
+                <input type="number" id="faltan" style="width: 25px;">
+            </div>
             <!-- Segunda línea: Jugador (siempre visible), y oculto inicialmente handicap + tarjeta -->
-            <div style="display: flex; gap: 20px;">
+            <div style="display: flex; gap: 10px;">
                 <div style="margin-bottom: 1em;">
                     <label for="jugadorSelect">Jugador</label>
                     <select id="jugadorSelect">
@@ -136,8 +140,9 @@
                 <!-- Handicap (oculto inicialmente) -->
                 <div id="handicapContainer" style="display: none; margin-bottom: 1em;">
                     <label for="handicap">Handicap</label>
-                    <input type="number" id="handicap" style="width: 30px;">
+                    <input type="number" id="handicap" style="width: 25px;">
                 </div>
+
             </div>
 
 
@@ -149,7 +154,7 @@
                         <tr>
                             <th>Hoyo</th>
                             <th>Par</th>
-                            <th>HCP</th>
+                            <th>Hcp</th>
                             <th>Golpes</th>
                         </tr>
                     </thead>
@@ -172,8 +177,10 @@
         // 🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎       
 
         let hoyos = [];
+        let cargadas = 0;
 
-        // Eventos iniciales
+                // Inicializar
+        cargarCanchas();
 
         // Esperar a que el DOM esté cargado (opcional pero recomendable)
         document.addEventListener('DOMContentLoaded', () => {
@@ -182,56 +189,59 @@
             const selecCanchaDiv = document.getElementById('selecCanchaDiv');
             const totalJugDiv = document.getElementById('infoTotalJugDiv');
             const totalJug = document.getElementById('totJugadores')
+            let faltan = document.getElementById('faltan')
 
             // Paso 1: mostrar selecCancha cuando se elige una fecha
             fecha.addEventListener('change', () => {
                 if (fecha.value !== '') {
                     selecCanchaDiv.style.display = 'block';
-
-                    // Opcional: podés llenar el select aquí si aún no tiene opciones
-                    //             if (canchaSelect.options.length === 0) {
-                    //                 canchaSelect.innerHTML = `
-                    //   <option value="">Seleccione...</option>
-                    //   <option value="cancha1">Cancha 1</option>
-                    //   <option value="cancha2">Cancha 2</option>
-                    // `;
-                    //             }
-                    //         } else {
-                    //             selecCanchaDiv.style.display = 'none';
-                    //             infoTotalJugDiv.style.display = 'none';
-                    //         }
                 }
             });
 
             // Paso 2: mostrar infoTotalJug cuando se elige una cancha
-            cancha.addEventListener('change', () => {
+            cancha.addEventListener('change', async () => {
                 if (cancha.value !== '') {
                     infoTotalJugDiv.style.display = 'block';
                 } else {
                     infoTotalJugDiv.style.display = 'none';
                 }
+
+                // document.getElementById('canchaSelect').addEventListener('change', async () => {
+                const canchaId = document.getElementById('canchaSelect').value;
+                // console.log(`valor de canchaId ${canchaId}`)
+                const res = await fetch(`/api/hoyos/${canchaId}`);
+                hoyos = await res.json();
+
+                if (!Array.isArray(hoyos)) {
+                    alert("No se pudieron cargar los hoyos de esta cancha.");
+                    return;
+                }
+
+                renderTabla();
             });
 
-
             totJugadores.addEventListener('change', () => {
-                if (totJugadores.value !== '') {
-                    primeraTablaFS.style.display = 'block';
-                } else {
-                    primeraTablaFS.style.display = 'none';
+                const valor = parseInt(totJugadores.value);
+
+                if (isNaN(valor) || valor < 6 || valor > 12) {
+                    alert('El número de jugadores debe estar entre 6 y 12.');
+                    totJugadores.focus();
+                    return; // detener el proceso
                 }
+
+                const restantes = valor - cargadas;
+                document.getElementById('faltan').value = restantes;
+                document.getElementById('faltaCargarDiv').style.display = 'block';
+                document.getElementById('faltan').disabled = true;
+
+                primeraTablaFS.style.display = 'block';
+                document.getElementById('fecha').disabled = true;
+                document.getElementById('canchaSelect').disabled = true;
+                document.getElementById('totJugadores').disabled = true;
+
             })
+            marcarJugadoresConTarjeta();
         });
-
-
-
-
-
-
-
-
-        document.getElementById('fecha').addEventListener('change', verificarTodoCompleto);
-        document.getElementById('canchaSelect').addEventListener('change', verificarTodoCompleto);
-        // document.getElementById('jugadorSelect').addEventListener('change', verificarTodoCompleto);
 
         document.getElementById('jugadorSelect').addEventListener('change', function () {
             const jugadorSeleccionado = this.value;
@@ -241,18 +251,23 @@
             if (jugadorSeleccionado) {
                 handicapContainer.style.display = 'block';
                 tarjetaContainer.style.display = 'block';
-            } else {
-                handicapContainer.style.display = 'none';
-                tarjetaContainer.style.display = 'none';
+                document.getElementById('faltan').disabled = true;
+
+                // // ⚠️ Asegurate de renderizar la tabla si no lo hiciste
+                // if (hoyos.length === 18) {
+                //     renderTabla();
+                // } else {
+                //     handicapContainer.style.display = 'none';
+                //     faltaCargarDiv.style.display = 'none';
+                //     tarjetaContainer.style.display = 'none';
+                // }
             }
         });
 
-        document.getElementById('handicap').addEventListener('input', verificarTodoCompleto);
-        document.querySelector('#scoreTable').addEventListener('input', verificarTodoCompleto);
 
-        document.getElementById('fecha').addEventListener('change', marcarJugadoresConTarjeta);
+        document.querySelector('#scoreTable').addEventListener('input', verificarTodoCompleto)
         document.getElementById('canchaSelect').addEventListener('change', marcarJugadoresConTarjeta);
-
+        document.getElementById('tarjetaForm').addEventListener('input', calcularTotales);
 
         //-----------------------------------------------------
         // 🥎  cargarCanchas            
@@ -283,20 +298,20 @@
         // 🥎  getElementById('canchaSelect').addEventListener('change'            
         //-----------------------------------------------------
         // Cargar hoyos de la cancha seleccionada
-        document.getElementById('canchaSelect').addEventListener('change', async () => {
-            const canchaId = document.getElementById('canchaSelect').value;
-            if (!canchaId) return;
+        // document.getElementById('canchaSelect').addEventListener('change', async () => {
+        //     const canchaId = document.getElementById('canchaSelect').value;
+        //     if (!canchaId) return;
 
-            const res = await fetch(`/api/hoyos/${canchaId}`);
-            hoyos = await res.json();
+        //     const res = await fetch(`/api/hoyos/${canchaId}`);
+        //     hoyos = await res.json();
 
-            if (!Array.isArray(hoyos)) {
-                alert("No se pudieron cargar los hoyos de esta cancha.");
-                return;
-            }
+        //     if (!Array.isArray(hoyos)) {
+        //         alert("No se pudieron cargar los hoyos de esta cancha.");
+        //         return;
+        //     }
 
-            renderTabla();
-        });
+        //     renderTabla();
+        // });
 
         //-----------------------------------------------------
         // 🥎  verificarTodoCompleto             
@@ -308,9 +323,24 @@
             const cancha = document.getElementById('canchaSelect').value;
             const handicap = document.getElementById('handicap').value;
             const inputs = document.querySelectorAll('#scoreTable input');
+            const faltan = document.getElementById('faltan').value;
 
             const btn = document.getElementById('guardarBtn');
-            if (!fecha || !jugador || !cancha || !handicap || inputs.length !== 18) {
+            // if (!fecha || !jugador || !cancha || !handicap || inputs.length !== 18) {
+            //     btn.style.display = 'none';
+            //     return;
+            // }
+            // if (!handicap || inputs.length !== 18) {
+            //     btn.style.display = 'none';
+            //     return;
+            // }
+            if (!handicap) {
+                alert('Falta informar el handicap del jugador')
+                btn.style.display = 'none';
+                return;
+            }
+            if (inputs.length !== 18) {
+                alert('Falta informar hoyos')
                 btn.style.display = 'none';
                 return;
             }
@@ -387,7 +417,7 @@
                 tbody.appendChild(tr);
             });
 
-            verificarTodoCompleto();
+            // verificarTodoCompleto();
         }
 
         //-----------------------------------------
@@ -447,18 +477,57 @@
                     body: JSON.stringify(body)
                 });
 
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    throw new Error(`Error del servidor: ${res.status} ${res.statusText}. Respuesta: ${errorText}`);
+                }
+
                 const result = await res.json();
                 alert(result.message || 'Tarjeta grabada');
+                cargadas++;
+                faltan = totalJug - cargadas;
+                document.getElementById('faltan').value = faltan;
+                alert(`cargadas: ${cargadas}, faltan: ${faltan}`)
+
+                if (faltan > 0) {
+                    // Habilitar nuevamente la carga de la siguiente tarjeta
+                    habilitarFormularioParaNuevaCarga();
+                } else {
+                    // Mostrar mensaje final y deshabilitar carga
+                    document.getElementById('formularioCarga').style.display = 'none';
+                    alert('¡Todas las tarjetas fueron cargadas exitosamente!');
+                }
             } catch (err) {
-                console.error('Error al guardar resultados:', err);
+                console.error('Error al guardar resultados:', err.message);
+                console.error('Stack:', err.stack);
+                alert(`Error al guardar resultados: ${err.message}`);
             }
 
-            document.getElementById('fecha').disabled = true;
-            document.getElementById('canchaSelect').disabled = true;
-            document.getElementById('totJugadores').disabled = true;
+            // document.getElementById('fecha').disabled = true;
+            // document.getElementById('canchaSelect').disabled = true;
+            // document.getElementById('totJugadores').disabled = true;
+
+            console.log("entro al final de la rutina");
+            // marcarJugadoresConTarjeta();
+            alert(`llamo a marcar jugadores y grabo a ${jugador}`)
         }
 
-        document.getElementById('tarjetaForm').addEventListener('input', calcularTotales);
+        // document.getElementById('tarjetaForm').addEventListener('input', calcularTotales);
+
+
+        //-----------------------------------------
+        // 🥎  habilitarFormularioParaNuevaCarga               
+        //-----------------------------------------
+        function habilitarFormularioParaNuevaCarga() {
+            // Limpiar campos si es necesario
+            // document.getElementById('nombreJugador').value = ''; por ejemplo
+
+            // Asegurarse de que el formulario esté visible y habilitado
+            document.getElementById('formularioCarga').style.display = 'block';
+        }
+
+
+
 
         //-----------------------------------------
         // 🥎  calcularTotales               
@@ -467,7 +536,7 @@
             // Obtener los valores de los hoyos
             const hoyos = Array.from(document.querySelectorAll('.gross'));
 
-            console.log('Cantidad de inputs .gross:', hoyos.length); // Verifica que sean 18
+            // console.log('Cantidad de inputs .gross:', hoyos.length); // Verifica que sean 18
             const handicap = parseInt(document.getElementById('handicap').value) || 0;
 
             // Sumar Gross de los hoyos (1-9 y 10-18)
@@ -481,13 +550,33 @@
             const totalNeto = totalGross - handicap;
 
             // Actualizar los valores de los totales en el HTML
-            document.getElementById('totalGross1to9').textContent = gross1to9;
-            document.getElementById('totalGross10to18').textContent = gross10to18;
-            document.getElementById('totalGross').textContent = totalGross;
-            document.getElementById('totalNeto').textContent = totalNeto;
+            const totalGrossElem = document.getElementById('totalGross1to9');
+            totalGrossElem.textContent = gross1to9;
+            totalGrossElem.style.fontSize = '18px';
+            totalGrossElem.style.fontWeight = 'bold';
+            const totalGrossElem2 = document.getElementById('totalGross10to18');
+            totalGrossElem2.textContent = gross10to18;
+            totalGrossElem2.style.fontSize = '18px';
+            totalGrossElem2.style.fontWeight = 'bold';
+            // document.getElementById('totalGross10to18').textContent = gross10to18;
+            const totalGrossElem3 = document.getElementById('totalGross');
+            totalGrossElem3.textContent = totalGross;
+            totalGrossElem3.style.fontSize = '18px';
+            totalGrossElem3.style.fontWeight = 'bold';
+            // document.getElementById('totalGross').textContent = totalGross;
+            const totalGrossElem4 = document.getElementById('totalNeto');
+            totalGrossElem4.textContent = totalNeto;
+            totalGrossElem4.style.fontSize = '20px';
+            totalGrossElem4.style.fontWeight = 'bold';
+            totalGrossElem4.style.color = 'red';
+            // document.getElementById('totalNeto').textContent = totalNeto;
+
 
             // Activar el botón de guardar si todos los hoyos tienen valores
-            const allFieldsFilled = hoyos.every(input => input.value.trim() !== "");
+            const allFieldsFilled = hoyos.every(input => {
+                const value = input.value.trim();
+                return value !== "" && Number(value) > 0;
+            });
             const validGross = totalGross > 0 && totalNeto > 0;
             document.getElementById('guardarBtn').disabled = !(allFieldsFilled && validGross);
         }
@@ -533,7 +622,7 @@
         });
 
         // Inicializar
-        cargarCanchas();
+        // cargarCanchas();
 
     </script>
 </body>
