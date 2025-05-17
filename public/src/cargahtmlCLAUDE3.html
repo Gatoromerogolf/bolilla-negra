@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación de Suma con Iteraciones</title>
+    <!-- Tailwind CSS desde CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md" id="app">
+        <h1 class="text-2xl font-bold text-center mb-6 text-blue-600">
+            Aplicación de Suma con Iteraciones
+        </h1>
+        
+        <!-- Configuración inicial -->
+        <div id="pantallaConfiguracion" class="space-y-4">
+            <h2 class="text-xl font-semibold text-center mb-4">
+                Configuración
+            </h2>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                    Número de ocurrencias:
+                </label>
+                <input
+                    type="number"
+                    id="ocurrencias"
+                    min="1"
+                    value="3"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Ingrese el número de ocurrencias"
+                >
+            </div>
+            
+            <button
+                id="btnIniciar"
+                class="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+            >
+                Iniciar Proceso
+            </button>
+        </div>
+        
+        <!-- Pantalla de ingreso de datos -->
+        <div id="pantallaIngreso" class="space-y-4 hidden">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold">
+                    Ingreso de datos
+                </h2>
+                <div class="text-sm bg-blue-100 text-blue-800 py-1 px-3 rounded-full">
+                    Iteración: <span id="iteracionActual">1</span>/<span id="iteracionTotal">3</span>
+                </div>
+            </div>
+            
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        Variable 1:
+                    </label>
+                    <input
+                        type="text"
+                        id="var1"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Ingrese el primer valor"
+                    >
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        Variable 2:
+                    </label>
+                    <input
+                        type="text"
+                        id="var2"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Ingrese el segundo valor"
+                    >
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        Variable 3:
+                    </label>
+                    <input
+                        type="text"
+                        id="var3"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Ingrese el tercer valor"
+                    >
+                </div>
+            </div>
+            
+            <button
+                id="btnCalcular"
+                class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+                Calcular Suma
+            </button>
+        </div>
+        
+        <!-- Pantalla de resultados finales -->
+        <div id="pantallaResultadosFinal" class="space-y-4 hidden">
+            <h2 class="text-xl font-semibold text-center mb-4">
+                Resultados Finales
+            </h2>
+            
+            <div class="bg-gray-50 p-4 rounded-md">
+                <p class="text-gray-700 mb-2">
+                    <span class="font-medium">Total de iteraciones realizadas:</span> <span id="totalIteraciones">0</span>
+                </p>
+                <p class="text-gray-700 mb-1">
+                    <span class="font-medium">Historial de sumas:</span>
+                </p>
+                <ul id="historialSumas" class="list-disc pl-5 space-y-1">
+                    <!-- Aquí se agregan dinámicamente los resultados -->
+                </ul>
+            </div>
+            
+            <button
+                id="btnReiniciar"
+                class="w-full py-2 px-4 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+            >
+                Iniciar Nuevo Proceso
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let ocurrencias = 3;
+        let iteracionActual = 0;
+        let historialSumas = [];
+        
+        // Elementos del DOM
+        const pantallaConfiguracion = document.getElementById('pantallaConfiguracion');
+        const pantallaIngreso = document.getElementById('pantallaIngreso');
+        const pantallaResultadosFinal = document.getElementById('pantallaResultadosFinal');
+        
+        const ocurrenciasInput = document.getElementById('ocurrencias');
+        const iteracionActualElement = document.getElementById('iteracionActual');
+        const iteracionTotalElement = document.getElementById('iteracionTotal');
+        const totalIteracionesElement = document.getElementById('totalIteraciones');
+        const historialSumasElement = document.getElementById('historialSumas');
+        
+        // Elementos de entrada
+        const var1Input = document.getElementById('var1');
+        const var2Input = document.getElementById('var2');
+        const var3Input = document.getElementById('var3');
+        
+        // Botones
+        const btnIniciar = document.getElementById('btnIniciar');
+        const btnCalcular = document.getElementById('btnCalcular');
+        const btnReiniciar = document.getElementById('btnReiniciar');
+        
+        // Iniciar el proceso
+        function iniciarProceso() {
+            ocurrencias = parseInt(ocurrenciasInput.value);
+            
+            if (isNaN(ocurrencias) || ocurrencias < 1) {
+                alert('Por favor, ingrese un número válido de ocurrencias');
+                return;
+            }
+            
+            // Reiniciar variables
+            iteracionActual = 1;
+            historialSumas = [];
+            
+            // Actualizar UI
+            iteracionActualElement.textContent = iteracionActual;
+            iteracionTotalElement.textContent = ocurrencias;
+            
+            // Limpiar campos
+            limpiarCampos();
+            
+            // Cambiar a pantalla de ingreso
+            pantallaConfiguracion.classList.add('hidden');
+            pantallaIngreso.classList.remove('hidden');
+        }
+        
+        // Procesar los datos ingresados
+        function procesarDatos() {
+            // Validación de datos
+            if (!var1Input.value || !var2Input.value || !var3Input.value) {
+                alert('Por favor, complete todos los campos');
+                return;
+            }
+            
+            // Validación de números
+            const num1 = parseFloat(var1Input.value);
+            const num2 = parseFloat(var2Input.value);
+            const num3 = parseFloat(var3Input.value);
+            
+            if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+                alert('Por favor, ingrese solo valores numéricos');
+                return;
+            }
+            
+            // Cálculo de la suma
+            const suma = num1 + num2 + num3;
+            
+            // Guardar resultado en el historial
+            historialSumas.push({
+                iteracion: iteracionActual,
+                var1: num1,
+                var2: num2,
+                var3: num3,
+                resultado: suma
+            });
+            
+            // Verificar si se completaron todas las iteraciones
+            if (iteracionActual >= ocurrencias) {
+                mostrarResultadosFinales();
+            } else {
+                // Avanzar a la siguiente iteración
+                iteracionActual++;
+                iteracionActualElement.textContent = iteracionActual;
+                
+                // Limpiar campos para la siguiente iteración
+                limpiarCampos();
+            }
+        }
+        
+        // Mostrar los resultados finales
+        function mostrarResultadosFinales() {
+            // Actualizar contador de iteraciones
+            totalIteracionesElement.textContent = historialSumas.length;
+            
+            // Limpiar y llenar el historial de sumas
+            historialSumasElement.innerHTML = '';
+            historialSumas.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `Iteración ${item.iteracion}: ${item.var1} + ${item.var2} + ${item.var3} = ${item.resultado}`;
+                historialSumasElement.appendChild(li);
+            });
+            
+            // Cambiar a pantalla de resultados
+            pantallaIngreso.classList.add('hidden');
+            pantallaResultadosFinal.classList.remove('hidden');
+        }
+        
+        // Limpiar los campos de entrada
+        function limpiarCampos() {
+            var1Input.value = '';
+            var2Input.value = '';
+            var3Input.value = '';
+            var1Input.focus();
+        }
+        
+        // Reiniciar todo el proceso
+        function reiniciarProceso() {
+            // Volver a la pantalla de configuración
+            pantallaResultadosFinal.classList.add('hidden');
+            pantallaConfiguracion.classList.remove('hidden');
+        }
+        
+        // Event listeners
+        btnIniciar.addEventListener('click', iniciarProceso);
+        btnCalcular.addEventListener('click', procesarDatos);
+        btnReiniciar.addEventListener('click', reiniciarProceso);
+    </script>
+</body>
+</html>

@@ -182,9 +182,7 @@
         let hoyos = [];
         let cargadas = 0;
         let faltan = 0;
-        let totalJugadores = 0; // Variable para controlar el total
-        let procesandoGuardado = false; // Flag para evitar problemas con el flujo
-        let datosIngresados = false; // Para controlar si ya se ingresaron datos iniciales
+
         /*---------------------------------------
         // 🔸 BUSCA ULTIMA FECHA               
         -----------------------------------------*/
@@ -207,14 +205,6 @@
             const cancha = document.getElementById('canchaSelect');
             const selecCanchaDiv = document.getElementById('selecCanchaDiv');
             const totalJugDiv = document.getElementById('infoTotalJugDiv');
-            const primeraTablaFS = document.getElementById('primeraTablaFS');
-
-            // Inicialmente ocultar las secciones que no deberían verse al principio
-            primeraTablaFS.style.display = 'none';
-            document.getElementById('handicapContainer').style.display = 'none';
-            document.getElementById('tarjetaContainer').style.display = 'none';
-            document.getElementById('faltaCargarDiv').style.display = 'none';
-            document.getElementById('guardarBtn').style.display = 'none';
 
             // Paso 1: mostrar selecCancha cuando se elige una fecha
             fecha.addEventListener('change', () => {
@@ -254,77 +244,66 @@
                     return; // detener el proceso
                 }
 
-                // Marcar que ya ingresamos los datos iniciales
-                datosIngresados = true;
-
                 document.getElementById('fecha').disabled = true;
                 document.getElementById('canchaSelect').disabled = true;
                 document.getElementById('totJugadores').disabled = true;
 
-                // Guardar el total de jugadores en la variable global
-                totalJugadores = valor;
+                primeraTablaFS.style.display = 'block';
+
                 faltan = valor;
+                // const restantes = faltan - cargadas;
                 document.getElementById('faltan').value = faltan;
                 document.getElementById('faltan').disabled = true;
 
-                // Mostrar contenedores necesarios para la selección de jugador
-                primeraTablaFS.style.display = 'block';
+                // primeraTablaFS.style.display = 'block';
                 document.getElementById('faltaCargarDiv').style.display = 'block';
 
                 marcarJugadoresConTarjeta();
-            });
-            // Asegurar que se mantenga visible el formulario correcto
-            if (document.getElementById('primeraTablaFS')) {
-                // Prevenir comportamientos extraños de ocultamiento
-                const observer = new MutationObserver((mutations) => {
-                    mutations.forEach((mutation) => {
-                        if (mutation.type === 'attributes' &&
-                            mutation.attributeName === 'style' &&
-                            cargadas > 0 && faltan > 0) {
-                            // Si estamos en el proceso de cargar jugadores y el formulario se oculta
-                            if (primeraTablaFS.style.display === 'none') {
-                                console.log('Detectado cambio no deseado en primeraTablaFS. Corrigiendo...');
-                                primeraTablaFS.style.display = 'block';
-                            }
-                        }
-                    });
-                });
 
-                // Configurar la observación
-                observer.observe(primeraTablaFS, { attributes: true });
-            }
+                // document.getElementById('fecha').disabled = true;
+                // document.getElementById('canchaSelect').disabled = true;
+                // document.getElementById('totJugadores').disabled = true;
+
+            })
+            // marcarJugadoresConTarjeta();
         });
 
 
         // Función principal
         document.getElementById('jugadorSelect').addEventListener('change', function () {
+
             console.log(`entro en seleccionar jugador con faltan = ${faltan}`)
 
             marcarJugadoresConTarjeta();
             const jugadorSeleccionado = this.value;
 
-            if (!jugadorSeleccionado) {
-                // Si no hay jugador seleccionado, ocultar los contenedores
-                document.getElementById('handicapContainer').style.display = 'none';
-                document.getElementById('tarjetaContainer').style.display = 'none';
-                return;
-            }
+            if (!jugadorSeleccionado) return;
+            faltan--;
 
-            // Mostrar los contenedores de handicap y tarjeta
+            // const handicapContainer = document.getElementById('handicapContainer');
+            // const tarjetaContainer = document.getElementById('tarjetaContainer');
+
             document.getElementById('handicapContainer').style.display = 'block';
             document.getElementById('tarjetaContainer').style.display = 'block';
+
+            // handicapContainer.style.display = 'block';
+            // tarjetaContainer.style.display = 'block';
             document.getElementById('faltan').disabled = true;
 
-            // Asegurarnos que primeraTablaFS sigue visible
-            document.getElementById('primeraTablaFS').style.display = 'block';
 
-            // Configurar evento para cálculo de totales
+            // document.getElementById('canchaSelect').addEventListener('change', marcarJugadoresConTarjeta);
             document.getElementById('tarjetaForm').addEventListener('input', calcularTotales);
+
+            // document.getElementById('mensajeFaltan').innerText = `Faltan cargar ${faltan} jugador(es).`;
 
             if (faltan === 0) {
                 document.getElementById('jugadorSelect').disabled = true;
                 alert("Se completaron todas las tarjetas.");
+            } else {
+                // esperar al usuario para volver a elegir otro jugador
+                // resetSelector();
             }
+
         });
 
 
@@ -333,6 +312,7 @@
         //-----------------------------------------
         function calcularTotales() {
             // Obtener los valores de los hoyos
+
             const hoyos = Array.from(document.querySelectorAll('.gross'));
 
             // console.log('Cantidad de inputs .gross:', hoyos.length); // Verifica que sean 18
@@ -398,24 +378,16 @@
         // 🥎  guardarResultados               
         //-----------------------------------------
         // Guardar resultados
-        async function guardarResultados(event) {
-            // Evitar el comportamiento por defecto del formulario si es un submit
-            if (event) {
-                event.preventDefault();
-            }
-
-            // Si ya está procesando un guardado, no hacer nada
-            if (procesandoGuardado) {
-                return;
-            }
-
-            // Marcar que estamos procesando un guardado
-            procesandoGuardado = true;
-
+        async function guardarResultados() {
             const fecha = document.getElementById('fecha').value;
             const jugador = document.getElementById('jugadorSelect').value;
             const cancha = document.getElementById('canchaSelect').value;
             const handicap = parseInt(document.getElementById('handicap').value);
+
+            // if (!fecha || !jugador || !cancha || isNaN(handicap)) {
+            //     alert('Falta completar handicap');
+            //     return false;
+            // }
 
             const inputs = document.querySelectorAll('#scoreTable input');
             if (inputs.length !== 18) return alert('No hay 18 hoyos cargados');
@@ -423,11 +395,7 @@
             const hoyos = [];
             for (let i = 0; i < inputs.length; i++) {
                 const val = parseInt(inputs[i].value);
-                if (isNaN(val)) {
-                    alert(`Falta cargar el hoyo ${i + 1}`);
-                    procesandoGuardado = false;
-                    return;
-                }
+                if (isNaN(val)) return alert(`Falta cargar el hoyo ${i + 1}`);
                 hoyos.push({ hoyo: i + 1, golpes: val });
             }
 
@@ -439,96 +407,75 @@
                 hoyos
             };
 
-            // API CALL COMENTADA TEMPORALMENTE
             // try {
-            //     const res = await fetch('/api/tarjetas', {
-            //         method: 'POST',
-            //         headers: { 'Content-Type': 'application/json' },
-            //         body: JSON.stringify(body),
-            //         credentials: "include",
-            //     });
-            // 
-            //     const resultado = await res.json();
-            //     if (!resultado.success) {
-            //         throw new Error(`Error del servidor: ${res.status} ${res.statusText}`);
-            //     }
-            //     
-            //     alert(resultado.message || 'Tarjeta grabada');
+            // const res = await fetch('/api/tarjetas', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(body),
+            //     credentials: "include",
+            // });
+
+            // const resultado = await res.json();
+            // if (!resultado.success) {
+            //     console.log('entro por error del servidor')
+            //     const errorText = await res.text();
+            //     throw new Error(`Error del servidor: ${res.status} ${res.statusText}. Respuesta: ${errorText}`);
+            // } else {
+            //     // ✅ Capturar el mensaje de éxito
+            //     const data = await res.json();  // <-- Parseás la respuesta JSON
+            //     console.log(data.message);      // <-- Mostrás el mensaje: "Tarjeta guardada con éxito"
+            // }
+
+            // const result = await res.json();
+            // alert(result.message || 'Tarjeta grabada');
+            cargadas++;
+
+            faltan--;
+            document.getElementById('faltan').value = faltan;
+            console.log(`GuardarResultados: cargadas: ${cargadas}, faltan: ${faltan}`)
+
+            console.log('va a entrar en habilitar formulario')
+            habilitarFormularioParaNuevaCarga();
+
             // } catch (err) {
             //     console.error('Error al guardar resultados:', err.message);
             //     console.error('Stack:', err.stack);
             //     alert(`Error al guardar resultados: ${err.message}`);
-            //     return; // Detener la ejecución si hay error
             // }
 
-            // Incrementar contador de jugadores cargados
-            cargadas++;
+            console.log("entro al final de la rutina");
 
-            // Actualizar contador de jugadores faltantes
-            faltan--;
-            document.getElementById('faltan').value = faltan;
-            console.log(`GuardarResultados: cargadas: ${cargadas}, faltan: ${faltan}`);
-
-            // IMPORTANTE: forzar que primeraTablaFS siga visible
-            document.getElementById('primeraTablaFS').style.display = 'block';
-
-            // Usar setTimeout para asegurar que los cambios de visibilidad se realicen después
-            setTimeout(() => {
-                // Habilitar formulario para nueva carga
-                habilitarFormularioParaNuevaCarga();
-                // Desmarcar la bandera de procesamiento
-                procesandoGuardado = false;
-            }, 200);
         }
+
+        // document.getElementById('tarjetaForm').addEventListener('input', calcularTotales);
 
 
         //-----------------------------------------
         // 🥎  habilitarFormularioParaNuevaCarga               
         //-----------------------------------------
         function habilitarFormularioParaNuevaCarga() {
-            // Mantener visible la tabla de selección de jugador 
-            // CRÍTICO: Poner esto primero para asegurar que no desaparezca
-            document.getElementById('primeraTablaFS').style.display = 'block';
+            // Limpiar campos si es necesario
 
-            // Asegurar que las secciones principales también están visibles
-            document.getElementById('faltaCargarDiv').style.display = 'block';
-
-            // Limpiar campos
             document.getElementById('jugadorSelect').value = '';
             document.getElementById('handicap').value = '';
 
-            // Resetear los totales
             document.getElementById('totalGross1to9').innerHTML = '<strong>0</strong>';
             document.getElementById('totalGross10to18').innerHTML = '<strong>0</strong>';
             document.getElementById('totalGross').innerHTML = '<strong>0</strong>';
             document.getElementById('totalNeto').innerHTML = '<strong>0</strong>';
 
-            // Limpiar tabla de score
-            renderTabla();
+            document.querySelector('#scoreTable tbody').innerHTML = '';
 
-            // Ocultar botón de guardar
+            document.getElementById('handicapContainer').style.display = 'block';
+            document.getElementById('tarjetaContainer').style.display = 'block';
+
             document.getElementById('guardarBtn').style.display = 'none';
-
-            // Ocultar formularios que no deben verse hasta seleccionar jugador
-            document.getElementById('handicapContainer').style.display = 'none';
-            document.getElementById('tarjetaContainer').style.display = 'none';
-
-            // Habilitar el selector de jugador si todavía faltan jugadores
-            document.getElementById('jugadorSelect').disabled = (faltan <= 0);
-
-            // Actualizar jugadores ya cargados
-            marcarJugadoresConTarjeta();
-
-            // Si ya se cargaron todos los jugadores, mostrar mensaje
-            if (faltan <= 0) {
-                alert("Se han cargado todos los jugadores!");
-            }
-
-            // Prevenir que cualquier evento pueda ocultar primeraTablaFS
-            setTimeout(() => {
-                document.getElementById('primeraTablaFS').style.display = 'block';
-            }, 200);
+            // Asegurarse de que el formulario esté visible y habilitado
+            // document.getElementById('formularioCarga').style.display = 'block';
+            primeraTablaFS.style.display = 'block';
+            document.getElementById('jugadorSelect').disabled = false;
         }
+
 
         /*---------------------------------------
         // 🔸 ASYNC BUSCA ULTIMA FECHA               
@@ -586,30 +533,30 @@
             const cancha = document.getElementById('canchaSelect').value;
             if (!fecha || !cancha) return;
 
-            // try {
-            //     const res = await fetch(`/api/tarjetas/jugadores-cargados?fecha=${fecha}&cancha=${cancha}`);
-            //     const cargados = await res.json();
+            try {
+                const res = await fetch(`/api/tarjetas/jugadores-cargados?fecha=${fecha}&cancha=${cancha}`);
+                const cargados = await res.json();
 
-            //     const select = document.getElementById('jugadorSelect');
-            //     Array.from(select.options).forEach(opt => {
-            //         opt.classList.remove('cargado');
-            //         opt.disabled = false;
+                const select = document.getElementById('jugadorSelect');
+                Array.from(select.options).forEach(opt => {
+                    opt.classList.remove('cargado');
+                    opt.disabled = false;
 
-            //         if (cargados.includes(opt.value)) {
-            //             opt.classList.add('cargado');
-            //             opt.disabled = true;
-            //             opt.textContent = `✅ ${opt.textContent.replace(/^✅ /, '')}`;
-            //         } else {
-            //             opt.textContent = opt.textContent.replace(/^✅ /, '');
-            //         }
-            //     });
+                    if (cargados.includes(opt.value)) {
+                        opt.classList.add('cargado');
+                        opt.disabled = true;
+                        opt.textContent = `✅ ${opt.textContent.replace(/^✅ /, '')}`;
+                    } else {
+                        opt.textContent = opt.textContent.replace(/^✅ /, '');
+                    }
+                });
 
-            //     if (cargados.includes(select.value)) {
-            //         select.value = '';
-            //     }
-            // } catch (err) {
-            //     console.error('Error al marcar jugadores cargados:', err);
-            // }
+                if (cargados.includes(select.value)) {
+                    select.value = '';
+                }
+            } catch (err) {
+                console.error('Error al marcar jugadores cargados:', err);
+            }
         }
 
         //-----------------------------------------
@@ -629,6 +576,8 @@
         `;
                 tbody.appendChild(tr);
             });
+
+            // verificarTodoCompleto();
         }
 
         //-----------------------------------------
@@ -647,6 +596,8 @@
                 else if (diff >= 2) input.classList.add('double');
             }
         }
+
+
     </script>
 </body>
 
