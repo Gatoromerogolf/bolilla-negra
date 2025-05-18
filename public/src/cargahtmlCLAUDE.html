@@ -194,12 +194,15 @@
         /*  estilos segun claude */
         /* Estilos generales para la tabla */
         #scoreTable {
-            width: 100%;
+            width: 80%;
             border-collapse: collapse;
-            font-size: 14px;
+            font-size: 13px;
+            /* Reducido de 14px */
             margin: 0 auto;
             background-color: #f9f9f9;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            table-layout: fixed;
+            /* Asegura anchos fijos */
         }
 
         /* Encabezados de la tabla */
@@ -210,17 +213,25 @@
         }
 
         #scoreTable th {
-            padding: 8px 4px;
+            padding: 5px 2px;
+            /* Reducido de 8px 4px */
             font-weight: bold;
             text-align: center;
             font-size: 12px;
+            height: 22px;
+            /* Altura explícita para encabezados */
         }
 
         /* Celdas de la tabla */
         #scoreTable td {
-            padding: 6px 4px;
+            padding: 2px 2px;
+            /* Reducido de 6px 4px */
             text-align: center;
             border-bottom: 1px solid #ddd;
+            height: 28px;
+            /* Altura explícita para celdas */
+            line-height: 1;
+            /* Reducir espacio de línea */
         }
 
         /* Alterna colores de fondo para filas para mejor legibilidad */
@@ -247,20 +258,22 @@
 
         /* Estilo para la columna de golpes (con clase gross) */
         #scoreTable td.gross {
-            width: 25%;
+            width: 20%;
             background-color: #f8f8ff;
             position: relative;
         }
 
         /* Estilo para input en la columna de golpes */
         #scoreTable td.gross input {
-            width: 70%;
-            padding: 6px 2px;
+            width: 80%;
+            padding: 2px 2px;
+            /* Reducido de 6px 2px */
             border: 1px solid #ccc;
             border-radius: 4px;
             text-align: center;
             font-size: 14px;
-            /* Tamaño ligeramente reducido */
+            height: 20px;
+            /* Altura explícita para inputs */
         }
 
         /* Estilo para filas activas o en foco */
@@ -302,20 +315,32 @@
         /* Estilos responsivos para pantallas muy pequeñas */
         @media screen and (max-width: 320px) {
             #scoreTable {
-                font-size: 12px;
+                font-size: 11px;
+                /* Reducido de 12px */
             }
 
             #scoreTable th {
-                padding: 6px 2px;
-                font-size: 11px;
+                padding: 3px 1px;
+                /* Reducido de 6px 2px */
+                font-size: 10px;
+                /* Reducido de 11px */
+                height: 20px;
+                /* Reducido */
             }
 
             #scoreTable td {
-                padding: 4px 2px;
+                padding: 2px 1px;
+                /* Reducido de 4px 2px */
+                height: 24px;
+                /* Reducido */
             }
 
             #scoreTable td.gross input {
-                font-size: 14px;
+                font-size: 12px;
+                /* Reducido de 14px */
+                height: 20px;
+                /* Reducido */
+                padding: 1px;
             }
         }
     </style>
