@@ -586,30 +586,30 @@
             const cancha = document.getElementById('canchaSelect').value;
             if (!fecha || !cancha) return;
 
-            // try {
-            //     const res = await fetch(`/api/tarjetas/jugadores-cargados?fecha=${fecha}&cancha=${cancha}`);
-            //     const cargados = await res.json();
+            try {
+                const res = await fetch(`/api/tarjetas/jugadores-cargados?fecha=${fecha}&cancha=${cancha}`);
+                const cargados = await res.json();
 
-            //     const select = document.getElementById('jugadorSelect');
-            //     Array.from(select.options).forEach(opt => {
-            //         opt.classList.remove('cargado');
-            //         opt.disabled = false;
+                const select = document.getElementById('jugadorSelect');
+                Array.from(select.options).forEach(opt => {
+                    opt.classList.remove('cargado');
+                    opt.disabled = false;
 
-            //         if (cargados.includes(opt.value)) {
-            //             opt.classList.add('cargado');
-            //             opt.disabled = true;
-            //             opt.textContent = `✅ ${opt.textContent.replace(/^✅ /, '')}`;
-            //         } else {
-            //             opt.textContent = opt.textContent.replace(/^✅ /, '');
-            //         }
-            //     });
+                    if (cargados.includes(opt.value)) {
+                        opt.classList.add('cargado');
+                        opt.disabled = true;
+                        opt.textContent = `✅ ${opt.textContent.replace(/^✅ /, '')}`;
+                    } else {
+                        opt.textContent = opt.textContent.replace(/^✅ /, '');
+                    }
+                });
 
-            //     if (cargados.includes(select.value)) {
-            //         select.value = '';
-            //     }
-            // } catch (err) {
-            //     console.error('Error al marcar jugadores cargados:', err);
-            // }
+                if (cargados.includes(select.value)) {
+                    select.value = '';
+                }
+            } catch (err) {
+                console.error('Error al marcar jugadores cargados:', err);
+            }
         }
 
         //-----------------------------------------

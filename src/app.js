@@ -455,6 +455,32 @@ app.post("/grabaNetos", (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 Grabacion de HANDICAP
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+app.post("/handicaps", (req, res) => {
+  // if (!req.session.user){
+  //     return res.status(401).json({ error: 'No estás autenticado' });
+  // }
+  const { jugador, cancha, fecha, gross, hcpcancha, neto,  hcpbolilla } = req.body;
+  const nuevohcp =
+    "INSERT INTO handicap (jugador, cancha, fecha, gross, hcpcancha, neto, hcpbolilla) VALUES (?, ?, ?, ?, ?, ?, ?)";
+  const datosAPasar = [jugador, cancha, fecha, gross, hcpcancha, neto, hcpbolilla];
+
+  pool.query(nuevohcp, datosAPasar, function (error, lista) {
+    if (error) {
+      if (error.code === "ER_DUP_ENTRY") {
+        res.status(409).json({ error: "Ya existe un registro igual" });
+      } else {
+        console.log("Error:", error);
+        res.status(500).json({ error: error.message });
+      }
+    } else {
+      res.status(200).json({ success: true });
+    }
+  });
+});
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 Ruta para agregar un comentario
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post("/agregar-comentario", (req, res) => {
@@ -646,6 +672,7 @@ app.post("/api/tarjetas", (req, res) => {
     return res.status(400).json({ error: "Faltan datos o formato incorrecto" });
   }
 
+  //Construye un arreglo de arreglos (values) para hacer una sola inserción masiva:
   const values = hoyos.map((h) => [
     jugador,
     fecha,
@@ -655,10 +682,13 @@ app.post("/api/tarjetas", (req, res) => {
     h.golpes,
   ]);
 
+  //Ejecuta la consulta INSERT INTO ... VALUES ? con múltiples filas:
   const query = `
     INSERT INTO tarjetas (jugador, fecha, cancha, handicap, hoyo, golpes)
     VALUES ?
   `;
+  //Esto hace que se inserten varios registros, uno por cada hoyo, todos asociados al mismo jugador y fecha.
+
 
   pool.query(query, [values], (error, results) => {
     if (error) {
