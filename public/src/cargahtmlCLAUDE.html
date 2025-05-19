@@ -10,28 +10,24 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 600px;
+            max-width: 400px;
             margin: 0 auto;
             padding: 5px;
         }
 
         .container {
-            border: 1px solid #ccc;
-            padding: 20px;
+            border: 1px solid #219c08;
+            padding: 5px;
             border-radius: 5px;
             margin-bottom: 20px;
+            margin-top: 10px;
         }
 
         input[type="number"] {
-            width: 100%;
-            padding: 8px;
+            width: 80%;
+            padding: 2px;
             box-sizing: border-box;
         }
-
-        /* select {
-            width: 100%;
-            padding: 8px;
-        } */
 
         button {
             padding: 10px 15px;
@@ -265,7 +261,7 @@
 
         /* Estilo para input en la columna de golpes */
         #scoreTable td.gross input {
-            width: 80%;
+            width: 60%;
             padding: 2px 2px;
             /* Reducido de 6px 2px */
             border: 1px solid #ccc;
@@ -341,6 +337,8 @@
                 height: 20px;
                 /* Reducido */
                 padding: 1px;
+                width: 50%;
+                /* Reducido para pantallas muy pequeñas */
             }
         }
     </style>
@@ -461,11 +459,9 @@
                 <p>Neto: <span id="totalNeto2"><strong>0</strong></span></p>
             </div>
             <div style="display: flex; gap: 20px;">
-                <p>Handicap: </p>
-                <p>Jugado: <span id="hcpJugado"><strong></strong></span></p>
-                <p>Bolilla: <span id="hcpBolilla"><strong></strong></span></p>
+                <p>Handicap otorgado: <span id="hcpJugado"><strong></strong></span></p>
+                <p>Hcp Bolilla: <span id="hcpBolilla"><strong></strong></span></p>
                 <p>Diferencia: <span id="difHandicap"><strong></strong></span></p>
-
             </div>
 
             <button id="btnReiniciar">Guardar datos y continuar</button>
@@ -595,8 +591,6 @@
 
         async function iniciarApp() {
             await funcionInicial();           // Espera hasta que el usuario seleccione fecha y cancha
-            // document.getElementById('inicio').classList.add('oculto'); // Oculta paso inicial
-            console.log(`llego hasta aca ${faltan}`)
             paso1.classList.remove('oculto'); // Muestra paso 1
         }
 
@@ -662,12 +656,20 @@
             totalGross10to182.textContent = gross10to18;
             totalGross2.textContent = totalGross;
             totalNeto2.textContent = totalNeto;
+            totalNeto2.style.fontWeight = 'bold';
+            totalNeto2.style.fontSize = '18px';
 
             hcpJugado.textContent = handicap;
             handicapBolilla = totalGross - 72;
             hcpBolilla.textContent = handicapBolilla;
             handicapDiferencia = handicapBolilla - handicap;
-            difHandicap.textContent = handicapDiferencia;
+            // difHandicap.textContent = handicapDiferencia;
+            difHandicap.style.fontSize = '18px';
+            difHandicap.style.fontWeight = 'bold';
+            difHandicap.style.color = handicapDiferencia < 0 ? 'red' : 'black';
+            difHandicap.textContent = handicapDiferencia < 0
+                ? `⬇️ ${handicapDiferencia}`
+                : `✅ ${handicapDiferencia}`;
 
             // Ocultar paso 2 y mostrar paso 3
             paso2.classList.add('oculto');
@@ -793,7 +795,6 @@
 
                 // Crear el arreglo con los valores
                 valoresGross = Array.from(inputsGross).map(input => Number(input.value.trim()));
-                console.log(valoresGross);
             } else {
                 btn2.disabled = true; // ❌ Lo deshabilita si no está todo completo
             }
@@ -821,8 +822,6 @@
                 neto,
                 hcpbolilla
             };
-
-            console.log(`body para mandar ${body}`);
 
             if (!jugador || cancha == null || fecha == null || gross == null || hcpcancha == null || neto == null || hcpbolilla == null) {
                 return res.status(400).json({ error: "Faltan datos para guardar el handicap" });
