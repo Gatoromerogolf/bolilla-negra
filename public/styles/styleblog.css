@@ -64,13 +64,6 @@ body {
   padding: 0;
   margin: 1;
   font-size: 18px;
-
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #f0f0f0; */
 }
 
 header {
@@ -78,7 +71,6 @@ header {
 }
 
 #matriculas {
-
   padding: 10px 0px 25px 25px;
   margin-bottom: 30px;
 }
@@ -328,8 +320,8 @@ table {
 td,
 th {
   border-collapse: collapse;
-  border: 1px dotted rgb(71, 69, 69);
-  padding: 8px 5px;
+  border: 1px dotted rgb(71,69,69);
+  padding: 8x 5px;
   text-align: center;
 }
 
@@ -524,33 +516,6 @@ a.submenu:active {
   border-radius: 10%;
 }
 
-/*
-.scores {
-  width: 80%;
-  border-collapse: collapse;
-  border: 0px solid white;
-  letter-spacing: 0px;
-  font-size: 0, 9rem;
-  margin: 0 auto;
-  background-color: #e4e3e3;
-  text-align: center;
-}
-
-td.scores,
-th.scores {
-  border-collapse: collapse;
-  border: 0px dotted;
-  padding: 3px 10px;
-  text-align: center;
-  margin: left;
-}
-
-p.scores {
-  text-align: center;
-}
-
-*/
-
 .scores-container {
   display: flex;
   justify-content: center;
@@ -571,8 +536,6 @@ p.scores {
   display: block;
   margin: 0 auto;
 }
-
-
 
 
 #contenedorCuentaRegresiva {
