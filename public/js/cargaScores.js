@@ -184,7 +184,7 @@ function procesarDatos() {
 
     const jugadores = document.getElementById("jugadores");
     ctddJugadores = Number(jugadores.value.trim());
-    if (ctddJugadores < 1 || ctddJugadores > 12) {
+    if (ctddJugadores < 6 || ctddJugadores > 12) {
         alert("no puede haber ni menos de 6 jugadores ni mas de 12");
         document.getElementById("primeraTabla").style.display = "block";
         return;

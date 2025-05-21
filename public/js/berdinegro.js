@@ -8,6 +8,7 @@ async function main() {
 main().then(() => {
     const resultado = document.getElementById("berdinegro").getElementsByTagName("tbody")[0]; // Ejecuta la función principal
     for (let i = 1; i < 19; i++) {
+        // define el par de los hoyos (igual ya lo puse en la tabla)
         let par = 0;
         switch (i) {
             case 1:

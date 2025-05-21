@@ -411,8 +411,15 @@
             <!-- Handicap (oculto inicialmente) -->
             <div style="display: flex; gap: 2px;">
                 <div id="handicapContainer" style="display: none; font-size: 13px" ;>
-                    <label for="handicap">Handicap</label>
+                    <label for="handicap">Hcp</label>
                     <input type="number" id="handicap" style="width: 30px;">
+                    <!-- <label for="npt">NPT</label>
+                    <input type="number" id="npt" style="width: 20px;"> -->
+                </div>
+
+                <div id="nptContainer" style="display: block; font-size: 13px" ;>
+                    <label for="npt">NPT</label>
+                    <input type="number" id="npt" style="width: 22px;">
                 </div>
 
                 <!-- Tarjeta de score (oculta inicialmente) -->
@@ -452,7 +459,7 @@
         <div>
             <p>Jugador: <strong id="resultadoNombre"></strong></p>
 
-            <div id="totales" style="display: flex; gap: 20px;">
+            <div id="totales2" style="display: flex; gap: 20px;">
                 <p>Ida: <span id="totalGross1to92"><strong>0</strong></span></p>
                 <p>Vuelta: <span id="totalGross10to182"><strong>0</strong></span></p>
                 <p>Gross: <span id="totalGross2"><strong>0</strong></span></p>
@@ -496,6 +503,10 @@
         const tarjetaForm = document.getElementById('tarjetaForm');
 
         const fecha = document.getElementById('fecha');
+        let fechaaRegistrar = 0;
+        let fechaSinGuiones = 0;
+        let fechaParaComparar = 0;
+        let fecFullTabla = 0;
         const selecCanchaDiv = document.getElementById('selecCanchaDiv');
         const cancha = document.getElementById('canchaSelect');
         const totJugadores = document.getElementById('totJugadores');
@@ -526,7 +537,7 @@
                         document.getElementById("ultFecha").value = ultimaFecha.textoFecha;
                         document.getElementById("ultNumero").value = ultimaFecha.fec;
                         let fec = ultimaFecha.fec;
-                        let fecFullTabla = ultimaFecha.fechaFull;
+                        fecFullTabla = ultimaFecha.fechaFull;
                     } else {
                         alert("No se encontró ninguna fecha");
                     }
@@ -534,11 +545,35 @@
 
                 cargarCanchas();
 
+                // fecha.addEventListener('change', () => {
+                //     if (fecha.value !== '') {
+                //         selecCanchaDiv.style.display = 'block';
+                //     }
+                // });
+
                 fecha.addEventListener('change', () => {
-                    if (fecha.value !== '') {
-                        selecCanchaDiv.style.display = 'block';
+                    fechaParaComparar = fecha.value;
+                    fechaSinGuiones = fechaParaComparar.split("-").join("");
+                    const dateTabla = formatToDateString(fecFullTabla);
+                    const dateTablaSinGuiones = dateTabla.split("-").join("");
+                    if (dateTablaSinGuiones >= fechaSinGuiones) {
+                        alert("La fecha debe ser mayor a la ultima");
+                        document.getElementById("primeraTabla").style.display = "block";
+                        return;
                     }
+                    fechaaRegistrar = fechaSinGuiones;
+                    selecCanchaDiv.style.display = 'block';
                 });
+
+
+
+                function formatToDateString(dateString) {
+                    const date = new Date(dateString);
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, "0");
+                    const day = String(date.getDate()).padStart(2, "0");
+                    return `${year}-${month}-${day}`;
+                }
 
                 cancha.addEventListener('change', async () => {
                     if (cancha.value !== '') {
@@ -564,7 +599,7 @@
                 totJugadores.addEventListener('change', () => {
                     const valor = parseInt(totJugadores.value);
 
-                    if (isNaN(valor) || valor < 2 || valor > 12) {
+                    if (isNaN(valor) || valor < 6 || valor > 12) {
                         alert('El número de jugadores debe estar entre 6 y 12.');
                         totJugadores.focus();
                         return; // detener el proceso
