@@ -62,7 +62,7 @@
         }
 
         .oculto {
-            display: none;
+            display: none !important;
         }
 
         .mensaje-final {
@@ -99,33 +99,6 @@
             /* O el valor que te parezca */
             max-width: 200px;
         }
-
-        /* table {
-            border-collapse: collapse;
-            margin-top: 1rem;
-            width: 60%;
-            font-size: 13px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ccc;
-            text-align: center;
-            padding: 1px 2px;
-            line-height: 1;
-            height: 10px;
-            font-size: 11px;
-
-        }
-
-        td input {
-            padding: 1px 2px;
-            font-size: 12px;
-            line-height: 1;
-            height: 12px;
-            width: 10px;
-            box-sizing: border-box;
-        } */
 
         .gross {
             width: 26px;
@@ -189,93 +162,7 @@
 
         /*  estilos segun claude */
         /* Estilos generales para la tabla */
-        #scoreTable {
-            width: 80%;
-            border-collapse: collapse;
-            font-size: 13px;
-            /* Reducido de 14px */
-            margin: 0 auto;
-            background-color: #f9f9f9;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            table-layout: fixed;
-            /* Asegura anchos fijos */
-        }
 
-        /* Encabezados de la tabla */
-        #scoreTable thead {
-            background-color: #3a7734;
-            /* Color verde golf */
-            color: white;
-        }
-
-        #scoreTable th {
-            padding: 5px 2px;
-            /* Reducido de 8px 4px */
-            font-weight: bold;
-            text-align: center;
-            font-size: 12px;
-            height: 20px;
-            /* Altura explícita para encabezados */
-        }
-
-        /* Celdas de la tabla */
-        #scoreTable td {
-            padding: 2px 2px;
-            /* Reducido de 6px 4px */
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-            height: 24px;
-            /* Altura explícita para celdas */
-            line-height: 1;
-            /* Reducir espacio de línea */
-        }
-
-        /* Alterna colores de fondo para filas para mejor legibilidad */
-        #scoreTable tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        /* Estilo para hoyo */
-        #scoreTable td:nth-child(1) {
-            width: 25%;
-            font-weight: bold;
-        }
-
-        /* Estilo para par */
-        #scoreTable td:nth-child(2) {
-            width: 25%;
-        }
-
-        /* Estilo para hcp */
-        #scoreTable td:nth-child(3) {
-            width: 25%;
-            color: #666;
-        }
-
-        /* Estilo para la columna de golpes (con clase gross) */
-        #scoreTable td.gross {
-            width: 20%;
-            background-color: #f8f8ff;
-            position: relative;
-        }
-
-        /* Estilo para input en la columna de golpes */
-        #scoreTable td.gross input {
-            width: 60%;
-            padding: 2px 2px;
-            /* Reducido de 6px 2px */
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            text-align: center;
-            font-size: 14px;
-            height: 18px;
-            /* Altura explícita para inputs */
-        }
-
-        /* Estilo para filas activas o en foco */
-        #scoreTable tr.active {
-            background-color: #e6f2e6 !important;
-        }
 
         /* Estilos para el contenedor */
         #tarjetaContainer {
@@ -284,12 +171,6 @@
             overflow-x: hidden;
         }
 
-        /* Mejoras para toques táctiles */
-        #scoreTable td.gross input:focus {
-            outline: none;
-            border-color: #3a7734;
-            box-shadow: 0 0 4px rgba(58, 119, 52, 0.5);
-        }
 
         /* Estilos para pares diferentes */
         .par3 {
@@ -306,40 +187,99 @@
             color: #0066cc;
         }
 
-        /* Azul para par 5 */
+        /* Aplica a toda la tabla de resultados*/
+        .tablaLinda {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Arial', sans-serif;
+            font-size: 13px;
+        }
 
-        /* Estilos responsivos para pantallas muy pequeñas */
-        @media screen and (max-width: 320px) {
-            #scoreTable {
-                font-size: 11px;
-                /* Reducido de 12px */
-            }
+        /* Aplica solo a los encabezados (th) */
+        .tablaLinda th {
+            background-color: #f2f2f2;
+            color: #333;
+            padding: 4px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
 
-            #scoreTable th {
-                padding: 3px 1px;
-                /* Reducido de 6px 2px */
-                font-size: 10px;
-                /* Reducido de 11px */
-                height: 20px;
-                /* Reducido */
-            }
+        /* Aplica a las celdas del cuerpo de la tabla */
+        .tablaLinda td {
+            padding: 0px 2px;
+            border: 1px solid #ccc;
+            text-align: center;
+            max-height: 15px;
+            line-height: 1;
+            font-size: 12px;
+        }
 
-            #scoreTable td {
-                padding: 2px 1px;
-                /* Reducido de 4px 2px */
-                height: 24px;
-                /* Reducido */
-            }
+        /* Opcional: estilo para filas alternas */
+        .tablaLinda tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
 
-            #scoreTable td.gross input {
-                font-size: 12px;
-                /* Reducido de 14px */
-                height: 20px;
-                /* Reducido */
-                padding: 1px;
-                width: 50%;
-                /* Reducido para pantallas muy pequeñas */
-            }
+        /* Estilo para hoyo */
+        .tablaLinda td:nth-child(1) {
+            width: 25%;
+            font-weight: bold;
+        }
+
+        /* Estilo para par */
+        .tablaLinda td:nth-child(2) {
+            width: 25%;
+        }
+
+
+        /* Estilo para hcp */
+        .tablaLinda td:nth-child(3) {
+            width: 25%;
+            color: #666;
+        }
+
+        /* Estilo para la columna de golpes (con clase gross) */
+        .tablaLinda td.gross {
+            width: 25%;
+            background-color: #f8f8ff;
+            position: relative;
+        }
+
+        /* Estilo para input en la columna de golpes */
+        .tablaLinda td input.gross {
+            width: 50%;
+            padding: 2px 2px;
+            border: 1px solid #666565;
+            border-radius: 1px;
+            text-align: center;
+            font-size: 13px;
+            height: 18px;
+        }
+
+
+        input[type="number"].dos-digitos {
+            width: 5ch;
+            /* suficiente para 2 dígitos + algo de espacio */
+            text-align: center;
+        }
+
+        #totajugadores {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #totajugadores div {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* centra texto del cartel de NPT */
+        #pasoNPT {
+            /* display: flex; */
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
     </style>
 </head>
@@ -359,15 +299,29 @@
             <input type="date" id="fecha" />
         </div>
 
-        <div id="selecCanchaDiv" style="display: none;">
+        <div id="selecCanchaDiv" style="display:none">
             <label for="canchaSelect">Cancha:</label>
             <select id="canchaSelect"></select>
         </div>
 
-        <div id="infoTotalJugDiv" style="display: none;">
-            <label for="totJugadores">Total Jugadores:</label>
-            <input type="number" id="totJugadores" style="width: 30px" min="2" max="12">
+        <div id="totalJugadores" style="display:none; gap: 3px; margin-top: 8px;">
+            <div id="infoTotalJugDiv">
+                <label for="totPersonas">Jugadores:</label>
+                <input type="number" id="totPersonas" class="dos-digitos" min="2" max="12">
+            </div>
+
+            <div id="tarjetasOk">
+                <label for="totJugadores">Tarjetas:</label>
+                <input type="number" id="totJugadores" class="dos-digitos" min="2" max="12">
+            </div>
+
+            <div id="tarjetasNPT">
+                <label for="totNPT">NPT:</label>
+                <input type="number" id="totNPT" class="dos-digitos" min="0" max="12">
+            </div>
+            <button id="validarJugadores">Seguir</button>
         </div>
+
     </div>
 
 
@@ -377,7 +331,7 @@
         <div class="contador" id="contadorDisplay">
             Falta cargar: <span id="contador"></span>
         </div>
-        <h3>Paso 1: Seleccionar jugador</h3>
+        <h4>Paso 1: Seleccionar jugador</h4>
         <div style="display: flex; gap: 10px;">
             <!-- <div style="margin-bottom: 1em;"> -->
             <div>
@@ -397,35 +351,48 @@
                     <option value="Torni">Torni</option>
                 </select>
             </div>
+
             <div>
-                <button id="btnContinuar" disabled>Continuar</button>
+                <button id="btnContinuar" disabled>Cargar</button>
             </div>
+
+            <!-- <div>
+                <div id="nptContainer" style="font-size: 13px;">
+                    <label for="npt">NPT</label>
+                    <input type="number" id="npt" style="width: 23px; max-height: 20px;" value="0" min="0" max="1"
+                        oninput="validarNPT(this)">
+                </div>
+            </div> -->
+
+            <div>
+                <button id="btnNPT" disabled>NPT</button>
+            </div>
+            <!-- <div>
+                <button id="btnContinuar" disabled>Continuar</button>
+            </div> -->
         </div>
     </div>
 
     <!-- Paso 2: Tabla para ingresar datos -->
     <div class="container oculto" id="paso2">
         <form id="tarjetaForm">
-            <h3>Paso 2: Ingresar datos de <span id="nombreSeleccionado"></span></h3>
+            <!-- <h4>Paso 2: Ingresar datos de <span id="nombreSeleccionado"></span></h4> -->
 
-            <!-- Handicap (oculto inicialmente) -->
-            <div style="display: flex; gap: 2px;">
-                <div id="handicapContainer" style="display: none; font-size: 13px" ;>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <h4>2. Tarjeta de <span id="nombreSeleccionado"></span></h4>
+
+                <div id="handicapContainer" style="font-size: 13px;">
                     <label for="handicap">Hcp</label>
-                    <input type="number" id="handicap" style="width: 30px;">
-                    <!-- <label for="npt">NPT</label>
-                    <input type="number" id="npt" style="width: 20px;"> -->
+                    <input type="number" id="handicap" style="width: 30px; max-height: 20px;">
                 </div>
 
-                <div id="nptContainer" style="display: block; font-size: 13px" ;>
-                    <label for="npt">NPT</label>
-                    <input type="number" id="npt" style="width: 22px;">
-                </div>
-
+                <button id="btnVolverSinCargar" type="button" style="margin-left: 30px">Volver</button>
+            </div>
+            <div>
                 <!-- Tarjeta de score (oculta inicialmente) -->
                 <div id="tarjetaContainer" style="display: block;">
                     <!-- Tabla de scores -->
-                    <table id="scoreTable">
+                    <table id="scoreTable" class="tablaLinda">
                         <thead>
                             <tr>
                                 <th>Hoyo</th>
@@ -453,9 +420,25 @@
         </form>
     </div>
 
+
+    <!-- Paso 3: Mostrar resultados -->
+    <div class="container oculto" id="pasoNPT">
+        <h4>No presentó Tarjeta!!!</h4>
+        <div>
+
+            <h4>El "jugador " <span id="nombreSeleccionadoNPT"></span> no presento tarjeta</h4>
+
+            <p>Este jugador será castigado</p>
+
+            <button id="btnAplicaNPT">Castigar</button>
+            <button id="btnVuelveNPT">Ops!! Corregir!</button>
+        </div>
+    </div>
+
+
     <!-- Paso 3: Mostrar resultados -->
     <div class="container oculto" id="paso3">
-        <h2>Paso 3: Resultados</h2>
+        <h4>3. Resultados</h4>
         <div>
             <p>Jugador: <strong id="resultadoNombre"></strong></p>
 
@@ -475,22 +458,120 @@
         </div>
     </div>
 
+    <div class="container oculto" id="paso4">
+        <!-- <fieldset id="segundaTabla" style="display: none"> -->
+        <fieldset id="segundaTabla">
+            <legend>Clasificación</legend>
+            <table id="tablaResultados" class="tablaLinda">
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th>Player</th>
+                        <th>Neto</th>
+                        <th>Pelotas</th>
+                        <th>Puntos</th>
+                        <th>NPT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las filas serán generadas por JavaScript -->
+                </tbody>
+            </table>
+            <!-- <br>
+            <button onclick="guardarResultados()">Continuar</button>
+            <!-- <button onclick="modificarResultados()">Corregir datos</button> -->
+        </fieldset>
+    </div>
+    <div class="container oculto" id="paso5">
+        <fieldset id="tablaBerdisFS">
+            <legend>Birdies de la fecha</legend>
+            <table id="tablaBerdis" class="tablaLinda">
+                <thead>
+                    <tr>
+                        <th>Hoyo</th>
+                        <th>Player</th>
+                        <th>Par</th>
+                        <th>Score</th>
+                        <th>Hcp</th>
+                        <th>🏆</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las filas serán generadas por JavaScript -->
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+
+    <div class="container oculto" id="paso6">
+        <fieldset id="tablaNegroFS">
+            <legend>Hoyos negros de la fecha</legend>
+            <table id="tablaNegros" class="tablaLinda">
+                <thead>
+                    <tr>
+                        <th>Hoyo</th>
+                        <th>Player</th>
+                        <th>Par</th>
+                        <th>Score</th>
+                        <th>Hcp</th>
+                        <th>⛳</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las filas serán generadas por JavaScript -->
+                </tbody>
+            </table>
+            <!-- <br>
+            <button onclick="guardarResultados()">Continuar</button>
+            <!-- <button onclick="modificarResultados()">Corregir datos</button> -->
+
+        </fieldset>
+    </div>
+
     <!-- Mensaje final -->
     <div class="oculto mensaje-final" id="mensajeFinal">
         <p>Se finalizó la carga.</p>
         <p>Felicitaciones a la HCDT!!!!</p>
+        <button onclick="window.location.href='https://bolilla-negra.com.ar'">Continuar</button>
+        <!-- <button onclick="modificarResultados()">Corregir datos</button> -->
+        <br>
     </div>
 
-
     <script type="module">
+
+        //-----------------------------------------
+        // 🥎  validarNPT      
+        //-----------------------------------------
+        // function validarNPT(input) {
+        //     const val = parseInt(input.value);
+
+        //     if (val !== 0 && val !== 1) {
+        //         alert("El valor de NPT solo puede ser 0 o 1.");
+        //         input.value = ""; // o input.value = 0;
+        //     }
+        // }
+
+        // window.validarNPT = function (input) {
+        //     const val = parseInt(input.value);
+        //     if (val !== 0 && val !== 1) {
+        //         alert("El valor de NPT solo puede ser 0 o 1.");
+        //         input.value = "";
+        //     }
+        // }
+
+
         // Variables globales
         let contador; // Inicializamos el contador
+        let ultimo; 
 
         // Elementos DOM
         const contadorElement = document.getElementById('contador');
         const paso1 = document.getElementById('paso1');
         const paso2 = document.getElementById('paso2');
         const paso3 = document.getElementById('paso3');
+        const paso4 = document.getElementById('paso4');
+        const paso5 = document.getElementById('paso5');
+        const paso6 = document.getElementById('paso6');
         const selectNombre = document.getElementById('selectNombre');
         const jugadorSelect = document.getElementById('jugadorSelect');
         const btnContinuar = document.getElementById('btnContinuar');
@@ -502,6 +583,7 @@
         const contadorDisplay = document.getElementById('contadorDisplay');
         const tarjetaForm = document.getElementById('tarjetaForm');
 
+        let fec = 0;
         const fecha = document.getElementById('fecha');
         let fechaaRegistrar = 0;
         let fechaSinGuiones = 0;
@@ -520,36 +602,50 @@
         let handicap = 0;
         let handicapBolilla = 0;
         let handicapDiferencia = 0;
+        let npt = 0;
         let gross1to9 = 0;
         let gross10to18 = 0;
         let totalGross = 0;
         let totalNeto = 0;
 
         let valoresGross = [];
+        let datosJugadores = [];
+        let ctddPelotas = 0;
+        let ctddJugadores = 0;
 
-        // paso1.classList.add('oculto');
+        let tablaBerdis = [];
+        let tablaNegros = [];
+
+        let orden = 0; // para sacar y calcular segun la vuelta - se usa p/saber quien gano en empate
+
+
+        // 🚗🚚🚋🚀🏳🧻🚽⛈🧻🧻🧻
+
+
+        // 🧻🧻🧻🧻  funcionInicial
         async function funcionInicial() {
             return new Promise((resolve) => {
                 paso1.classList.add('oculto');
+                paso2.classList.add('oculto');
+                paso3.classList.add('oculto');
+                paso4.classList.add('oculto');
+                paso5.classList.add('oculto');
+                paso6.classList.add('oculto');
+                pasoNPT.classList.add('oculto');
+
 
                 buscaUltimaFecha().then((ultimaFecha) => {
                     if (ultimaFecha) {
                         document.getElementById("ultFecha").value = ultimaFecha.textoFecha;
                         document.getElementById("ultNumero").value = ultimaFecha.fec;
-                        let fec = ultimaFecha.fec;
+                        fec = ultimaFecha.fec;
                         fecFullTabla = ultimaFecha.fechaFull;
                     } else {
                         alert("No se encontró ninguna fecha");
                     }
                 });
 
-                cargarCanchas();
-
-                // fecha.addEventListener('change', () => {
-                //     if (fecha.value !== '') {
-                //         selecCanchaDiv.style.display = 'block';
-                //     }
-                // });
+                // cargarCanchas();
 
                 fecha.addEventListener('change', () => {
                     fechaParaComparar = fecha.value;
@@ -565,8 +661,6 @@
                     selecCanchaDiv.style.display = 'block';
                 });
 
-
-
                 function formatToDateString(dateString) {
                     const date = new Date(dateString);
                     const year = date.getFullYear();
@@ -574,6 +668,8 @@
                     const day = String(date.getDate()).padStart(2, "0");
                     return `${year}-${month}-${day}`;
                 }
+
+                cargarCanchas();
 
                 cancha.addEventListener('change', async () => {
                     if (cancha.value !== '') {
@@ -584,7 +680,6 @@
 
                     // document.getElementById('canchaSelect').addEventListener('change', async () => {
                     const canchaId = document.getElementById('canchaSelect').value;
-                    // console.log(`valor de canchaId ${canchaId}`)
                     const res = await fetch(`/api/hoyos/${canchaId}`);
                     hoyos = await res.json();
 
@@ -592,32 +687,44 @@
                         alert("No se pudieron cargar los hoyos de esta cancha.");
                         return;
                     }
+                    totalJugadores.style.display = 'flex';
 
                     renderTabla();
                 });
 
-                totJugadores.addEventListener('change', () => {
-                    const valor = parseInt(totJugadores.value);
+                document.getElementById('validarJugadores').addEventListener('click', () => {
+                    const personas = parseInt(document.getElementById('totPersonas').value);
+                    const valor = parseInt(document.getElementById('totJugadores').value);
+                    const NPT = parseInt(document.getElementById('totNPT').value);
 
-                    if (isNaN(valor) || valor < 6 || valor > 12) {
+                    if (isNaN(personas) || personas < 2 || personas > 12) {
                         alert('El número de jugadores debe estar entre 6 y 12.');
-                        totJugadores.focus();
-                        return; // detener el proceso
+                        document.getElementById('totPersonas').focus();
+                        return;
                     }
 
+                    if ((valor + NPT) !== personas) {
+                        alert('Poné bien los números. Tarjetas + NPT tiene que ser igual a Jugadores.');
+                        document.getElementById('totJugadores').focus();
+                        return;
+                    }
+
+                    const ctddPelotas = personas;
+
+                    // Ocultar el botón de validación
+                    document.getElementById('validarJugadores').style.display = 'none';
+
                     document.getElementById('fecha').disabled = true;
                     document.getElementById('canchaSelect').disabled = true;
+                    document.getElementById('totPersonas').disabled = true;
                     document.getElementById('totJugadores').disabled = true;
+                    document.getElementById('totNPT').disabled = true;
 
-                    contador = valor;
+                    contador = personas;
+                    ultimo = personas;
 
-                    // marcarJugadoresConTarjeta();
+                    document.getElementById('paso1').classList.remove('oculto');
 
-                    document.getElementById('fecha').disabled = true;
-                    document.getElementById('canchaSelect').disabled = true;
-                    document.getElementById('totJugadores').disabled = true;
-
-                    paso1.classList.remove('oculto'); // Se muestra paso1 cuando ya se validó todo
                     resolve();
 
                 })
@@ -629,6 +736,7 @@
             paso1.classList.remove('oculto'); // Muestra paso 1
         }
 
+        // 🧻🧻🧻🧻  arranc por acá
         await iniciarApp();
 
         // Actualizar el contador inicial
@@ -638,8 +746,11 @@
         jugadorSelect.addEventListener('change', function () {
             if (this.value) {
                 btnContinuar.disabled = false;
+                btnNPT.disabled = false;
+                btnNPT.style.backgroundColor = 'red';
             } else {
                 btnContinuar.disabled = true;
+                btnNPT.disabled = true;
             }
         });
 
@@ -650,31 +761,90 @@
             }
         });
 
+        // 🧻🧻🧻🧻  btnContinuar
         // Evento para continuar después de seleccionar nombre
+        // muestra pagina para carga score
         btnContinuar.addEventListener('click', function () {
 
             const jugadorSeleccionado = jugadorSelect.value
-
             if (!jugadorSeleccionado) {
                 alert('Por favor, seleccione un nombre');
                 return;
             }
-
-            // Mostrar los contenedores de handicap y tarjeta
-            document.getElementById('handicapContainer').style.display = 'block';
-            document.getElementById('tarjetaContainer').style.display = 'block';
-
             nombre = jugadorSeleccionado;
-
-            // Mostrar el nombre seleccionado
-            nombreSeleccionado.textContent = nombre;
-
+            nombreSeleccionado.textContent = nombre; // Mostrar el nombre seleccionado
             // Ocultar paso 1 y mostrar paso 2
             paso1.classList.add('oculto');
             paso2.classList.remove('oculto');
         });
 
-        // Evento para calcular la suma
+        // 🧻🧻🧻🧻  btnNPT
+        // Evento para preguntasr si no presento tarjeta
+        // muestra pagina con aviso que no presentó
+        btnNPT.addEventListener('click', function () {
+
+            const jugadorSeleccionado = jugadorSelect.value
+            if (!jugadorSeleccionado) {
+                alert('Por favor, elegi uno....');
+                return;
+            }
+            nombre = jugadorSeleccionado;
+            nombreSeleccionadoNPT.textContent = nombre; // Mostrar el nombre seleccionado
+
+            // Ocultar paso 1 y mostrar NPT
+            pasoNPT.classList.remove('oculto');
+            pasoNPT.style.display = 'flex';
+            btnAplicaNPT.style.backgroundColor = 'red';
+            paso1.classList.add('oculto');
+        });
+
+
+        // 🧻🧻🧻🧻  btnAplicaNPT
+        // Evento para registrar que no presento tarjeta
+        // muestra pagina con aviso que no presentó
+        btnAplicaNPT.addEventListener('click', function () {
+            contador--;  // Restar 1 al contador
+            alert('resto uno al contador')
+            contadorElement.textContent = contador;
+            marcarJugadoresConTarjeta();
+
+            //  Grabar NETOS con 0 y NPT = 1
+            let fecnueva = fec + 1;
+            let play = nombre;
+            let neto = 0;
+            let pos = ultimo--;
+            let pg = 0;
+            let orden = 0;
+            let anual = 0;
+            let npt = 1;
+
+            const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual, npt };
+            grabarNuevoNeto(datosNetos);
+            document.getElementById('jugadorSelect').value = '';
+
+            datosJugadores.push({
+                nombre: nombre,
+                neto: "-",
+                orden: pos,
+                npt: 1
+            });
+
+            pasoNPT.classList.add('oculto');
+            paso1.classList.remove('oculto')
+        })
+
+        btnVuelveNPT.addEventListener('click', function () {
+            pasoNPT.classList.add('oculto');
+            paso1.classList.remove('oculto')
+        })
+
+        btnVolverSinCargar.addEventListener('click', function () {
+            paso2.classList.add('oculto');
+            paso1.classList.remove('oculto')
+        })
+
+        // 🧻🧻🧻🧻  btnCalcular 
+        // Evento para calcular la suma y mostrar resumen
         btnCalcular.addEventListener('click', function () {
 
             const tarjetaForm = document.getElementById('tarjetaForm');
@@ -711,57 +881,130 @@
             paso3.classList.remove('oculto');
         });
 
+
+        // 🧻🧻🧻🧻  btnReiniciar
         // Evento para reiniciar el proceso
-        btnReiniciar.addEventListener('click', function () {
-            // Restar 1 al contador
-            contador--;
+        btnReiniciar.addEventListener('click', async function () {
+
+            contador--;  // Restar 1 al contador
             contadorElement.textContent = contador;
 
-            guardarResultados();
+            await guardarResultados();
 
-            // Verificar si el contador llegó a cero
-            if (contador <= 0) {
-                // Ocultar todos los pasos y mostrar mensaje final
+            // Agregar los datos al array si se ha completado al menos un campo
+            datosJugadores.push({
+                nombre: nombre,
+                neto: totalNeto || "-",
+                orden: orden || "-",
+                npt: npt || "-"
+            });
+
+            if (contador > 0) {
+                // si es mayor falta cargar datos - Limpiar campos
+                document.getElementById('jugadorSelect').value = '';
+                document.getElementById('handicap').value = '';
+                // Resetear los totales
+                document.getElementById('totalGross1to9').innerHTML = '<strong>0</strong>';
+                document.getElementById('totalGross10to18').innerHTML = '<strong>0</strong>';
+                document.getElementById('totalGross').innerHTML = '<strong>0</strong>';
+                document.getElementById('totalNeto').innerHTML = '<strong>0</strong>';
+                // Limpiar tabla de score
+                renderTabla();
+                marcarJugadoresConTarjeta();
+                // Volver al paso 1
+                paso3.classList.add('oculto');
+                paso1.classList.remove('oculto');
+            }
+            else {
+                // termino de cargar datos
+                // Ordenar los datos por el valor de "Neto" y luego por "Orden"
+                datosJugadores.sort((a, b) => {
+                    const netoA = a.neto === "-" ? Infinity : parseInt(a.neto);
+                    const netoB = b.neto === "-" ? Infinity : parseInt(b.neto);
+                    const ordenA = a.orden === "-" ? Infinity : parseInt(a.orden);
+                    const ordenB = b.orden === "-" ? Infinity : parseInt(b.orden);
+
+                    if (netoA === netoB) {
+                        return ordenA - ordenB;
+                    }
+                    return netoA - netoB;
+                });
+
+                // Asigna la cantidad de pelotas a cada jugador
+                let valor1 = 0;
+                let valor2 = 0;
+
+                if (ctddPelotas < 10) {
+                    valor1 = ctddPelotas - 3;
+                    valor2 = 2;
+                }
+                if (ctddPelotas == 10 || ctddPelotas == 11) {
+                    valor1 = ctddPelotas - 4;
+                    valor2 = 3;
+                }
+                if (ctddPelotas == 12) {
+                    valor1 = 7;
+                    valor2 = 4;
+                }
+
+                const tablaResultados = document
+                    .getElementById("tablaResultados")
+                    .getElementsByTagName("tbody")[0];
+
+                let indice = 0;
+                // Insertar las filas ordenadas en la tabla de resultados
+                datosJugadores.forEach((jugador) => {
+                    let filaResultado = tablaResultados.insertRow();
+                    if (indice == 0) {
+                        jugador.pelotas = valor1;
+                    }
+                    if (indice == 1) {
+                        jugador.pelotas = valor2;
+                    }
+                    if (indice == 2) {
+                        jugador.pelotas = 1;
+                    }
+
+                    if (jugador.neto > 0) {
+                        jugador.orden = indice + 1;
+                        jugador.anual = ctddJugadores - indice;
+                    }
+
+                    filaResultado.insertCell(0).textContent = jugador.orden;
+                    filaResultado.insertCell(1).textContent = jugador.nombre;
+                    filaResultado.insertCell(2).textContent = jugador.neto;
+                    filaResultado.insertCell(3).textContent = jugador.pelotas;
+                    filaResultado.insertCell(4).textContent = jugador.anual;
+                    filaResultado.insertCell(5).textContent = jugador.npt;
+                    indice++;
+                });
+
+                cargarTablaBerdis();
+                cargarTablaNegros();
+                mensajeFinal.classList.add('oculto');
                 paso1.classList.add('oculto');
                 paso2.classList.add('oculto');
                 paso3.classList.add('oculto');
                 contadorDisplay.classList.add('oculto');
+                paso4.classList.remove('oculto');
+                paso5.classList.remove('oculto');
+                paso6.classList.remove('oculto');
                 mensajeFinal.classList.remove('oculto');
+
                 return;
             }
-
-            // Limpiar campos
-            document.getElementById('jugadorSelect').value = '';
-            document.getElementById('handicap').value = '';
-
-            // Resetear los totales
-            document.getElementById('totalGross1to9').innerHTML = '<strong>0</strong>';
-            document.getElementById('totalGross10to18').innerHTML = '<strong>0</strong>';
-            document.getElementById('totalGross').innerHTML = '<strong>0</strong>';
-            document.getElementById('totalNeto').innerHTML = '<strong>0</strong>';
-
-            // Limpiar tabla de score
-            renderTabla();
-            marcarJugadoresConTarjeta();
-
-            // Volver al paso 1
-            paso3.classList.add('oculto');
-            paso1.classList.remove('oculto');
         });
-
 
         //-----------------------------------------
         // 🥎  calcularTotales               
         //-----------------------------------------
         function calcularTotales() {
-            // Obtener los valores de los hoyos
 
             handicap = parseInt(document.getElementById('handicap').value) || 0;
             if (!handicap > 0) {
                 alert("falta informar handicap")
                 return
             }
-
             const inputsGross = document.querySelectorAll('.gross');
 
             // Calcular cuántos hoyos tienen valor válido (> 0)
@@ -785,9 +1028,7 @@
             });
 
             totalGross = gross1to9 + gross10to18;
-
             totalNeto = totalGross - handicap;
-
             const totalGrossElem = document.getElementById('totalGross1to9');
             totalGrossElem.textContent = gross1to9;
             totalGrossElem.style.fontSize = '18px';
@@ -796,18 +1037,15 @@
             totalGrossElem2.textContent = gross10to18;
             totalGrossElem2.style.fontSize = '18px';
             totalGrossElem2.style.fontWeight = 'bold';
-
             const totalGrossElem3 = document.getElementById('totalGross');
             totalGrossElem3.textContent = totalGross;
             totalGrossElem3.style.fontSize = '18px';
             totalGrossElem3.style.fontWeight = 'bold';
-
             const totalGrossElem4 = document.getElementById('totalNeto');
             totalGrossElem4.textContent = totalNeto;
             totalGrossElem4.style.fontSize = '20px';
             totalGrossElem4.style.fontWeight = 'bold';
             totalGrossElem4.style.color = 'red';
-
             const totalGrossElem5 = document.getElementById('totalHoyos');
             totalGrossElem5.textContent = hoyosConValor;
             totalGrossElem5.style.fontSize = '18px';
@@ -820,14 +1058,11 @@
             });
 
             const validGross = totalGross > 0 && totalNeto > 0;
-            // const btn = document.getElementById('guardarBtn');
-            //     btn.style.display = 'inline-block';
 
             const btn2 = document.getElementById('btnCalcular');
             if (allFieldsFilled && validGross) {
                 btn2.disabled = false; // ✅ Habilita el botón
                 btn2.style.display = 'inline-block';
-
                 // Crear el arreglo con los valores
                 valoresGross = Array.from(inputsGross).map(input => Number(input.value.trim()));
             } else {
@@ -873,7 +1108,6 @@
                 });
 
                 if (response.ok) {
-
                 } else {
                     const data = await response.json();
                     alert("Error: " + data.error);
@@ -884,18 +1118,19 @@
 
             // Incrementar contador de jugadores cargados
             cargadas++;
-            console.log(`GuardarResultados: cargadas: ${cargadas}`);
 
             // 🎫🎫🎫 graba tarjeta completa 🎫🎫🎫
 
-            const hoyos = [];
+            let hoyosValores = [];
             for (let i = 0; i < valoresGross.length; i++) {
                 const val = valoresGross[i];
                 if (isNaN(val)) {
                     alert(`Falta cargar el hoyo ${i + 1}`);
                     return;
                 }
-                hoyos.push({ hoyo: i + 1, golpes: val });
+                const golpe = Number(val);
+                hoyosValores.push({ hoyo: i + 1, golpes: golpe });  // o parseInt(val)
+                // console.log(`mando valor val: ${val} con i: ${i}, golpes: ${golpe}`)
             }
 
             body = {
@@ -903,8 +1138,13 @@
                 fecha,
                 cancha,
                 handicap: hcpcancha,
-                hoyos
+                hoyos: hoyosValores
             };
+            console.log(`jugador ${jugador}, fecha: ${fecha}, cancha ${cancha}, hcpcancha : ${hcpcancha}, hoyos largo : ${hoyos.length}`)
+            if (!jugador || !fecha || !cancha || hcpcancha == null || hoyos.length === 0 || hoyos.length !== 18) {
+                alert("Faltan datos para guardar las tarjetas");
+                return;
+            }
 
             try {
                 const res = await fetch('/api/tarjetas', {
@@ -925,6 +1165,50 @@
                 return; // Detener la ejecución si hay error
             }
 
+            // ⚽⚽ calcula los birdies
+            for (let i = 0; i < valoresGross.length; i++) {
+                const val = valoresGross[i];
+                if (val < hoyos[i].par) {
+                    console.log(`graba birdie hoyo ${i + 1} de ${jugador}`)
+                    tablaBerdis.push({
+                        jugador: jugador,
+                        hoyo: i + 1,
+                        par: hoyos[i].par,
+                        golpes: val,
+                        handicap: handicap
+                    });
+                }
+            }
+
+            // ⚽⚽ calcula los negros
+            for (let i = 0; i < valoresGross.length; i++) {
+                const val = valoresGross[i];
+                if (val > hoyos[i].par) {
+                    const par = hoyos[i].par;
+                    let limite;
+
+                    if (handicap < 12) {
+                        limite = par === 3 ? 5 : par === 4 ? 6 : 7;
+                    } else if (handicap < 23) {
+                        limite = par === 3 ? 6 : par === 4 ? 7 : 8;
+                    } else {
+                        limite = par === 3 ? 7 : par === 4 ? 8 : 9;
+                    }
+
+                    if (val > limite) {
+                        tablaNegros.push({
+                            jugador,
+                            hoyo: i + 1,
+                            par,
+                            golpes: val,
+                            handicap
+                        });
+                    }
+                }
+            }
+            
+            console.table(tablaBerdis);
+            console.table(tablaNegros);
             marcarJugadoresConTarjeta();
         }
 
@@ -990,7 +1274,7 @@
                         <td>${h.hoyo}</td>
                         <td>${h.par}</td>
                         <td>${h.handicap}</td>
-                        <td><input type="number" class="gross" min="1"></td>
+                        <td><input type="number" class="gross"></td>
                     `;
 
                 // Agregar el tr a la tabla
@@ -1068,6 +1352,136 @@
             }
         }
 
+        //-----------------------------------------
+        // 🥎  cargarTablaBerdis              
+        //-----------------------------------------
+        /*         async function cargarTablaBerdis() {
+                    console.log('entro en cargar tabla berdis valor de contador ' + contador)
+        
+                    console.table(tablaBerdis);
+                    const tbody = document.querySelector("#tablaBerdis tbody");
+                    tbody.innerHTML = ""; // limpia la tabla por si ya tenía datos
+        
+                    tablaBerdis.forEach((registro) => {
+                        const tr = document.createElement("tr");
+        
+                        // Crea las celdas
+                        const tdHoyo = document.createElement("td");
+                        tdHoyo.textContent = registro.hoyo;
+        
+                        const tdJugador = document.createElement("td");
+                        tdJugador.textContent = registro.jugador;
+        
+                        const tdPar = document.createElement("td");
+                        tdPar.textContent = registro.par;
+        
+                        const tdScore = document.createElement("td");
+                        tdScore.textContent = registro.golpes;
+        
+                        const tdHcp = document.createElement("td");
+                        tdHcp.textContent = ""; // se puede completar luego
+        
+                        const tdOk = document.createElement("td");
+                        tdOk.textContent = ""; // se puede completar luego
+        
+                        // Agrega las celdas a la fila
+                        tr.appendChild(tdHoyo);
+                        tr.appendChild(tdJugador);
+                        tr.appendChild(tdPar);
+                        tr.appendChild(tdScore);
+                        tr.appendChild(tdHcp);
+                        tr.appendChild(tdOk);
+        
+                        // Agrega la fila al tbody
+                        tbody.appendChild(tr);
+                    });
+                } */
+        function cargarTablaBerdis() {
+            console.log('tabla berdies')
+            console.table(tablaBerdis);
+            const tabla = document.querySelector("#tablaBerdis tbody");
+
+            // Limpiar contenido anterior, si lo hubiera
+            tabla.innerHTML = "";
+
+            tablaBerdis.forEach(registro => {
+                const fila = tabla.insertRow();
+
+                // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
+                fila.insertCell(0).textContent = registro.hoyo;
+                fila.insertCell(1).textContent = registro.jugador;
+                fila.insertCell(2).textContent = registro.par;
+                fila.insertCell(3).textContent = registro.golpes;
+                fila.insertCell(4).textContent = registro.handicap;
+                fila.insertCell(5).textContent = "";  // Columna "OK" vacía
+            });
+        }
+
+        //-----------------------------------------
+        // 🥎  cargarTablaNegros             
+        //-----------------------------------------
+        function cargarTablaNegros() {
+            console.log('tabla negros')
+            console.table(tablaNegros);
+            const tabla = document.querySelector("#tablaNegros tbody");
+
+            // Limpiar contenido anterior, si lo hubiera
+            tabla.innerHTML = "";
+
+            tablaNegros.forEach(registro => {
+                const fila = tabla.insertRow();
+
+                // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
+                fila.insertCell(0).textContent = registro.hoyo;
+                fila.insertCell(1).textContent = registro.jugador;
+                fila.insertCell(2).textContent = registro.par;
+                fila.insertCell(3).textContent = registro.golpes;
+                fila.insertCell(4).textContent = registro.handicap;
+                fila.insertCell(5).textContent = "";  // Columna "OK" vacía
+            });
+        }
+
+        //-----------------------------------------
+        // 🥎  GRABAR NUEVO NETO              
+        //-----------------------------------------
+
+        // Función para escribir los detalles de movimientos en la tabla MySQL
+        async function grabarNuevoNeto(datosNetos) {
+            // Extraer los valores del objeto datos
+            const { fecnueva, play, neto, pos, pg, orden, anual, npt } = datosNetos;
+
+            const body = {
+                fecnueva,
+                play,
+                neto,
+                pos,
+                pg,
+                orden,
+                anual,
+                npt,
+            };
+
+            try {
+                const response = await fetch("/grabaNetos", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(body),
+                    credentials: "include",
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    console.log("no hay error");
+                } else {
+                    throw new Error(result.error || "Error desconocido grabar Netos");
+                }
+            } catch (error) {
+                console.log("Error:", error);
+                throw error; // Rechaza la promesa en caso de error
+            }
+        }
 
     </script>
 </body>

@@ -641,15 +641,15 @@ app.get("/api/hoyos/:idCancha", async (req, res) => {
       res.status(500).json({ error: "Error al obtener las canchas" });
       return;
     }
-    app.get("/api/tarjetas/jugadores-cargados", async (req, res) => {
-      const { fecha, cancha } = req.query;
-      const [rows] = await db.query(
-        "SELECT jugador FROM tarjetas WHERE fecha = ? AND cancha = ?",
-        [fecha, cancha]
-      );
-      const jugadores = rows.map((r) => r.jugador);
-      res.json(jugadores);
-    });
+    // app.get("/api/tarjetas/jugadores-cargados", async (req, res) => {
+    //   const { fecha, cancha } = req.query;
+    //   const [rows] = await db.query(
+    //     "SELECT jugador FROM tarjetas WHERE fecha = ? AND cancha = ?",
+    //     [fecha, cancha]
+    //   );
+    //   const jugadores = rows.map((r) => r.jugador);
+    //   res.json(jugadores);
+    // });
 
     if (results.length > 0) {
       res.json(results);
@@ -688,7 +688,6 @@ app.post("/api/tarjetas", (req, res) => {
     VALUES ?
   `;
   //Esto hace que se inserten varios registros, uno por cada hoyo, todos asociados al mismo jugador y fecha.
-
 
   pool.query(query, [values], (error, results) => {
     if (error) {
