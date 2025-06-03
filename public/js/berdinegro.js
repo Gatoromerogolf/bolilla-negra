@@ -54,6 +54,9 @@ main().then(() => {
             let playerBerdi = filaResultado.insertCell(-1);
             playerBerdi.textContent = registro.berdiPlayer ?? "--";
 
+            let berdiHcp = filaResultado.insertCell(-1);
+            berdiHcp.textContent = registro.berdihcp ?? "--";
+
             let fechaNegro = filaResultado.insertCell(-1);
             fechaNegro.textContent = registro.negroFecha ?? "--";
     
@@ -62,6 +65,9 @@ main().then(() => {
 
             let scoreNegro = filaResultado.insertCell(-1);
             scoreNegro.textContent = registro.negroScore ?? "--";
+
+            let negroHcp = filaResultado.insertCell(-1);
+            negroHcp.textContent = registro.negroHcp ?? "--";
 
             let parNegro = filaResultado.insertCell(-1);
             parNegro.textContent = par;

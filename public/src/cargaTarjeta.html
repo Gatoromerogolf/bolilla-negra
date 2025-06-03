@@ -331,7 +331,7 @@
         <div class="contador" id="contadorDisplay">
             Falta cargar: <span id="contador"></span>
         </div>
-        <h4>Paso 1: Seleccionar jugador</h4>
+        <h4>1. Seleccionar jugador</h4>
         <div style="display: flex; gap: 10px;">
             <!-- <div style="margin-bottom: 1em;"> -->
             <div>
@@ -365,7 +365,7 @@
             </div> -->
 
             <div>
-                <button id="btnNPT" disabled>NPT</button>
+                <button id="btnNPT" disabled style="display:none">NPT</button>
             </div>
             <!-- <div>
                 <button id="btnContinuar" disabled>Continuar</button>
@@ -379,14 +379,13 @@
             <!-- <h4>Paso 2: Ingresar datos de <span id="nombreSeleccionado"></span></h4> -->
 
             <div style="display: flex; gap: 20px; align-items: center;">
+                <button id="btnVolverSinCargar" type="button" style="margin-left: 30px">Volver</button>
                 <h4>2. Tarjeta de <span id="nombreSeleccionado"></span></h4>
 
                 <div id="handicapContainer" style="font-size: 13px;">
                     <label for="handicap">Hcp</label>
                     <input type="number" id="handicap" style="width: 30px; max-height: 20px;">
                 </div>
-
-                <button id="btnVolverSinCargar" type="button" style="margin-left: 30px">Volver</button>
             </div>
             <div>
                 <!-- Tarjeta de score (oculta inicialmente) -->
@@ -562,7 +561,8 @@
 
         // Variables globales
         let contador; // Inicializamos el contador
-        let ultimo; 
+        let ultimo;
+        let faltaNPT; // para contar ctdd veces carga NPT
 
         // Elementos DOM
         const contadorElement = document.getElementById('contador');
@@ -593,6 +593,7 @@
         const cancha = document.getElementById('canchaSelect');
         const totJugadores = document.getElementById('totJugadores');
         const totalJugDiv = document.getElementById('infoTotalJugDiv');
+        let berdiNegro = [];
 
         let hoyos = [];
         let cargadas = 0;
@@ -632,7 +633,6 @@
                 paso5.classList.add('oculto');
                 paso6.classList.add('oculto');
                 pasoNPT.classList.add('oculto');
-
 
                 buscaUltimaFecha().then((ultimaFecha) => {
                     if (ultimaFecha) {
@@ -710,6 +710,11 @@
                     }
 
                     const ctddPelotas = personas;
+                    faltaNPT = NPT;
+
+                    if (NPT > 0) {
+                        document.getElementById('btnNPT').style.display = 'block'
+                    }
 
                     // Ocultar el botón de validación
                     document.getElementById('validarJugadores').style.display = 'none';
@@ -733,6 +738,8 @@
 
         async function iniciarApp() {
             await funcionInicial();           // Espera hasta que el usuario seleccione fecha y cancha
+            berdiNegro = await leerDatosBerdiNegro();
+            console.table(berdiNegro)
             paso1.classList.remove('oculto'); // Muestra paso 1
         }
 
@@ -761,7 +768,7 @@
             }
         });
 
-        // 🧻🧻🧻🧻  btnContinuar
+        // 🧻🧻🧻🧻  btnContinuar    🧻🧻🧻🧻
         // Evento para continuar después de seleccionar nombre
         // muestra pagina para carga score
         btnContinuar.addEventListener('click', function () {
@@ -778,8 +785,8 @@
             paso2.classList.remove('oculto');
         });
 
-        // 🧻🧻🧻🧻  btnNPT
-        // Evento para preguntasr si no presento tarjeta
+        // 🧻🧻🧻🧻  btnNPT    🧻🧻🧻🧻
+        // Evento para preguntar si no presento tarjeta
         // muestra pagina con aviso que no presentó
         btnNPT.addEventListener('click', function () {
 
@@ -799,12 +806,11 @@
         });
 
 
-        // 🧻🧻🧻🧻  btnAplicaNPT
+        // 🧻🧻🧻🧻  btnAplicaNPT   🧻🧻🧻🧻
         // Evento para registrar que no presento tarjeta
         // muestra pagina con aviso que no presentó
         btnAplicaNPT.addEventListener('click', function () {
             contador--;  // Restar 1 al contador
-            alert('resto uno al contador')
             contadorElement.textContent = contador;
             marcarJugadoresConTarjeta();
 
@@ -830,9 +836,17 @@
             });
 
             pasoNPT.classList.add('oculto');
-            paso1.classList.remove('oculto')
+            paso1.classList.remove('oculto');
+
+            console.log(`antes de restar faltaNPT ${faltaNPT}`)
+            faltaNPT--;
+            console.log(`valor de falta NPT ${faltaNPT}`)
+            if (faltaNPT == 0) {
+                document.getElementById('btnNPT').style.display = "none";
+            }
         })
 
+        // 🧻🧻🧻🧻  botones de volver    🧻🧻🧻🧻
         btnVuelveNPT.addEventListener('click', function () {
             pasoNPT.classList.add('oculto');
             paso1.classList.remove('oculto')
@@ -843,7 +857,7 @@
             paso1.classList.remove('oculto')
         })
 
-        // 🧻🧻🧻🧻  btnCalcular 
+        // 🧻🧻🧻🧻  btnCalcular    🧻🧻🧻🧻
         // Evento para calcular la suma y mostrar resumen
         btnCalcular.addEventListener('click', function () {
 
@@ -882,7 +896,7 @@
         });
 
 
-        // 🧻🧻🧻🧻  btnReiniciar
+        // 🧻🧻🧻🧻  btnReiniciar    🧻🧻🧻🧻
         // Evento para reiniciar el proceso
         btnReiniciar.addEventListener('click', async function () {
 
@@ -1165,22 +1179,42 @@
                 return; // Detener la ejecución si hay error
             }
 
-            // ⚽⚽ calcula los birdies
+            // ⚽⚽⚽⚽ calcula los birdies ⚽⚽⚽⚽⚽⚽
             for (let i = 0; i < valoresGross.length; i++) {
                 const val = valoresGross[i];
                 if (val < hoyos[i].par) {
                     console.log(`graba birdie hoyo ${i + 1} de ${jugador}`)
-                    tablaBerdis.push({
+                    const nuevoBirdie = {
                         jugador: jugador,
                         hoyo: i + 1,
                         par: hoyos[i].par,
                         golpes: val,
                         handicap: handicap
-                    });
+                    };
+
+                    const berdieActual = berdiNegro[i]["berdihcp"];
+                    if (berdieActual === null || berdieActual < handicap) {
+                        nuevoBirdie.ok = '🏆'; // 👈 agregás la propiedad directamente
+                        tablaBerdis.push(nuevoBirdie);
+                        fetch("/actualizaBerdi", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                hoyo: i + 1,
+                                berdiFecha: "25-05",
+                                berdiPlayer: jugador,
+                                berdihcp: handicap
+                            })
+                        })
+                            .then(res => res.json())
+                            .then(console.log)
+                            .catch(console.error);
+                    }
                 }
             }
 
-            // ⚽⚽ calcula los negros
+
+            // ⚽⚽⚽⚽ calcula los negros  ⚽⚽⚽⚽⚽⚽
             for (let i = 0; i < valoresGross.length; i++) {
                 const val = valoresGross[i];
                 if (val > hoyos[i].par) {
@@ -1196,20 +1230,48 @@
                     }
 
                     if (val > limite) {
-                        tablaNegros.push({
+                        const nuevoNegro = {
                             jugador,
                             hoyo: i + 1,
                             par,
                             golpes: val,
                             handicap
-                        });
+                        };
                     }
+
+                    const negroActual = berdiNegro[i]["negrohcp"];
+                    if (negroActual === null || negroActual > handicap) {
+                        nuevoNegro.ok = '🏆'; // 👈 agregás la propiedad directamente
+                    }
+                    tablaNegro.push(nuevoNegro);
+                    fetch("/actualizaNegro", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            hoyo: i + 1,
+                            negroFecha: "25-05",
+                            negroPlayer: jugador,
+                            negroScore: val,
+                            negrohcp: handicap
+                        })
+                    })
+                        .then(res => res.json())
+                        .then(console.log)
+                        .catch(console.error);
                 }
+
             }
-            
+
+
             console.table(tablaBerdis);
             console.table(tablaNegros);
             marcarJugadoresConTarjeta();
+
+            console.log('berdis y negros solo para campo grande')
+            console.log("poner handicap en tabla berdis y negros")
+            console.log("en negros queda el hdcp más bajo")
+            console.log('habra que controlar la duplicación')
+
         }
 
         /*---------------------------------------
@@ -1321,6 +1383,13 @@
         //-----------------------------------------
         // 🥎  marcarJugadoresConTarjeta               
         //-----------------------------------------
+
+        ///  esto debería controlar sobre otro archivo, no sobre jugadores-cargados, porque sino, no aparecen los que NPT
+        //  quizas hay que hacerlo sobre el archivo de netos
+
+        //   hay que agregar cancha a la tabla de netos.  y a la tabla de fechas.
+
+
         async function marcarJugadoresConTarjeta() {
             const fecha = document.getElementById('fecha').value;
             const cancha = document.getElementById('canchaSelect').value;
@@ -1413,7 +1482,7 @@
                 fila.insertCell(2).textContent = registro.par;
                 fila.insertCell(3).textContent = registro.golpes;
                 fila.insertCell(4).textContent = registro.handicap;
-                fila.insertCell(5).textContent = "";  // Columna "OK" vacía
+                fila.insertCell(5).textContent = registro.ok;
             });
         }
 
@@ -1480,6 +1549,30 @@
             } catch (error) {
                 console.log("Error:", error);
                 throw error; // Rechaza la promesa en caso de error
+            }
+        }
+
+        //-----------------------------------------
+        // 🥎  leerDatosBerdiNegro              
+        //-----------------------------------------
+        async function leerDatosBerdiNegro() {
+            try {
+                const response = await fetch(`/leerBerdiNegro`);
+                if (response.ok) {
+                    const data = await response.json(); // Convertir response a JSON
+                    // console.table(data)
+                    return data; // Devuelve los datos obtenidos si la respuesta es exitosa
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
             }
         }
 

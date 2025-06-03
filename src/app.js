@@ -419,6 +419,100 @@ app.post("/actualizaBerdiNegro", (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 actualiza Berdi 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+app.post("/actualizaBerdi", (req, res) => {
+  const { hoyo, berdiFecha, berdiPlayer, berdihcp } = req.body;
+
+  if (!hoyo || berdihcp === undefined) {
+    return res.status(400).json({ error: 'Faltan datos: "hoyo" y "berdihcp" son obligatorios' });
+  }
+
+  const selectQuery = "SELECT berdihcp FROM berdinegro WHERE hoyo = ?";
+  pool.query(selectQuery, [hoyo], (err, results) => {
+    if (err) {
+      console.error("Error al consultar berdihcp:", err);
+      return res.status(500).json({ error: "Error al consultar el birdie existente" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "No se encontró el hoyo especificado" });
+    }
+
+    const berdihcpActual = results[0].berdihcp;
+
+    // Si no hay birdie previo, o el nuevo es de mayor handicap, se actualiza
+    if (berdihcpActual === null || berdihcp > berdihcpActual) {
+      const updateQuery = `
+        UPDATE berdinegro
+        SET berdiFecha = ?, berdiPlayer = ?, berdihcp = ?
+        WHERE hoyo = ?
+      `;
+
+      pool.query(updateQuery, [berdiFecha, berdiPlayer, berdihcp, hoyo], (error, result) => {
+        if (error) {
+          console.error("Error al actualizar el birdie:", error);
+          return res.status(500).json({ error: "Error al actualizar el birdie" });
+        }
+
+        return res.status(200).json({ success: true, message: "Birdie actualizado correctamente" });
+      });
+    } else {
+      return res.status(200).json({ success: false, message: "Ya existe un birdie con mejor o igual handicap" });
+    }
+  });
+});
+
+
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 actualiza Negro 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+app.post("/actualizaNegro", (req, res) => {
+  const { hoyo, negroFecha, negroPlayer, negroScore, negrohcp } = req.body;
+
+  if (!hoyo || negrohcp === undefined) {
+    return res.status(400).json({ error: 'Faltan datos: "hoyo" y "negrohcp" son obligatorios' });
+  }
+
+  const selectQuery = "SELECT negrohcp FROM berdinegro WHERE hoyo = ?";
+  pool.query(selectQuery, [hoyo], (err, results) => {
+    if (err) {
+      console.error("Error al consultar negrohcp:", err);
+      return res.status(500).json({ error: "Error al consultar el negro existente" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "No se encontró el hoyo especificado" });
+    }
+
+    const negrohcpActual = results[0].negrohcp;
+
+    // Si no hay birdie previo, o el nuevo es de mayor handicap, se actualiza
+    if (negrohcpActual === null || negrohcp < negrohcpActual) {
+      const updateQuery = `
+        UPDATE berdinegro
+        SET negroFecha = ?, negroPlayer = ?, negroScore = ?, negrohcp = ?
+        WHERE hoyo = ?
+      `;
+
+      pool.query(updateQuery, [negroFecha, negroPlayer, negroScore, negrohcp, hoyo], (error, result) => {
+        if (error) {
+          console.error("Error al actualizar el negro:", error);
+          return res.status(500).json({ error: "Error al actualizar el birdie" });
+        }
+
+        return res.status(200).json({ success: true, message: "Negro actualizado correctamente" });
+      });
+    } else {
+      return res.status(200).json({ success: false, message: "Ya existe un negro con mejor o igual handicap" });
+    }
+  });
+});
+
+
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 elimina fecha
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.delete("/eliminaFecha", (req, res) => {
