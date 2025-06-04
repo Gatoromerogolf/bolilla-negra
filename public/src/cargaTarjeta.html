@@ -895,7 +895,6 @@
             paso3.classList.remove('oculto');
         });
 
-
         // 🧻🧻🧻🧻  btnReiniciar    🧻🧻🧻🧻
         // Evento para reiniciar el proceso
         btnReiniciar.addEventListener('click', async function () {
@@ -925,6 +924,7 @@
                 // Limpiar tabla de score
                 renderTabla();
                 marcarJugadoresConTarjeta();
+
                 // Volver al paso 1
                 paso3.classList.add('oculto');
                 paso1.classList.remove('oculto');
@@ -990,11 +990,26 @@
                     filaResultado.insertCell(3).textContent = jugador.pelotas;
                     filaResultado.insertCell(4).textContent = jugador.anual;
                     filaResultado.insertCell(5).textContent = jugador.npt;
+
+                    //  Grabar NETOS
+                    let play = jugador.nombre;
+                    let neto = jugador.neto;
+                    let pos = jugador.orden;
+                    let pg = jugador.pelotas;
+                    let orden = 0;
+                    let anual = jugador.anual;
+                    let npt = 0;
+                    let fecnueva = fec + 1;
+                    const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual, npt };
+                    grabarNuevoNeto(datosNetos);
+
                     indice++;
                 });
 
                 cargarTablaBerdis();
                 cargarTablaNegros();
+                actualizaUltimaFecha();
+
                 mensajeFinal.classList.add('oculto');
                 paso1.classList.add('oculto');
                 paso2.classList.add('oculto');
@@ -1217,33 +1232,35 @@
             // ⚽⚽⚽⚽ calcula los negros  ⚽⚽⚽⚽⚽⚽
             for (let i = 0; i < valoresGross.length; i++) {
                 const val = valoresGross[i];
-                if (val > hoyos[i].par) {
-                    const par = hoyos[i].par;
-                    let limite;
+                const par = hoyos[i].par;
+                let limite;
 
-                    if (handicap < 12) {
-                        limite = par === 3 ? 5 : par === 4 ? 6 : 7;
-                    } else if (handicap < 23) {
-                        limite = par === 3 ? 6 : par === 4 ? 7 : 8;
-                    } else {
-                        limite = par === 3 ? 7 : par === 4 ? 8 : 9;
-                    }
+                if (handicap < 12) {
+                    limite = par === 3 ? 5 : par === 4 ? 6 : 7;
+                } else if (handicap < 23) {
+                    limite = par === 3 ? 6 : par === 4 ? 7 : 8;
+                } else {
+                    limite = par === 3 ? 7 : par === 4 ? 8 : 9;
+                }
 
-                    if (val > limite) {
-                        const nuevoNegro = {
-                            jugador,
-                            hoyo: i + 1,
-                            par,
-                            golpes: val,
-                            handicap
-                        };
-                    }
+                // calcula que proporción del hcp le llevo el hoyo y el que más le llevó es más negro...
+                const indiceEsteNegro = (valoresGross[i] - par) / handicap;
+                const indiceViejoNegro = (berdiNegro[i]['negroScore'] - par) / berdiNegro[i]['negrohcp'];
+
+                if (val > limite && indiceEsteNegro > indiceViejoNegro) {
+                    const nuevoNegro = {
+                        jugador,
+                        hoyo: i + 1,
+                        par,
+                        golpes: val,
+                        handicap
+                    };
 
                     const negroActual = berdiNegro[i]["negrohcp"];
                     if (negroActual === null || negroActual > handicap) {
                         nuevoNegro.ok = '🏆'; // 👈 agregás la propiedad directamente
                     }
-                    tablaNegro.push(nuevoNegro);
+                    tablaNegros.push(nuevoNegro);
                     fetch("/actualizaNegro", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -1258,8 +1275,8 @@
                         .then(res => res.json())
                         .then(console.log)
                         .catch(console.error);
+                    // }
                 }
-
             }
 
 
@@ -1268,8 +1285,6 @@
             marcarJugadoresConTarjeta();
 
             console.log('berdis y negros solo para campo grande')
-            console.log("poner handicap en tabla berdis y negros")
-            console.log("en negros queda el hdcp más bajo")
             console.log('habra que controlar la duplicación')
 
         }
@@ -1506,7 +1521,7 @@
                 fila.insertCell(2).textContent = registro.par;
                 fila.insertCell(3).textContent = registro.golpes;
                 fila.insertCell(4).textContent = registro.handicap;
-                fila.insertCell(5).textContent = "";  // Columna "OK" vacía
+                fila.insertCell(5).textContent = registro.ok;
             });
         }
 
@@ -1576,6 +1591,135 @@
             }
         }
 
+        //-----------------------------------------
+        // 🥎  actualizaUltimaFecha             
+        //-----------------------------------------
+        async function actualizaUltimaFecha() {
+            const fecha = new Date(fechaParaComparar);
+            const diasSemana = [
+                "domingo", "lunes", "martes", "miércoles", "jueves",
+                "viernes", "sábado",
+            ];
+
+            const meses = [
+                "enero", "febrero", "marzo", "abril", "mayo", "junio",
+                "julio", "agosto", "septiembre", "octubre", "noviembre",
+                "diciembre",
+            ];
+
+            const nombreDia = diasSemana[fecha.getUTCDay()];
+            const numeroDia = fecha.getUTCDate();
+            const numeroMes = fecha.getUTCMonth() + 1;
+            const nombreMes = meses[fecha.getUTCMonth()];
+            const fechaBerdiNegro = numeroDia + "-" + numeroMes;
+            alert(`fecha Berdi  ${fechaBerdiNegro}`)
+
+            const textoFecha = `${nombreDia} ${numeroDia} de ${nombreMes}`;
+
+            const datos = {
+                fec,
+                nombreDia,
+                numeroDia,
+                numeroMes,
+                textoFecha,
+                fechaaRegistrar,
+                ctddPelotas,
+                ctddJugadores,
+            };
+
+            // grabarNuevaFecha(datos);
+
+            const body = {
+                fecnueva: fec + 1,
+                nombreDia,
+                numeroDia,
+                numeroMes,
+                textoFecha,
+                fechaaRegistrar,
+                ctddPelotas,
+                ctddJugadores,
+            };
+
+            try {
+                const response = await fetch("/grabaUltimaFecha", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(body),
+                    credentials: "include",
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    console.log("no hay error");
+                } else {
+                    throw new Error(result.error || "Error desconocido grabar parciales");
+                }
+            } catch (error) {
+                console.log("Error:", error);
+                throw error; // Rechaza la promesa en caso de error
+            }
+        }
+
+        /*---------------------------------------
+        // 🔸 GRABAR NUEVO NETO               
+        -----------------------------------------*/
+        // Función para escribir los detalles de movimientos en la tabla MySQL
+        async function grabarNuevoNeto(datosNetos) {
+            // Extraer los valores del objeto datos
+            const { fecnueva, play, neto, pos, pg, orden, anual, npt } = datosNetos;
+
+            const body = {
+                fecnueva,
+                play,
+                neto,
+                pos,
+                pg,
+                orden,
+                anual,
+                npt,
+            };
+
+            try {
+                const response = await fetch("/grabaNetos", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(body),
+                    credentials: "include",
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    console.log("no hay error");
+                } else {
+                    throw new Error(result.error || "Error desconocido grabar Netos");
+                }
+            } catch (error) {
+                console.log("Error:", error);
+                throw error; // Rechaza la promesa en caso de error
+            }
+        }
+
+
+        /*---------------------------------------
+        // 🔸 GRABAR NETOS GENERAL               
+        -----------------------------------------*/
+        function grabaNetosGeneral(datosNetos) {
+            let play = jugador.nombre;
+            let neto = jugador.neto;
+            let pos = jugador.pos;
+            let pg = jugador.pelotas;
+            let orden = jugador.orden;
+            let anual = jugador.anual;
+            let npt = jugador.npt;
+            npt = (npt == 1) ? 1 : 0; // Asigna 1 si npt es = a 1, sino asigna 0.
+
+            const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual, npt };
+
+        }
     </script>
 </body>
 
