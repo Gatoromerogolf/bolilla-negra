@@ -527,12 +527,12 @@ app.post("/grabaNetos", (req, res) => {
   // if (!req.session.user){
   //     return res.status(401).json({ error: 'No estás autenticado' });
   // }
-  const { fecnueva, play, neto, pos, pg, orden, anual, npt } = req.body;
+  const { fecnueva, play, neto, pos, pg, orden, anual, npt, cancha } = req.body;
   const nuevoNeto =
-    "INSERT INTO netos (fec, play, neto, pos, pg, orden, anual, npt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-  const datosAPasar = [fecnueva, play, neto, pos, pg, orden, anual, npt];
+    "INSERT INTO netos (fec, play, neto, pos, pg, orden, anual, npt, cancha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  const datosAPasar = [fecnueva, play, neto, pos, pg, orden, anual, npt, cancha];
 
-  console.log(fecnueva, play, neto, pos, pg, orden, anual, npt);
+  console.log(fecnueva, play, neto, pos, pg, orden, anual, npt, cancha);
 
   pool.query(nuevoNeto, datosAPasar, function (error, lista) {
     if (error) {

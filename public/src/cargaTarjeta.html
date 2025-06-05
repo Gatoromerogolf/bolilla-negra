@@ -461,7 +461,7 @@
         <!-- <fieldset id="segundaTabla" style="display: none"> -->
         <fieldset id="segundaTabla">
             <legend>Clasificación</legend>
-            <table id="tablaResultados" class="tablaLinda">
+            <table id="tablaResultados" class="tablaLinda" style="max-height: 20px;">
                 <thead>
                     <tr>
                         <th>Pos</th>
@@ -484,7 +484,7 @@
     <div class="container oculto" id="paso5">
         <fieldset id="tablaBerdisFS">
             <legend>Birdies de la fecha</legend>
-            <table id="tablaBerdis" class="tablaLinda">
+            <table id="tablaBerdis" class="tablaLinda" style="max-height: 20px;">
                 <thead>
                     <tr>
                         <th>Hoyo</th>
@@ -505,7 +505,7 @@
     <div class="container oculto" id="paso6">
         <fieldset id="tablaNegroFS">
             <legend>Hoyos negros de la fecha</legend>
-            <table id="tablaNegros" class="tablaLinda">
+            <table id="tablaNegros" class="tablaLinda" style="max-height: 20px;">
                 <thead>
                     <tr>
                         <th>Hoyo</th>
@@ -812,8 +812,8 @@
         btnAplicaNPT.addEventListener('click', function () {
             contador--;  // Restar 1 al contador
             contadorElement.textContent = contador;
-            marcarJugadoresConTarjeta();
 
+            const cancha = parseInt(document.getElementById('canchaSelect').value);
             //  Grabar NETOS con 0 y NPT = 1
             let fecnueva = fec + 1;
             let play = nombre;
@@ -824,8 +824,9 @@
             let anual = 0;
             let npt = 1;
 
-            const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual, npt };
+            const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual, npt, cancha };
             grabarNuevoNeto(datosNetos);
+            marcarJugadoresConTarjeta();
             document.getElementById('jugadorSelect').value = '';
 
             datosJugadores.push({
@@ -835,12 +836,11 @@
                 npt: 1
             });
 
+            marcarJugadoresConTarjeta();
             pasoNPT.classList.add('oculto');
             paso1.classList.remove('oculto');
 
-            console.log(`antes de restar faltaNPT ${faltaNPT}`)
             faltaNPT--;
-            console.log(`valor de falta NPT ${faltaNPT}`)
             if (faltaNPT == 0) {
                 document.getElementById('btnNPT').style.display = "none";
             }
@@ -1000,7 +1000,8 @@
                     let anual = jugador.anual;
                     let npt = 0;
                     let fecnueva = fec + 1;
-                    const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual, npt };
+                    const cancha = parseInt(document.getElementById('canchaSelect').value);
+                    const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual, npt, cancha };
                     grabarNuevoNeto(datosNetos);
 
                     indice++;
@@ -1407,12 +1408,17 @@
 
         async function marcarJugadoresConTarjeta() {
             const fecha = document.getElementById('fecha').value;
+            // const fecha = fec + 1;
             const cancha = document.getElementById('canchaSelect').value;
             if (!fecha || !cancha) return;
 
             try {
                 const res = await fetch(`/api/tarjetas/jugadores-cargados?fecha=${fecha}&cancha=${cancha}`);
+                // const res = await fetch('/leerDatosNetos');
                 const cargados = await res.json();
+                // const todosNetos = await res.json();
+                // const cargados = todosNetos.filter(registro =>
+                //     registro.cancha == cancha && registro.fecha == fecha)
 
                 const select = document.getElementById('jugadorSelect');
                 Array.from(select.options).forEach(opt => {
@@ -1531,8 +1537,8 @@
 
         // Función para escribir los detalles de movimientos en la tabla MySQL
         async function grabarNuevoNeto(datosNetos) {
-            // Extraer los valores del objeto datos
-            const { fecnueva, play, neto, pos, pg, orden, anual, npt } = datosNetos;
+
+            const { fecnueva, play, neto, pos, pg, orden, anual, npt, cancha } = datosNetos;
 
             const body = {
                 fecnueva,
@@ -1543,6 +1549,7 @@
                 orden,
                 anual,
                 npt,
+                cancha
             };
 
             try {
@@ -1662,64 +1669,64 @@
             }
         }
 
-        /*---------------------------------------
-        // 🔸 GRABAR NUEVO NETO               
-        -----------------------------------------*/
-        // Función para escribir los detalles de movimientos en la tabla MySQL
-        async function grabarNuevoNeto(datosNetos) {
-            // Extraer los valores del objeto datos
-            const { fecnueva, play, neto, pos, pg, orden, anual, npt } = datosNetos;
+        // /*---------------------------------------
+        // // 🔸 GRABAR NUEVO NETO
+        // -----------------------------------------*/
+        // // Función para escribir los detalles de movimientos en la tabla MySQL
+        // async function grabarNuevoNeto(datosNetos) {
+        //     // Extraer los valores del objeto datos
+        //     const { fecnueva, play, neto, pos, pg, orden, anual, npt } = datosNetos;
 
-            const body = {
-                fecnueva,
-                play,
-                neto,
-                pos,
-                pg,
-                orden,
-                anual,
-                npt,
-            };
+        //     const body = {
+        //         fecnueva,
+        //         play,
+        //         neto,
+        //         pos,
+        //         pg,
+        //         orden,
+        //         anual,
+        //         npt,
+        //     };
 
-            try {
-                const response = await fetch("/grabaNetos", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(body),
-                    credentials: "include",
-                });
+        //     try {
+        //         const response = await fetch("/grabaNetos", {
+        //             method: "POST",
+        //             headers: {
+        //                 "Content-Type": "application/json",
+        //             },
+        //             body: JSON.stringify(body),
+        //             credentials: "include",
+        //         });
 
-                const result = await response.json();
-                if (result.success) {
-                    console.log("no hay error");
-                } else {
-                    throw new Error(result.error || "Error desconocido grabar Netos");
-                }
-            } catch (error) {
-                console.log("Error:", error);
-                throw error; // Rechaza la promesa en caso de error
-            }
-        }
+        //         const result = await response.json();
+        //         if (result.success) {
+        //             console.log("no hay error");
+        //         } else {
+        //             throw new Error(result.error || "Error desconocido grabar Netos");
+        //         }
+        //     } catch (error) {
+        //         console.log("Error:", error);
+        //         throw error; // Rechaza la promesa en caso de error
+        //     }
+        // }
 
 
-        /*---------------------------------------
-        // 🔸 GRABAR NETOS GENERAL               
-        -----------------------------------------*/
-        function grabaNetosGeneral(datosNetos) {
-            let play = jugador.nombre;
-            let neto = jugador.neto;
-            let pos = jugador.pos;
-            let pg = jugador.pelotas;
-            let orden = jugador.orden;
-            let anual = jugador.anual;
-            let npt = jugador.npt;
-            npt = (npt == 1) ? 1 : 0; // Asigna 1 si npt es = a 1, sino asigna 0.
+        // /*---------------------------------------
+        // // 🔸 GRABAR NETOS GENERAL
+        // -----------------------------------------*/
+        // function grabaNetosGeneral(datosNetos) {
+        //     let play = jugador.nombre;
+        //     let neto = jugador.neto;
+        //     let pos = jugador.pos;
+        //     let pg = jugador.pelotas;
+        //     let orden = jugador.orden;
+        //     let anual = jugador.anual;
+        //     let npt = jugador.npt;
+        //     npt = (npt == 1) ? 1 : 0; // Asigna 1 si npt es = a 1, sino asigna 0.
 
-            const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual, npt };
+        //     const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual, npt };
 
-        }
+        // }
     </script>
 </body>
 
