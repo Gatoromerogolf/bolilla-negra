@@ -67,7 +67,7 @@ main().then(() => {
             scoreNegro.textContent = registro.negroScore ?? "--";
 
             let negroHcp = filaResultado.insertCell(-1);
-            negroHcp.textContent = registro.negroHcp ?? "--";
+            negroHcp.textContent = registro.negrohcp ?? "--";
 
             let parNegro = filaResultado.insertCell(-1);
             parNegro.textContent = par;
