@@ -281,12 +281,32 @@
             align-items: center;
             text-align: center;
         }
+
+        .otraTablaLinda {
+            border-collapse: collapse;
+            border: 2px solid black;
+            letter-spacing: 0px;
+            font-size: 0.9rem;
+            margin: 0 auto;
+        }
+
+        .otraTablaLinda td,
+        th {
+            border-collapse: collapse;
+            border: 1px dotted rgb(71, 69, 69);
+            padding: 12px 5px;
+            text-align: center;
+        }
+
+        .otraTablaLinda th {
+            background-color: #c2cff8c9;
+        }
     </style>
 </head>
 
 <body>
     <h1>Carga de tarjetas</h1>
-    <div style="font-size: 13px; display: flex; align-items: center; gap: 5px;">
+    <div id="fechaUltima" style="font-size: 13px; display: flex; align-items: center; gap: 5px;">
         <label for="ultFecha">Última:</label>
         <input id="ultFecha" type="text" placeholder="..." disabled>
         <label for="ultNumero">N°</label>
@@ -461,7 +481,7 @@
         <!-- <fieldset id="segundaTabla" style="display: none"> -->
         <fieldset id="segundaTabla">
             <legend>Clasificación</legend>
-            <table id="tablaResultados" class="tablaLinda" style="max-height: 20px;">
+            <table id="tablaResultados" class="otraTablaLinda" style="max-height: 20px;">
                 <thead>
                     <tr>
                         <th>Pos</th>
@@ -484,7 +504,7 @@
     <div class="container oculto" id="paso5">
         <fieldset id="tablaBerdisFS">
             <legend>Birdies de la fecha</legend>
-            <table id="tablaBerdis" class="tablaLinda" style="max-height: 20px;">
+            <table id="tablaBerdis" class="otraTablaLinda" style="max-height: 20px;">
                 <thead>
                     <tr>
                         <th>Hoyo</th>
@@ -492,7 +512,7 @@
                         <th>Par</th>
                         <th>Score</th>
                         <th>Hcp</th>
-                        <th>🏆</th>
+                        <th>⛳</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -505,7 +525,7 @@
     <div class="container oculto" id="paso6">
         <fieldset id="tablaNegroFS">
             <legend>Hoyos negros de la fecha</legend>
-            <table id="tablaNegros" class="tablaLinda" style="max-height: 20px;">
+            <table id="tablaNegros" class="otraTablaLinda" style="max-height: 20px;">
                 <thead>
                     <tr>
                         <th>Hoyo</th>
@@ -709,7 +729,8 @@
                         return;
                     }
 
-                    const ctddPelotas = personas;
+                    ctddPelotas = personas;
+                    ctddJugadores = personas;
                     faltaNPT = NPT;
 
                     if (NPT > 0) {
@@ -729,6 +750,7 @@
                     ultimo = personas;
 
                     document.getElementById('paso1').classList.remove('oculto');
+                    document.getElementById('fechaUltima').style.display = 'none';
 
                     resolve();
 
@@ -969,14 +991,19 @@
                 // Insertar las filas ordenadas en la tabla de resultados
                 datosJugadores.forEach((jugador) => {
                     let filaResultado = tablaResultados.insertRow();
-                    if (indice == 0) {
-                        jugador.pelotas = valor1;
-                    }
-                    if (indice == 1) {
-                        jugador.pelotas = valor2;
-                    }
-                    if (indice == 2) {
-                        jugador.pelotas = 1;
+                    switch (indice) {
+                        case 0:
+                            jugador.pelotas = valor1;
+                            break;
+                        case 1:
+                            jugador.pelotas = valor2;
+                            break;
+                        case 2:
+                            jugador.pelotas = 1;
+                            break;
+                        default:
+                            jugador.pelotas = 0;
+                            break;
                     }
 
                     if (jugador.neto > 0) {
@@ -992,20 +1019,61 @@
                     filaResultado.insertCell(5).textContent = jugador.npt;
 
                     //  Grabar NETOS
-                    let play = jugador.nombre;
-                    let neto = jugador.neto;
-                    let pos = jugador.orden;
-                    let pg = jugador.pelotas;
+
+                    if (jugador.neto > 0) { // por si hubo NPT
+                        let play = jugador.nombre;
+                        let neto = jugador.neto;
+                        let pos = jugador.orden;
+                        let pg = jugador.pelotas;
+                        let orden = 0;
+                        let anual = jugador.anual;
+                        let npt = 0;
+                        let fecnueva = fec + 1;
+                        const cancha = parseInt(document.getElementById('canchaSelect').value);
+                        const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual, npt, cancha };
+                        grabarNuevoNeto(datosNetos);
+                    }
+                    indice++;
+                });
+
+                // completa tabla netos con los que no jugaron
+                const todosLosNombres = [
+                    "Diegui",
+                    "Edu",
+                    "Fer",
+                    "Gaby",
+                    "Joaco",
+                    "Juancho",
+                    "Julito",
+                    "Negro",
+                    "Panza",
+                    "Presi",
+                    "Sensei",
+                    "Torni",
+                ]
+                // Filtra los que no están en datosJugadores:
+                const jugadoresFaltantes = todosLosNombres.filter(nombre => {
+                    return !datosJugadores.some(j => j.nombre === nombre);
+                });
+
+                console.table(jugadoresFaltantes);
+
+                let posiciónFaltantes = 13 - jugadoresFaltantes.length;
+                console.log(`posiciónFaltantes ${posiciónFaltantes}`)
+                //Recorre y procesa los faltantes como necesites:
+                jugadoresFaltantes.forEach(nombre => {
+                    let play = nombre;
+                    let neto = 0;
+                    let pos = posiciónFaltantes++;
+                    let pg = 0;
                     let orden = 0;
-                    let anual = jugador.anual;
+                    let anual = 0;
                     let npt = 0;
                     let fecnueva = fec + 1;
                     const cancha = parseInt(document.getElementById('canchaSelect').value);
                     const datosNetos = { fecnueva, play, neto, pos, pg, orden, anual, npt, cancha };
                     grabarNuevoNeto(datosNetos);
-
-                    indice++;
-                });
+                })
 
                 cargarTablaBerdis();
                 cargarTablaNegros();
@@ -1619,7 +1687,6 @@
             const numeroMes = fecha.getUTCMonth() + 1;
             const nombreMes = meses[fecha.getUTCMonth()];
             const fechaBerdiNegro = numeroDia + "-" + numeroMes;
-            alert(`fecha Berdi  ${fechaBerdiNegro}`)
 
             const textoFecha = `${nombreDia} ${numeroDia} de ${nombreMes}`;
 

@@ -29,7 +29,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
             } else if (redirectPage === 'carga') {
                 console.log (`valor de usuario  ${username}`)
                 if (username == "HCDT") {
-                window.location.href = '../src/carga.html';}
+                window.location.href = '../src/cargaTarjeta.html';}
                 else {
                     alert("No sos de la HCDT - Fuera!!");
                     console.error('Credenciales inválidas');
