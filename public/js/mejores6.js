@@ -8,7 +8,7 @@ async function main() {
     }
 
     if (año === "2025") {
-        players2 = resultados.filter((resultado) => resultado.fec > 31);
+        players2 = resultados.filter((resultado) => resultado.fec > 31 && resultado.fec < 46);
     } else {
         players2 = resultados.filter((resultado) => resultado.fec < 32);
     }
@@ -23,15 +23,13 @@ main().then(() => { // Ejecuta la función principal
         .fill(0)
         .map(() => new Array(columnas).fill(0));
 
-
     // Paso 1: Agrupar los datos por jugador, manteniendo solo pares de fec y neto
     const playersData = {};
 
     //if (!playersData[play]): verifica si no existe ningún dato para el jugador con índice play en el arreglo playersData. El ! antes de playersData[play] verifica si es falso, es decir, si es nulo, undefined, 0, false o una cadena vacía.
 
-
     players2.forEach(({ play, fec, neto }) => {
-        if (fec > 31) {
+        if (fec > 31 && fec < 45) {
             if (neto > 0) {
                 // Filtra los pares donde neto es mayor a 0
                 if (!playersData[play]) {
@@ -59,8 +57,6 @@ main().then(() => { // Ejecuta la función principal
         }
     });
 
-    console.log("Contador de npt por player:", nptCount);
-
     // ::::::::::::::::::::::::::::::::::::::::::::::
     // :::::::::     LO GUARDA EN UNA MATRIZ
     // ::::::::::::::::::::::::::::::::::::::::::::::
@@ -73,8 +69,6 @@ main().then(() => { // Ejecuta la función principal
             matrizNpt.push([play, nptCount[play]]);
         }
     }
-
-    console.log("Matriz de npt por player:", matrizNpt);
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 //:::::::::::::: selecciona los seis mejores 
@@ -103,11 +97,8 @@ main().then(() => { // Ejecuta la función principal
 
         // Agrega el total de npt del objeto nptCount
         playersData[play].totalNpt = nptCount[play] || 0;  
-        console.log(play);
-        console.log(`npt ${playersData[play].totalNpt}`)
 
         let promedioDec = promedios.toFixed(1);
-        console.log (`promedioDec = ${promedioDec}`)
         // playersData[play].promedios = promedioDec;
 
         let sumar = 2*(playersData[play].totalNpt)
@@ -116,7 +107,6 @@ main().then(() => { // Ejecuta la función principal
         promedioDec += sumar;
 
         playersData[play].promedios = promedioDec;
-
     }
 
 
@@ -162,12 +152,6 @@ main().then(() => { // Ejecuta la función principal
         }
         i++;
     }
-
-
-    // console.log ("sale depues de algo")
-    console.table (playersData);
-
-    console.table(matriz2)
 
     matriz2.sort((filaA, filaB) => filaA[2] - filaB[2]);
     

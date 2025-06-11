@@ -28,32 +28,23 @@ async function main() {
         mesesConteo[mes] += 1;
     });
 
-    // Actualizar las celdas con el colspan correspondiente
-    // Object.keys(mesesConteo).forEach((mes, index) => {
-    //     // Seleccionar la celda de la fila superior correspondiente al mes actual
-    //     const mesTh = document.querySelectorAll("th[colspan]")[index];
-        
-    //     if (mesTh) {
-    //         mesTh.textContent = `Mes ${mes}`; // Opcional: actualizar el texto del encabezado
-    //         mesTh.setAttribute("colspan", mesesConteo[mes]);
-    //     }
-    // });
-
-    let diaJugadoRow = document.querySelector("#diaJugadoRow"); 
+    let diaJugadoRow = document.querySelector("#diaJugadoRow");
     let diaJugadoRow2 = document.querySelector("#diaJugadoRow2");
 
-fechas.forEach((fecha) => {
-    let newTd1 = document.createElement("td");
-    newTd1.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
-    newTd1.style.minWidth = "35px"; // Cambia el valor según tus necesidades
-    // console.log(`Agregando diaJugado: ${fecha.diafecha}`);
-    diaJugadoRow.appendChild(newTd1); // Agregar el nuevo td a la primera fila
+    fechas.forEach((fecha) => {
+        let newTd1 = document.createElement("td");
+        newTd1.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
+        newTd1.style.minWidth = "35px"; // Cambia el valor según tus necesidades
+        // console.log(`Agregando diaJugado: ${fecha.diafecha}`);
+        diaJugadoRow.appendChild(newTd1); // Agregar el nuevo td a la primera fila
 
-    let newTd2 = document.createElement("td");
-    newTd2.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
-    newTd2.style.minWidth = "35px"; // Cambia el valor según tus necesidades
-    diaJugadoRow2.appendChild(newTd2); // Agregar el nuevo td a la segunda fila
-});
+        if (fecha.fec < 45) {
+            let newTd2 = document.createElement("td");
+            newTd2.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
+            newTd2.style.minWidth = "35px"; // Cambia el valor según tus necesidades
+            diaJugadoRow2.appendChild(newTd2); // Agregar el nuevo td a la segunda fila
+        }
+    });
 }
 
 main().then(() => { // Ejecuta la función principal
@@ -143,7 +134,7 @@ main().then(() => { // Ejecuta la función principal
 
         const promedio = filas[i + 2].insertCell(8);
         let resultado = sumaGolpes[i] / cantidadTarjetas[i];
-        resultado += (totalNPT[i] * 2); 
+        resultado += (totalNPT[i] * 2);
 
         let resultadoFormateado = resultado.toFixed(1);
 
@@ -261,12 +252,12 @@ main().then(() => { // Ejecuta la función principal
         }
     }
 
-// :::::::::::::::::::::::::::::::::::::::::::::::    
-// :::::::::::::::::: pone total de jugadores
-// :::::::::::::::::::::::::::::::::::::::::::::::
+    // :::::::::::::::::::::::::::::::::::::::::::::::    
+    // :::::::::::::::::: pone total de jugadores
+    // :::::::::::::::::::::::::::::::::::::::::::::::
     let filaTotalJugadores = document.getElementById("totalJug");
 
-    fechas.forEach ( fecha => {
+    fechas.forEach(fecha => {
         const totalDia = filaTotalJugadores.insertCell(-1);
         totalDia.textContent = fecha.jugadores;
     })
@@ -303,16 +294,13 @@ async function leerDatosNetos() {
 // :::::::::::::::::::::::::::::::::::::::::::::::
 
 async function leerDatosFechas() {
-    console.log("entro a leer datosfechas");
     try {
         const response = await fetch(`/leerDatosFechas`);
         if (response.ok) {
             const fechas = await response.json();
-            console.log(fechas[0]);
             const fechasFiltradas = fechas.filter(
                 (fecha) => fecha.fec > 31 && fecha.fec < 90
             );
-            console.log(`primera filtrada: ${JSON.stringify(fechasFiltradas[0])}`); // Muestra la primera fecha filtrada
             return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
         } else {
             console.error(

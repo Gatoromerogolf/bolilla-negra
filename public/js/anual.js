@@ -86,8 +86,8 @@ main().then(() => {
                 matrizValores[i][9] = jugador.Carilo;
                 matrizValores[i][10] = jugador.Desafio;
 
-                matrizValores[i][7] = 0;
-                matrizValores[i][8] = 0;
+                matrizValores[i][7] = parseFloat(jugador.Apertura);
+                matrizValores[i][8] = parseFloat(jugador.Clausura);
                 break;
             }
         }
