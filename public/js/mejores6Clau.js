@@ -1,158 +1,204 @@
-
-
+// let año = "2025";
 async function main() {
-  players2 = await leerDatosNetos();
-  fechas = await leerDatosFechas();
+  console.log("ya estamos");
+  resultadosClau = await leerDatosNetos();
+  if (!resultadosClau || resultadosClau.length === 0) {
+    console.error("No se obtuvieron datos de leerDatosNetos o están vacíos.");
+    return;
+  }
+
+  if (año === "2025") {
+    players2Clau = resultadosClau.filter(
+      (resultado) => resultado.fec > 44 && resultado.fec < 90
+    );
+  } else {
+    players2Clau = resultadosClau.filter((resultado) => resultado.fec < 32);
+  }
+  fechasFiltradasClau = await leerDatosFechasClau();
 }
 
-main().then (() => { // Ejecuta la función principal
-  // Crear una matriz de 12 filas por 22 columnas inicializada en cero
+main().then(() => {
+  // Ejecuta la función principal
+
+  console.log ('players2Clau')
+  console.table (players2Clau)
+
   const filasMat = 12;
-  const columnas = 18;
+  const columnas = 1;
   const matriz2 = new Array(filasMat)
     .fill(0)
     .map(() => new Array(columnas).fill(0));
 
   // Paso 1: Agrupar los datos por jugador, manteniendo solo pares de fec y neto
-  const playersData = {};
+  const playersDataClau = {};
 
-  //if (!playersData[play]): verifica si no existe ningún dato para el jugador con índice play en el arreglo playersData. El ! antes de playersData[play] verifica si es falso, es decir, si es nulo, undefined, 0, false o una cadena vacía.
-  //Si la condición del if se cumple (es decir, no hay datos para el jugador), se ejecuta el bloque de código dentro del if.
-  players2.forEach(({ play, fec, neto }) => {
-      if (fec > 16) {
-          fec -=16;
-          // Filtra los pares donde neto es mayor a 0
-          if (!playersData[play]) {
-            playersData[play] = []; //Aquí, se está inicializando el arreglo para el jugador play asignándole un nuevo arreglo vacío.
-          }
-          if (neto > 0){
-          playersData[play].push({ fec, neto });
-          }
-          // Esto agrega un nuevo objeto al arreglo del jugador play. El objeto tiene dos propiedades: fec y neto. 
+  //if (!playersDataClau[play]): verifica si no existe ningún dato para el jugador con índice play en el arreglo playersData. El ! antes de playersData[play] verifica si es falso, es decir, si es nulo, undefined, 0, false o una cadena vacía.
+
+  players2Clau.forEach(({ play, fec, neto }) => {
+    if (fec > 44 && fec < 90) {
+      if (neto > 0) {
+        // Filtra los pares donde neto es mayor a 0
+        if (!playersDataClau[play]) {
+          playersDataClau[play] = []; //Inicializ el arreglo para el jugador play asignándole un nuevo arreglo vacío.
+        }
+        playersDataClau[play].push({ fec, neto }); // Esto agrega un nuevo objeto al arreglo del jugador play. El objeto tiene dos propiedades: fec y neto.
       }
+    }
   });
-  // ordena por score neto de menor a mayor
-  //El método slice devuelve una copia de una porción del arreglo.  Toma los seis primeros
-  //ordena por fec para presentarlo por fecha
-  for (const play in playersData) {
-    playersData[play].sort((a, b) => a.neto - b.neto);
-    playersData[play] = playersData[play].slice(0, 6);
-    playersData[play].sort((a, b) => a.fec - b.fec);
+
+
+  // :::::::::::::::::::::::::::::::::::::::::::::
+  // ::::::::: CUENTA EL TOTAL DE NPT DE CADA UNO
+  // :::::::::::::::::::::::::::::::::::::::::::::
+
+  let nptCount = {};
+
+  // Recorre players2 y cuenta las veces que npt es 1 para cada play
+  players2Clau.forEach(({ play, npt }) => {
+    // Si npt es 1, incrementa el contador para ese jugador (play)
+    if (npt === 1) {
+      if (!nptCount[play]) {
+        nptCount[play] = 0; // Inicializa si no existe
+      }
+      nptCount[play] += 1; // Incrementa el contador de npt
+    }
+  });
+
+  // ::::::::::::::::::::::::::::::::::::::::::::::
+  // :::::::::     LO GUARDA EN UNA MATRIZ
+  // ::::::::::::::::::::::::::::::::::::::::::::::
+  // Crea una matriz para almacenar los resultados
+  let matrizNpt = [];
+
+  // Recorre el objeto nptCount para construir la matriz
+  for (const play in nptCount) {
+    if (nptCount.hasOwnProperty(play)) {
+      matrizNpt.push([play, nptCount[play]]);
+    }
   }
 
-  for (play in playersData) {
+  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  //:::::::::::::: selecciona los seis mejores
+  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  // ordena por score neto de menor a mayor
+  // Slice devuelve una copia de una porción del arreglo.  Toma los seis primeros
+  //ordena los 6 por fec para presentarlo por fecha
+  for (const play in playersDataClau) {
+    playersDataClau[play].sort((a, b) => a.neto - b.neto);
+    playersDataClau[play] = playersDataClau[play].slice(0, 6);
+    playersDataClau[play].sort((a, b) => a.fec - b.fec);
+  }
+  console.log("tabla con players");
+  console.table(playersDataClau);
+
+  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  //:::::::::::::: agrega suma netos y promedio
+  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  for (play in playersDataClau) {
     let sumaNetos = 0;
     let promedios = 0;
-    for (let i = 0; i < playersData[play].length; i++) {
-      sumaNetos += playersData[play][i].neto;
+    for (let i = 0; i < playersDataClau[play].length; i++) {
+      sumaNetos += playersDataClau[play][i].neto;
     }
-    playersData[play].sumaNetos = sumaNetos;
-    promedios = sumaNetos / playersData[play].length;
-    const promedioDec = promedios.toFixed(1);
-    playersData[play].promedios = promedioDec;
+    playersDataClau[play].sumaNetos = sumaNetos;
+    promedios = sumaNetos / playersDataClau[play].length;
+
+    // Agrega el total de npt del objeto nptCount
+    playersDataClau[play].totalNpt = nptCount[play] || 0;
+
+    let promedioDec = promedios.toFixed(1);
+    // playersData[play].promedios = promedioDec;
+
+    let sumar = 2 * playersDataClau[play].totalNpt;
+    // Asegúrate de que promedioDec sea un número
+    promedioDec = parseFloat(promedioDec) || 0; // Esto asegura que promedioDec sea un número
+    promedioDec += sumar;
+
+    playersDataClau[play].promedios = promedioDec;
   }
 
-  for (const key in playersData) {
-    if (Array.isArray(playersData[key])) {
-      playersData[key].sort((a, b) => a.promedios - b.promedios);
+  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  //:::::::::::::: ordena por promedio ascendente
+  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  for (const key in playersDataClau) {
+    if (Array.isArray(playersDataClau[key])) {
+      playersDataClau[key].sort((a, b) => a.promedios - b.promedios);
     }
   }
-
-  let lineaDatos = document.getElementById("lineaScore");
-
-  for (const nombreGrupo in playersData) {
-    if (playersData.hasOwnProperty(nombreGrupo)) {
-      const longitudGrupo = playersData[nombreGrupo].length;
-      // Crea una nueva fila (línea de datos) en la tabla
-      const lineaDatos = tablaSeis.insertRow();
-
-      // Agrega el nombre del grupo como la primera celda
-      const nombreCelda = lineaDatos.insertCell(0);
-      nombreCelda.textContent = nombreGrupo;
-
-      let sumaPuntos = lineaDatos.insertCell(1);
-      sumaPuntos.textContent = playersData[nombreGrupo].sumaNetos;
-
-      let promedios = lineaDatos.insertCell(2);
-      promedios.textContent = playersData[nombreGrupo].promedios;
-
-      function tieneValor(objetos, valorBuscado) {
-        return objetos.some((objeto) => objeto.fec === valorBuscado);
-      }
-
-      for (j = 1; j < 15; j++) {
-        let casillero = j + 2;
-        indice = posicionValor(playersData[nombreGrupo], j);
-        if (indice === -1) {
-          let vacio = lineaDatos.insertCell(casillero);
-          vacio.textContent = "--";
-        } else {
-          neto = lineaDatos.insertCell(casillero);
-          neto.textContent = playersData[nombreGrupo][indice].neto;
-        }
-      }
-      // hay que buscar en que fechas tiene netos... 1, 2, 3 etc.
-      // se asocia que 1 es la primera fecha (3 febrero, 2 10 febrero etc.)
-      // Como se quiere llenar toda la matriz, el valor buscado es j que indicaria primera, segunda, tercera etc. fecha.... Se busca entonces si player tiene score en la fecha j
-      // ubica la posición en que se encuentra el valor buscado
-      function posicionValor(objetos, valorBuscado) {
-        return objetos.findIndex((objeto) => objeto.fec === valorBuscado);
-      }
-
-      // esta funcion pregunta si existe el valor buscado ( no la usamos )
-      function tieneValor(objetos, valorBuscado) {
-        return objetos.some((objeto) => objeto.fec === valorBuscado);
-      }
-    }
-  }
+  //
 
   i = 0;
   j = 0;
 
-  for (const play in playersData) {
+  for (const play in playersDataClau) {
     matriz2[i][0] = play;
-    matriz2[i][1] = playersData[play].sumaNetos;
-    matriz2[i][2] = playersData[play].promedios;
+    matriz2[i][1] = playersDataClau[play].sumaNetos;
+    matriz2[i][2] = playersDataClau[play].promedios;
+    matriz2[i][3] = playersDataClau[play].totalNpt;
     i++;
   }
 
   i = 0;
   let col = 0;
-  for (const elemento in playersData) {
-    for (j = 0; j < playersData[elemento].length; j++) {
-      col = playersData[elemento][j].fec + 2;
-      matriz2[i][col] = playersData[elemento][j].neto;
+
+  for (const elemento in playersDataClau) {
+    // Asegura que haya una fila en la matriz para este índice
+    matriz2[i] = matriz2[i] || [];
+
+    for (let j = 0; j < playersDataClau[elemento].length; j++) {
+        console.log(`j: ${j}, elemento ${elemento} y otro ${playersDataClau[elemento][j].fec}`)
+      let col = playersDataClau[elemento][j].fec - 41;
+
+      // Si `col` es mayor que la longitud actual del array, puedes ajustar el array.
+      while (matriz2[i].length <= col) {
+        matriz2[i].push("--"); // Rellena con `null` o cualquier valor por defecto
+      }
+
+      // Luego agrega el valor deseado
+      matriz2[i][col] = playersDataClau[elemento][j].neto;
     }
     i++;
   }
-
+  console.log("matriz ordenada");
+  console.table(matriz2);
   matriz2.sort((filaA, filaB) => filaA[2] - filaB[2]);
 
-  let lineaDatos2 = document.getElementById("lineaScore2");
+  // Selecciona el tbody donde se agregarán las filas
+//   let tbody = document.querySelector("#tablaSeis2Clau tbody");
+
+//   let lineaDatos2 = document.getElementById("lineaScore2Clau");
 
   // Agrega el nombre del grupo como la primera celda
   for (i = 0; i < 12; i++) {
-    const lineaDatos2 = tablaSeis2.insertRow();
-    for (j = 0; j < 18; j++) {
-      if (matriz2[i][j] === 0) {
-        matriz2[i][j] = "--";
-      }
-      const celdagral = lineaDatos2.insertCell(-1);
-      celdagral.textContent = matriz2[i][j];
-      if (matriz2[i][j] === "--") {
-        celdagral.style.backgroundColor = "white";
+    if (matriz2[i][1] > 0) {
+      const lineaDatos2 = tablaSeis2Clau.insertRow();
+      // for (j = 0; j < 13; j++) {
+      for (j = 0; j < matriz2[i].length; j++) {
+        if (matriz2[i][j] == 0) {
+          matriz2[i][j] = "--";
+        }
+        const celdagral = lineaDatos2.insertCell(-1);
+        celdagral.style.width = "10px";
+        celdagral.textContent = matriz2[i][j];
+        if (matriz2[i][j] == "--") {
+          celdagral.style.backgroundColor = "white";
+        }
       }
     }
   }
-})
+});
 
+// :::::::::::::::::::::::::::::::::::
+// :::::::::::::::::: leer datos Netos
+// :::::::::::::::::::::::::::::::::::::::::::::::
 
 async function leerDatosNetos() {
   try {
     const response = await fetch(`/leerDatosNetos`);
     if (response.ok) {
-      const players2 = await response.json();
-      return players2; // Devuelve los datos obtenidos si la respuesta es exitosa
+      const resultados = await response.json();
+      return resultados; // Devuelve los datos obtenidos si la respuesta es exitosa
     } else {
       console.error(
         "Error en la respuesta:",
@@ -167,13 +213,18 @@ async function leerDatosNetos() {
   }
 }
 
-
-async function leerDatosFechas() {
+// :::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::: leer datos Fechas
+// :::::::::::::::::::::::::::::::::::::::::::::::
+async function leerDatosFechasClau() {
   try {
-    const response = await fetch(`/leerDatosFechas`);
-    if (response.ok) {
-      const fechas = await response.json();
-      return fechas; // Devuelve los datos obtenidos si la respuesta es exitosa
+    const responseC = await fetch(`/leerDatosFechas`);
+    if (responseC.ok) {
+      const fechasClau = await responseC.json();
+      const fechasFiltradasClau = fechasClau.filter(
+        (fecha) => fecha.fec > 44 && fecha.fec < 90
+      );
+      return fechasFiltradasClau;
     } else {
       console.error(
         "Error en la respuesta:",

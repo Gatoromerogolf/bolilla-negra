@@ -402,6 +402,51 @@ Bootstrap 5 Dashboard Admin Template
                                 </table>
                             </div>
                             <br>
+
+                            <hr>
+                            <br>
+
+                            <div class="mb-4" style="display: flex; justify-content: space-between; align-items: center; ">
+                                <h5 class="mb-4">Torneo Clausura</h5>
+                                <a class="btn custom-btn" href="jugadoranual.html">
+                                    Jugador del Año
+                                    <i class="bi-arrow-up-right-circle-fill ms-2"></i>
+                                </a>
+                            </div>
+                        
+                            <!--------------  clausura -  Mejores 6 tarjetas ------->
+                            <div id="clausuraResul2"></div>
+                            <h6>Mejores 6 tarjetas del torneo de Sábados del 01.06 al 31.10.</h6>
+                            <p class="mt-2 mb-2"></p>
+                            <div style="width:100%px; height: 550px; overflow-x: scroll;">
+
+                                <table id="tablaSeis2Clau" style="width: 400px; position: relative;">
+                                    <colgroup>
+                                        <col style="background-color: rgb(248, 248, 130)" ;>
+                                        <col style="width: 10px;" ;>
+                                        <col style="background-color: rgb(203, 250, 32); width: 10px; " ;>
+                                        <col style="width: 10px;" ;>
+                                        <col style="width: 10px;" ;>
+                                    </colgroup>
+                                    <tr>
+                                        <th rowspan="2" style="width: 5px; position:sticky; left:0;">Player</th>
+                                        <th rowspan="2">Ptos</th>
+                                        <th rowspan="2">Prom</th>
+                                        <th rowspan="2" style="width: 5px;">NPT</th>
+                                    </tr>
+
+                                    <tr id="diaJugadoRow2Clau">
+                                    </tr>
+
+                                    <tbody>
+                                        <tr id="lineaScore2Clau">
+                                             <!-- <td></td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
                             <hr>
                             <br>
 
@@ -487,6 +532,7 @@ Bootstrap 5 Dashboard Admin Template
     </div>
 
     <script src="../js/mejores6.js"></script>
+    <script src="../js/mejores6Clau.js"></script>
 </body>
 </html>
 
