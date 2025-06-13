@@ -376,20 +376,10 @@
                 <button id="btnContinuar" disabled>Cargar</button>
             </div>
 
-            <!-- <div>
-                <div id="nptContainer" style="font-size: 13px;">
-                    <label for="npt">NPT</label>
-                    <input type="number" id="npt" style="width: 23px; max-height: 20px;" value="0" min="0" max="1"
-                        oninput="validarNPT(this)">
-                </div>
-            </div> -->
-
             <div>
                 <button id="btnNPT" disabled style="display:none">NPT</button>
             </div>
-            <!-- <div>
-                <button id="btnContinuar" disabled>Continuar</button>
-            </div> -->
+
         </div>
     </div>
 
@@ -431,9 +421,6 @@
                 <p>Neto: <span id="totalNeto"><strong>0</strong></span></p>
                 <p>Hoyos: <span id="totalHoyos"><strong>0</strong></span></p>
             </div>
-
-            <!-- <button id="guardarBtn" onclick="return guardarResultados()" style="display:none">Guardar
-                Resultados</button> -->
 
             <button id="btnCalcular" type="button" style="display:none" disabled>Continuar</button>
         </form>
@@ -496,11 +483,9 @@
                     <!-- Las filas serán generadas por JavaScript -->
                 </tbody>
             </table>
-            <!-- <br>
-            <button onclick="guardarResultados()">Continuar</button>
-            <!-- <button onclick="modificarResultados()">Corregir datos</button> -->
         </fieldset>
     </div>
+
     <div class="container oculto" id="paso5">
         <fieldset id="tablaBerdisFS">
             <legend>Birdies de la fecha</legend>
@@ -516,7 +501,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Las filas serán generadas por JavaScript -->
                 </tbody>
             </table>
         </fieldset>
@@ -537,12 +521,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Las filas serán generadas por JavaScript -->
                 </tbody>
             </table>
-            <!-- <br>
-            <button onclick="guardarResultados()">Continuar</button>
-            <!-- <button onclick="modificarResultados()">Corregir datos</button> -->
 
         </fieldset>
     </div>
@@ -557,27 +537,6 @@
     </div>
 
     <script type="module">
-
-        //-----------------------------------------
-        // 🥎  validarNPT      
-        //-----------------------------------------
-        // function validarNPT(input) {
-        //     const val = parseInt(input.value);
-
-        //     if (val !== 0 && val !== 1) {
-        //         alert("El valor de NPT solo puede ser 0 o 1.");
-        //         input.value = ""; // o input.value = 0;
-        //     }
-        // }
-
-        // window.validarNPT = function (input) {
-        //     const val = parseInt(input.value);
-        //     if (val !== 0 && val !== 1) {
-        //         alert("El valor de NPT solo puede ser 0 o 1.");
-        //         input.value = "";
-        //     }
-        // }
-
 
         // Variables globales
         let contador; // Inicializamos el contador
@@ -609,6 +568,7 @@
         let fechaSinGuiones = 0;
         let fechaParaComparar = 0;
         let fecFullTabla = 0;
+        let fechaBerdiNegro = 0;
         const selecCanchaDiv = document.getElementById('selecCanchaDiv');
         const cancha = document.getElementById('canchaSelect');
         const totJugadores = document.getElementById('totJugadores');
@@ -664,8 +624,6 @@
                         alert("No se encontró ninguna fecha");
                     }
                 });
-
-                // cargarCanchas();
 
                 fecha.addEventListener('change', () => {
                     fechaParaComparar = fecha.value;
@@ -1278,6 +1236,24 @@
 
                     const berdieActual = berdiNegro[i]["berdihcp"];
                     if (berdieActual === null || berdieActual < handicap) {
+
+                        fetch('/guardar-berdis', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ 
+                                fechakey,
+                                hoyo: i + 1,
+                                par: hoyos[i].par,
+                                jugador,
+                                golpes: val,
+                                handicap,
+                                jugadorantes: berdiNegro[i]["berdiPlayer"],
+                                handicapantes: berdiNegro[i]["berdihcp"]
+                             })
+                        });
+
                         nuevoBirdie.ok = '🏆'; // 👈 agregás la propiedad directamente
                         tablaBerdis.push(nuevoBirdie);
                         fetch("/actualizaBerdi", {
@@ -1285,7 +1261,7 @@
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
                                 hoyo: i + 1,
-                                berdiFecha: "25-05",
+                                berdiFecha: fechaBerdiNegro,
                                 berdiPlayer: jugador,
                                 berdihcp: handicap
                             })
@@ -1293,6 +1269,7 @@
                             .then(res => res.json())
                             .then(console.log)
                             .catch(console.error);
+
                     }
                 }
             }
@@ -1335,7 +1312,7 @@
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             hoyo: i + 1,
-                            negroFecha: "25-05",
+                            negroFecha: fechaBerdiNegro,
                             negroPlayer: jugador,
                             negroScore: val,
                             negrohcp: handicap
@@ -1687,7 +1664,7 @@
             const numeroDia = fecha.getUTCDate();
             const numeroMes = fecha.getUTCMonth() + 1;
             const nombreMes = meses[fecha.getUTCMonth()];
-            const fechaBerdiNegro = numeroDia + "-" + numeroMes;
+            fechaBerdiNegro = numeroDia + "-" + numeroMes;
 
             const textoFecha = `${nombreDia} ${numeroDia} de ${nombreMes}`;
 

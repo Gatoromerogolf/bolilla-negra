@@ -468,11 +468,9 @@ Bootstrap 5 Dashboard Admin Template
                                     <span style="font-size: 1rem; font-weight: bold;">Jugadores:</span>
                                     <span id="ctddJugadores" style="font-size: 1rem; font-weight: bold;">...</span>
                                 </div>
-                                <!-- <span style="font-size: 1rem; font-weight: bold; margin-left: 30px;">  Pelotas:</span>
-                                <span id="ctddPelotas" style="font-size: 1rem; font-weight: bold;">...</span> -->
                             </center>
 
-                            <div style="width:100%px; height: 490px;">
+                            <div style="width:100%; height: 520px;">
                                 <table id="resultadoFecha" style="width: 200px; position: relative;">
                                     <thead>
                                         <colgroup>
@@ -495,12 +493,14 @@ Bootstrap 5 Dashboard Admin Template
 
                                     <tbody>
                                     </tbody>
+
                                 </table>
                             </div>
 
                             <div class="container oculto" id="paso5">
-                                <fieldset id="tablaBerdisFS">
-                                    <legend>Birdies de la fecha</legend>
+                                <div id="tablaBerdisFS">
+                                    <center>
+                                    <span style="font-size: 1rem; font-weight: bold;">Birdies</span>                                    </center>
                                     <table id="tablaBerdis" class="otraTablaLinda" style="max-height: 20px;">
                                         <thead>
                                             <tr>
@@ -513,14 +513,15 @@ Bootstrap 5 Dashboard Admin Template
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- Las filas serán generadas por JavaScript -->
                                         </tbody>
                                     </table>
-                                </fieldset>
+                                </div>
                             </div>
+
                             <div class="container oculto" id="paso6">
                                 <fieldset id="tablaNegroFS">
-                                    <legend>Hoyos negros de la fecha</legend>
+                                    <center>
+                                    <span style="font-size: 1rem; font-weight: bold;">Hoyos negros</span></center>
                                     <table id="tablaNegros" class="otraTablaLinda" style="max-height: 20px;">
                                         <thead>
                                             <tr>
@@ -533,13 +534,8 @@ Bootstrap 5 Dashboard Admin Template
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- Las filas serán generadas por JavaScript -->
                                         </tbody>
                                     </table>
-                                    <!-- <br>
-            <button onclick="guardarResultados()">Continuar</button>
-            <!-- <button onclick="modificarResultados()">Corregir datos</button> -->
-
                                 </fieldset>
                             </div>
 
@@ -582,7 +578,6 @@ Bootstrap 5 Dashboard Admin Template
                             </div>
                             <p>Nuestro compañero <span id="pelotudo">...</span> ha acumulado la cantidad de
                                 <span id="pelotas" class="centrado" style="font-size: 40px;">...</span> pelotas ganadas.
-                                <!-- <button id="detallePelotas">Ver detalle</button> -->
                             </p>
                             <div class="border-top pt-4 mt-4 text-center">
                                 <a class="btn custom-btn" href="pelotas-detail.html">
@@ -618,7 +613,7 @@ Bootstrap 5 Dashboard Admin Template
                                         <th>Hcp</th>
                                         <th>Date</th>
                                         <th>Player</th>
-                                        <th>Score</th>
+                                        <th>Sco</th>
                                         <th>Hcp</th>
                                         <th>Par</th>
                                     </tr>
@@ -1085,7 +1080,7 @@ Bootstrap 5 Dashboard Admin Template
             }
         }
 
-                function cargarTablaBerdis() {
+        function cargarTablaBerdis() {
             console.log('tabla berdies')
             console.table(tablaBerdis);
             const tabla = document.querySelector("#tablaBerdis tbody");

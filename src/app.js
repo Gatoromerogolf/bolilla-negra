@@ -464,6 +464,29 @@ app.post("/actualizaBerdi", (req, res) => {
 });
 
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 guardar-berdis
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+app.post("/guardar-berdis", (req, res) => {
+  const { fechakey, hoyo, par, jugador, golpes, handicap, jugadorantes, handicapantes } = req.body;
+
+  const cambioberdi =
+    "INSERT INTO nuevoberdi (fechakey, hoyo, par, jugador, golpes, handicap, jugadorantes, handicapantes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+  const datosAPasar = [fechakey, hoyo, par, jugador, golpes, handicap, jugadorantes, handicapantes];
+
+  pool.query(cambioberdi, datosAPasar, function (error, lista) {
+    if (error) {
+      if (error.code === "ER_DUP_ENTRY") {
+        res.status(409).json({ error: "Ya existe un registro igual" });
+      } else {
+        console.log("Error:", error);
+        res.status(500).json({ error: error.message });
+      }
+    } else {
+      res.status(200).json({ success: true });
+    }
+  })
+});
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 actualiza Negro 
@@ -555,7 +578,7 @@ app.post("/handicaps", (req, res) => {
   // if (!req.session.user){
   //     return res.status(401).json({ error: 'No estás autenticado' });
   // }
-  const { jugador, cancha, fecha, gross, hcpcancha, neto,  hcpbolilla } = req.body;
+  const { jugador, cancha, fecha, gross, hcpcancha, neto, hcpbolilla } = req.body;
   const nuevohcp =
     "INSERT INTO handicap (jugador, cancha, fecha, gross, hcpcancha, neto, hcpbolilla) VALUES (?, ?, ?, ?, ?, ?, ?)";
   const datosAPasar = [jugador, cancha, fecha, gross, hcpcancha, neto, hcpbolilla];
@@ -759,7 +782,7 @@ app.get("/api/hoyos/:idCancha", async (req, res) => {
 // Guardar resultados de un jugador
 app.post("/api/tarjetas", (req, res) => {
 
-  console.log ('entro a grabar tarjeta')
+  console.log('entro a grabar tarjeta')
   const { jugador, fecha, cancha, handicap, hoyos } = req.body;
 
   if (!jugador || !fecha || !cancha || !handicap || !Array.isArray(hoyos)) {
@@ -792,7 +815,7 @@ app.post("/api/tarjetas", (req, res) => {
     res.json({ message: "Tarjeta guardada con éxito" });
   });
 
-  console.log ('termino de grabar la tarjeta')
+  console.log('termino de grabar la tarjeta')
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
