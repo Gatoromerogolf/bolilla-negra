@@ -237,6 +237,8 @@ main().then(() => { // Ejecuta la función principal
     tbodyScore.innerHTML = "";
 
     let sumaPuntos = 0;
+
+
     //::::::::: agrega el mes y dia que corresponde a fec.
     mejoresScore.forEach(score => {
         const fechaEncontrada = fechas.find(fecha => fecha.fec === score.fec);
