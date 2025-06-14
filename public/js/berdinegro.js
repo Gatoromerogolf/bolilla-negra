@@ -2,7 +2,6 @@ var berdiNegro;  //se define globalmente y la puedo usar en otro js
 
 async function main() {
     berdiNegro = await leerDatosBerdiNegro();
-    console.table (berdiNegro)
 }
 
 main().then(() => {

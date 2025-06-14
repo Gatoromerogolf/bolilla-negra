@@ -18,7 +18,6 @@ async function main() {
     puntosRanking = await leerPuntosRanking();
 
     mejoresScore = players2.filter((player => player.pos == 1))
-    console.table(mejoresScore);
 }
 
 main().then(() => { // Ejecuta la función principal
@@ -36,10 +35,6 @@ main().then(() => { // Ejecuta la función principal
     console.log(`ultimaFecha.fec  ${ultimaFecha.fec}`)
     const filteredPlayers = players2.filter(player => player.fec == ultimaFecha.fec);
 
-    // Mostrar los registros filtrados
-    console.log("Registros filtrados:");
-    filteredPlayers.forEach(player => console.log(player));
-
     filteredPlayers.sort((a, b) => {
         // Ordena primero por pos de forma ascendente
         if (a.pos < b.pos) return -1;
@@ -49,7 +44,8 @@ main().then(() => { // Ejecuta la función principal
         return 0;
     });
 
-    console.log("filtered " + filteredPlayers[0][0])
+    console.log("filtered " + filteredPlayers[0].id);
+
     // const tabResultado = document.getElementById("resultadoFecha").getElementsByTagName("tbody")[0];
     const tabResultado = document.querySelector("#resultadoFecha tbody");
 
@@ -86,10 +82,11 @@ main().then(() => { // Ejecuta la función principal
         //  puede que no exista 
         //  llena la tabla
 
+
+
     // :::::::::::::::::::::::::::::::::::::::::::::::::::
     //  LLENA SECCION:  EL HOMBRE CON  MAS PELOTAS  
     // :::::::::::::::::::::::::::::::::::::::::::::::::::
-
     // leer ctdd de pelotas de los sábados y agregarle ctdd de la gira (en tabla puntosranking)
 
     const filas = 12;
@@ -211,7 +208,7 @@ main().then(() => { // Ejecuta la función principal
     /* -----   LLENA DATOS DE PELOTAS GANADAS ------------------------------------------*/
 
     function llenaModalAMostrar() {
-        console.log("entro en llen modal a mostrar")
+        console.log("entro en llena modal a mostrar")
         // agrega las filas
         for (i = 0; i < matrizPelotas.length; i++) {
             const lineaPelotas = tablaModalGeneralPelotas.insertRow();
@@ -238,7 +235,6 @@ main().then(() => { // Ejecuta la función principal
 
     let sumaPuntos = 0;
 
-
     //::::::::: agrega el mes y dia que corresponde a fec.
     mejoresScore.forEach(score => {
         const fechaEncontrada = fechas.find(fecha => fecha.fec === score.fec);
@@ -247,9 +243,6 @@ main().then(() => { // Ejecuta la función principal
         score.jugadores = fechaEncontrada.jugadores;
         // le anexo el mes de cada primera posición.
     })
-
-    console.log("neto con mes y dia agregado")
-    console.table(mejoresScore)
 
     // Paso 1: Agrupar por `mesFecha` 
     const agrupadoPorMes = mejoresScore.reduce((acc, score) => {
@@ -310,7 +303,6 @@ main().then(() => { // Ejecuta la función principal
 
         // Agrega a la data el jugador y sus puntos
         data.push([mes.play, totalGanado]);
-        console.log(`localStorage: ${JSON.stringify(data)}`);
     });
 
     // Almacena `data` en localStorage
