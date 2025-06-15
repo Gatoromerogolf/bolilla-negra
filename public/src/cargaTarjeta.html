@@ -564,6 +564,7 @@
 
         let fec = 0;
         const fecha = document.getElementById('fecha');
+        let nuevaFecha = 0;
         let fechaaRegistrar = 0;
         let fechaSinGuiones = 0;
         let fechaParaComparar = 0;
@@ -629,6 +630,11 @@
                 fecha.addEventListener('change', () => {
                     fechaParaComparar = fecha.value;
                     fechaSinGuiones = fechaParaComparar.split("-").join("");
+
+                    // Obtener nuevaFecha en formato dd-mm
+                    const partes = fechaParaComparar.split("-");
+                    const nuevaFecha = `${partes[2]}-${partes[1]}`; // dd-mm
+
                     const dateTabla = formatToDateString(fecFullTabla);
                     const dateTablaSinGuiones = dateTabla.split("-").join("");
                     if (dateTablaSinGuiones >= fechaSinGuiones) {
@@ -723,7 +729,6 @@
         async function iniciarApp() {
             await funcionInicial();           // Espera hasta que el usuario seleccione fecha y cancha
             berdiNegro = await leerDatosBerdiNegro();
-            console.table(berdiNegro)
             paso1.classList.remove('oculto'); // Muestra paso 1
         }
 
@@ -1252,111 +1257,104 @@
             // ⚽⚽⚽⚽ calcula los birdies ⚽⚽⚽⚽⚽⚽
             for (let i = 0; i < valoresGross.length; i++) {
                 const val = valoresGross[i];
+                const fechakey = fec + 1;
                 if (val < hoyos[i].par) {
-                    console.log(`graba birdie hoyo ${i + 1} de ${jugador}`)
-
+                    const berdieActual = berdiNegro[i]["berdihcp"];
                     const nuevoBirdie = {
-                        jugador: jugador,
+                        fechakey,
                         hoyo: i + 1,
                         par: hoyos[i].par,
+                        jugador,
                         golpes: val,
-                        handicap: handicap
+                        handicap,
+                        jugadorantes: berdiNegro[i]["berdiPlayer"],
+                        handicapantes: berdieActual
                     };
-
-                    const berdieActual = berdiNegro[i]["berdihcp"];
+                    // Marcar como "🏆" si corresponde
                     if (berdieActual === null || berdieActual < handicap) {
-                        const fechakey = fec + 1;
-                        fetch('/guardar-berdis', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                fechakey,
-                                hoyo: i + 1,
-                                par: hoyos[i].par,
-                                jugador,
-                                golpes: val,
-                                handicap,
-                                jugadorantes: berdiNegro[i]["berdiPlayer"],
-                                handicapantes: berdiNegro[i]["berdihcp"]
-                            })
-                        });
+                        nuevoBirdie.ok = '🏆';
 
-                        nuevoBirdie.ok = '🏆'; // 👈 agregás la propiedad directamente
-                        tablaBerdis.push(nuevoBirdie);
                         fetch("/actualizaBerdi", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
-                                hoyo: i + 1,
-                                berdiFecha: fechaBerdiNegro,
-                                berdiPlayer: jugador,
-                                berdihcp: handicap
+                                hoyo: nuevoBirdie.hoyo,
+                                berdiFecha: nuevaFecha,
+                                berdiPlayer: nuevoBirdie.jugador,
+                                berdihcp: nuevoBirdie.handicap
                             })
                         })
                             .then(res => res.json())
                             .then(console.log)
                             .catch(console.error);
-
                     }
+
+                    // Enviar a la API y guardar en tabla
+                    fetch('/guardar-berdis', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(nuevoBirdie)
+                    });
+
+                    tablaBerdis.push(nuevoBirdie);
                 }
             }
+        }
 
-            // ⚽⚽⚽⚽ calcula los negros  ⚽⚽⚽⚽⚽⚽
-            for (let i = 0; i < valoresGross.length; i++) {
-                const val = valoresGross[i];
-                const par = hoyos[i].par;
-                let limite;
+        // ⚽⚽⚽⚽ calcula los negros  ⚽⚽⚽⚽⚽⚽
+        for (let i = 0; i < valoresGross.length; i++) {
+            const val = valoresGross[i];
+            const par = hoyos[i].par;
+            let limite;
 
-                if (handicap < 12) {
-                    limite = par === 3 ? 5 : par === 4 ? 6 : 7;
-                } else if (handicap < 23) {
-                    limite = par === 3 ? 6 : par === 4 ? 7 : 8;
-                } else {
-                    limite = par === 3 ? 7 : par === 4 ? 8 : 9;
+            if (handicap < 12) {
+                limite = par === 3 ? 5 : par === 4 ? 6 : 7;
+            } else if (handicap < 23) {
+                limite = par === 3 ? 6 : par === 4 ? 7 : 8;
+            } else {
+                limite = par === 3 ? 7 : par === 4 ? 8 : 9;
+            }
+
+            // calcula que proporción del hcp le llevo el hoyo y el que más le llevó es más negro...
+            const indiceEsteNegro = (valoresGross[i] - par) / handicap;
+            const indiceViejoNegro = (berdiNegro[i]['negroScore'] - par) / berdiNegro[i]['negrohcp'];
+
+            if (val > limite && indiceEsteNegro > indiceViejoNegro) {
+                const nuevoNegro = {
+                    jugador,
+                    hoyo: i + 1,
+                    par,
+                    golpes: val,
+                    handicap
+                };
+
+                const negroActual = berdiNegro[i]["negrohcp"];
+                if (negroActual === null || negroActual > handicap) {
+                    nuevoNegro.ok = '🏆'; // 👈 agregás la propiedad directamente
                 }
-
-                // calcula que proporción del hcp le llevo el hoyo y el que más le llevó es más negro...
-                const indiceEsteNegro = (valoresGross[i] - par) / handicap;
-                const indiceViejoNegro = (berdiNegro[i]['negroScore'] - par) / berdiNegro[i]['negrohcp'];
-
-                if (val > limite && indiceEsteNegro > indiceViejoNegro) {
-                    const nuevoNegro = {
-                        jugador,
+                tablaNegros.push(nuevoNegro);
+                fetch("/actualizaNegro", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
                         hoyo: i + 1,
-                        par,
-                        golpes: val,
-                        handicap
-                    };
-
-                    const negroActual = berdiNegro[i]["negrohcp"];
-                    if (negroActual === null || negroActual > handicap) {
-                        nuevoNegro.ok = '🏆'; // 👈 agregás la propiedad directamente
-                    }
-                    tablaNegros.push(nuevoNegro);
-                    fetch("/actualizaNegro", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            hoyo: i + 1,
-                            negroFecha: fechaBerdiNegro,
-                            negroPlayer: jugador,
-                            negroScore: val,
-                            negrohcp: handicap
-                        })
+                        negroFecha: fechaBerdiNegro,
+                        negroPlayer: jugador,
+                        negroScore: val,
+                        negrohcp: handicap
                     })
-                        .then(res => res.json())
-                        .then(console.log)
-                        .catch(console.error);
-                }
+                })
+                    .then(res => res.json())
+                    .then(console.log)
+                    .catch(console.error);
             }
+        }
 
-            console.table(tablaBerdis);
-            console.table(tablaNegros);
-            marcarJugadoresConTarjeta();
-            // Incrementa contador de jugadores cargados
-            cargadas++;
+        console.table(tablaBerdis);
+        console.table(tablaNegros);
+        marcarJugadoresConTarjeta();
+        // Incrementa contador de jugadores cargados
+        cargadas++;
         }
 
         /*---------------------------------------
