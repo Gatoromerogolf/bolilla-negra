@@ -1062,8 +1062,8 @@
                 grabarNuevoNeto(datosNetos);
             })
 
-            cargarTablaBerdis();
-            cargarTablaNegros();
+            mostrarTablaBerdis();
+            mostrarTablaNegros();
             actualizaUltimaFecha();
 
             mensajeFinal.classList.add('oculto');
@@ -1330,7 +1330,7 @@
 
                 const negroActual = berdiNegro[i]["negrohcp"];
                 if (negroActual === null || negroActual > handicap) {
-                    nuevoNegro.ok = '🏆'; // 👈 agregás la propiedad directamente
+                    nuevoNegro.ok = '🧥'; // 👈 agregás la propiedad directamente
                 }
                 tablaNegros.push(nuevoNegro);
                 fetch("/actualizaNegro", {
@@ -1501,9 +1501,9 @@
         }
 
         //-----------------------------------------
-        // 🥎  cargarTablaBerdis               
+        // 🥎  mostrarTablaBerdis               
         //-----------------------------------------
-        function cargarTablaBerdis() {
+        function mostrarTablaBerdis() {
             console.log('tabla berdies')
             console.table(tablaBerdis);
             const tabla = document.querySelector("#tablaBerdis tbody");
@@ -1522,13 +1522,13 @@
                 fila.insertCell(4).textContent = registro.handicap;
                 fila.insertCell(5).textContent = registro.ok;
             });
-            localStorage.setItem("tablaBerdis", JSON.stringify(tablaBerdis));
+            // localStorage.setItem("tablaBerdis", JSON.stringify(tablaBerdis));
         }
 
         //-----------------------------------------
-        // 🥎  cargarTablaNegros             
+        // 🥎  mostrarTablaNegros             
         //-----------------------------------------
-        function cargarTablaNegros() {
+        function mostrarTablaNegros() {
             console.log('tabla negros')
             console.table(tablaNegros);
             const tabla = document.querySelector("#tablaNegros tbody");

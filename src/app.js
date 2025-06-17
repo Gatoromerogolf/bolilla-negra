@@ -218,38 +218,49 @@ app.get("/leerBerdiNegro", (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 actualiza Berdi Negro
+// 📢 Ruta para obtener los nuevoberdi
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// app.post('/actualizaBerdiNegro', (req, res) => {
-//     const { hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore } = req.body;
+app.get("/leerTablaBerdis", (req, res) => {
+  const query = "SELECT * FROM nuevoberdi";
 
-//     // Validar que todos los campos existen
-//     if (![hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore].every(Boolean)) {
-//         return res.status(400).json({ error: 'Faltan campos obligatorios' });
-//     }
+  pool.query(query, (error, results, fields) => {
+    if (error) {
+      res.status(500).json({ error: "Error al obtener los nuevoberdi" });
+      console.log("error servidor al obtener registros");
+      return;
+    }
 
-//     // Consulta de actualización
-//     const query = `
-//     UPDATE berdinegro
-//     SET berdiFecha = ?, berdiPlayer = ?, negroFecha = ?, negroPlayer = ?, negroScore = ?
-//     WHERE hoyo = ?
-//     `;
+    // if (results.length > 0) {
+    //   res.json(results);
+    // } else {
+    //   res.status(404).json({ error: "No se encontraron registros" });
+    // }
 
-//     const valores = [berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, hoyo];
+  res.json(results); // siempre devuelve un array (vacío o no)
+    
+  });
+});
 
-//     pool.query(query, valores, (error, result) => {
-//         if (error) {
-//             console.error('Error en la actualización:', error);
-//             return res.status(500).json({ error: 'Error interno en la base de datos' });
-//         }
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 Ruta para obtener los nuevonegro
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+app.get("/leerTablaNegros", (req, res) => {
+  const query = "SELECT * FROM nuevonegro";
 
-//         if (result.affectedRows === 0) {
-//             return res.status(404).json({ error: 'No se encontró el hoyo especificado' });
-//         }
+  pool.query(query, (error, results, fields) => {
+    if (error) {
+      res.status(500).json({ error: "Error al obtener los nuevonegro" });
+      console.log("error servidor al obtener registros");
+      return;
+    }
 
-//         res.status(200).json({ success: true, message: 'Datos actualizados correctamente' });
-//     });
-// });
+    if (results.length > 0) {
+      res.json(results);
+    } else {
+      res.status(404).json({ error: "No se encontraron registros" });
+    }
+  });
+});
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 Grabacion de ultima fecha
@@ -316,38 +327,7 @@ app.get("/leerPuntosRanking", (req, res) => {
   });
 });
 
-// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 Ruta para agregar hoyo con berdi y/o negro
-// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// app.post('/creaBerdiNegro', (req, res) => {
 
-//     // if (!req.session.user){
-//     //     return res.status(401).json({ error: 'No estás autenticado' });
-//     // }
-//     const { hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, negroPar } = req.body;
-
-//     // Validar que todos los campos existen
-//     if (![hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, negroPar].every(Boolean)) {
-//         return res.status(400).json({ error: 'Faltan campos obligatorios' });
-//     }
-
-//     const nuevoBerdiNegro = 'INSERT INTO berdinegro (hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, negroPar) VALUES (?, ?, ?, ?, ?, ?, ?)';
-//     const datosAPasar = [hoyo, berdiFecha, berdiPlayer, negroFecha, negroPlayer, negroScore, negroPar];
-
-//     pool.query(nuevoBerdiNegro, datosAPasar, function (error, lista) {
-//         if (error) {
-//             if (error.code === 'ER_DUP_ENTRY') {
-//                 res.status(409).json({ error: 'Ya existe un hoyo igual' });
-//             }
-//             else {
-//                 console.log('Error:', error);
-//                 res.status(500).json({ error: error.message });
-//             }
-//         } else {
-//             res.status(200).json({ success: true });
-//         }
-//     });
-// });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 actualiza Berdi Negro variable !!!!!!!

@@ -71,7 +71,6 @@ main().then(() => { // Ejecuta la función principal
         let npt = filaResultado.insertCell(-1);
         npt.textContent = filteredPlayers[i - 1].npt;
         npt.textContent = (filteredPlayers[i - 1].npt == 1) ? "NPT" : "--";
-
     }
 
     // :::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -81,8 +80,6 @@ main().then(() => { // Ejecuta la función principal
         //  filtra por ultima fecha leida de netos
         //  puede que no exista 
         //  llena la tabla
-
-
 
     // :::::::::::::::::::::::::::::::::::::::::::::::::::
     //  LLENA SECCION:  EL HOMBRE CON  MAS PELOTAS  
@@ -310,8 +307,6 @@ main().then(() => { // Ejecuta la función principal
 
 });
 
-
-
 async function leerDatosFechas() {
     try {
         const response = await fetch(`/leerDatosFechas`);
@@ -332,15 +327,12 @@ async function leerDatosFechas() {
     }
 }
 
-
 async function leerDatosNetos() {
     try {
         const response = await fetch(`/leerDatosNetos`);
         if (response.ok) {
-            // const players2 = await response.json();
-            // return players2; // Devuelve los datos obtenidos si la respuesta es exitosa
             const resultados = await response.json();
-            return resultados; // Devuelve los datos obtenidos si la respuesta es exitosa
+            return resultados; // Devuelve datos si respuesta OK
         } else {
             console.error(
                 "Error en la respuesta:",
@@ -354,7 +346,6 @@ async function leerDatosNetos() {
         return null;
     }
 }
-
 
 async function leerPuntosRanking() {
     try {
@@ -375,7 +366,6 @@ async function leerPuntosRanking() {
         return null;
     }
 }
-
 
 async function buscaUltimaFecha() {
     try {
