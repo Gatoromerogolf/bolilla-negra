@@ -308,7 +308,7 @@ Bootstrap 5 Dashboard Admin Template
                                                 <th>Sco</th>
                                                 <th>Hcp</th>
                                                 <th>⛳</th>
-                                                <th>A:</th>
+                                                <th>Antes</th>
                                                 <th>Hcp</th>
                                             </tr>
                                         </thead>
@@ -332,6 +332,9 @@ Bootstrap 5 Dashboard Admin Template
                                                 <th>Sco</th>
                                                 <th>Hcp</th>
                                                 <th>⛳</th>
+                                                <th>Antes</th>
+                                                <th>Sco</th>
+                                                <th>Hcp</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -684,29 +687,28 @@ Bootstrap 5 Dashboard Admin Template
                                 ronda.</p>
                         </div>
 
-                        <div class="custom-block custom-block-exchange"> <!-- Novedades -->
-                            <h4>Novedades.</h4>
+                    <!-- <div class="custom-block custom-block-exchange"> -->
+                            <!-- <h4>Novedades.</h4>
 
                             <p>Si tenés algo para decir, escribilo haciendo <a
                                     href="login.html?redirect=comentarios">click acá:</a></p>
-                            <div id="margen-comentarios" class="margen-comentarios">
+                            <div id="margen-comentarios" class="margen-comentarios"> -->
                                 <!-- <a id="view-all-btn" href="login.html?redirect=comentarios"
                                     style="display: inline-block; padding: 8px 12px; background-color: #3e4eda; color: white; text-align: center; text-decoration: none; border-radius: 5px; font-size: 16px;">Comentar</a> -->
 
-                                <p>Últimos comentarios:</p>
+                                <!-- <p>Últimos comentarios:</p>
                                 <div id="comments-window" class="comments-window">
                                     <div id="comment-list" class="comment-list">
-                                        <!-- Aquí se agregarán los comentarios dinámicamente -->
                                     </div>
                                     <div class="button-container">
                                         <button id="expand-btn" onclick="loadMoreComments(5)">Ver más</button>
                                         <button id="collapse-btn" onclick="collapseWindow()" style="display:none;">Ver
                                             menos</button>
                                     </div>
-                                </div>
-                            </div>
+                                </div> -->
+                            <!-- </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="custom-block custom-block-bottom d-flex flex-wrap">
@@ -763,26 +765,17 @@ Bootstrap 5 Dashboard Admin Template
             //  ${ultimaFecha.fec}`
 
             const berdisLeidos = await leeTablaBerdis();
-            datosBerdis = berdisLeidos.filter((resultado) => resultado.fec == ultimaFecha.fec);
+            const datosBerdis = berdisLeidos.filter((resultado) => resultado.fechakey == ultimaFecha.fec);
 
-            if (datosBerdis) {
-                tablaBerdis = JSON.parse(datosBerdis); // variable global
+            if (datosBerdis && datosBerdis.length > 0) {
+                tablaBerdis = datosBerdis; // variable global
                 mostrarTablaBerdis();
             }
 
-            console.log("Filtrando por fecha:", ultimaFecha.fec);
-            console.log("Total registros leídos:", berdisLeidos.length);
-
-            const datosBerdis = berdisLeidos.filter((resultado) => resultado.fec == ultimaFecha.fec);
-
-            console.log("Filtrados:", datosBerdis.length);
-
-
-
             const negrosLeidos = await leeTablaNegros();
-            datosNegros = negrosLeidos.filter((resultado) => resultado.fec == ultimaFecha.fec);
-            if (datosNegros) {
-                tablaNegros = JSON.parse(datosNegros); // variable global
+            const datosNegros = negrosLeidos.filter((resultado) => resultado.fechakeyNG == ultimaFecha.fec);
+            if (datosNegros && datosNegros.length > 0) {
+                tablaNegros = datosNegros;
                 mostrarTablaNegros();
             }
         };
@@ -791,119 +784,118 @@ Bootstrap 5 Dashboard Admin Template
         let hasMore = true;
 
         // Función para obtener los comentarios desde la API
-        async function fetchComments(limit, offset) {
-            try {
-                const response = await fetch(`/comentarios?limit=${limit}&offset=${offset}`);
-                if (!response.ok) {
-                    throw new Error('Error al obtener los comentarios');
-                }
-                const data = await response.json();
-                return data;
-            } catch (error) {
-                console.error('Error al cargar los comentarios:', error);
-                return null;
-            }
-        }
+        // async function fetchComments(limit, offset) {
+        //     try {
+        //         const response = await fetch(`/comentarios?limit=${limit}&offset=${offset}`);
+        //         if (!response.ok) {
+        //             throw new Error('Error al obtener los comentarios');
+        //         }
+        //         const data = await response.json();
+        //         return data;
+        //     } catch (error) {
+        //         console.error('Error al cargar los comentarios:', error);
+        //         return null;
+        //     }
+        // }
 
-        let firstCommentId = null;
+        // let firstCommentId = null;
 
         // Función para cargar el primer comentario
-        async function loadInitialComment() {
-            const data = await fetchComments(2, 0); // Cargar solo el último comentario
-            if (data) {
-                if (data.comments.length > 0) {
-                    firstCommentId = data.comments[0].id; // Guardamos el ID del primer comentario
-                }
-                renderComments(data.comments);
-                hasMore = data.hasMore;
+        // async function loadInitialComment() {
+        //     const data = await fetchComments(2, 0); // Cargar solo el último comentario
+        //     if (data) {
+        //         if (data.comments.length > 0) {
+        //             firstCommentId = data.comments[0].id; // Guardamos el ID del primer comentario
+        //         }
+        //         renderComments(data.comments);
+        //         hasMore = data.hasMore;
 
                 // Mostrar el botón "Ver todos" si hay más de 6 comentarios
                 // if (hasMore) {
                 //     document.getElementById('view-all-btn').style.display = 'inline-block';
                 // }
-            }
-        }
+        //     }
+        // }
 
         // Función para cargar más comentarios (se carga por páginas de 5)
-        async function loadMoreComments(limit) {
-            if (limit === -1) {
-                limit = 100; // Si se quiere ver todo, cargamos hasta 100 comentarios
-            }
+        // async function loadMoreComments(limit) {
+        //     if (limit === -1) {
+        //         limit = 100;
+        //     }
 
-            const data = await fetchComments(limit, offset);
-            if (data) {
+        //     const data = await fetchComments(limit, offset);
+        //     if (data) {
                 // Filtrar el primer comentario para no repetirlo
-                const filteredComments = data.comments.filter(comment => comment.id !== firstCommentId);
-                renderComments(filteredComments);
-                offset += limit; // Incrementamos el offset
-                hasMore = data.hasMore;
+                // const filteredComments = data.comments.filter(comment => comment.id !== firstCommentId);
+                // renderComments(filteredComments);
+                // offset += limit;
+                // hasMore = data.hasMore;
 
                 // Si ya no hay más comentarios, ocultamos el botón de "Mostrar más"
-                if (!hasMore) {
-                    document.getElementById('expand-btn').style.display = 'none';
-                }
+                // if (!hasMore) {
+                //     document.getElementById('expand-btn').style.display = 'none';
+                // }
 
-                document.getElementById('collapse-btn').style.display = 'block'
+                // document.getElementById('collapse-btn').style.display = 'block'
 
                 // Mostrar el botón "Ver todos" si hay más comentarios
                 // if (hasMore) {
                 //   document.getElementById('view-all-btn').style.display = 'inline-block';
                 // }
-            }
-        }
+        //     }
+        // }
 
         // Función para mostrar los comentarios en el HTML
-        function renderComments(comments) {
-            const commentList = document.getElementById('comment-list');
-            comments.forEach(comment => {
-                const commentDiv = document.createElement('div');
-                commentDiv.classList.add('comment');
-                commentDiv.innerHTML = `
-                <div class="comment-header">
-                    <span class="comment-author">${comment.usuario}</span>
-                    <span class="comment-date">${new Date(comment.fecha).toLocaleDateString()}</span>
-                </div>
-                <p><span style="font-size:15px">${comment.comentario}</span></p>
-                <button class="delete-btn" onclick="deleteComment(${comment.id})">Eliminar</button>
-                `;
-                commentList.appendChild(commentDiv);
-            });
-        }
+        // function renderComments(comments) {
+        //     const commentList = document.getElementById('comment-list');
+        //     comments.forEach(comment => {
+        //         const commentDiv = document.createElement('div');
+        //         commentDiv.classList.add('comment');
+        //         commentDiv.innerHTML = `
+        //         <div class="comment-header">
+        //             <span class="comment-author">${comment.usuario}</span>
+        //             <span class="comment-date">${new Date(comment.fecha).toLocaleDateString()}</span>
+        //         </div>
+        //         <p><span style="font-size:15px">${comment.comentario}</span></p>
+        //         <button class="delete-btn" onclick="deleteComment(${comment.id})">Eliminar</button>
+        //         `;
+        //         commentList.appendChild(commentDiv);
+        //     });
+        // }
 
         // Función para contraer la ventana
-        function collapseWindow() {
-            const commentList = document.getElementById('comment-list');
-            commentList.innerHTML = ''; // Limpiamos los comentarios
-            offset = 0;
-            loadInitialComment(); // Volvemos a cargar solo el primer comentario
-            document.getElementById('collapse-btn').style.display = 'none'
-            document.getElementById('expand-btn').style.display = 'block'
-        }
+        // function collapseWindow() {
+        //     const commentList = document.getElementById('comment-list');
+        //     commentList.innerHTML = '';
+        //     offset = 0;
+        //     loadInitialComment();
+        //     document.getElementById('collapse-btn').style.display = 'none'
+        //     document.getElementById('expand-btn').style.display = 'block'
+        // }
 
         // Inicializar la carga del primer comentario
-        loadInitialComment();
+        // loadInitialComment();
 
-        async function deleteComment(commentId) {
-            const confirmar = confirm(`¿Estás seguro de que deseas eliminar este comentario?`);
-            if (!confirmar) return;
+        // async function deleteComment(commentId) {
+        //     const confirmar = confirm(`¿Estás seguro de que deseas eliminar este comentario?`);
+        //     if (!confirmar) return;
 
-            try {
-                const response = await fetch(`/comentarios/${commentId}`, {
-                    method: 'DELETE'
-                });
-                if (!response.ok) {
-                    throw new Error('Error al eliminar el comentario');
-                }
+        //     try {
+        //         const response = await fetch(`/comentarios/${commentId}`, {
+        //             method: 'DELETE'
+        //         });
+        //         if (!response.ok) {
+        //             throw new Error('Error al eliminar el comentario');
+        //         }
 
-                // Eliminar el comentario del DOM después de la respuesta exitosa
-                const commentElement = document.querySelector(`.comment button[onclick="deleteComment(${commentId})"]`).parentElement;
-                commentElement.remove();
-                alert('Comentario eliminado exitosamente');
-            } catch (error) {
-                console.error('Error al eliminar el comentario:', error);
-                alert('No se pudo eliminar el comentario. Por favor, inténtalo de nuevo.');
-            }
-        }
+        //         const commentElement = document.querySelector(`.comment button[onclick="deleteComment(${commentId})"]`).parentElement;
+        //         commentElement.remove();
+        //         alert('Comentario eliminado exitosamente');
+        //     } catch (error) {
+        //         console.error('Error al eliminar el comentario:', error);
+        //         alert('No se pudo eliminar el comentario. Por favor, inténtalo de nuevo.');
+        //     }
+        // }
 
         /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
         //   leeTablaBerdis 
@@ -976,7 +968,10 @@ Bootstrap 5 Dashboard Admin Template
                 fila.insertCell(2).textContent = registro.par;
                 fila.insertCell(3).textContent = registro.golpes;
                 fila.insertCell(4).textContent = registro.handicap;
-                fila.insertCell(5).textContent = registro.ok;
+                if (registro.ok == 1) {
+                    fila.insertCell(5).textContent = "🏆";
+                } else
+                    fila.insertCell(5).textContent = "";
                 fila.insertCell(6).textContent = registro.jugadorantes;
                 fila.insertCell(7).textContent = registro.handicapantes;
 
@@ -993,16 +988,26 @@ Bootstrap 5 Dashboard Admin Template
             // Limpiar contenido anterior, si lo hubiera
             tabla.innerHTML = "";
 
-            tablaNegros.forEach(registro => {
+            console.table(tablaNegros);
+
+            tablaNegros.forEach(registroNeg => {
                 const fila = tabla.insertRow();
 
                 // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
-                fila.insertCell(0).textContent = registro.hoyo;
-                fila.insertCell(1).textContent = registro.jugador;
-                fila.insertCell(2).textContent = registro.par;
-                fila.insertCell(3).textContent = registro.golpes;
-                fila.insertCell(4).textContent = registro.handicap;
-                fila.insertCell(5).textContent = registro.ok;
+                fila.insertCell(0).textContent = registroNeg.hoyoNG;
+                fila.insertCell(1).textContent = registroNeg.jugadorNG;
+                fila.insertCell(2).textContent = registroNeg.parNG;
+                fila.insertCell(3).textContent = registroNeg.golpesNG;
+                fila.insertCell(4).textContent = registroNeg.handicapNG;
+                if (registroNeg.okNG == 1) {
+                    fila.insertCell(5).textContent = "🎩";
+                } else
+                    fila.insertCell(5).textContent = "";
+                fila.insertCell(6).textContent = registroNeg.jugadorantesNG;
+                fila.insertCell(7).textContent = registroNeg.handicapantesNG;
+                fila.insertCell(7).textContent = registroNeg.golpesantesNG;
+
+                console.log('jug anterior ' + registroNeg.jugadorantesNG)
             });
         }
 
