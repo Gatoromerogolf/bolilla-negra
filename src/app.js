@@ -93,7 +93,7 @@ app.post("/api/login", (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 Ruta para obtener los registros de la tabla FECHAS
+// 📢 Ruta para leer tabla FECHAS
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get("/leerDatosFechas", (req, res) => {
   const query = "SELECT * FROM fechas";
@@ -114,7 +114,7 @@ app.get("/leerDatosFechas", (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 Ruta para obtener la ultima fecha grabada (sin gira)
+// 📢 Ruta para obtener leer ultima fecha grabada (sin gira)
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get("/leerUltimaFecha", (req, res) => {
   const query = "SELECT * FROM fechas WHERE fec < 90 ORDER BY fec DESC LIMIT 1";
@@ -152,7 +152,7 @@ cron.schedule("*/30 * * * *", () => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 Ruta para obtener los registros de DATOS NETOS
+// 📢 Ruta para leer DATOS NETOS
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get("/leerDatosNetos", (req, res) => {
   const query = "SELECT * FROM netos";
@@ -173,7 +173,7 @@ app.get("/leerDatosNetos", (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 Ruta para obtener los registros de DATOS GIRAS
+// 📢 Ruta para leer DATOS GIRAS
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get("/leerDatosGiras", (req, res) => {
   const query = "SELECT * FROM giras";
@@ -197,7 +197,7 @@ app.get("/leerDatosGiras", (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 Ruta para obtener los berdisnegros
+// 📢 Ruta para leer los berdisnegros
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get("/leerBerdiNegro", (req, res) => {
   const query = "SELECT * FROM berdinegro";
@@ -218,7 +218,7 @@ app.get("/leerBerdiNegro", (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 Ruta para obtener los nuevoberdi
+// 📢 Ruta para leer los nuevoberdi
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get("/leerTablaBerdis", (req, res) => {
   const query = "SELECT * FROM nuevoberdi";
@@ -230,18 +230,12 @@ app.get("/leerTablaBerdis", (req, res) => {
       return;
     }
 
-    // if (results.length > 0) {
-    //   res.json(results);
-    // } else {
-    //   res.status(404).json({ error: "No se encontraron registros" });
-    // }
-
     res.json(results); // siempre devuelve un array (vacío o no)
   });
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 Ruta para obtener los nuevonegro
+// 📢 Ruta para leer los nuevonegro
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get("/leerTablaNegros", (req, res) => {
   const query = "SELECT * FROM nuevonegro";
@@ -306,7 +300,7 @@ app.post("/grabaUltimaFecha", (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 Ruta para obtener los registros de PUNTOS RANKING
+// 📢 Ruta para leer PUNTOS RANKING
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get("/leerPuntosRanking", (req, res) => {
   const query = "SELECT * FROM puntosranking WHERE id < 13";
@@ -707,71 +701,71 @@ app.get("/leerColapinto", (req, res) => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 Ruta para agregar un comentario
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-app.post("/agregar-comentario", (req, res) => {
-  const { usuario, comentario, fecha } = req.body;
+// app.post("/agregar-comentario", (req, res) => {
+//   const { usuario, comentario, fecha } = req.body;
 
-  if (comentario.length > 500) {
-    return res.status(400).json({
-      success: false,
-      message: "El comentario no puede superar los 500 caracteres",
-    });
-  }
+//   if (comentario.length > 500) {
+//     return res.status(400).json({
+//       success: false,
+//       message: "El comentario no puede superar los 500 caracteres",
+//     });
+//   }
 
-  const query =
-    "INSERT INTO comentarios (usuario, fecha, comentario) VALUES (?, ?, ?)";
-  pool.query(query, [usuario, fecha, comentario], (err, result) => {
-    if (err) throw err;
-    res.json({ success: true, message: "Comentario agregado correctamente" });
-  });
-});
+//   const query =
+//     "INSERT INTO comentarios (usuario, fecha, comentario) VALUES (?, ?, ?)";
+//   pool.query(query, [usuario, fecha, comentario], (err, result) => {
+//     if (err) throw err;
+//     res.json({ success: true, message: "Comentario agregado correctamente" });
+//   });
+// });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 Ruta para obtener comentarios
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-app.get("/comentarios", (req, res) => {
-  const limit = parseInt(req.query.limit) || 1; // Limite de comentarios a mostrar, por defecto 1
-  const offset = parseInt(req.query.offset) || 0; // Cuántos comentarios omitir, por defecto 0
+// app.get("/comentarios", (req, res) => {
+//   const limit = parseInt(req.query.limit) || 1; // Limite de comentarios a mostrar, por defecto 1
+//   const offset = parseInt(req.query.offset) || 0; // Cuántos comentarios omitir, por defecto 0
 
-  // Consulta para obtener comentarios de los últimos 15 días, ordenados por fecha descendente
-  const query = `
-    SELECT id, usuario, comentario, fecha
-    FROM comentarios
-    WHERE fecha >= NOW() - INTERVAL 90 DAY
-    ORDER BY fecha DESC
-    LIMIT ? OFFSET ?
-  `;
+//   // Consulta para obtener comentarios de los últimos 15 días, ordenados por fecha descendente
+//   const query = `
+//     SELECT id, usuario, comentario, fecha
+//     FROM comentarios
+//     WHERE fecha >= NOW() - INTERVAL 90 DAY
+//     ORDER BY fecha DESC
+//     LIMIT ? OFFSET ?
+//   `;
 
-  pool.query(query, [limit, offset], (error, results) => {
-    if (error) {
-      console.error("Error en la consulta de comentarios:", error);
-      return res
-        .status(500)
-        .json({ error: "Error en la consulta de comentarios" });
-    }
+//   pool.query(query, [limit, offset], (error, results) => {
+//     if (error) {
+//       console.error("Error en la consulta de comentarios:", error);
+//       return res
+//         .status(500)
+//         .json({ error: "Error en la consulta de comentarios" });
+//     }
 
-    // Verificamos si hay más comentarios para mostrar el botón "Ver todos"
-    const checkQuery = `
-      SELECT COUNT(*) as total
-      FROM comentarios
-      WHERE fecha >= NOW() - INTERVAL 15 DAY
-    `;
+//     // Verificamos si hay más comentarios para mostrar el botón "Ver todos"
+//     const checkQuery = `
+//       SELECT COUNT(*) as total
+//       FROM comentarios
+//       WHERE fecha >= NOW() - INTERVAL 15 DAY
+//     `;
 
-    pool.query(checkQuery, (err, countResult) => {
-      if (err) {
-        console.error("Error al contar los comentarios:", err);
-        return res
-          .status(500)
-          .json({ error: "Error al contar los comentarios" });
-      }
+//     pool.query(checkQuery, (err, countResult) => {
+//       if (err) {
+//         console.error("Error al contar los comentarios:", err);
+//         return res
+//           .status(500)
+//           .json({ error: "Error al contar los comentarios" });
+//       }
 
-      const totalComments = countResult[0].total;
-      res.json({
-        comments: results,
-        hasMore: totalComments > limit + offset, // Indica si hay más comentarios para mostrar
-      });
-    });
-  });
-});
+//       const totalComments = countResult[0].total;
+//       res.json({
+//         comments: results,
+//         hasMore: totalComments > limit + offset, // Indica si hay más comentarios para mostrar
+//       });
+//     });
+//   });
+// });
 
 /* Aquí he agregado los parámetros limit y offset para controlar cuántos comentarios mostrar y desde qué posición comenzar.
 La consulta checkQuery verifica cuántos comentarios totales hay para saber si se debe mostrar el botón "Ver todos". */
@@ -779,43 +773,33 @@ La consulta checkQuery verifica cuántos comentarios totales hay para saber si s
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 comentarios   delete
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-app.delete("/comentarios/:id", async (req, res) => {
-  const commentId = req.params.id;
-  const query = "DELETE FROM comentarios WHERE id = ?";
+// app.delete("/comentarios/:id", async (req, res) => {
+//   const commentId = req.params.id;
+//   const query = "DELETE FROM comentarios WHERE id = ?";
 
-  pool.query(query, [commentId], (err, results) => {
-    if (err) {
-      console.error("Error al eliminar el comentario:", err);
-      return res
-        .status(500)
-        .send({ message: "Error al eliminar el comentario" });
-    }
+//   pool.query(query, [commentId], (err, results) => {
+//     if (err) {
+//       console.error("Error al eliminar el comentario:", err);
+//       return res
+//         .status(500)
+//         .send({ message: "Error al eliminar el comentario" });
+//     }
 
-    // Verifica si se eliminó el comentario
-    if (results.affectedRows > 0) {
-      console.log("Comentario eliminado correctamente:", results);
-      res.status(200).send({ message: "Comentario eliminado" });
-    } else {
-      res.status(404).send({ message: "Comentario no encontrado" });
-    }
-  });
-});
+//     // Verifica si se eliminó el comentario
+//     if (results.affectedRows > 0) {
+//       console.log("Comentario eliminado correctamente:", results);
+//       res.status(200).send({ message: "Comentario eliminado" });
+//     } else {
+//       res.status(404).send({ message: "Comentario no encontrado" });
+//     }
+//   });
+// });
 
 const router = express.Router();
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 Obtener todas las canchas
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-// app.get('/api/canchas', async (req, res) => {
-//     try {
-//         const [rows] = await db.query('SELECT id, nombre FROM canchas');
-//         res.json(rows);
-//     } catch (err) {
-//         res.status(500).json({ error: 'Error al obtener canchas' });
-//     }
-// });
-
 app.get("/api/canchas", (req, res) => {
   const query = "SELECT * FROM canchas";
 
@@ -837,22 +821,6 @@ app.get("/api/canchas", (req, res) => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 Obtener hoyos (par y handicap) para una cancha
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-// app.get("/api/hoyos/:idCancha", async (req, res) => {
-//   const idCancha = req.params.idCancha;
-//   console.log(`cancha recibida  ${idCancha}`);
-//   try {
-//     const [rows] = await pool.query(
-//       "SELECT numero_hoyo, par, handicap FROM hoyos WHERE cancha_id = ? ORDER BY numero_hoyo",
-//       [idCancha]
-//     );
-//     res.json(rows);
-//   } catch (err) {
-//     console.error("Error al obtener hoyos:", err); // ← Agrega este log
-//     res.status(500).json({ error: "Error al obtener hoyos" });
-//   }
-// });
-
 app.get("/api/hoyos/:idCancha", async (req, res) => {
   const idCancha = req.params.idCancha;
   // console.log(`cancha recibida  ${idCancha}`);
@@ -865,15 +833,6 @@ app.get("/api/hoyos/:idCancha", async (req, res) => {
       res.status(500).json({ error: "Error al obtener las canchas" });
       return;
     }
-    // app.get("/api/tarjetas/jugadores-cargados", async (req, res) => {
-    //   const { fecha, cancha } = req.query;
-    //   const [rows] = await db.query(
-    //     "SELECT jugador FROM tarjetas WHERE fecha = ? AND cancha = ?",
-    //     [fecha, cancha]
-    //   );
-    //   const jugadores = rows.map((r) => r.jugador);
-    //   res.json(jugadores);
-    // });
 
     if (results.length > 0) {
       res.json(results);
@@ -927,8 +886,6 @@ app.post("/api/tarjetas", (req, res) => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 verifica si una tarjeta fue cargada
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// Guardar resultados de un jugador
-
 app.get("/api/tarjetas/verificar", (req, res) => {
   const { jugador, fecha, cancha } = req.query;
 
@@ -951,17 +908,6 @@ app.get("/api/tarjetas/verificar", (req, res) => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 verifica si el jugador tiene tarjeta cargada
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// verifica si tiene tarjeta cargada
-// app.get("/api/tarjetas/jugadores-cargados", async (req, res) => {
-//   const { fecha, cancha } = req.query;
-//   const [rows] = await db.query(
-//     "SELECT jugador FROM tarjetas WHERE fecha = ? AND cancha = ?",
-//     [fecha, cancha]
-//   );
-//   const jugadores = rows.map((r) => r.jugador);
-//   res.json(jugadores);
-// });
-
 app.get("/api/tarjetas/jugadores-cargados", async (req, res) => {
   const { fecha, cancha } = req.query;
   // console.log("👉 Ruta /api/tarjetas/jugadores-cargados llamada con:", {
