@@ -1174,7 +1174,9 @@
             let gross = totalGross;
             let neto = totalNeto;
             let hcpbolilla = handicapBolilla;
+            let fechaKey = fec + 1;
 
+            // ⚽⚽⚽⚽ guarda handicap Bolilla ⚽⚽⚽⚽⚽⚽
             let body = {
                 jugador,
                 cancha,
@@ -1182,7 +1184,8 @@
                 gross,
                 hcpcancha,
                 neto,
-                hcpbolilla
+                hcpbolilla,
+                fechaKey
             };
 
             if (!jugador || cancha == null || fecha == null || gross == null || hcpcancha == null || neto == null || hcpbolilla == null) {
@@ -1208,7 +1211,7 @@
                 console.error("Error al guardar:", error);
             }
 
-            // 🎫🎫🎫 graba tarjeta completa 🎫🎫🎫
+            // ⚽⚽⚽⚽ graba tarjeta completa ⚽⚽⚽⚽⚽⚽
 
             let hoyosValores = [];
             for (let i = 0; i < valoresGross.length; i++) {
@@ -1253,6 +1256,41 @@
                 alert(`Error al guardar resultados: ${err.message}`);
                 return; // Detener la ejecución si hay error
             }
+
+            // ⚽⚽⚽⚽ graba Colapinto ⚽⚽⚽⚽⚽⚽
+
+            let grossColapinto = hcpcancha + (hcpcancha * 0.5) + 72;
+
+            if (gross > grossColapinto) {
+                let body = {
+                    fecha,
+                    fechaKey,
+                    player,
+                    handicap,
+                    gross
+                };
+                try {
+                    const res = await fetch('/api/colapinto', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body),
+                        credentials: "include",
+                    });
+
+                    if (!res.ok) {
+                        throw new Error(`Error del servidor: ${res.status} ${res.statusText}`);
+                    }
+
+                    const data = await res.json();  // 👈 opcional para usar la respuesta
+                    console.log("Guardado correctamente:", data);
+
+                } catch (err) {
+                    console.error('Error al guardar resultados:', err.message);
+                    alert(`Error al guardar resultados: ${err.message}`);
+                    return; // Detener la ejecución si hay error
+                }
+            }
+
 
             // ⚽⚽⚽⚽ calcula los birdies ⚽⚽⚽⚽⚽⚽
             for (let i = 0; i < valoresGross.length; i++) {
@@ -1299,54 +1337,55 @@
                     tablaBerdis.push(nuevoBirdie);
                 }
             }
-        }
 
-        // ⚽⚽⚽⚽ calcula los negros  ⚽⚽⚽⚽⚽⚽
-        for (let i = 0; i < valoresGross.length; i++) {
-            const val = valoresGross[i];
-            const par = hoyos[i].par;
-            let limite;
 
-            if (handicap < 12) {
-                limite = par === 3 ? 5 : par === 4 ? 6 : 7;
-            } else if (handicap < 23) {
-                limite = par === 3 ? 6 : par === 4 ? 7 : 8;
-            } else {
-                limite = par === 3 ? 7 : par === 4 ? 8 : 9;
-            }
+            // ⚽⚽⚽⚽ calcula los negros  ⚽⚽⚽⚽⚽⚽
+            for (let i = 0; i < valoresGross.length; i++) {
+                const val = valoresGross[i];
+                const par = hoyos[i].par;
+                let limite;
 
-            // calcula que proporción del hcp le llevo el hoyo y el que más le llevó es más negro...
-            const indiceEsteNegro = (valoresGross[i] - par) / handicap;
-            const indiceViejoNegro = (berdiNegro[i]['negroScore'] - par) / berdiNegro[i]['negrohcp'];
-
-            if (val > limite && indiceEsteNegro > indiceViejoNegro) {
-                const nuevoNegro = {
-                    jugador,
-                    hoyo: i + 1,
-                    par,
-                    golpes: val,
-                    handicap
-                };
-
-                const negroActual = berdiNegro[i]["negrohcp"];
-                if (negroActual === null || negroActual > handicap) {
-                    nuevoNegro.ok = '🧥'; // 👈 agregás la propiedad directamente
+                if (handicap < 12) {
+                    limite = par === 3 ? 5 : par === 4 ? 6 : 7;
+                } else if (handicap < 23) {
+                    limite = par === 3 ? 6 : par === 4 ? 7 : 8;
+                } else {
+                    limite = par === 3 ? 7 : par === 4 ? 8 : 9;
                 }
-                tablaNegros.push(nuevoNegro);
-                fetch("/actualizaNegro", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
+
+                // calcula que proporción del hcp le llevo el hoyo y el que más le llevó es más negro...
+                const indiceEsteNegro = (valoresGross[i] - par) / handicap;
+                const indiceViejoNegro = (berdiNegro[i]['negroScore'] - par) / berdiNegro[i]['negrohcp'];
+
+                if (val > limite && indiceEsteNegro > indiceViejoNegro) {
+                    const nuevoNegro = {
+                        jugador,
                         hoyo: i + 1,
-                        negroFecha: fechaBerdiNegro,
-                        negroPlayer: jugador,
-                        negroScore: val,
-                        negrohcp: handicap
+                        par,
+                        golpes: val,
+                        handicap
+                    };
+
+                    const negroActual = berdiNegro[i]["negrohcp"];
+                    if (negroActual === null || negroActual > handicap) {
+                        nuevoNegro.ok = '🧥'; // 👈 agregás la propiedad directamente
+                    }
+                    tablaNegros.push(nuevoNegro);
+                    fetch("/actualizaNegro", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            hoyo: i + 1,
+                            negroFecha: fechaBerdiNegro,
+                            negroPlayer: jugador,
+                            negroScore: val,
+                            negrohcp: handicap
+                        })
                     })
-                })
-                    .then(res => res.json())
-                    .then(console.log)
-                    .catch(console.error);
+                        .then(res => res.json())
+                        .then(console.log)
+                        .catch(console.error);
+                }
             }
         }
 

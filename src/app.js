@@ -236,8 +236,7 @@ app.get("/leerTablaBerdis", (req, res) => {
     //   res.status(404).json({ error: "No se encontraron registros" });
     // }
 
-  res.json(results); // siempre devuelve un array (vacío o no)
-    
+    res.json(results); // siempre devuelve un array (vacío o no)
   });
 });
 
@@ -327,8 +326,6 @@ app.get("/leerPuntosRanking", (req, res) => {
   });
 });
 
-
-
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 actualiza Berdi Negro variable !!!!!!!
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -399,24 +396,30 @@ app.post("/actualizaBerdiNegro", (req, res) => {
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 actualiza Berdi 
+// 📢 actualiza Berdi
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post("/actualizaBerdi", (req, res) => {
   const { hoyo, berdiFecha, berdiPlayer, berdihcp } = req.body;
 
   if (!hoyo || berdihcp === undefined) {
-    return res.status(400).json({ error: 'Faltan datos: "hoyo" y "berdihcp" son obligatorios' });
+    return res
+      .status(400)
+      .json({ error: 'Faltan datos: "hoyo" y "berdihcp" son obligatorios' });
   }
 
   const selectQuery = "SELECT berdihcp FROM berdinegro WHERE hoyo = ?";
   pool.query(selectQuery, [hoyo], (err, results) => {
     if (err) {
       console.error("Error al consultar berdihcp:", err);
-      return res.status(500).json({ error: "Error al consultar el birdie existente" });
+      return res
+        .status(500)
+        .json({ error: "Error al consultar el birdie existente" });
     }
 
     if (results.length === 0) {
-      return res.status(404).json({ error: "No se encontró el hoyo especificado" });
+      return res
+        .status(404)
+        .json({ error: "No se encontró el hoyo especificado" });
     }
 
     const berdihcpActual = results[0].berdihcp;
@@ -429,30 +432,63 @@ app.post("/actualizaBerdi", (req, res) => {
         WHERE hoyo = ?
       `;
 
-      pool.query(updateQuery, [berdiFecha, berdiPlayer, berdihcp, hoyo], (error, result) => {
-        if (error) {
-          console.error("Error al actualizar el birdie:", error);
-          return res.status(500).json({ error: "Error al actualizar el birdie" });
-        }
+      pool.query(
+        updateQuery,
+        [berdiFecha, berdiPlayer, berdihcp, hoyo],
+        (error, result) => {
+          if (error) {
+            console.error("Error al actualizar el birdie:", error);
+            return res
+              .status(500)
+              .json({ error: "Error al actualizar el birdie" });
+          }
 
-        return res.status(200).json({ success: true, message: "Birdie actualizado correctamente" });
-      });
+          return res
+            .status(200)
+            .json({
+              success: true,
+              message: "Birdie actualizado correctamente",
+            });
+        }
+      );
     } else {
-      return res.status(200).json({ success: false, message: "Ya existe un birdie con mejor o igual handicap" });
+      return res
+        .status(200)
+        .json({
+          success: false,
+          message: "Ya existe un birdie con mejor o igual handicap",
+        });
     }
   });
 });
-
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 guardar-berdis
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post("/guardar-berdis", (req, res) => {
-  const { fechakey, hoyo, par, jugador, golpes, handicap, jugadorantes, handicapantes } = req.body;
+  const {
+    fechakey,
+    hoyo,
+    par,
+    jugador,
+    golpes,
+    handicap,
+    jugadorantes,
+    handicapantes,
+  } = req.body;
 
   const cambioberdi =
     "INSERT INTO nuevoberdi (fechakey, hoyo, par, jugador, golpes, handicap, jugadorantes, handicapantes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-  const datosAPasar = [fechakey, hoyo, par, jugador, golpes, handicap, jugadorantes, handicapantes];
+  const datosAPasar = [
+    fechakey,
+    hoyo,
+    par,
+    jugador,
+    golpes,
+    handicap,
+    jugadorantes,
+    handicapantes,
+  ];
 
   pool.query(cambioberdi, datosAPasar, function (error, lista) {
     if (error) {
@@ -465,28 +501,34 @@ app.post("/guardar-berdis", (req, res) => {
     } else {
       res.status(200).json({ success: true });
     }
-  })
+  });
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 actualiza Negro 
+// 📢 actualiza Negro
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post("/actualizaNegro", (req, res) => {
   const { hoyo, negroFecha, negroPlayer, negroScore, negrohcp } = req.body;
 
   if (!hoyo || negrohcp === undefined) {
-    return res.status(400).json({ error: 'Faltan datos: "hoyo" y "negrohcp" son obligatorios' });
+    return res
+      .status(400)
+      .json({ error: 'Faltan datos: "hoyo" y "negrohcp" son obligatorios' });
   }
 
   const selectQuery = "SELECT negrohcp FROM berdinegro WHERE hoyo = ?";
   pool.query(selectQuery, [hoyo], (err, results) => {
     if (err) {
       console.error("Error al consultar negrohcp:", err);
-      return res.status(500).json({ error: "Error al consultar el negro existente" });
+      return res
+        .status(500)
+        .json({ error: "Error al consultar el negro existente" });
     }
 
     if (results.length === 0) {
-      return res.status(404).json({ error: "No se encontró el hoyo especificado" });
+      return res
+        .status(404)
+        .json({ error: "No se encontró el hoyo especificado" });
     }
 
     const negrohcpActual = results[0].negrohcp;
@@ -499,21 +541,35 @@ app.post("/actualizaNegro", (req, res) => {
         WHERE hoyo = ?
       `;
 
-      pool.query(updateQuery, [negroFecha, negroPlayer, negroScore, negrohcp, hoyo], (error, result) => {
-        if (error) {
-          console.error("Error al actualizar el negro:", error);
-          return res.status(500).json({ error: "Error al actualizar el birdie" });
-        }
+      pool.query(
+        updateQuery,
+        [negroFecha, negroPlayer, negroScore, negrohcp, hoyo],
+        (error, result) => {
+          if (error) {
+            console.error("Error al actualizar el negro:", error);
+            return res
+              .status(500)
+              .json({ error: "Error al actualizar el birdie" });
+          }
 
-        return res.status(200).json({ success: true, message: "Negro actualizado correctamente" });
-      });
+          return res
+            .status(200)
+            .json({
+              success: true,
+              message: "Negro actualizado correctamente",
+            });
+        }
+      );
     } else {
-      return res.status(200).json({ success: false, message: "Ya existe un negro con mejor o igual handicap" });
+      return res
+        .status(200)
+        .json({
+          success: false,
+          message: "Ya existe un negro con mejor o igual handicap",
+        });
     }
   });
 });
-
-
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 elimina fecha
@@ -533,7 +589,17 @@ app.post("/grabaNetos", (req, res) => {
   const { fecnueva, play, neto, pos, pg, orden, anual, npt, cancha } = req.body;
   const nuevoNeto =
     "INSERT INTO netos (fec, play, neto, pos, pg, orden, anual, npt, cancha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-  const datosAPasar = [fecnueva, play, neto, pos, pg, orden, anual, npt, cancha];
+  const datosAPasar = [
+    fecnueva,
+    play,
+    neto,
+    pos,
+    pg,
+    orden,
+    anual,
+    npt,
+    cancha,
+  ];
 
   console.log(fecnueva, play, neto, pos, pg, orden, anual, npt, cancha);
 
@@ -558,10 +624,28 @@ app.post("/handicaps", (req, res) => {
   // if (!req.session.user){
   //     return res.status(401).json({ error: 'No estás autenticado' });
   // }
-  const { jugador, cancha, fecha, gross, hcpcancha, neto, hcpbolilla } = req.body;
+  const {
+    jugador,
+    cancha,
+    fecha,
+    gross,
+    hcpcancha,
+    neto,
+    hcpbolilla,
+    fechaKey,
+  } = req.body;
   const nuevohcp =
-    "INSERT INTO handicap (jugador, cancha, fecha, gross, hcpcancha, neto, hcpbolilla) VALUES (?, ?, ?, ?, ?, ?, ?)";
-  const datosAPasar = [jugador, cancha, fecha, gross, hcpcancha, neto, hcpbolilla];
+    "INSERT INTO handicap (jugador, cancha, fecha, gross, hcpcancha, neto, hcpbolilla) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+  const datosAPasar = [
+    jugador,
+    cancha,
+    fecha,
+    gross,
+    hcpcancha,
+    neto,
+    hcpbolilla,
+    fechaKey,
+  ];
 
   pool.query(nuevohcp, datosAPasar, function (error, lista) {
     if (error) {
@@ -577,6 +661,49 @@ app.post("/handicaps", (req, res) => {
   });
 });
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 Grabacion de  COLAPINTO
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+app.post("/colapinto", (req, res) => {
+  // if (!req.session.user){
+  //     return res.status(401).json({ error: 'No estás autenticado' });
+  // }
+
+  const { fecha, fechaKey, player, handicap, gross } = req.body;
+  const nuevocolapinto =
+    "INSERT INTO colapinto (fecha, fechaKey, player, handicap, gross) VALUES (?, ?, ?, ?, ?)";
+  const datosAPasar = [fecha, fechaKey, player, handicap, gross];
+
+  pool.query(nuevocolapinto, datosAPasar, function (error, resultado) {
+    if (error) {
+      console.error("Error al insertar en colapinto:", error);
+      res.status(500).json({ error: "Error al guardar el registro" });
+    } else {
+      res.status(200).json({ success: true });
+    }
+  });
+});
+
+//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 Ruta para obtener los registros de Colapinto
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+app.get("/leerColapinto", (req, res) => {
+  const query = "SELECT * FROM colapinto";
+
+  pool.query(query, (error, results, fields) => {
+    if (error) {
+      res.status(500).json({ error: "Error al obtener los DatosFecha" });
+      console.log("error servidor al obtener registros");
+      return;
+    }
+
+    if (results.length > 0) {
+      res.json(results);
+    } else {
+      res.status(404).json({ error: "No se encontraron registros" });
+    }
+  });
+});
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 Ruta para agregar un comentario
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -761,8 +888,7 @@ app.get("/api/hoyos/:idCancha", async (req, res) => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // Guardar resultados de un jugador
 app.post("/api/tarjetas", (req, res) => {
-
-  console.log('entro a grabar tarjeta')
+  console.log("entro a grabar tarjeta");
   const { jugador, fecha, cancha, handicap, hoyos } = req.body;
 
   if (!jugador || !fecha || !cancha || !handicap || !Array.isArray(hoyos)) {
@@ -791,11 +917,11 @@ app.post("/api/tarjetas", (req, res) => {
       console.error("Error al grabar la tarjeta:", error);
       return res.status(500).json({ error: "Error al grabar la tarjeta" });
     }
-    console.log("tarjeta grabada con éxito")
+    console.log("tarjeta grabada con éxito");
     res.json({ message: "Tarjeta guardada con éxito" });
   });
 
-  console.log('termino de grabar la tarjeta')
+  console.log("termino de grabar la tarjeta");
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
