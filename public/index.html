@@ -321,7 +321,8 @@ Bootstrap 5 Dashboard Admin Template
                             <div class="container oculto mt-3" id="paso6">
                                 <fieldset id="tablaNegroFS">
                                     <center>
-                                        <span style="font-size: 1rem; font-weight: bold;">🏴‍☠️🏴‍☠️ Hoyos negros 🏴‍☠️🏴‍☠️</span>
+                                        <span style="font-size: 1rem; font-weight: bold;">🏴‍☠️🏴‍☠️ Hoyos negros
+                                            🏴‍☠️🏴‍☠️</span>
                                     </center>
                                     <table id="tablaNegros" class="otraTablaLinda" style="max-height: 20px;">
                                         <thead>
@@ -346,7 +347,8 @@ Bootstrap 5 Dashboard Admin Template
                             <div class="container oculto mt-3" id="paso7">
                                 <fieldset id="tablaColapintoFS">
                                     <center>
-                                        <span style="font-size: 1rem; font-weight: bold;">🚒🚒 Colapinto del dia 🚒🚒</span>
+                                        <span style="font-size: 1rem; font-weight: bold;">🚒🚒 Colapinto del dia
+                                            🚒🚒</span>
                                     </center>
                                     <table id="tablaColapintoHoy" class="otraTablaLinda" style="max-height: 20px;">
                                         <thead>
@@ -505,6 +507,17 @@ Bootstrap 5 Dashboard Admin Template
                             <br>
                         </div>
                     </div>
+
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Jugador</th>
+                                <th>Promedio HCP</th>
+                                <th>Cantidad de registros</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaPromedios"></tbody>
+                    </table>
 
                     <div class="col-lg-7 col-12">
                         <div class="custom-block custom-block-exchange"> <!-- Presupuesto y Gastos -->
@@ -723,7 +736,7 @@ Bootstrap 5 Dashboard Admin Template
         </div>
     </div>
 
-<!--   /* 🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎 */ --> 
+    <!--   /* 🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎 */ -->
 
     <script>
         window.addEventListener("DOMContentLoaded", () => {
@@ -762,6 +775,8 @@ Bootstrap 5 Dashboard Admin Template
             }
             datosColapinto = colapintos;
             mostrarTablaColapinto();
+
+            cargarPromedios();
         };
 
         let offset = 0;
@@ -987,7 +1002,44 @@ Bootstrap 5 Dashboard Admin Template
                 console.error("Error en la solicitud:", error);
                 return null;
             }
-        } 
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        // 🥎  cargarPromedios ult 6 ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽   
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function cargarPromedios() {
+            try {
+                const response = await fetch('/api/promedios');
+                if (!response.ok) throw new Error('Error al obtener los promedios');
+
+                const datos = await response.json();
+                console.log('datos promedios')
+                console.table (datos)
+                const tbody = document.getElementById('tablaPromedios');
+                tbody.innerHTML = '';
+
+                datos.forEach(({ jugador, promedio, cantidad }) => {
+                    const fila = `
+          <tr>
+            <td>${jugador}</td>
+            <td>${promedio}</td>
+            <td>${cantidad}</td>
+          </tr>
+        `;
+                    tbody.innerHTML += fila;
+                });
+            } catch (error) {
+                console.error('Error al cargar promedios:', error);
+            }
+        }
+
+
+
+
+
+
+
+
     </script>
 
     <!-- JAVASCRIPT FILES -->

@@ -1,0 +1,38 @@
+<table border="1" id="tablaPromedios">
+  <thead>
+    <tr>
+      <th>Jugador</th>
+      <th>Promedio</th>
+      <th>Cantidad</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+<button id="btnCargar">Cargar Promedios</button>
+
+<script>
+  document.getElementById('btnCargar').addEventListener('click', async () => {
+    try {
+      const response = await fetch('/api/promedios');
+      if (!response.ok) throw new Error('Error en la respuesta');
+
+      const datos = await response.json();
+      const tbody = document.querySelector('#tablaPromedios tbody');
+      tbody.innerHTML = '';
+
+      datos.forEach(({ jugador, promedio, cantidad }) => {
+        const fila = `
+          <tr>
+            <td>${jugador}</td>
+            <td>${promedio}</td>
+            <td>${cantidad}</td>
+          </tr>
+        `;
+        tbody.innerHTML += fila;
+      });
+    } catch (error) {
+      console.error('Error al llamar a API:', error);
+      alert('Error: ' + error.message);
+    }
+  });
+</script>

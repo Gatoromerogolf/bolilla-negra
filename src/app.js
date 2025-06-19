@@ -437,21 +437,17 @@ app.post("/actualizaBerdi", (req, res) => {
               .json({ error: "Error al actualizar el birdie" });
           }
 
-          return res
-            .status(200)
-            .json({
-              success: true,
-              message: "Birdie actualizado correctamente",
-            });
+          return res.status(200).json({
+            success: true,
+            message: "Birdie actualizado correctamente",
+          });
         }
       );
     } else {
-      return res
-        .status(200)
-        .json({
-          success: false,
-          message: "Ya existe un birdie con mejor o igual handicap",
-        });
+      return res.status(200).json({
+        success: false,
+        message: "Ya existe un birdie con mejor o igual handicap",
+      });
     }
   });
 });
@@ -546,21 +542,17 @@ app.post("/actualizaNegro", (req, res) => {
               .json({ error: "Error al actualizar el birdie" });
           }
 
-          return res
-            .status(200)
-            .json({
-              success: true,
-              message: "Negro actualizado correctamente",
-            });
+          return res.status(200).json({
+            success: true,
+            message: "Negro actualizado correctamente",
+          });
         }
       );
     } else {
-      return res
-        .status(200)
-        .json({
-          success: false,
-          message: "Ya existe un negro con mejor o igual handicap",
-        });
+      return res.status(200).json({
+        success: false,
+        message: "Ya existe un negro con mejor o igual handicap",
+      });
     }
   });
 });
@@ -694,7 +686,7 @@ app.get("/leerColapinto", (req, res) => {
     if (results.length > 0) {
       res.json(results);
     } else {
-      res.status(404).json({ error: "No se encontraron registros" });
+      res.json([]); // si no hay registros devuelve vacío
     }
   });
 });
@@ -925,6 +917,49 @@ app.get("/api/tarjetas/jugadores-cargados", async (req, res) => {
 
     const jugadores = results.map((r) => r.jugador);
     res.json(jugadores);
+  });
+});
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 calculo de 6 handicap bolilla
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+app.get("/api/promedios", (req, res) => {
+  const query = `
+    SELECT jugador, hcpbolilla
+    FROM (
+      SELECT jugador, hcpbolilla,
+             ROW_NUMBER() OVER (PARTITION BY jugador ORDER BY fechaKey DESC) AS rn
+      FROM handicap
+    ) AS sub
+    WHERE rn <= 6
+  `;
+
+  pool.query(query, (error, rows) => {
+    if (error) {
+      console.error("Error al obtener promedios:", error);
+      return res.status(500).json({ error: "Error al obtener los datos" });
+    }
+
+    // Agrupar por jugador
+    const jugadores = {};
+    for (const row of rows) {
+      const { jugador, hcpbolilla } = row;
+      if (!jugadores[jugador]) jugadores[jugador] = [];
+      jugadores[jugador].push(hcpbolilla);
+    }
+
+    // Calcular promedio y cantidad
+    const resultados = Object.entries(jugadores).map(([jugador, valores]) => {
+      const suma = valores.reduce((a, b) => a + b, 0);
+      const promedio = (suma / valores.length).toFixed(2);
+      return {
+        jugador,
+        promedio,
+        cantidad: valores.length,
+      };
+    });
+
+    res.json(resultados);
   });
 });
 
