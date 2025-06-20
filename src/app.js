@@ -925,9 +925,9 @@ app.get("/api/tarjetas/jugadores-cargados", async (req, res) => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get("/api/promedios", (req, res) => {
   const query = `
-    SELECT jugador, hcpbolilla
+    SELECT jugador, hcpbolilla, hcpcancha
     FROM (
-      SELECT jugador, hcpbolilla,
+      SELECT jugador, hcpbolilla, hcpcancha,
              ROW_NUMBER() OVER (PARTITION BY jugador ORDER BY fechaKey DESC) AS rn
       FROM handicap
     ) AS sub
@@ -943,33 +943,47 @@ app.get("/api/promedios", (req, res) => {
     // Agrupar por jugador
     const jugadores = {};
     for (const row of rows) {
-      const { jugador, hcpbolilla } = row;
-      if (!jugadores[jugador]) jugadores[jugador] = [];
-      jugadores[jugador].push(hcpbolilla);
+      const { jugador, hcpbolilla, hcpcancha } = row;
+
+      if (!jugadores[jugador]) {
+        jugadores[jugador] = {
+          bolillas: [],
+          hcpcancha: null,
+        };
+      }
+
+      jugadores[jugador].bolillas.push(hcpbolilla);
+
+      // Guardar solo el primer hcpcancha (el de rn = 1)
+      if (jugadores[jugador].hcpcancha === null) {
+        jugadores[jugador].hcpcancha = hcpcancha;
+      }
     }
 
     // Calcular promedio y cantidad
-    const resultados = Object.entries(jugadores).map(([jugador, valores]) => {
-      const suma = valores.reduce((a, b) => a + b, 0);
-      const promedio = (suma / valores.length).toFixed(2);
+    const resultados = Object.entries(jugadores).map(([jugador, datos]) => {
+      const suma = datos.bolillas.reduce((a, b) => a + b, 0);
+      const promedio = Math.round(suma / datos.bolillas.length);
+
       return {
         jugador,
+        handicap: datos.hcpcancha,
         promedio,
-        cantidad: valores.length,
+        cantidad: datos.bolillas.length,
       };
     });
 
-    res.json(resultados);
+    res.json(resultados); // 👈 faltaba enviar la respuesta
   });
 });
 
-// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// 📢 Captura todas las otras rutas para mostrar un 404
-// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-app.get("*", (req, res) => {
-  res.status(404).send("Page Not Found");
-});
+  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  // 📢 Captura todas las otras rutas para mostrar un 404
+  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  app.get("*", (req, res) => {
+    res.status(404).send("Page Not Found");
+  });
 
-// Use PORT provided in environment or default to 3000
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server is listening on port ${port}`));
+  // Use PORT provided in environment or default to 3000
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => console.log(`Server is listening on port ${port}`));

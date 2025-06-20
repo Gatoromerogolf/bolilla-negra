@@ -508,16 +508,24 @@ Bootstrap 5 Dashboard Admin Template
                         </div>
                     </div>
 
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>Jugador</th>
-                                <th>Promedio HCP</th>
-                                <th>Cantidad de registros</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tablaPromedios"></tbody>
-                    </table>
+                    <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                        <!-- La vuelta Colapinto -->
+                        <h5 class="mb-3">📈📉 Handicap Bolilla 📈📉</h5>
+                        <p class="mb-2">Los numeros verdaderos según las ultimas 6 tarjetas.</p>
+                        <table id="tablaHandicapBolilla">
+                            <thead>
+                                <tr>
+                                    <th>Jugador</th>
+                                    <th>Hcp</th>
+                                    <th>Hcp Bol</th>
+                                    <th>DIF</th>
+                                    <th>Tarjetas</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaPromedios">
+                            </tbody>
+                        </table>
+                    </div>
 
                     <div class="col-lg-7 col-12">
                         <div class="custom-block custom-block-exchange"> <!-- Presupuesto y Gastos -->
@@ -666,7 +674,8 @@ Bootstrap 5 Dashboard Admin Template
                                 </table>
                             </div>
 
-                            <p class="mt-4">Agradecemos la particiación de Ricky quien finalizó la gira con un excelente
+                            <p class="mt-4">Agradecemos la particiación de Ricky quien finalizó la gira con un
+                                excelente
                                 score de 240 golpes.</p>
 
 
@@ -692,8 +701,10 @@ Bootstrap 5 Dashboard Admin Template
                             </div>
 
                             <p class="mt-4">Se define en proxima fecha en la que se encuentren igual cantidad de
-                                jugadores de Altos y de Campo, en la modalidad match, con el handicap otorgado en la
-                                cancha. Los capitanes decidirán los enfrentamientos y se comunicará el inicio de la
+                                jugadores de Altos y de Campo, en la modalidad match, con el handicap otorgado
+                                en la
+                                cancha. Los capitanes decidirán los enfrentamientos y se comunicará el inicio de
+                                la
                                 ronda.</p>
                         </div>
                     </div>
@@ -1013,16 +1024,34 @@ Bootstrap 5 Dashboard Admin Template
                 if (!response.ok) throw new Error('Error al obtener los promedios');
 
                 const datos = await response.json();
-                console.log('datos promedios')
-                console.table (datos)
+                // console.log('datos promedios')
+                // console.table(datos)
                 const tbody = document.getElementById('tablaPromedios');
                 tbody.innerHTML = '';
 
-                datos.forEach(({ jugador, promedio, cantidad }) => {
+                datos.forEach(({ jugador, handicap, promedio, cantidad }) => {
+                    const dif = handicap - promedio;
+                    // Definir colores según valor
+                    let colorFondo, colorTexto;
+
+                    if (dif > 0) {
+                        colorFondo = '#d4edda'; // verde claro
+                        colorTexto = '#155724'; // verde oscuro
+                    } else if (dif < 0) {
+                        colorFondo = '#f8d7da'; // rojo claro
+                        colorTexto = '#721c24'; // rojo oscuro
+                    } else {
+                        colorFondo = '#856404'; // amarillo claro
+                        colorTexto = '#ffffff'; // amarillo oscuro
+                    }
                     const fila = `
           <tr>
             <td>${jugador}</td>
+            <td>${handicap}</td>
             <td>${promedio}</td>
+            <td style="background-color:${colorFondo}; color:${colorTexto}; font-weight:bold;">
+                ${dif}
+            </td>
             <td>${cantidad}</td>
           </tr>
         `;
