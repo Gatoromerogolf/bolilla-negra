@@ -259,7 +259,7 @@ Bootstrap 5 Dashboard Admin Template
                     <div class="col-lg-5 col-12">
                         <div class="custom-block custom-block-transations"> <!-- ultimo torneo disputado -->
                             <center>
-                                <h4 class="mb-4">Ultimo torneo disputado</h4>
+                                <h4 class="mb-4">📅 Último torneo disputado 📅</h4>
                                 <div>
                                     <h6 id="ultimaFecha"></h6>
                                     <span style="font-size: 1rem; font-weight: bold;">Jugadores:</span>
@@ -294,7 +294,7 @@ Bootstrap 5 Dashboard Admin Template
                                 </table>
                             </div>
 
-                            <div class="container oculto" id="paso5">
+                            <div class="container oculto mt-3" id="paso5">
                                 <div id="tablaBerdisFS">
                                     <center>
                                         <span style="font-size: 1rem; font-weight: bold;">🏆🏆 Birdies 🏆🏆</span>
@@ -318,7 +318,7 @@ Bootstrap 5 Dashboard Admin Template
                                 </div>
                             </div>
 
-                            <div class="container oculto mt-3" id="paso6">
+                            <div class="container oculto mt-4" id="paso6">
                                 <fieldset id="tablaNegroFS">
                                     <center>
                                         <span style="font-size: 1rem; font-weight: bold;">🏴‍☠️🏴‍☠️ Hoyos negros
@@ -344,7 +344,7 @@ Bootstrap 5 Dashboard Admin Template
                                 </fieldset>
                             </div>
 
-                            <div class="container oculto mt-3" id="paso7">
+                            <div class="container oculto mt-4" id="paso7">
                                 <fieldset id="tablaColapintoFS">
                                     <center>
                                         <span style="font-size: 1rem; font-weight: bold;">🚒🚒 Colapinto del dia
@@ -369,7 +369,6 @@ Bootstrap 5 Dashboard Admin Template
                                 </fieldset>
                             </div>
 
-
                             <div class="border-top pt-4 mt-4 text-center">
                                 <a class="btn custom-btn" href="wallet.html">
                                     Ver todos los resultados
@@ -377,10 +376,12 @@ Bootstrap 5 Dashboard Admin Template
                                 </a>
                             </div>
                         </div>
+                    </div>
 
+                    <div class="col-lg-5 col-12">
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
                             <!-- mejor Score del mes -->
-                            <h5 class="mb-3">Mejor score del mes</h5>
+                            <h5 class="mb-3">🎰 Mejor score del mes 🎰</h5>
                             <table id="tablaMejorScore">
                                 <thead>
                                     <tr>
@@ -400,7 +401,7 @@ Bootstrap 5 Dashboard Admin Template
 
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
                             <!-- pelotas ganadas -->
-                            <h5 class="mb-3">Pelotas Ganadas</h5>
+                            <h5 class="mb-3">⚽ Pelotas Ganadas ⚽</h5>
                             <p class="mb-2">El jugador con la mayor cantidad de pelotas ganadas al día de
                                 la fecha:</p>
                             <div class="custom-block-profile-image-wrap mb-3">
@@ -417,10 +418,15 @@ Bootstrap 5 Dashboard Admin Template
                                 </a>
                             </div>
                         </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
 
+                <div class="row my-4">
+                    <div class="col-lg-5 col-12">
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
                             <!-- Birdies y negros -->
-                            <h5 class="mb-3">Birdies y Negros</h5>
+                            <h5 class="mb-3">🎖 Birdies y Negros 🕶</h5>
                             <p class="mb-2">Una de cal y una de arena.</p>
                             <table id="berdinegro">
                                 <thead>
@@ -482,7 +488,9 @@ Bootstrap 5 Dashboard Admin Template
                                 </tr>
                             </table>
                         </div>
+                    </div>
 
+                    <div class="col-lg-5 col-12">
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
                             <!-- La vuelta Colapinto -->
                             <h5 class="mb-3">🚒🚒 Las vueltas Colapinto 🚒🚒</h5>
@@ -506,231 +514,233 @@ Bootstrap 5 Dashboard Admin Template
                             </table>
                             <br>
                         </div>
-                    </div>
 
-                    <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
-                        <!-- La vuelta Colapinto -->
-                        <h5 class="mb-3">📈📉 Handicap Bolilla 📈📉</h5>
-                        <p class="mb-2">Los numeros verdaderos según las ultimas 6 tarjetas.</p>
-                        <table id="tablaHandicapBolilla">
-                            <thead>
-                                <tr>
-                                    <th>Jugador</th>
-                                    <th>Hcp</th>
-                                    <th>Hcp Bol</th>
-                                    <th>DIF</th>
-                                    <th>Tarjetas</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tablaPromedios">
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="col-lg-7 col-12">
-                        <div class="custom-block custom-block-exchange"> <!-- Presupuesto y Gastos -->
-
-                            <h3>Resultados Gira Sierra 2025</h3>
-
-                            <div style="width:100%px; height: 490px;">
-                                <table id="resultadoSierra" style="width: 220px; position: relative;">
-                                    <thead>
-                                        <colgroup>
-                                            <col style="width: 10px;" ;>
-                                            <col style="background-color: rgb(250, 250, 32)" ;>
-                                            <col style="background-color: rgb(95, 242, 122)" ;>
-                                            <col style="width: 10px;" ;>
-                                            <col style="width: 10px;" ;>
-                                            <col style="width: 10px;" ;>
-                                            <col style="background-color: rgb(246, 84, 168)" ;>
-                                            <col style="background-color: rgb(165, 171, 166)" ;>
-                                        </colgroup>
-
-                                        <tr>
-                                            <th>Pos</th>
-                                            <th id="namePlayer2">Jugador</th>
-                                            <th>Neto</th>
-                                            <th>Cari</th>
-                                            <th>Acan</th>
-                                            <th>Sier</th>
-                                            <th>Anual</th>
-                                            <th>Pelo</th>
-
-                                        </tr>
-                                        <tr>
-                                            <td>1°</td>
-                                            <td>Juancho</td>
-                                            <td>237</td>
-                                            <td>77</td>
-                                            <td>72</td>
-                                            <td>88</td>
-                                            <td>25</td>
-                                            <td>6</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2°</td>
-                                            <td>Panza</td>
-                                            <td>246</td>
-                                            <td>75</td>
-                                            <td>75</td>
-                                            <td>96</td>
-                                            <td>17</td>
-                                            <td>8</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3°</td>
-                                            <td>Diegui</td>
-                                            <td>249</td>
-                                            <td>90</td>
-                                            <td>76</td>
-                                            <td>83</td>
-                                            <td>13</td>
-                                            <td>6</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4°</td>
-                                            <td>Torni</td>
-                                            <td>250</td>
-                                            <td>80</td>
-                                            <td>85</td>
-                                            <td>85</td>
-                                            <td>11</td>
-                                            <td>5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5°</td>
-                                            <td>Sensei</td>
-                                            <td>251</td>
-                                            <td>87</td>
-                                            <td>78</td>
-                                            <td>86</td>
-                                            <td>9</td>
-                                            <td>4</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6°</td>
-                                            <td>Fer</td>
-                                            <td>254</td>
-                                            <td>81</td>
-                                            <td>80</td>
-                                            <td>93</td>
-                                            <td>7</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7°</td>
-                                            <td>Edu</td>
-                                            <td>258</td>
-                                            <td>92</td>
-                                            <td>81</td>
-                                            <td>85</td>
-                                            <td>5</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8°</td>
-                                            <td>Julito</td>
-                                            <td>258</td>
-                                            <td>92</td>
-                                            <td>76</td>
-                                            <td>90</td>
-                                            <td>3</td>
-                                            <td>1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9°</td>
-                                            <td>Gaby</td>
-                                            <td>259</td>
-                                            <td>89</td>
-                                            <td>83</td>
-                                            <td>87</td>
-                                            <td>2</td>
-                                            <td>1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10°</td>
-                                            <td>Negro</td>
-                                            <td>259</td>
-                                            <td>82</td>
-                                            <td>86</td>
-                                            <td>91</td>
-                                            <td>2</td>
-                                            <td>-</td>
-                                        </tr>
-                                        <tr>
-                                            <td>11°</td>
-                                            <td>Joaco</td>
-                                            <td>262</td>
-                                            <td>85</td>
-                                            <td>86</td>
-                                            <td>91</td>
-                                            <td>1</td>
-                                            <td>-</td>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <p class="mt-4">Agradecemos la particiación de Ricky quien finalizó la gira con un
-                                excelente
-                                score de 240 golpes.</p>
-
-
-                            <h3 class="mt-4">Resultados Ryder 2025</h3>
-                            <div style="width:100%px; ">
-                                <table id="RyderSierra" style="width: 300px; position: relative;">
-                                    <thead>
-                                        <colgroup>
-                                            <col style="background-color: rgb(250, 250, 32)" ;>
-                                            <col style="width: 10px;" ;>
-                                            <col style="background-color: rgb(250, 250, 32)" ;>
-                                            <col style="width: 10px;" ;>
-                                        </colgroup>
-
-                                        <tr>
-                                            <th>Altos de Campo Grande</th>
-                                            <th>7 puntos</th>
-                                            <th>Campo Grande</th>
-                                            <th>7 puntos</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-
-                            <p class="mt-4">Se define en proxima fecha en la que se encuentren igual cantidad de
-                                jugadores de Altos y de Campo, en la modalidad match, con el handicap otorgado
-                                en la
-                                cancha. Los capitanes decidirán los enfrentamientos y se comunicará el inicio de
-                                la
-                                ronda.</p>
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <!-- La vuelta Colapinto -->
+                            <h5 class="mb-3">📈📉 Handicap Bolilla 📈📉</h5>
+                            <p class="mb-2">Los números verdaderos según las últimas 6 tarjetas.</p>
+                            <table id="tablaHandicapBolilla">
+                                <thead>
+                                    <tr>
+                                        <th>Jugador</th>
+                                        <th>Hcp</th>
+                                        <th>Hcp Bol</th>
+                                        <th>DIF</th>
+                                        <th>Tarjetas</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaPromedios">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                </div>
 
-                    <div class="custom-block custom-block-bottom d-flex flex-wrap">
-                        <div class="custom-block-bottom-item">
+                <div class="col-lg-6 col-12">
+                    <div class="custom-block custom-block-exchange"> <!-- Presupuesto y Gastos -->
+
+                        <h3>Resultados Gira Sierra 2025</h3>
+
+                        <div style="width:100%px; height: 490px;">
+                            <table id="resultadoSierra" style="width: 220px; position: relative;">
+                                <thead>
+                                    <colgroup>
+                                        <col style="width: 10px;" ;>
+                                        <col style="background-color: rgb(250, 250, 32)" ;>
+                                        <col style="background-color: rgb(95, 242, 122)" ;>
+                                        <col style="width: 10px;" ;>
+                                        <col style="width: 10px;" ;>
+                                        <col style="width: 10px;" ;>
+                                        <col style="background-color: rgb(246, 84, 168)" ;>
+                                        <col style="background-color: rgb(165, 171, 166)" ;>
+                                    </colgroup>
+
+                                    <tr>
+                                        <th>Pos</th>
+                                        <th id="namePlayer2">Jugador</th>
+                                        <th>Neto</th>
+                                        <th>Cari</th>
+                                        <th>Acan</th>
+                                        <th>Sier</th>
+                                        <th>Anual</th>
+                                        <th>Pelo</th>
+
+                                    </tr>
+                                    <tr>
+                                        <td>1°</td>
+                                        <td>Juancho</td>
+                                        <td>237</td>
+                                        <td>77</td>
+                                        <td>72</td>
+                                        <td>88</td>
+                                        <td>25</td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2°</td>
+                                        <td>Panza</td>
+                                        <td>246</td>
+                                        <td>75</td>
+                                        <td>75</td>
+                                        <td>96</td>
+                                        <td>17</td>
+                                        <td>8</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3°</td>
+                                        <td>Diegui</td>
+                                        <td>249</td>
+                                        <td>90</td>
+                                        <td>76</td>
+                                        <td>83</td>
+                                        <td>13</td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4°</td>
+                                        <td>Torni</td>
+                                        <td>250</td>
+                                        <td>80</td>
+                                        <td>85</td>
+                                        <td>85</td>
+                                        <td>11</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5°</td>
+                                        <td>Sensei</td>
+                                        <td>251</td>
+                                        <td>87</td>
+                                        <td>78</td>
+                                        <td>86</td>
+                                        <td>9</td>
+                                        <td>4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6°</td>
+                                        <td>Fer</td>
+                                        <td>254</td>
+                                        <td>81</td>
+                                        <td>80</td>
+                                        <td>93</td>
+                                        <td>7</td>
+                                        <td>3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7°</td>
+                                        <td>Edu</td>
+                                        <td>258</td>
+                                        <td>92</td>
+                                        <td>81</td>
+                                        <td>85</td>
+                                        <td>5</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8°</td>
+                                        <td>Julito</td>
+                                        <td>258</td>
+                                        <td>92</td>
+                                        <td>76</td>
+                                        <td>90</td>
+                                        <td>3</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9°</td>
+                                        <td>Gaby</td>
+                                        <td>259</td>
+                                        <td>89</td>
+                                        <td>83</td>
+                                        <td>87</td>
+                                        <td>2</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10°</td>
+                                        <td>Negro</td>
+                                        <td>259</td>
+                                        <td>82</td>
+                                        <td>86</td>
+                                        <td>91</td>
+                                        <td>2</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>11°</td>
+                                        <td>Joaco</td>
+                                        <td>262</td>
+                                        <td>85</td>
+                                        <td>86</td>
+                                        <td>91</td>
+                                        <td>1</td>
+                                        <td>-</td>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="custom-block-bottom-item">
+
+                        <p class="mt-4">Agradecemos la particiación de Ricky quien finalizó la gira con un
+                            excelente
+                            score de 240 golpes.</p>
+
+
+                        <h3 class="mt-4">Resultados Ryder 2025</h3>
+                        <div style="width:100%px; ">
+                            <table id="RyderSierra" style="width: 300px; position: relative;">
+                                <thead>
+                                    <colgroup>
+                                        <col style="background-color: rgb(250, 250, 32)" ;>
+                                        <col style="width: 10px;" ;>
+                                        <col style="background-color: rgb(250, 250, 32)" ;>
+                                        <col style="width: 10px;" ;>
+                                    </colgroup>
+
+                                    <tr>
+                                        <th>Altos de Campo Grande</th>
+                                        <th>7 puntos</th>
+                                        <th>Campo Grande</th>
+                                        <th>7 puntos</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
-                        <div class="custom-block-bottom-item">
-                        </div>
-                        <div class="custom-block-bottom-item">
+
+                        <p class="mt-4">Se define en proxima fecha en la que se encuentren igual cantidad de
+                            jugadores de Altos y de Campo, en la modalidad match, con el handicap otorgado
+                            en la
+                            cancha. Los capitanes decidirán los enfrentamientos y se comunicará el inicio de
+                            la
+                            ronda.</p>
+                    </div>
+                </div>
+
+                <div class="custom-block custom-block-bottom d-flex flex-wrap">
+                    <div class="custom-block-bottom-item">
+                    </div>
+                    <div class="custom-block-bottom-item">
+                    </div>
+                    <div class="custom-block-bottom-item">
+                    </div>
+                    <div class="custom-block-bottom-item">
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-12">
+                </div>
+
+                <footer class="site-footer">
+                    <div class="container">
+                        <div class="row">
                         </div>
                     </div>
-
-                    <div class="col-lg-9 col-12">
-                    </div>
-
-                    <footer class="site-footer">
-                        <div class="container">
-                            <div class="row">
-                            </div>
-                        </div>
-                    </footer>
-            </main>
+                </footer>
         </div>
+        </main>
+    </div>
     </div>
 
     <div id="modalPelotasGanadas" class="modal-Pelotas" style="display:none">
