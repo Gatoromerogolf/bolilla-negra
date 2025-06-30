@@ -353,7 +353,6 @@ Bootstrap 5 Dashboard Admin Template
                                     <table id="tablaColapintoHoy" class="otraTablaLinda" style="max-height: 20px;">
                                         <thead>
                                             <tr>
-                                                <th>Date</th>
                                                 <th>Player</th>
                                                 <th>Hcp</th>
                                                 <th>50%</th>
@@ -515,7 +514,6 @@ Bootstrap 5 Dashboard Admin Template
                         </div>
 
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
-                            <!-- La vuelta Colapinto -->
                             <h5 class="mb-3">📈📉 Handicap Bolilla 📈📉</h5>
                             <p class="mb-2">Los números verdaderos según las últimas 6 tarjetas.</p>
                             <table id="tablaHandicapBolilla">
@@ -924,18 +922,18 @@ Bootstrap 5 Dashboard Admin Template
                 const fila = tabla.insertRow();
 
                 // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
-                fila.insertCell(0).textContent = registro.fecha;
-                fila.insertCell(1).textContent = registro.player;
-                fila.insertCell(2).textContent = registro.handicap;
+                // fila.insertCell(0).textContent = registro.fecha;
+                fila.insertCell(0).textContent = registro.player;
+                fila.insertCell(1).textContent = registro.handicap;
                 let cincuenta = registro.handicap / 2;
-                fila.insertCell(3).textContent = cincuenta;
+                fila.insertCell(2).textContent = cincuenta;
                 let unoymedio = registro.handicap + cincuenta;
-                fila.insertCell(4).textContent = unoymedio;
+                fila.insertCell(3).textContent = unoymedio;
                 let maximo = 72 + unoymedio;
-                fila.insertCell(5).textContent = maximo;
-                fila.insertCell(6).textContent = registro.gross;
+                fila.insertCell(4).textContent = maximo;
+                fila.insertCell(5).textContent = registro.gross;
                 let plus = registro.gross - maximo
-                fila.insertCell(7).textContent = plus;
+                fila.insertCell(6).textContent = plus;
             });
         }
 
