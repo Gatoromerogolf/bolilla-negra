@@ -285,6 +285,7 @@ app.post("/grabaUltimaFecha", (req, res) => {
     ctddJugadores,
   ];
 
+  console.log("Datos a insertar:", datosAPasar);
   pool.query(nuevaFecha, datosAPasar, function (error, lista) {
     if (error) {
       if (error.code === "ER_DUP_ENTRY") {
@@ -457,27 +458,13 @@ app.post("/actualizaBerdi", (req, res) => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post("/guardar-berdis", (req, res) => {
   const {
-    fechakey,
-    hoyo,
-    par,
-    jugador,
-    golpes,
-    handicap,
-    jugadorantes,
-    handicapantes,
+    fechakey, hoyo, par, jugador, golpes, handicap, jugadorantes, handicapantes,
   } = req.body;
 
   const cambioberdi =
     "INSERT INTO nuevoberdi (fechakey, hoyo, par, jugador, golpes, handicap, jugadorantes, handicapantes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
   const datosAPasar = [
-    fechakey,
-    hoyo,
-    par,
-    jugador,
-    golpes,
-    handicap,
-    jugadorantes,
-    handicapantes,
+    fechakey, hoyo, par, jugador, golpes, handicap, jugadorantes, handicapantes,
   ];
 
   pool.query(cambioberdi, datosAPasar, function (error, lista) {
@@ -523,7 +510,7 @@ app.post("/actualizaNegro", (req, res) => {
 
     const negrohcpActual = results[0].negrohcp;
 
-    // Si no hay birdie previo, o el nuevo es de mayor handicap, se actualiza
+    // Si no hay negro previo, o el nuevo es de menor handicap, se actualiza
     if (negrohcpActual === null || negrohcp < negrohcpActual) {
       const updateQuery = `
         UPDATE berdinegro
@@ -536,10 +523,10 @@ app.post("/actualizaNegro", (req, res) => {
         [negroFecha, negroPlayer, negroScore, negrohcp, hoyo],
         (error, result) => {
           if (error) {
-            console.error("Error al actualizar el negro:", error);
+            console.error("Error al actualizar el berdinegro:", error);
             return res
               .status(500)
-              .json({ error: "Error al actualizar el birdie" });
+              .json({ error: "Error al actualizar el berdinegro" });
           }
 
           return res.status(200).json({
@@ -557,6 +544,31 @@ app.post("/actualizaNegro", (req, res) => {
   });
 });
 
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 guardar-negros
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+app.post("/guardar-negros", (req, res) => {
+  const {
+    fechakeyNG, hoyoNG, parNG, jugadorNG, golpesNG, handicapNG, jugadorantesNG, handicapantesNG, golpesantesNG, okNG
+  } = req.body;
+
+  const metoNegro =
+    "INSERT INTO nuevonegro (fechakeyNG, hoyoNG, parNG, jugadorNG, golpesNG, handicapNG, jugadorantesNG, handicapantesNG, golpesantesNG, okNG) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  const datosAPasar = [
+    fechakeyNG, hoyoNG, parNG, jugadorNG, golpesNG, handicapNG, jugadorantesNG, handicapantesNG, golpesantesNG, okNG
+  ];
+
+  pool.query(metoNegro, datosAPasar, function (error, lista) {
+    if (error) {
+        console.log("Error:", error);
+        res.status(500).json({ error: error.message });
+      }
+    else {
+      res.status(200).json({ success: true });
+    }
+  });
+});
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 elimina fecha
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -618,10 +630,10 @@ app.post("/handicaps", (req, res) => {
     hcpcancha,
     neto,
     hcpbolilla,
-    fechaKey,
+    fechaKey
   } = req.body;
   const nuevohcp =
-    "INSERT INTO handicap (jugador, cancha, fecha, gross, hcpcancha, neto, hcpbolilla) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO handicap (jugador, cancha, fecha, gross, hcpcancha, neto, hcpbolilla, fechaKey) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
   const datosAPasar = [
     jugador,
     cancha,
@@ -655,10 +667,10 @@ app.post("/colapinto", (req, res) => {
   //     return res.status(401).json({ error: 'No estás autenticado' });
   // }
 
-  const { fecha, fechaKey, player, handicap, gross } = req.body;
+  const { fecha, fechaKey, jugador, handicap, gross } = req.body;
   const nuevocolapinto =
     "INSERT INTO colapinto (fecha, fechaKey, player, handicap, gross) VALUES (?, ?, ?, ?, ?)";
-  const datosAPasar = [fecha, fechaKey, player, handicap, gross];
+  const datosAPasar = [fecha, fechaKey, jugador, handicap, gross];
 
   pool.query(nuevocolapinto, datosAPasar, function (error, resultado) {
     if (error) {
