@@ -397,18 +397,22 @@ Bootstrap 5 Dashboard Admin Template
                             </table>
                         </div>
 
-                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-warning">
+                        <div
+                            class="custom-block custom-block-profile-front custom-block-profile text-center bg-warning">
                             <h5 class="mb-3">🥇🥈 Clasificación 🥈🥇</h5>
                             <div style="display: flex; justify-content:center; gap: 40px;">
                                 <div>
                                     <h6 class="mb-3">Clausura</h6>
                                     <table border="1">
-                                        <tr>
+                                        <thead>
                                             <th>Pos</th>
                                             <th>Jugador</th>
                                             <th>Prom</th>
-                                        </tr>
-                                        <tr>
+                                        </thead>
+                                        <tbody id="clasificaClausura">
+
+                                        </tbody>
+                                        <!-- <tr>
                                             <td>1°</td>
                                             <td>Joaco</td>
                                             <td>72</td>
@@ -422,19 +426,21 @@ Bootstrap 5 Dashboard Admin Template
                                             <td>3°</td>
                                             <td>Julito</td>
                                             <td>75</td>
-                                        </tr>
+                                        </tr> -->
                                     </table>
                                 </div>
 
                                 <div>
                                     <h6 class="mb-3">Anual</h6>
                                     <table border="1">
-                                        <tr>
+                                        <thead>
                                             <th>Pos</th>
                                             <th>Jugador</th>
                                             <th>Puntos</th>
-                                        </tr>
-                                        <tr>
+                                        </thead>
+                                        <tbody id="clasificaAnual">
+                                        </tbody>
+                                        <!-- <tr>
                                             <td>1°</td>
                                             <td>Juancho</td>
                                             <td>155</td>
@@ -448,7 +454,7 @@ Bootstrap 5 Dashboard Admin Template
                                             <td>3°</td>
                                             <td>Negro</td>
                                             <td>88,5</td>
-                                        </tr>
+                                        </tr> -->
                                     </table>
                                 </div>
                             </div>
@@ -486,7 +492,8 @@ Bootstrap 5 Dashboard Admin Template
 
                 <div class="row my-4">
                     <div class="col-lg-5 col-12">
-                        <div class="custom-block custom-block-profile-front custom-block-profile text-center" style="background-color: #FFECB3">
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center"
+                            style="background-color: #FFECB3">
                             <!-- Birdies y negros -->
                             <h5 class="mb-3">🎖 Birdies y Negros 🕶</h5>
                             <p class="mb-2">Una de cal y una de arena.</p>
@@ -553,7 +560,8 @@ Bootstrap 5 Dashboard Admin Template
                     </div>
 
                     <div class="col-lg-5 col-12">
-                        <div class="custom-block custom-block-profile-front custom-block-profile text-center" style="background-color:#F5F5DC">
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center"
+                            style="background-color:#F5F5DC">
                             <!-- La vuelta Colapinto -->
                             <h5 class="mb-3">🚒🚒 Las vueltas Colapinto 🚒🚒</h5>
                             <p class="mb-2">Los que en su vuelta hicieron un gross mayor a la suma del par más una vez
@@ -778,28 +786,28 @@ Bootstrap 5 Dashboard Admin Template
                             ronda.</p>
                     </div>
                 </div>
-            <!-- </main> -->
+                <!-- </main> -->
 
-            <div class="custom-block custom-block-bottom d-flex flex-wrap">
-                <div class="custom-block-bottom-item">
-                </div>
-                <div class="custom-block-bottom-item">
-                </div>
-                <div class="custom-block-bottom-item">
-                </div>
-                <div class="custom-block-bottom-item">
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-12">
-            </div>
-
-            <footer class="site-footer">
-                <div class="container">
-                    <div class="row">
+                <div class="custom-block custom-block-bottom d-flex flex-wrap">
+                    <div class="custom-block-bottom-item">
+                    </div>
+                    <div class="custom-block-bottom-item">
+                    </div>
+                    <div class="custom-block-bottom-item">
+                    </div>
+                    <div class="custom-block-bottom-item">
                     </div>
                 </div>
-            </footer>
+
+                <div class="col-lg-6 col-12">
+                </div>
+
+                <footer class="site-footer">
+                    <div class="container">
+                        <div class="row">
+                        </div>
+                    </div>
+                </footer>
             </main>
         </div>
     </div>
@@ -828,7 +836,6 @@ Bootstrap 5 Dashboard Admin Template
 
     async function iniciar() {
         ultimaFecha = await buscaUltimaFecha();
-        //  ${ultimaFecha.fec}`
 
         const berdisLeidos = await leeTablaBerdis();
         const datosBerdis = berdisLeidos.filter((resultado) => resultado.fechakey == ultimaFecha.fec);
@@ -860,6 +867,277 @@ Bootstrap 5 Dashboard Admin Template
         mostrarTablaColapinto();
 
         cargarPromedios();
+
+        // let resultadosClau;
+        let resultadosClau = await leerDatosNetos();
+
+        // let players2Clau = {};
+        let players2Clau = resultadosClau.filter(
+            (resultado) => resultado.fec > 44 && resultado.fec < 90
+        );
+
+        const fechasFiltradasClau = await leerDatosFechasClau();
+        console.table(fechasFiltradasClau);
+
+        console.table(players2Clau)
+
+        const filasMat = 12;
+        const columnas = 1;
+        const matriz2 = new Array(filasMat)
+            .fill(0)
+            .map(() => new Array(columnas).fill(0));
+
+        // Paso 1: Agrupar los datos por jugador, manteniendo solo pares de fec y neto
+        const playersDataClau = {};
+
+        //if (!playersDataClau[play]): verifica si no existe ningún dato para el jugador con índice play en el arreglo playersData. El ! antes de playersData[play] verifica si es falso, es decir, si es nulo, undefined, 0, false o una cadena vacía.
+
+        players2Clau.forEach(({ play, fec, neto }) => {
+            if (fec > 44 && fec < 90) {
+                if (neto > 0) {
+                    // Filtra los pares donde neto es mayor a 0
+                    if (!playersDataClau[play]) {
+                        playersDataClau[play] = []; //Inicializ el arreglo para el jugador play asignándole un nuevo arreglo vacío.
+                    }
+                    playersDataClau[play].push({ fec, neto }); // Esto agrega un nuevo objeto al arreglo del jugador play. El objeto tiene dos propiedades: fec y neto.
+                }
+            }
+        });
+
+        // :::::::::::::::::::::::::::::::::::::::::::::
+        // ::::::::: CUENTA EL TOTAL DE NPT DE CADA UNO
+        // :::::::::::::::::::::::::::::::::::::::::::::
+        let nptCount = {};
+
+        // Recorre players2 y cuenta las veces que npt es 1 para cada play
+        players2Clau.forEach(({ play, npt }) => {
+            // Si npt es 1, incrementa el contador para ese jugador (play)
+            if (npt === 1) {
+                if (!nptCount[play]) {
+                    nptCount[play] = 0; // Inicializa si no existe
+                }
+                nptCount[play] += 1; // Incrementa el contador de npt
+            }
+        });
+
+        // ::::::::::::::::::::::::::::::::::::::::::::::
+        // :::::::::     LO GUARDA EN UNA MATRIZ
+        // ::::::::::::::::::::::::::::::::::::::::::::::
+        let matrizNpt = [];
+
+        // Recorre el objeto nptCount para construir la matriz
+        for (const play in nptCount) {
+            if (nptCount.hasOwnProperty(play)) {
+                matrizNpt.push([play, nptCount[play]]);
+            }
+        }
+
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //:::::::::::::: selecciona los seis mejores
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        // ordena por score neto de menor a mayor
+        // Slice devuelve una copia de una porción del arreglo.  Toma los seis primeros
+        for (const play in playersDataClau) {
+            playersDataClau[play].sort((a, b) => a.neto - b.neto);
+            playersDataClau[play] = playersDataClau[play].slice(0, 6);
+            playersDataClau[play].sort((a, b) => a.fec - b.fec);
+        }
+        console.log("tabla con players");
+        console.table(playersDataClau);
+
+
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //:::::::::::::: agrega suma netos y promedio
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        for (let play in playersDataClau) {
+            let sumaNetos = 0;
+            let promedios = 0;
+            for (let i = 0; i < playersDataClau[play].length; i++) {
+                sumaNetos += playersDataClau[play][i].neto;
+            }
+            playersDataClau[play].sumaNetos = sumaNetos;
+            promedios = sumaNetos / playersDataClau[play].length;
+
+            // Agrega el total de npt del objeto nptCount
+            playersDataClau[play].totalNpt = nptCount[play] || 0;
+
+            let promedioDec = parseFloat(promedios.toFixed(1)) || 0;
+            // playersData[play].promedios = promedioDec;
+
+            let sumar = 2 * playersDataClau[play].totalNpt;
+            // Asegúrate de que promedioDec sea un número
+            // promedioDec = parseFloat(promedioDec) || 0; // Esto asegura que promedioDec sea un número
+            promedioDec += sumar;
+
+            playersDataClau[play].promedios = promedioDec;
+        }
+
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //:::::::::::::: ordena por promedio ascendente
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+        for (const key in playersDataClau) {
+            if (Array.isArray(playersDataClau[key])) {
+                playersDataClau[key].sort((a, b) => a.promedios - b.promedios);
+            }
+        }
+        //
+
+        let i = 0;
+        let j = 0;
+
+        for (const play in playersDataClau) {
+            matriz2[i][0] = play;
+            matriz2[i][1] = playersDataClau[play].sumaNetos;
+            matriz2[i][2] = playersDataClau[play].promedios;
+            matriz2[i][3] = playersDataClau[play].totalNpt;
+            i++;
+        }
+
+        i = 0;
+        let col = 0;
+
+        for (const elemento in playersDataClau) {
+            // Asegura que haya una fila en la matriz para este índice
+            matriz2[i] = matriz2[i] || [];
+
+            for (let j = 0; j < playersDataClau[elemento].length; j++) {
+                console.log(`j: ${j}, elemento ${elemento} y otro ${playersDataClau[elemento][j].fec}`)
+                let col = playersDataClau[elemento][j].fec - 41;
+
+                // Si `col` es mayor que la longitud actual del array, puedes ajustar el array.
+                while (matriz2[i].length <= col) {
+                    matriz2[i].push("--"); // Rellena con `null` o cualquier valor por defecto
+                }
+
+                // Luego agrega el valor deseado
+                matriz2[i][col] = playersDataClau[elemento][j].neto;
+            }
+            i++;
+        }
+        console.log("matriz ordenada");
+        console.table(matriz2);
+        matriz2.sort((filaA, filaB) => filaA[2] - filaB[2]);
+
+        /** @type {HTMLTableSectionElement} */
+        const cuerpoTablaSeis2Clau = document.getElementById("clasificaClausura");
+
+        for (i = 0; i < 6; i++) {
+            if (matriz2[i][1] > 0) {
+                const lineaDatos2 = cuerpoTablaSeis2Clau.insertRow();
+                const celdagral1 = lineaDatos2.insertCell(-1);
+                celdagral1.style.width = "10px";
+                celdagral1.textContent = i + 1 + "°";
+                const celdagral2 = lineaDatos2.insertCell(-1);
+                celdagral2.style.width = "10px";
+                celdagral2.textContent = matriz2[i][0];
+                const celdagral3 = lineaDatos2.insertCell(-1);
+                celdagral3.style.width = "10px";
+                celdagral3.textContent = matriz2[i][2];
+            }
+        }
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   Arma el anual
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+        giras = await leerDatosGiras();
+
+        let matrizValores = Array.from({ length: 12 }, () => ["", 0]); // Cada fila tendrá un arreglo con valores iniciales
+        //  Arma la matriz con los nombres de los jugadores
+        //  suma los valores anuales obtenidos en cada sábado
+        for (const player of players2) {
+            if (player.play !== "Presi") {
+                const textoBuscado = player.play;
+                for (let i = 0; i < 12; i++) {
+                    if (matrizValores[i][1] == textoBuscado) {
+                        matrizValores[i][3] += player.anual;
+                        break;
+                    } else if
+                        (matrizValores[i][1] == "" || matrizValores[i][1] == undefined) {
+                        matrizValores[i][1] = textoBuscado;
+                        matrizValores[i][3] = player.anual;
+                        break;
+                    }
+                }
+            }
+        }
+        //  leo el localstorage con los puntos por mejor score mensual.
+        const ganadoresScore = localStorage.getItem('ganadoresScore');
+        if (ganadoresScore) {
+            const matrizGanadoresScore = JSON.parse(ganadoresScore);
+            for (let i = 0; i < 12; i++) { // borrra los acumuladores
+                matrizValores[i][4] = 0;
+            }
+            matrizGanadoresScore.forEach(ganador => {
+                const player = ganador[0];
+                const puntos = parseFloat(ganador[1]);
+
+                for (let i = 0; i < 12; i++) {
+                    if (matrizValores[i][1] == player) {
+                        matrizValores[i][4] = (parseFloat(matrizValores[i][4]) || 0) + puntos;
+                    }
+                }
+            })
+        }
+
+        //  tengo que agregar a la matriz los valores de las giras y torneos
+        for (const jugador of giras) {
+            const textoBuscado = jugador.Jugador;
+            for (let i = 0; i < 12; i++) {
+                if (matrizValores[i][1] == textoBuscado) {
+                    matrizValores[i][5] = parseFloat(jugador.Sierra);
+                    matrizValores[i][6] = jugador.Ryder;
+                    matrizValores[i][9] = jugador.Carilo;
+                    matrizValores[i][10] = jugador.Desafio;
+
+                    matrizValores[i][7] = parseFloat(jugador.Apertura);
+                    matrizValores[i][8] = parseFloat(jugador.Clausura);
+                    break;
+                }
+            }
+        }
+
+        for (let i = 0; i < 11; i++) {
+            // Asegurate de que empiece en número (y no en undefined o string)
+            matrizValores[i][2] = 0;
+
+            for (let j = 3; j < 11; j++) {
+                const valor = matrizValores[i][j];
+                // esto por si hay algun valor NaN
+                if (isNaN(valor)) {
+                    console.warn(`Valor inválido en matrizValores[${i}][${j}]:`, valor);
+                } else {
+                    matrizValores[i][2] += valor;
+                }
+            }
+        }
+
+        // Llamada al método sort() con la función de comparación
+        matrizValores.sort(compararPorColumna2);
+
+        // Función de comparación para ordenar por la columna 2
+        function compararPorColumna2(filaA, filaB) {
+            const valorA = parseFloat(filaA[2]);
+            const valorB = parseFloat(filaB[2]);
+            return valorB - valorA;
+        }
+        for (let i = 0; i < 12; i++) {
+            matrizValores[i][0] = i + 1;
+        }
+
+        let tbody = document.getElementById("clasificaAnual"); // Selecciona el tbody de la tabla
+
+        tbody.innerHTML = "";
+        for (let i = 0; i < 6; i++) {
+            let fila = tbody.insertRow(); // Crea una nueva fila
+            for (let j = 0; j < 3; j++) {
+                let celda = fila.insertCell(j); // Crea una nueva celda en la posición j
+                celda.textContent = matrizValores[i][j]; // Asigna el valor a la celda
+                if (j==0) {
+                        celda.textContent = matrizValores[i][j] + "°"; // Asigna el valor a la celda
+                }
+            }
+        }
     };
 
     let offset = 0;
@@ -1134,12 +1412,104 @@ Bootstrap 5 Dashboard Admin Template
         }
     }
 
+    // :::::::::::::::::::::::::::::::::::
+    // :::::::::::::::::: leer datos Netos
+    // :::::::::::::::::::::::::::::::::::::::::::::::
 
+    async function leerDatosNetos() {
+        try {
+            const response = await fetch(`/leerDatosNetos`);
+            if (response.ok) {
+                const resultados = await response.json();
+                return resultados; // Devuelve los datos obtenidos si la respuesta es exitosa
+            } else {
+                console.error(
+                    "Error en la respuesta:",
+                    response.status,
+                    response.statusText
+                );
+                return null;
+            }
+        } catch (error) {
+            console.error("Error en la solicitud:", error);
+            return null;
+        }
+    }
 
+    // :::::::::::::::::::::::::::::::::::::::::::::::
+    // :::::::::::::::::: leer datos Fechas Clau
+    // :::::::::::::::::::::::::::::::::::::::::::::::
+    async function leerDatosFechasClau() {
+        try {
+            const responseC = await fetch(`/leerDatosFechas`);
+            if (responseC.ok) {
+                const fechasClau = await responseC.json();
+                const fechasFiltradasClau = fechasClau.filter(
+                    (fecha) => fecha.fec > 44 && fecha.fec < 90
+                );
+                return fechasFiltradasClau;
+            } else {
+                console.error(
+                    "Error en la respuesta:",
+                    responseC.status,
+                    responseC.statusText
+                );
+                return null;
+            }
+        } catch (error) {
+            console.error("Error en la solicitud:", error);
+            return null;
+        }
+    }
 
+    // :::::::::::::::::::::::::::::::::::::::::::::::
+    // :::::::::::::::::: leer datos Fechas
+    // :::::::::::::::::::::::::::::::::::::::::::::::
+    async function leerDatosFechas() {
+        try {
+            const response = await fetch(`/leerDatosFechas`);
+            if (response.ok) {
+                const fechas = await response.json();
+                const fechasFiltradas = fechas.filter(
+                    (fecha) => fecha.fec > 31 && fecha.fec < 90
+                );
 
-
-
+                return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
+            } else {
+                console.error(
+                    "Error en la respuesta:",
+                    response.status,
+                    response.statusText
+                );
+                return null;
+            }
+        } catch (error) {
+            console.error("Error en la solicitud:", error);
+            return null;
+        }
+    }
+    // :::::::::::::::::::::::::::::::::::::::::::::::
+    // :::::::::::::::::: leer datos Giras
+    // :::::::::::::::::::::::::::::::::::::::::::::::
+    async function leerDatosGiras() {
+        try {
+            const results = await fetch(`/leerDatosGiras`);
+            if (results.ok) {
+                const resultadosGira = await results.json();
+                return resultadosGira;
+            } else {
+                console.error(
+                    "Error en la respuesta:",
+                    results.status,
+                    results.statusText
+                );
+                return null;
+            }
+        } catch (error) {
+            console.error("Error en la solicitud lectura Gira:", error);
+            return null;
+        }
+    }
 
 </script>
 

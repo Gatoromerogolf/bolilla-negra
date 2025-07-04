@@ -1,4 +1,7 @@
 // let año = "2025";
+
+let resultadosClau; 
+
 async function main() {
   console.log("ya estamos");
   resultadosClau = await leerDatosNetos();
@@ -7,6 +10,7 @@ async function main() {
     return;
   }
 
+  let players2Clau = {};
   if (año === "2025") {
     players2Clau = resultadosClau.filter(
       (resultado) => resultado.fec > 44 && resultado.fec < 90
@@ -14,13 +18,13 @@ async function main() {
   } else {
     players2Clau = resultadosClau.filter((resultado) => resultado.fec < 32);
   }
-  fechasFiltradasClau = await leerDatosFechasClau();
+  const fechasFiltradasClau = await leerDatosFechasClau();
+  console.table (fechasFiltradasClau);
+  return players2Clau;
 }
 
-main().then(() => {
-  // Ejecuta la función principal
+main().then((players2Clau) => {
 
-  console.log ('players2Clau')
   console.table (players2Clau)
 
   const filasMat = 12;
@@ -45,7 +49,6 @@ main().then(() => {
       }
     }
   });
-
 
   // :::::::::::::::::::::::::::::::::::::::::::::
   // ::::::::: CUENTA EL TOTAL DE NPT DE CADA UNO
@@ -94,7 +97,7 @@ main().then(() => {
   // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
   //:::::::::::::: agrega suma netos y promedio
   // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  for (play in playersDataClau) {
+  for (let play in playersDataClau) {
     let sumaNetos = 0;
     let promedios = 0;
     for (let i = 0; i < playersDataClau[play].length; i++) {
@@ -106,12 +109,12 @@ main().then(() => {
     // Agrega el total de npt del objeto nptCount
     playersDataClau[play].totalNpt = nptCount[play] || 0;
 
-    let promedioDec = promedios.toFixed(1);
+    let promedioDec = parseFloat(promedios.toFixed(1)) || 0;
     // playersData[play].promedios = promedioDec;
 
     let sumar = 2 * playersDataClau[play].totalNpt;
     // Asegúrate de que promedioDec sea un número
-    promedioDec = parseFloat(promedioDec) || 0; // Esto asegura que promedioDec sea un número
+    // promedioDec = parseFloat(promedioDec) || 0; // Esto asegura que promedioDec sea un número
     promedioDec += sumar;
 
     playersDataClau[play].promedios = promedioDec;
@@ -128,8 +131,8 @@ main().then(() => {
   }
   //
 
-  i = 0;
-  j = 0;
+  let i = 0;
+  let j = 0;
 
   for (const play in playersDataClau) {
     matriz2[i][0] = play;
@@ -163,16 +166,20 @@ main().then(() => {
   console.log("matriz ordenada");
   console.table(matriz2);
   matriz2.sort((filaA, filaB) => filaA[2] - filaB[2]);
-
-  // Selecciona el tbody donde se agregarán las filas
+  
+// Selecciona el tbody donde se agregarán las filas
 //   let tbody = document.querySelector("#tablaSeis2Clau tbody");
 
 //   let lineaDatos2 = document.getElementById("lineaScore2Clau");
 
+
   // Agrega el nombre del grupo como la primera celda
+/** @type {HTMLTableSectionElement} */
+const cuerpoTablaSeis2Clau = document.getElementById("cuerpoTablaSeis2Clau");
+
   for (i = 0; i < 12; i++) {
     if (matriz2[i][1] > 0) {
-      const lineaDatos2 = tablaSeis2Clau.insertRow();
+      const lineaDatos2 = cuerpoTablaSeis2Clau.insertRow();
       // for (j = 0; j < 13; j++) {
       for (j = 0; j < matriz2[i].length; j++) {
         if (matriz2[i][j] == 0) {
@@ -228,8 +235,8 @@ async function leerDatosFechasClau() {
     } else {
       console.error(
         "Error en la respuesta:",
-        response.status,
-        response.statusText
+        responseC.status,
+        responseC.statusText
       );
       return null;
     }
