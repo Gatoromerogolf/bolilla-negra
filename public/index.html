@@ -1133,8 +1133,8 @@ Bootstrap 5 Dashboard Admin Template
             for (let j = 0; j < 3; j++) {
                 let celda = fila.insertCell(j); // Crea una nueva celda en la posición j
                 celda.textContent = matrizValores[i][j]; // Asigna el valor a la celda
-                if (j==0) {
-                        celda.textContent = matrizValores[i][j] + "°"; // Asigna el valor a la celda
+                if (j == 0) {
+                    celda.textContent = matrizValores[i][j] + "°"; // Asigna el valor a la celda
                 }
             }
         }
@@ -1261,6 +1261,7 @@ Bootstrap 5 Dashboard Admin Template
         // Limpiar contenido anterior, si lo hubiera
         tabla.innerHTML = "";
 
+        colapintoHoy.sort((a, b) => a.plus - b.plus  );
         colapintoHoy.forEach(registro => {
             const fila = tabla.insertRow();
 
@@ -1293,8 +1294,11 @@ Bootstrap 5 Dashboard Admin Template
         datosColapinto.forEach(registro => {
             const fila = tabla.insertRow();
 
-            // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
-            fila.insertCell(0).textContent = registro.fecha;
+            const fecha = registro.fecha;
+            const partes = fecha.split("-"); // ["2025", "07", "05"]
+            const formato = `${partes[2]}-${partes[1]}`; // "05-07"
+            fila.insertCell(0).textContent = formato;
+
             fila.insertCell(1).textContent = registro.player;
             fila.insertCell(2).textContent = registro.handicap;
             let cincuenta = registro.handicap / 2;
@@ -1317,6 +1321,8 @@ Bootstrap 5 Dashboard Admin Template
 
         // Limpiar contenido anterior, si lo hubiera
         tabla.innerHTML = "";
+
+        tablaNegros.sort((a, b) => a.hoyoNG - b.hoyoNG);
 
         console.table(tablaNegros);
 

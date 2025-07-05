@@ -941,12 +941,17 @@
             await guardarResultados();
 
             // Agregar los datos al array si se ha completado al menos un campo
+            // calcula el orden
+            orden = gross10to18 - (handicap / 2);
+
             datosJugadores.push({
                 nombre: nombre,
                 neto: totalNeto || "-",
                 orden: orden || "-",
                 npt: npt || "-",
             });
+
+            console.table (datosJugadores);
 
             if (contador > 0) {
                 // si es mayor falta cargar datos - Limpiar campos
@@ -976,6 +981,7 @@
         //-----------------------------------------
         function terminoDeCargar() {
             // Ordena por Neto y Orden
+            // Calcula orden como ultimos 9 menos 1/2 handicap
             // Asigna ctdd de pelotas
             // Arma tabla de Resultados con neto > 0
             // Graba nuevos netos
@@ -986,6 +992,7 @@
             // Actualiza ultima fecha
 
             // Ordenar los datos por el valor de "Neto" y luego por "Orden"
+
             datosJugadores.sort((a, b) => {
                 const netoA = a.neto === "-" ? Infinity : parseInt(a.neto);
                 const netoB = b.neto === "-" ? Infinity : parseInt(b.neto);
@@ -1200,6 +1207,8 @@
             totalGrossElem5.textContent = hoyosConValor;
             totalGrossElem5.style.fontSize = "18px";
             totalGrossElem5.style.fontWeight = "bold";
+
+
 
             // Activar el botón de guardar si todos los hoyos tienen valores
             const allFieldsFilled = Array.from(inputsGross).every((input) => {
@@ -1470,7 +1479,7 @@
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             hoyo: i + 1,
-                            negroFecha: fechaBerdiNegro,
+                            negroFecha: fec + 1,
                             negroPlayer: jugador,
                             negroScore: val,
                             negrohcp: handicap,
@@ -1494,7 +1503,7 @@
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                            fechakeyNG: fechaBerdiNegro,
+                            fechakeyNG: fec + 1,
                             hoyoNG: i + 1,
                             parNG: par,
                             jugadorNG: jugador,
