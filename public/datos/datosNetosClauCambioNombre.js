@@ -1,4 +1,4 @@
-const players2Clau = [
+const players2ClauCambioNombre = [
     {fec:1, play: 'Diegui', neto:73, pos:0, pg:0},
     {fec:1, play: 'Edu', neto:84, pos:0, pg:0},
     {fec:1, play: 'Fer', neto:0, pos:0, pg:0},

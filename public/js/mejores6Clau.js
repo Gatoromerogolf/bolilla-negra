@@ -1,16 +1,11 @@
 // let año = "2025";
-
-let resultadosClau; 
-
 async function main() {
-  console.log("ya estamos");
-  resultadosClau = await leerDatosNetos();
-  if (!resultadosClau || resultadosClau.length === 0) {
-    console.error("No se obtuvieron datos de leerDatosNetos o están vacíos.");
-    return;
-  }
+    const resultadosClau = await leerDatosNetos();
+    if (!resultadosClau || resultadosClau.length === 0) {
+        console.error("No se obtuvieron datos de leerDatosNetos o están vacíos.");
+        return;
+    }
 
-  let players2Clau = {};
   if (año === "2025") {
     players2Clau = resultadosClau.filter(
       (resultado) => resultado.fec > 44 && resultado.fec < 90
@@ -18,25 +13,23 @@ async function main() {
   } else {
     players2Clau = resultadosClau.filter((resultado) => resultado.fec < 32);
   }
-  const fechasFiltradasClau = await leerDatosFechasClau();
-  console.table (fechasFiltradasClau);
-  return players2Clau;
+  fechasFiltradasClau = await leerDatosFechasClau();
 }
 
-main().then((players2Clau) => {
+main().then(() => {
+  // Ejecuta la función principal
 
+  console.log ('players2Clau')
   console.table (players2Clau)
 
-  const filasMat = 12;
-  const columnas = 1;
-  const matriz2 = new Array(filasMat)
-    .fill(0)
-    .map(() => new Array(columnas).fill(0));
+    const filasMat = 12;
+    const columnas = 1;
+    const matriz2 = new Array(filasMat)
+        .fill(0)
+        .map(() => new Array(columnas).fill(0));
 
-  // Paso 1: Agrupar los datos por jugador, manteniendo solo pares de fec y neto
-  const playersDataClau = {};
-
-  //if (!playersDataClau[play]): verifica si no existe ningún dato para el jugador con índice play en el arreglo playersData. El ! antes de playersData[play] verifica si es falso, es decir, si es nulo, undefined, 0, false o una cadena vacía.
+    // Paso 1: Agrupar los datos por jugador, manteniendo solo pares de fec y neto
+    const playersDataClau = {};
 
   players2Clau.forEach(({ play, fec, neto }) => {
     if (fec > 44 && fec < 90) {
@@ -50,54 +43,55 @@ main().then((players2Clau) => {
     }
   });
 
-  // :::::::::::::::::::::::::::::::::::::::::::::
-  // ::::::::: CUENTA EL TOTAL DE NPT DE CADA UNO
-  // :::::::::::::::::::::::::::::::::::::::::::::
 
-  let nptCount = {};
+    // :::::::::::::::::::::::::::::::::::::::::::::
+    // ::::::::: CUENTA EL TOTAL DE NPT DE CADA UNO
+    // :::::::::::::::::::::::::::::::::::::::::::::
 
-  // Recorre players2 y cuenta las veces que npt es 1 para cada play
-  players2Clau.forEach(({ play, npt }) => {
-    // Si npt es 1, incrementa el contador para ese jugador (play)
-    if (npt === 1) {
-      if (!nptCount[play]) {
-        nptCount[play] = 0; // Inicializa si no existe
-      }
-      nptCount[play] += 1; // Incrementa el contador de npt
+    let nptCount = {};
+
+    // Recorre players2 y cuenta las veces que npt es 1 para cada play
+    players2Clau.forEach(({ play, npt }) => {
+        // Si npt es 1, incrementa el contador para ese jugador (play)
+        if (npt === 1) {
+            if (!nptCount[play]) {
+                nptCount[play] = 0; // Inicializa si no existe
+            }
+            nptCount[play] += 1; // Incrementa el contador de npt
+        }
+    });
+
+    // ::::::::::::::::::::::::::::::::::::::::::::::
+    // :::::::::     LO GUARDA EN UNA MATRIZ
+    // ::::::::::::::::::::::::::::::::::::::::::::::
+    // Crea una matriz para almacenar los resultados
+    let matrizNpt = [];
+
+    // Recorre el objeto nptCount para construir la matriz
+    for (const play in nptCount) {
+        if (nptCount.hasOwnProperty(play)) {
+            matrizNpt.push([play, nptCount[play]]);
+        }
     }
-  });
 
-  // ::::::::::::::::::::::::::::::::::::::::::::::
-  // :::::::::     LO GUARDA EN UNA MATRIZ
-  // ::::::::::::::::::::::::::::::::::::::::::::::
-  // Crea una matriz para almacenar los resultados
-  let matrizNpt = [];
-
-  // Recorre el objeto nptCount para construir la matriz
-  for (const play in nptCount) {
-    if (nptCount.hasOwnProperty(play)) {
-      matrizNpt.push([play, nptCount[play]]);
+    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    //:::::::::::::: selecciona los seis mejores
+    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    // ordena por score neto de menor a mayor
+    // Slice devuelve una copia de una porción del arreglo.  Toma los seis primeros
+    //ordena los 6 por fec para presentarlo por fecha
+    for (const play in playersDataClau) {
+        playersDataClau[play].sort((a, b) => a.neto - b.neto);
+        playersDataClau[play] = playersDataClau[play].slice(0, 6);
+        playersDataClau[play].sort((a, b) => a.fec - b.fec);
     }
-  }
-
-  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  //:::::::::::::: selecciona los seis mejores
-  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  // ordena por score neto de menor a mayor
-  // Slice devuelve una copia de una porción del arreglo.  Toma los seis primeros
-  //ordena los 6 por fec para presentarlo por fecha
-  for (const play in playersDataClau) {
-    playersDataClau[play].sort((a, b) => a.neto - b.neto);
-    playersDataClau[play] = playersDataClau[play].slice(0, 6);
-    playersDataClau[play].sort((a, b) => a.fec - b.fec);
-  }
-  console.log("tabla con players");
-  console.table(playersDataClau);
+    console.log("tabla con players");
+    console.table(playersDataClau);
 
   // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
   //:::::::::::::: agrega suma netos y promedio
   // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  for (let play in playersDataClau) {
+  for (play in playersDataClau) {
     let sumaNetos = 0;
     let promedios = 0;
     for (let i = 0; i < playersDataClau[play].length; i++) {
@@ -106,57 +100,59 @@ main().then((players2Clau) => {
     playersDataClau[play].sumaNetos = sumaNetos;
     promedios = sumaNetos / playersDataClau[play].length;
 
-    // Agrega el total de npt del objeto nptCount
-    playersDataClau[play].totalNpt = nptCount[play] || 0;
+        // Agrega el total de npt del objeto nptCount
+        playersDataClau[play].totalNpt = nptCount[play] || 0;
 
-    let promedioDec = parseFloat(promedios.toFixed(1)) || 0;
+    let promedioDec = promedios.toFixed(1);
     // playersData[play].promedios = promedioDec;
 
     let sumar = 2 * playersDataClau[play].totalNpt;
     // Asegúrate de que promedioDec sea un número
-    // promedioDec = parseFloat(promedioDec) || 0; // Esto asegura que promedioDec sea un número
+    promedioDec = parseFloat(promedioDec) || 0; // Esto asegura que promedioDec sea un número
     promedioDec += sumar;
 
-    playersDataClau[play].promedios = promedioDec;
-  }
-
-  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  //:::::::::::::: ordena por promedio ascendente
-  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-  for (const key in playersDataClau) {
-    if (Array.isArray(playersDataClau[key])) {
-      playersDataClau[key].sort((a, b) => a.promedios - b.promedios);
+        playersDataClau[play].promedios = promedioDec;
     }
-  }
-  //
 
-  let i = 0;
-  let j = 0;
+    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    //:::::::::::::: ordena por promedio ascendente
+    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-  for (const play in playersDataClau) {
-    matriz2[i][0] = play;
-    matriz2[i][1] = playersDataClau[play].sumaNetos;
-    matriz2[i][2] = playersDataClau[play].promedios;
-    matriz2[i][3] = playersDataClau[play].totalNpt;
-    i++;
-  }
+    for (const key in playersDataClau) {
+        if (Array.isArray(playersDataClau[key])) {
+            playersDataClau[key].sort((a, b) => a.promedios - b.promedios);
+        }
+    }
+    //
 
   i = 0;
-  let col = 0;
+  j = 0;
 
-  for (const elemento in playersDataClau) {
-    // Asegura que haya una fila en la matriz para este índice
-    matriz2[i] = matriz2[i] || [];
+    for (const play in playersDataClau) {
+        matriz2[i][0] = play;
+        matriz2[i][1] = playersDataClau[play].sumaNetos;
+        matriz2[i][2] = playersDataClau[play].promedios;
+        matriz2[i][3] = playersDataClau[play].totalNpt;
+        i++;
+    }
 
-    for (let j = 0; j < playersDataClau[elemento].length; j++) {
-        console.log(`j: ${j}, elemento ${elemento} y otro ${playersDataClau[elemento][j].fec}`)
-      let col = playersDataClau[elemento][j].fec - 41;
+    i = 0;
+    let col = 0;
 
-      // Si `col` es mayor que la longitud actual del array, puedes ajustar el array.
-      while (matriz2[i].length <= col) {
-        matriz2[i].push("--"); // Rellena con `null` o cualquier valor por defecto
-      }
+    for (const elemento in playersDataClau) {
+        // Asegura que haya una fila en la matriz para este índice
+        matriz2[i] = matriz2[i] || [];
+
+        for (let j = 0; j < playersDataClau[elemento].length; j++) {
+            console.log(
+                `j: ${j}, elemento ${elemento} y otro ${playersDataClau[elemento][j].fec}`
+            );
+            let col = playersDataClau[elemento][j].fec - 41;
+
+            // Si `col` es mayor que la longitud actual del array, puedes ajustar el array.
+            while (matriz2[i].length <= col) {
+                matriz2[i].push("--"); // Rellena con `null` o cualquier valor por defecto
+            }
 
       // Luego agrega el valor deseado
       matriz2[i][col] = playersDataClau[elemento][j].neto;
@@ -166,20 +162,17 @@ main().then((players2Clau) => {
   console.log("matriz ordenada");
   console.table(matriz2);
   matriz2.sort((filaA, filaB) => filaA[2] - filaB[2]);
-  
-// Selecciona el tbody donde se agregarán las filas
+
+  // Selecciona el tbody donde se agregarán las filas
 //   let tbody = document.querySelector("#tablaSeis2Clau tbody");
 
 //   let lineaDatos2 = document.getElementById("lineaScore2Clau");
 
 
   // Agrega el nombre del grupo como la primera celda
-/** @type {HTMLTableSectionElement} */
-const cuerpoTablaSeis2Clau = document.getElementById("cuerpoTablaSeis2Clau");
-
   for (i = 0; i < 12; i++) {
     if (matriz2[i][1] > 0) {
-      const lineaDatos2 = cuerpoTablaSeis2Clau.insertRow();
+      const lineaDatos2 = tablaSeis2Clau.insertRow();
       // for (j = 0; j < 13; j++) {
       for (j = 0; j < matriz2[i].length; j++) {
         if (matriz2[i][j] == 0) {
@@ -201,23 +194,23 @@ const cuerpoTablaSeis2Clau = document.getElementById("cuerpoTablaSeis2Clau");
 // :::::::::::::::::::::::::::::::::::::::::::::::
 
 async function leerDatosNetos() {
-  try {
-    const response = await fetch(`/leerDatosNetos`);
-    if (response.ok) {
-      const resultados = await response.json();
-      return resultados; // Devuelve los datos obtenidos si la respuesta es exitosa
-    } else {
-      console.error(
-        "Error en la respuesta:",
-        response.status,
-        response.statusText
-      );
-      return null;
+    try {
+        const response = await fetch(`/leerDatosNetos`);
+        if (response.ok) {
+            const resultados = await response.json();
+            return resultados; // Devuelve los datos obtenidos si la respuesta es exitosa
+        } else {
+            console.error(
+                "Error en la respuesta:",
+                response.status,
+                response.statusText
+            );
+            return null;
+        }
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+        return null;
     }
-  } catch (error) {
-    console.error("Error en la solicitud:", error);
-    return null;
-  }
 }
 
 // :::::::::::::::::::::::::::::::::::::::::::::::
