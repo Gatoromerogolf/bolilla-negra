@@ -302,13 +302,13 @@ Bootstrap 5 Dashboard Admin Template
                                         <thead>
                                             <tr>
                                                 <th>Hoyo</th>
-                                                <th>Player</th>
                                                 <th>Par</th>
-                                                <th>Sco</th>
+                                                <th>Score</th>
+                                                <th>Jugador</th>
                                                 <th>Hcp</th>
-                                                <th>⛳</th>
+                                                <!-- <th>⛳</th>
                                                 <th>Antes</th>
-                                                <th>Hcp</th>
+                                                <th>Hcp</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -327,14 +327,14 @@ Bootstrap 5 Dashboard Admin Template
                                         <thead>
                                             <tr>
                                                 <th>Hoyo</th>
-                                                <th>Player</th>
                                                 <th>Par</th>
-                                                <th>Sco</th>
+                                                <th>Jugador</th>
+                                                <th>Score</th>
                                                 <th>Hcp</th>
-                                                <th>⛳</th>
+                                                <!-- <th>⛳</th>
                                                 <th>Antes</th>
                                                 <th>Sco</th>
-                                                <th>Hcp</th>
+                                                <th>Hcp</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -346,8 +346,7 @@ Bootstrap 5 Dashboard Admin Template
                             <div class="container oculto mt-4" id="paso7">
                                 <fieldset id="tablaColapintoFS">
                                     <center>
-                                        <span style="font-size: 1rem; font-weight: bold;">🚒🚒 Colapinto del dia
-                                            🚒🚒</span>
+                                        <span style="font-size: 1rem; font-weight: bold;">🚒🚒 Colapinto 🚒🚒</span>
                                     </center>
                                     <table id="tablaColapintoHoy" class="otraTablaLinda" style="max-height: 20px;">
                                         <thead>
@@ -410,23 +409,8 @@ Bootstrap 5 Dashboard Admin Template
                                             <th>Prom</th>
                                         </thead>
                                         <tbody id="clasificaClausura">
-
                                         </tbody>
-                                        <!-- <tr>
-                                            <td>1°</td>
-                                            <td>Joaco</td>
-                                            <td>72</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2°</td>
-                                            <td>Negro</td>
-                                            <td>73</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3°</td>
-                                            <td>Julito</td>
-                                            <td>75</td>
-                                        </tr> -->
+
                                     </table>
                                 </div>
 
@@ -440,21 +424,6 @@ Bootstrap 5 Dashboard Admin Template
                                         </thead>
                                         <tbody id="clasificaAnual">
                                         </tbody>
-                                        <!-- <tr>
-                                            <td>1°</td>
-                                            <td>Juancho</td>
-                                            <td>155</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2°</td>
-                                            <td>Gaby</td>
-                                            <td>97,5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3°</td>
-                                            <td>Negro</td>
-                                            <td>88,5</td>
-                                        </tr> -->
                                     </table>
                                 </div>
                             </div>
@@ -494,10 +463,279 @@ Bootstrap 5 Dashboard Admin Template
                     <div class="col-lg-5 col-12">
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center"
                             style="background-color: #FFECB3">
-                            <!-- Birdies y negros -->
-                            <h5 class="mb-3">🎖 Birdies y Negros 🕶</h5>
-                            <p class="mb-2">Una de cal y una de arena.</p>
-                            <table id="berdinegro">
+                            <h5 class="mb-3">🏆 🏆 Birdies histórico 🏆 🏆 </h5>
+                            <!-- <div style="display: flex; justify-content:center; gap: 40px;"> -->
+                            <div>
+                                <h6 class="mb-2">Por hoyo</h6>
+                                <table border="1">
+                                    <thead>
+                                        <th>Hoyo</th>
+                                        <th>Par</th>
+                                        <th>Jugador</th>
+                                        <th>Hcp</th>
+                                        <th>Fecha</th>
+                                    </thead>
+                                    <!-- <tbody id="berdixHoyo">
+                                        </tbody> -->
+                                    <tbody>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>3</td>
+                                            <td>Joaco</td>
+                                            <td>18</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                            <div>
+                                <h6 class="mb-2 mt-3">Por Jugador</h6>
+                                <table border="1">
+                                    <thead>
+                                        <th>Jugador</th>
+                                        <th>Hoyo</th>
+                                        <th>Par</th>
+                                        <th>Hcp</th>
+                                        <th>Fecha</th>
+                                    </thead>
+                                    <!-- <tbody id="berdixJugador">
+                                        </tbody> -->
+                                    <tbody>
+                                        <tr>
+                                            <td>Joaco</td>
+                                            <td>4</td>
+                                            <td>3</td>
+                                            <td>18</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div> <!-- </div> -->
+
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center"
+                            style="background-color: #bcbcbe">
+                            <h5 class="mb-3">🏴‍☠️🏴‍☠️ Negros histórico 🏴‍☠️🏴‍☠️</h5>
+
+                            <div>
+                                <h6 class="mb-2">Por hoyo</h6>
+                                <table border="1">
+                                    <thead>
+                                        <th>Hoyo</th>
+                                        <th>Par</th>
+                                        <th>Score</th>
+                                        <th>Jugador</th>
+                                        <th>Hcp</th>
+                                        <th>Fecha</th>
+                                    </thead>
+                                    <!-- <tbody id="berdixHoyo">
+                                        </tbody> -->
+                                    <tbody>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>4</td>
+                                            <td>7</td>
+                                            <td>Negro</td>
+                                            <td>11</td>
+                                            <td>28-06</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Gaby</td>
+                                            <td>20</td>
+                                            <td>28-06</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>Edu</td>
+                                            <td>11</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Julito</td>
+                                            <td>35</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>5</td>
+                                            <td>10</td>
+                                            <td>Sensei</td>
+                                            <td>30</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td>5</td>
+                                            <td>10</td>
+                                            <td>Sensei</td>
+                                            <td>30</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td>4</td>
+                                            <td>7</td>
+                                            <td>Edu</td>
+                                            <td>11</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11</td>
+                                            <td>4</td>
+                                            <td>8</td>
+                                            <td>Torni</td>
+                                            <td>14</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td>12</td>
+                                            <td>4</td>
+                                            <td>9</td>
+                                            <td>Sensei</td>
+                                            <td>29</td>
+                                            <td>28-06</td>
+                                        </tr>
+                                        <tr>
+                                            <td>13</td>
+                                            <td>3</td>
+                                            <td>7</td>
+                                            <td>Edu</td>
+                                            <td>11</td>
+                                            <td>28-06</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td>Julito</td>
+                                            <td>35</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                            <div>
+                                <h6 class="mb-3 mt-3">Por Jugador</h6>
+                                <table border="1">
+                                    <thead>
+                                        <th>Jugador</th>
+                                        <th>Hoyo</th>
+                                        <th>Par</th>
+                                        <th>Score</th>
+                                        <th>Hcp</th>
+                                        <th>Fecha</th>
+                                    </thead>
+                                    <!-- <tbody id="berdixJugador">
+                                        </tbody> -->
+                                    <tbody>
+                                        <tr>
+                                            <td>Edu</td>
+                                            <td>2</td>
+                                            <td>4</td>
+                                            <td>7</td>
+                                            <td>11</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>4</td>
+                                            <td>7</td>
+                                            <td>11</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>3</td>
+                                            <td>7</td>
+                                            <td>11</td>
+                                            <td>28-06</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gaby</td>
+                                            <td>2</td>
+                                            <td>4</td>
+                                            <td>10</td>
+                                            <td>20</td>
+                                            <td>28-06</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Julito</td>
+                                            <td>2</td>
+                                            <td>4</td>
+                                            <td>10</td>
+                                            <td>35</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>3</td>
+                                            <td>9</td>
+                                            <td>35</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Negro</td>
+                                            <td>2</td>
+                                            <td>4</td>
+                                            <td>7</td>
+                                            <td>11</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sensei</td>
+                                            <td>5</td>
+                                            <td>5</td>
+                                            <td>10</td>
+                                            <td>30</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>5</td>
+                                            <td>10</td>
+                                            <td>30</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>4</td>
+                                            <td>9</td>
+                                            <td>29</td>
+                                            <td>28-06</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Torni</td>
+                                            <td>11</td>
+                                            <td>4</td>
+                                            <td>8</td>
+                                            <td>14</td>
+                                            <td>05-07</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+                            <!-- <table id="berdinegro" class="mb-3 mt-4">
                                 <thead>
                                     <colgroup>
                                         <col>
@@ -525,11 +763,14 @@ Bootstrap 5 Dashboard Admin Template
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
-                            </table>
+                            </table> -->
 
-                            <p class="mt-2 mb-3">Se considera hoyo negro si el jugador iguala o supera una cantidad de
-                                golpes establecida para ese hoyo según su handicap.</p>
+                            <p class="mt-2 mb-3">Hoyo negro: le sacó al jugador más golpes que el máximo establecido
+                                para su handicap</p>
                             <table>
+                                <tr>
+                                    <th colspan="4">🏴‍☠️ Máximos 🏴‍☠️</th>
+                                </tr>
                                 <tr>
                                     <th>HDCP</th>
                                     <th>Par 3</th>
@@ -539,21 +780,21 @@ Bootstrap 5 Dashboard Admin Template
 
                                 <tr>
                                     <td>0 - 11</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>12 - 22</td>
                                     <td>6</td>
                                     <td>7</td>
                                     <td>8</td>
                                 </tr>
                                 <tr>
-                                    <td>12 - 22</td>
+                                    <td>23 - 50</td>
                                     <td>7</td>
                                     <td>8</td>
                                     <td>9</td>
-                                </tr>
-                                <tr>
-                                    <td>23 - 50</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
                                 </tr>
                             </table>
                         </div>
@@ -563,8 +804,8 @@ Bootstrap 5 Dashboard Admin Template
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center"
                             style="background-color:#F5F5DC">
                             <!-- La vuelta Colapinto -->
-                            <h5 class="mb-3">🚒🚒 Las vueltas Colapinto 🚒🚒</h5>
-                            <p class="mb-2">Los que en su vuelta hicieron un gross mayor a la suma del par más una vez
+                            <h5 class="mb-3">🚒🚒 Colapinto histórico 🚒🚒</h5>
+                            <p class="mb-2">Los que hicieron un gross mayor a la suma del par más una vez
                                 y media su handicap.</p>
                             <table id="tablaColapinto">
                                 <thead>
@@ -1238,16 +1479,16 @@ Bootstrap 5 Dashboard Admin Template
 
             // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
             fila.insertCell(0).textContent = registro.hoyo;
-            fila.insertCell(1).textContent = registro.jugador;
-            fila.insertCell(2).textContent = registro.par;
-            fila.insertCell(3).textContent = registro.golpes;
+            fila.insertCell(1).textContent = registro.par;
+            fila.insertCell(2).textContent = registro.golpes;
+            fila.insertCell(3).textContent = registro.jugador;
             fila.insertCell(4).textContent = registro.handicap;
-            if (registro.ok == 1) {
-                fila.insertCell(5).textContent = "🏆";
-            } else
-                fila.insertCell(5).textContent = "";
-            fila.insertCell(6).textContent = registro.jugadorantes;
-            fila.insertCell(7).textContent = registro.handicapantes;
+            // if (registro.ok == 1) {
+            //     fila.insertCell(5).textContent = "🏆";
+            // } else
+            //     fila.insertCell(5).textContent = "";
+            // fila.insertCell(6).textContent = registro.jugadorantes;
+            // fila.insertCell(7).textContent = registro.handicapantes;
 
         });
     }
@@ -1261,7 +1502,7 @@ Bootstrap 5 Dashboard Admin Template
         // Limpiar contenido anterior, si lo hubiera
         tabla.innerHTML = "";
 
-        colapintoHoy.sort((a, b) => a.plus - b.plus  );
+        colapintoHoy.sort((a, b) => a.plus - b.plus);
         colapintoHoy.forEach(registro => {
             const fila = tabla.insertRow();
 
@@ -1331,19 +1572,19 @@ Bootstrap 5 Dashboard Admin Template
 
             // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
             fila.insertCell(0).textContent = registroNeg.hoyoNG;
-            fila.insertCell(1).textContent = registroNeg.jugadorNG;
-            fila.insertCell(2).textContent = registroNeg.parNG;
+            fila.insertCell(1).textContent = registroNeg.parNG;
+            fila.insertCell(2).textContent = registroNeg.jugadorNG;
             fila.insertCell(3).textContent = registroNeg.golpesNG;
             fila.insertCell(4).textContent = registroNeg.handicapNG;
-            if (registroNeg.okNG == 1) {
-                fila.insertCell(5).textContent = "🏴‍☠️";
-            } else
-                fila.insertCell(5).textContent = "";
-            fila.insertCell(6).textContent = registroNeg.jugadorantesNG;
-            fila.insertCell(7).textContent = registroNeg.handicapantesNG;
-            fila.insertCell(7).textContent = registroNeg.golpesantesNG;
+            // if (registroNeg.okNG == 1) {
+            //     fila.insertCell(5).textContent = "🏴‍☠️";
+            // } else
+            //     fila.insertCell(5).textContent = "";
+            // fila.insertCell(6).textContent = registroNeg.jugadorantesNG;
+            // fila.insertCell(7).textContent = registroNeg.handicapantesNG;
+            // fila.insertCell(7).textContent = registroNeg.golpesantesNG;
 
-            console.log('jug anterior ' + registroNeg.jugadorantesNG)
+            // console.log('jug anterior ' + registroNeg.jugadorantesNG)
         });
     }
 
@@ -1525,7 +1766,7 @@ Bootstrap 5 Dashboard Admin Template
 <script src="js/apexcharts.min.js"></script>
 <script src="js/custom.js"></script>
 
-<script src="js/berdinegro.js" defer></script>
+<!-- <script src="js/berdinegro.js" defer></script> -->
 <script src="js/ultimodia.js" defer></script>
 <!-- <script src="js/ctaregresiva.js"></script> -->
 <!-- <script src="js/pelotas.js"></script> -->
