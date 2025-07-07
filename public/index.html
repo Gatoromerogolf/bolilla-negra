@@ -445,7 +445,8 @@ Bootstrap 5 Dashboard Admin Template
                                 <img id="imagenDinamica" src="images/profile/marco-tiger.png"
                                     class="custom-block-profile-image img-fluid" alt="">
                             </div>
-                            <p>Nuestro compañero <span id="pelotudo">...</span> ha acumulado la cantidad de
+                            <p>Nuestro compañero <strong><span id="pelotudo"
+                                        style="font-size: 25px;">...</span></strong>ha acumulado la cantidad de
                                 <span id="pelotas" class="centrado" style="font-size: 40px;">...</span> pelotas ganadas.
                             </p>
                             <div class="border-top pt-4 mt-4 text-center">
@@ -471,13 +472,14 @@ Bootstrap 5 Dashboard Admin Template
                                     <thead>
                                         <th>Hoyo</th>
                                         <th>Par</th>
+                                        <th>Score</th>
                                         <th>Jugador</th>
                                         <th>Hcp</th>
                                         <th>Fecha</th>
                                     </thead>
-                                    <!-- <tbody id="berdixHoyo">
-                                        </tbody> -->
-                                    <tbody>
+                                    <tbody id="berdixHoyo">
+                                    </tbody>
+                                    <!-- <tbody>
                                         <tr>
                                             <td>4</td>
                                             <td>3</td>
@@ -485,8 +487,7 @@ Bootstrap 5 Dashboard Admin Template
                                             <td>18</td>
                                             <td>05-07</td>
                                         </tr>
-                                    </tbody>
-
+                                    </tbody> -->
                                 </table>
                             </div>
 
@@ -497,12 +498,13 @@ Bootstrap 5 Dashboard Admin Template
                                         <th>Jugador</th>
                                         <th>Hoyo</th>
                                         <th>Par</th>
+                                        <th>Score</th>
                                         <th>Hcp</th>
                                         <th>Fecha</th>
                                     </thead>
-                                    <!-- <tbody id="berdixJugador">
-                                        </tbody> -->
-                                    <tbody>
+                                    <tbody id="berdixJugador">
+                                    </tbody>
+                                    <!-- <tbody>
                                         <tr>
                                             <td>Joaco</td>
                                             <td>4</td>
@@ -510,7 +512,7 @@ Bootstrap 5 Dashboard Admin Template
                                             <td>18</td>
                                             <td>05-07</td>
                                         </tr>
-                                    </tbody>
+                                    </tbody> -->
                                 </table>
                             </div>
 
@@ -531,9 +533,9 @@ Bootstrap 5 Dashboard Admin Template
                                         <th>Hcp</th>
                                         <th>Fecha</th>
                                     </thead>
-                                    <!-- <tbody id="berdixHoyo">
-                                        </tbody> -->
-                                    <tbody>
+                                    <tbody id="negroxHoyo">
+                                    </tbody>
+                                    <!-- <tbody>
                                         <tr>
                                             <td>2</td>
                                             <td>4</td>
@@ -622,7 +624,7 @@ Bootstrap 5 Dashboard Admin Template
                                             <td>35</td>
                                             <td>05-07</td>
                                         </tr>
-                                    </tbody>
+                                    </tbody> -->
 
                                 </table>
                             </div>
@@ -638,9 +640,9 @@ Bootstrap 5 Dashboard Admin Template
                                         <th>Hcp</th>
                                         <th>Fecha</th>
                                     </thead>
-                                    <!-- <tbody id="berdixJugador">
-                                        </tbody> -->
-                                    <tbody>
+                                    <tbody id="negroxJugador">
+                                    </tbody>
+                                    <!-- <tbody>
                                         <tr>
                                             <td>Edu</td>
                                             <td>2</td>
@@ -729,7 +731,7 @@ Bootstrap 5 Dashboard Admin Template
                                             <td>14</td>
                                             <td>05-07</td>
                                         </tr>
-                                    </tbody>
+                                    </tbody> -->
                                 </table>
                             </div>
 
@@ -1077,6 +1079,7 @@ Bootstrap 5 Dashboard Admin Template
 
     async function iniciar() {
         ultimaFecha = await buscaUltimaFecha();
+        todasLasFechas = await leeDatosFechas();
 
         const berdisLeidos = await leeTablaBerdis();
         const datosBerdis = berdisLeidos.filter((resultado) => resultado.fechakey == ultimaFecha.fec);
@@ -1084,6 +1087,7 @@ Bootstrap 5 Dashboard Admin Template
         if (datosBerdis && datosBerdis.length > 0) {
             tablaBerdis = datosBerdis; // variable global
             mostrarTablaBerdis();
+            mostrarHistoricoBerdis(berdisLeidos, todasLasFechas);
         }
 
         const negrosLeidos = await leeTablaNegros();
@@ -1091,6 +1095,7 @@ Bootstrap 5 Dashboard Admin Template
         if (datosNegros && datosNegros.length > 0) {
             tablaNegros = datosNegros;
             mostrarTablaNegros();
+            mostrarHistoricoNegros(negrosLeidos, todasLasFechas);
         }
 
         const colapintos = await leeTablaColapinto();
@@ -1483,14 +1488,62 @@ Bootstrap 5 Dashboard Admin Template
             fila.insertCell(2).textContent = registro.golpes;
             fila.insertCell(3).textContent = registro.jugador;
             fila.insertCell(4).textContent = registro.handicap;
-            // if (registro.ok == 1) {
-            //     fila.insertCell(5).textContent = "🏆";
-            // } else
-            //     fila.insertCell(5).textContent = "";
-            // fila.insertCell(6).textContent = registro.jugadorantes;
-            // fila.insertCell(7).textContent = registro.handicapantes;
-
         });
+    }
+
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    //   mostrarHistoricoBerdis  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    function mostrarHistoricoBerdis(berdisLeidos, todasLasFechas) {
+
+        const filtradosYOrdenados = berdisLeidos
+            .filter(registro => registro.fechakey > 1)
+            .sort((a, b) => a.hoyo - b.hoyo);
+
+        const tabla = document.getElementById("berdixHoyo")
+
+        // Limpiar contenido anterior, si lo hubiera
+        tabla.innerHTML = "";
+
+
+        filtradosYOrdenados.forEach(registro => {
+            const fechaObj = todasLasFechas.find(f => f.fec == registro.fechakey);
+            const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
+
+            const fila = tabla.insertRow();
+
+            // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
+            fila.insertCell(0).textContent = registro.hoyo;
+            fila.insertCell(1).textContent = registro.par;
+            fila.insertCell(2).textContent = registro.golpes;
+            fila.insertCell(3).textContent = registro.jugador;
+            fila.insertCell(4).textContent = registro.handicap;
+            fila.insertCell(5).textContent = fechaTexto;
+        });
+
+        const ordenadosPorJugador = filtradosYOrdenados
+            .sort((a, b) => a.jugador - b.jugador);
+
+        const tabla2 = document.getElementById("berdixJugador")
+
+        // Limpiar contenido anterior, si lo hubiera
+        tabla2.innerHTML = "";
+
+        ordenadosPorJugador.forEach(registro => {
+            const fechaObj = todasLasFechas.find(f => f.fec == registro.fechakey);
+            const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
+
+            const fila = tabla2.insertRow();
+
+            // Insertar celdas en orden:
+            fila.insertCell(0).textContent = registro.jugador;
+            fila.insertCell(1).textContent = registro.hoyo;
+            fila.insertCell(2).textContent = registro.par;
+            fila.insertCell(3).textContent = registro.golpes;
+            fila.insertCell(4).textContent = registro.handicap;
+            fila.insertCell(5).textContent = fechaTexto;
+        });
+
     }
 
     /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -1558,6 +1611,7 @@ Bootstrap 5 Dashboard Admin Template
     // 🥎  mostrarTablaNegros   ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽  
     // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
     function mostrarTablaNegros() {
+
         const tabla = document.querySelector("#tablaNegros tbody");
 
         // Limpiar contenido anterior, si lo hubiera
@@ -1576,24 +1630,117 @@ Bootstrap 5 Dashboard Admin Template
             fila.insertCell(2).textContent = registroNeg.jugadorNG;
             fila.insertCell(3).textContent = registroNeg.golpesNG;
             fila.insertCell(4).textContent = registroNeg.handicapNG;
-            // if (registroNeg.okNG == 1) {
-            //     fila.insertCell(5).textContent = "🏴‍☠️";
-            // } else
-            //     fila.insertCell(5).textContent = "";
-            // fila.insertCell(6).textContent = registroNeg.jugadorantesNG;
-            // fila.insertCell(7).textContent = registroNeg.handicapantesNG;
-            // fila.insertCell(7).textContent = registroNeg.golpesantesNG;
-
-            // console.log('jug anterior ' + registroNeg.jugadorantesNG)
         });
     }
 
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    // 🥎  mostrarTablaNegros   ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽  
+    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    function mostrarHistoricoNegros(negrosLeidos, todasLasFechas) {
+
+        const filtradosYOrdenados = negrosLeidos
+            .filter(registro => registro.fechakeyNG > 1)
+            .sort((a, b) => {
+                if (a.hoyoNG !== b.hoyoNG) {
+                    return a.hoyoNG - b.hoyoNG;
+                } else if (a.golpesNG !== b.golpesNG) {
+                    return a.golpesNG - b.golpesNG;
+                } else {
+                    return a.handicapNG - b.handicapNG;
+                }
+            });
+
+        let tabla = document.getElementById("negroxHoyo")
+
+        tabla.innerHTML = "";
+        let hoyoAnterior = null;
+
+        filtradosYOrdenados.forEach(registroNeg => {
+            const fila = tabla.insertRow();
+
+            const fechaObj = todasLasFechas.find(f => f.fec == registroNeg.fechakeyNG);
+            const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
+
+            // Insertar celdas en orden: Hoyo, Par, Score, Player, Hcp, Fecha
+            fila.insertCell(0).textContent = (registroNeg.hoyoNG !== hoyoAnterior) ? registroNeg.hoyoNG : '';
+            fila.insertCell(1).textContent = (registroNeg.hoyoNG !== hoyoAnterior) ? registroNeg.parNG : '';
+            fila.insertCell(2).textContent = registroNeg.golpesNG;
+            fila.insertCell(3).textContent = registroNeg.jugadorNG;
+            fila.insertCell(4).textContent = registroNeg.handicapNG;
+            fila.insertCell(5).textContent = fechaTexto;
+
+            // Actualizar valores anteriores
+            hoyoAnterior = registroNeg.hoyoNG;
+
+        });
+
+        tabla = document.getElementById("negroxJugador")
+
+        tabla.innerHTML = "";
+        let jugadorAnterior = null;
+
+        const ordenadosPorJugador = filtradosYOrdenados
+            .sort((a, b) => {
+                if (a.jugadorNG !== b.jugadorNG) {
+                    return a.jugadorNG.localeCompare(b.jugadorNG); // para strings
+                } else if (a.hoyoNG !== b.hoyoNG) {
+                    return a.hoyoNG - b.hoyoNG; // numérico
+                } else {
+                    return 0;
+                }
+            });
+
+        ordenadosPorJugador.forEach(registroNeg => {
+            const fila = tabla.insertRow();
+
+            const fechaObj = todasLasFechas.find(f => f.fec == registroNeg.fechakeyNG);
+            const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
+
+            // Insertar celdas en orden: Hoyo, Par, Score, Player, Hcp, Fecha
+            fila.insertCell(0).textContent = (registroNeg.jugadorNG !== jugadorAnterior) ? registroNeg.jugadorNG : '';
+            fila.insertCell(1).textContent = registroNeg.hoyoNG;
+            fila.insertCell(2).textContent = registroNeg.parNG;
+            fila.insertCell(3).textContent = registroNeg.golpesNG;
+            fila.insertCell(4).textContent = registroNeg.handicapNG;
+            fila.insertCell(5).textContent = fechaTexto;
+
+            // Actualizar valores anteriores
+            jugadorAnterior = registroNeg.jugadorNG;
+
+        });
+
+
+    }
     /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
     // 🥎  buscaUltimaFecha  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽           
     // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
     async function buscaUltimaFecha() {
         try {
             const response = await fetch(`/leerUltimaFecha`);
+
+            if (response.ok) {
+                const data = await response.json();
+                return data; // Devuelve los datos obtenidos si la respuesta es exitosa
+            } else {
+                console.error(
+                    "Error en la respuesta:",
+                    response.status,
+                    response.statusText
+                );
+                return null;
+            }
+        } catch (error) {
+            console.error("Error en la solicitud:", error);
+            return null;
+        }
+    }
+
+    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    // 🥎  leeDatosFechs  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽           
+    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    async function leeDatosFechas() {
+        try {
+            const response = await fetch(`/leerDatosFechas`);
 
             if (response.ok) {
                 const data = await response.json();
