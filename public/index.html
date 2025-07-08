@@ -53,6 +53,17 @@ Bootstrap 5 Dashboard Admin Template
         <div class="navbar-nav me-lg-2">
             <div class="nav-item text-nowrap d-flex align-items-center">
                 <div class="dropdown ps-3">
+
+                    <!--begin::Fullscreen Toggle-->
+                    <li class="nav-item ps-3">
+                        <a class="nav-link" href="#" id="fullscreen-toggle">
+                            <i id="fullscreen-icon-enter" class="bi bi-arrows-fullscreen"></i>
+                            <i id="fullscreen-icon-exit" class="bi bi-fullscreen-exit" style="display: none;"></i>
+                        </a>
+                    </li>
+                    <!--end::Fullscreen Toggle-->
+                </div>
+                <div>
                     <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false" id="navbarLightDropdownMenuLink">
                         <i class="bi-bell"></i>
@@ -99,7 +110,7 @@ Bootstrap 5 Dashboard Admin Template
                     </ul>
                 </div>
 
-                <div class="dropdown ps-1">
+                <!-- <div class="dropdown ps-1">
                     <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <i class="bi-three-dots-vertical"></i>
@@ -152,7 +163,7 @@ Bootstrap 5 Dashboard Admin Template
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="dropdown px-3">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -258,7 +269,7 @@ Bootstrap 5 Dashboard Admin Template
                     <div class="col-lg-5 col-12">
                         <div class="custom-block custom-block-transations"> <!-- ultimo torneo disputado -->
                             <center>
-                                <h4 class="mb-4">📅  Último torneo disputado  📅</h4>
+                                <h4 class="mb-4">📅 Último torneo disputado 📅</h4>
                                 <div>
                                     <h6 id="ultimaFecha"></h6>
                                     <span style="font-size: 1rem; font-weight: bold;">Jugadores:</span>
@@ -479,15 +490,7 @@ Bootstrap 5 Dashboard Admin Template
                                     </thead>
                                     <tbody id="berdixHoyo">
                                     </tbody>
-                                    <!-- <tbody>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>3</td>
-                                            <td>Joaco</td>
-                                            <td>18</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                    </tbody> -->
+
                                 </table>
                             </div>
 
@@ -504,15 +507,7 @@ Bootstrap 5 Dashboard Admin Template
                                     </thead>
                                     <tbody id="berdixJugador">
                                     </tbody>
-                                    <!-- <tbody>
-                                        <tr>
-                                            <td>Joaco</td>
-                                            <td>4</td>
-                                            <td>3</td>
-                                            <td>18</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                    </tbody> -->
+
                                 </table>
                             </div>
 
@@ -535,97 +530,6 @@ Bootstrap 5 Dashboard Admin Template
                                     </thead>
                                     <tbody id="negroxHoyo">
                                     </tbody>
-                                    <!-- <tbody>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>4</td>
-                                            <td>7</td>
-                                            <td>Negro</td>
-                                            <td>11</td>
-                                            <td>28-06</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td>10</td>
-                                            <td>Gaby</td>
-                                            <td>20</td>
-                                            <td>28-06</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td>7</td>
-                                            <td>Edu</td>
-                                            <td>11</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td>10</td>
-                                            <td>Julito</td>
-                                            <td>35</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>5</td>
-                                            <td>10</td>
-                                            <td>Sensei</td>
-                                            <td>30</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>5</td>
-                                            <td>10</td>
-                                            <td>Sensei</td>
-                                            <td>30</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>4</td>
-                                            <td>7</td>
-                                            <td>Edu</td>
-                                            <td>11</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>11</td>
-                                            <td>4</td>
-                                            <td>8</td>
-                                            <td>Torni</td>
-                                            <td>14</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>12</td>
-                                            <td>4</td>
-                                            <td>9</td>
-                                            <td>Sensei</td>
-                                            <td>29</td>
-                                            <td>28-06</td>
-                                        </tr>
-                                        <tr>
-                                            <td>13</td>
-                                            <td>3</td>
-                                            <td>7</td>
-                                            <td>Edu</td>
-                                            <td>11</td>
-                                            <td>28-06</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td>9</td>
-                                            <td>Julito</td>
-                                            <td>35</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                    </tbody> -->
-
                                 </table>
                             </div>
 
@@ -642,130 +546,8 @@ Bootstrap 5 Dashboard Admin Template
                                     </thead>
                                     <tbody id="negroxJugador">
                                     </tbody>
-                                    <!-- <tbody>
-                                        <tr>
-                                            <td>Edu</td>
-                                            <td>2</td>
-                                            <td>4</td>
-                                            <td>7</td>
-                                            <td>11</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>10</td>
-                                            <td>4</td>
-                                            <td>7</td>
-                                            <td>11</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>13</td>
-                                            <td>3</td>
-                                            <td>7</td>
-                                            <td>11</td>
-                                            <td>28-06</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gaby</td>
-                                            <td>2</td>
-                                            <td>4</td>
-                                            <td>10</td>
-                                            <td>20</td>
-                                            <td>28-06</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Julito</td>
-                                            <td>2</td>
-                                            <td>4</td>
-                                            <td>10</td>
-                                            <td>35</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>13</td>
-                                            <td>3</td>
-                                            <td>9</td>
-                                            <td>35</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Negro</td>
-                                            <td>2</td>
-                                            <td>4</td>
-                                            <td>7</td>
-                                            <td>11</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sensei</td>
-                                            <td>5</td>
-                                            <td>5</td>
-                                            <td>10</td>
-                                            <td>30</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>7</td>
-                                            <td>5</td>
-                                            <td>10</td>
-                                            <td>30</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>12</td>
-                                            <td>4</td>
-                                            <td>9</td>
-                                            <td>29</td>
-                                            <td>28-06</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Torni</td>
-                                            <td>11</td>
-                                            <td>4</td>
-                                            <td>8</td>
-                                            <td>14</td>
-                                            <td>05-07</td>
-                                        </tr>
-                                    </tbody> -->
                                 </table>
                             </div>
-
-
-
-                            <!-- <table id="berdinegro" class="mb-3 mt-4">
-                                <thead>
-                                    <colgroup>
-                                        <col>
-                                        <col>
-                                        <col style="background-color: rgb(250, 250, 32)" ;>
-                                        <col>
-                                        <col>
-                                        <col style="background-color: black" ;>
-                                        <col>
-                                    </colgroup>
-                                    <tr>
-                                        <th rowspan="2">#</th>
-                                        <th colspan="3">🏆 Birdie 🏆</th>
-                                        <th colspan="5">🏴‍☠️ Hoyo negro 🏴‍☠️</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Player</th>
-                                        <th>Hcp</th>
-                                        <th>Date</th>
-                                        <th>Player</th>
-                                        <th>Sco</th>
-                                        <th>Hcp</th>
-                                        <th>Par</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table> -->
 
                             <p class="mt-2 mb-3">Hoyo negro: le sacó al jugador más golpes que el máximo establecido
                                 para su handicap</p>
@@ -1054,741 +836,741 @@ Bootstrap 5 Dashboard Admin Template
             </main>
         </div>
     </div>
-</body>
+    <!-- </body> -->
 
-<div id="modalPelotasGanadas" class="modal-Pelotas" style="display:none">
-    <div class="modal-contenido-Pelotas">
-        <table id="tablaModalGeneralPelotas">
-            <tr>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-            </tr>
-            <tr id="lineaModalGeneralPelotas">
-            </tr>
-        </table>
-        <button id="cerrarPelotas">Cerrar</button>
+    <div id="modalPelotasGanadas" class="modal-Pelotas" style="display:none">
+        <div class="modal-contenido-Pelotas">
+            <table id="tablaModalGeneralPelotas">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                </tr>
+                <tr id="lineaModalGeneralPelotas">
+                </tr>
+            </table>
+            <button id="cerrarPelotas">Cerrar</button>
+        </div>
     </div>
-</div>
 
-<!--   /* 🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎 */ -->
+    <!--   /* 🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎 */ -->
 
-<script>
-    window.addEventListener("DOMContentLoaded", () => {
-        iniciar();
-    })
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            iniciar();
+        })
 
-    async function iniciar() {
-        ultimaFecha = await buscaUltimaFecha();
-        todasLasFechas = await leeDatosFechas();
+        async function iniciar() {
+            ultimaFecha = await buscaUltimaFecha();
+            todasLasFechas = await leeDatosFechas();
 
-        const berdisLeidos = await leeTablaBerdis();
-        const datosBerdis = berdisLeidos.filter((resultado) => resultado.fechakey == ultimaFecha.fec);
+            const berdisLeidos = await leeTablaBerdis();
+            const datosBerdis = berdisLeidos.filter((resultado) => resultado.fechakey == ultimaFecha.fec);
 
-        if (datosBerdis && datosBerdis.length > 0) {
-            tablaBerdis = datosBerdis; // variable global
-            mostrarTablaBerdis();
-            mostrarHistoricoBerdis(berdisLeidos, todasLasFechas);
-        }
-
-        const negrosLeidos = await leeTablaNegros();
-        const datosNegros = negrosLeidos.filter((resultado) => resultado.fechakeyNG == ultimaFecha.fec);
-        if (datosNegros && datosNegros.length > 0) {
-            tablaNegros = datosNegros;
-            mostrarTablaNegros();
-            mostrarHistoricoNegros(negrosLeidos, todasLasFechas);
-        }
-
-        const colapintos = await leeTablaColapinto();
-        if (colapintos.length > 0) {
-            colapintoHoy = colapintos.filter((resultado) => resultado.fechaKey == ultimaFecha.fec);
-            if (colapintoHoy && colapintoHoy.length > 0) {
-                // let datosColapintoHoy = colapintoHoy;
-                mostrarTablaColapintoHoy();
+            if (datosBerdis && datosBerdis.length > 0) {
+                tablaBerdis = datosBerdis; // variable global
+                mostrarTablaBerdis();
+                mostrarHistoricoBerdis(berdisLeidos, todasLasFechas);
             }
-            else {
-                tablaColapintoHoy = [];
+
+            const negrosLeidos = await leeTablaNegros();
+            const datosNegros = negrosLeidos.filter((resultado) => resultado.fechakeyNG == ultimaFecha.fec);
+            if (datosNegros && datosNegros.length > 0) {
+                tablaNegros = datosNegros;
+                mostrarTablaNegros();
+                mostrarHistoricoNegros(negrosLeidos, todasLasFechas);
             }
-        }
-        datosColapinto = colapintos;
-        mostrarTablaColapinto();
 
-        cargarPromedios();
+            const colapintos = await leeTablaColapinto();
+            if (colapintos.length > 0) {
+                colapintoHoy = colapintos.filter((resultado) => resultado.fechaKey == ultimaFecha.fec);
+                if (colapintoHoy && colapintoHoy.length > 0) {
+                    // let datosColapintoHoy = colapintoHoy;
+                    mostrarTablaColapintoHoy();
+                }
+                else {
+                    tablaColapintoHoy = [];
+                }
+            }
+            datosColapinto = colapintos;
+            mostrarTablaColapinto();
 
-        // let resultadosClau;
-        let resultadosClau = await leerDatosNetos();
+            cargarPromedios();
 
-        // let players2Clau = {};
-        let players2Clau = resultadosClau.filter(
-            (resultado) => resultado.fec > 44 && resultado.fec < 90
-        );
+            // let resultadosClau;
+            let resultadosClau = await leerDatosNetos();
 
-        const fechasFiltradasClau = await leerDatosFechasClau();
-        console.table(fechasFiltradasClau);
+            // let players2Clau = {};
+            let players2Clau = resultadosClau.filter(
+                (resultado) => resultado.fec > 44 && resultado.fec < 90
+            );
 
-        console.table(players2Clau)
+            const fechasFiltradasClau = await leerDatosFechasClau();
+            console.table(fechasFiltradasClau);
 
-        const filasMat = 12;
-        const columnas = 1;
-        const matriz2 = new Array(filasMat)
-            .fill(0)
-            .map(() => new Array(columnas).fill(0));
+            console.table(players2Clau)
 
-        // Paso 1: Agrupar los datos por jugador, manteniendo solo pares de fec y neto
-        const playersDataClau = {};
+            const filasMat = 12;
+            const columnas = 1;
+            const matriz2 = new Array(filasMat)
+                .fill(0)
+                .map(() => new Array(columnas).fill(0));
 
-        //if (!playersDataClau[play]): verifica si no existe ningún dato para el jugador con índice play en el arreglo playersData. El ! antes de playersData[play] verifica si es falso, es decir, si es nulo, undefined, 0, false o una cadena vacía.
+            // Paso 1: Agrupar los datos por jugador, manteniendo solo pares de fec y neto
+            const playersDataClau = {};
 
-        players2Clau.forEach(({ play, fec, neto }) => {
-            if (fec > 44 && fec < 90) {
-                if (neto > 0) {
-                    // Filtra los pares donde neto es mayor a 0
-                    if (!playersDataClau[play]) {
-                        playersDataClau[play] = []; //Inicializ el arreglo para el jugador play asignándole un nuevo arreglo vacío.
+            //if (!playersDataClau[play]): verifica si no existe ningún dato para el jugador con índice play en el arreglo playersData. El ! antes de playersData[play] verifica si es falso, es decir, si es nulo, undefined, 0, false o una cadena vacía.
+
+            players2Clau.forEach(({ play, fec, neto }) => {
+                if (fec > 44 && fec < 90) {
+                    if (neto > 0) {
+                        // Filtra los pares donde neto es mayor a 0
+                        if (!playersDataClau[play]) {
+                            playersDataClau[play] = []; //Inicializ el arreglo para el jugador play asignándole un nuevo arreglo vacío.
+                        }
+                        playersDataClau[play].push({ fec, neto }); // Esto agrega un nuevo objeto al arreglo del jugador play. El objeto tiene dos propiedades: fec y neto.
                     }
-                    playersDataClau[play].push({ fec, neto }); // Esto agrega un nuevo objeto al arreglo del jugador play. El objeto tiene dos propiedades: fec y neto.
+                }
+            });
+
+            // :::::::::::::::::::::::::::::::::::::::::::::
+            // ::::::::: CUENTA EL TOTAL DE NPT DE CADA UNO
+            // :::::::::::::::::::::::::::::::::::::::::::::
+            let nptCount = {};
+
+            // Recorre players2 y cuenta las veces que npt es 1 para cada play
+            players2Clau.forEach(({ play, npt }) => {
+                // Si npt es 1, incrementa el contador para ese jugador (play)
+                if (npt === 1) {
+                    if (!nptCount[play]) {
+                        nptCount[play] = 0; // Inicializa si no existe
+                    }
+                    nptCount[play] += 1; // Incrementa el contador de npt
+                }
+            });
+
+            // ::::::::::::::::::::::::::::::::::::::::::::::
+            // :::::::::     LO GUARDA EN UNA MATRIZ
+            // ::::::::::::::::::::::::::::::::::::::::::::::
+            let matrizNpt = [];
+
+            // Recorre el objeto nptCount para construir la matriz
+            for (const play in nptCount) {
+                if (nptCount.hasOwnProperty(play)) {
+                    matrizNpt.push([play, nptCount[play]]);
                 }
             }
-        });
 
-        // :::::::::::::::::::::::::::::::::::::::::::::
-        // ::::::::: CUENTA EL TOTAL DE NPT DE CADA UNO
-        // :::::::::::::::::::::::::::::::::::::::::::::
-        let nptCount = {};
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            //:::::::::::::: selecciona los seis mejores
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            // ordena por score neto de menor a mayor
+            // Slice devuelve una copia de una porción del arreglo.  Toma los seis primeros
+            for (const play in playersDataClau) {
+                playersDataClau[play].sort((a, b) => a.neto - b.neto);
+                playersDataClau[play] = playersDataClau[play].slice(0, 6);
+                playersDataClau[play].sort((a, b) => a.fec - b.fec);
+            }
+            console.log("tabla con players");
+            console.table(playersDataClau);
 
-        // Recorre players2 y cuenta las veces que npt es 1 para cada play
-        players2Clau.forEach(({ play, npt }) => {
-            // Si npt es 1, incrementa el contador para ese jugador (play)
-            if (npt === 1) {
-                if (!nptCount[play]) {
-                    nptCount[play] = 0; // Inicializa si no existe
+
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            //:::::::::::::: agrega suma netos y promedio
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            for (let play in playersDataClau) {
+                let sumaNetos = 0;
+                let promedios = 0;
+                for (let i = 0; i < playersDataClau[play].length; i++) {
+                    sumaNetos += playersDataClau[play][i].neto;
                 }
-                nptCount[play] += 1; // Incrementa el contador de npt
+                playersDataClau[play].sumaNetos = sumaNetos;
+                promedios = sumaNetos / playersDataClau[play].length;
+
+                // Agrega el total de npt del objeto nptCount
+                playersDataClau[play].totalNpt = nptCount[play] || 0;
+
+                let promedioDec = parseFloat(promedios.toFixed(1)) || 0;
+                // playersData[play].promedios = promedioDec;
+
+                let sumar = 2 * playersDataClau[play].totalNpt;
+                // Asegúrate de que promedioDec sea un número
+                // promedioDec = parseFloat(promedioDec) || 0; // Esto asegura que promedioDec sea un número
+                promedioDec += sumar;
+
+                playersDataClau[play].promedios = promedioDec;
             }
-        });
 
-        // ::::::::::::::::::::::::::::::::::::::::::::::
-        // :::::::::     LO GUARDA EN UNA MATRIZ
-        // ::::::::::::::::::::::::::::::::::::::::::::::
-        let matrizNpt = [];
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            //:::::::::::::: ordena por promedio ascendente
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-        // Recorre el objeto nptCount para construir la matriz
-        for (const play in nptCount) {
-            if (nptCount.hasOwnProperty(play)) {
-                matrizNpt.push([play, nptCount[play]]);
-            }
-        }
-
-        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        //:::::::::::::: selecciona los seis mejores
-        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        // ordena por score neto de menor a mayor
-        // Slice devuelve una copia de una porción del arreglo.  Toma los seis primeros
-        for (const play in playersDataClau) {
-            playersDataClau[play].sort((a, b) => a.neto - b.neto);
-            playersDataClau[play] = playersDataClau[play].slice(0, 6);
-            playersDataClau[play].sort((a, b) => a.fec - b.fec);
-        }
-        console.log("tabla con players");
-        console.table(playersDataClau);
-
-
-        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        //:::::::::::::: agrega suma netos y promedio
-        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        for (let play in playersDataClau) {
-            let sumaNetos = 0;
-            let promedios = 0;
-            for (let i = 0; i < playersDataClau[play].length; i++) {
-                sumaNetos += playersDataClau[play][i].neto;
-            }
-            playersDataClau[play].sumaNetos = sumaNetos;
-            promedios = sumaNetos / playersDataClau[play].length;
-
-            // Agrega el total de npt del objeto nptCount
-            playersDataClau[play].totalNpt = nptCount[play] || 0;
-
-            let promedioDec = parseFloat(promedios.toFixed(1)) || 0;
-            // playersData[play].promedios = promedioDec;
-
-            let sumar = 2 * playersDataClau[play].totalNpt;
-            // Asegúrate de que promedioDec sea un número
-            // promedioDec = parseFloat(promedioDec) || 0; // Esto asegura que promedioDec sea un número
-            promedioDec += sumar;
-
-            playersDataClau[play].promedios = promedioDec;
-        }
-
-        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        //:::::::::::::: ordena por promedio ascendente
-        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-        for (const key in playersDataClau) {
-            if (Array.isArray(playersDataClau[key])) {
-                playersDataClau[key].sort((a, b) => a.promedios - b.promedios);
-            }
-        }
-        //
-
-        let i = 0;
-        let j = 0;
-
-        for (const play in playersDataClau) {
-            matriz2[i][0] = play;
-            matriz2[i][1] = playersDataClau[play].sumaNetos;
-            matriz2[i][2] = playersDataClau[play].promedios;
-            matriz2[i][3] = playersDataClau[play].totalNpt;
-            i++;
-        }
-
-        i = 0;
-        let col = 0;
-
-        for (const elemento in playersDataClau) {
-            // Asegura que haya una fila en la matriz para este índice
-            matriz2[i] = matriz2[i] || [];
-
-            for (let j = 0; j < playersDataClau[elemento].length; j++) {
-                console.log(`j: ${j}, elemento ${elemento} y otro ${playersDataClau[elemento][j].fec}`)
-                let col = playersDataClau[elemento][j].fec - 41;
-
-                // Si `col` es mayor que la longitud actual del array, puedes ajustar el array.
-                while (matriz2[i].length <= col) {
-                    matriz2[i].push("--"); // Rellena con `null` o cualquier valor por defecto
+            for (const key in playersDataClau) {
+                if (Array.isArray(playersDataClau[key])) {
+                    playersDataClau[key].sort((a, b) => a.promedios - b.promedios);
                 }
-
-                // Luego agrega el valor deseado
-                matriz2[i][col] = playersDataClau[elemento][j].neto;
             }
-            i++;
-        }
-        console.log("matriz ordenada");
-        console.table(matriz2);
-        matriz2.sort((filaA, filaB) => filaA[2] - filaB[2]);
+            //
 
-        /** @type {HTMLTableSectionElement} */
-        const cuerpoTablaSeis2Clau = document.getElementById("clasificaClausura");
+            let i = 0;
+            let j = 0;
 
-        for (i = 0; i < 6; i++) {
-            if (matriz2[i][1] > 0) {
-                const lineaDatos2 = cuerpoTablaSeis2Clau.insertRow();
-                const celdagral1 = lineaDatos2.insertCell(-1);
-                celdagral1.style.width = "10px";
-                celdagral1.textContent = i + 1 + "°";
-                const celdagral2 = lineaDatos2.insertCell(-1);
-                celdagral2.style.width = "10px";
-                celdagral2.textContent = matriz2[i][0];
-                const celdagral3 = lineaDatos2.insertCell(-1);
-                celdagral3.style.width = "10px";
-                celdagral3.textContent = matriz2[i][2];
+            for (const play in playersDataClau) {
+                matriz2[i][0] = play;
+                matriz2[i][1] = playersDataClau[play].sumaNetos;
+                matriz2[i][2] = playersDataClau[play].promedios;
+                matriz2[i][3] = playersDataClau[play].totalNpt;
+                i++;
             }
-        }
-        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        //   Arma el anual
-        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 
-        giras = await leerDatosGiras();
+            i = 0;
+            let col = 0;
 
-        let matrizValores = Array.from({ length: 12 }, () => ["", 0]); // Cada fila tendrá un arreglo con valores iniciales
-        //  Arma la matriz con los nombres de los jugadores
-        //  suma los valores anuales obtenidos en cada sábado
-        for (const player of players2) {
-            if (player.play !== "Presi") {
-                const textoBuscado = player.play;
+            for (const elemento in playersDataClau) {
+                // Asegura que haya una fila en la matriz para este índice
+                matriz2[i] = matriz2[i] || [];
+
+                for (let j = 0; j < playersDataClau[elemento].length; j++) {
+                    console.log(`j: ${j}, elemento ${elemento} y otro ${playersDataClau[elemento][j].fec}`)
+                    let col = playersDataClau[elemento][j].fec - 41;
+
+                    // Si `col` es mayor que la longitud actual del array, puedes ajustar el array.
+                    while (matriz2[i].length <= col) {
+                        matriz2[i].push("--"); // Rellena con `null` o cualquier valor por defecto
+                    }
+
+                    // Luego agrega el valor deseado
+                    matriz2[i][col] = playersDataClau[elemento][j].neto;
+                }
+                i++;
+            }
+            console.log("matriz ordenada");
+            console.table(matriz2);
+            matriz2.sort((filaA, filaB) => filaA[2] - filaB[2]);
+
+            /** @type {HTMLTableSectionElement} */
+            const cuerpoTablaSeis2Clau = document.getElementById("clasificaClausura");
+
+            for (i = 0; i < 6; i++) {
+                if (matriz2[i][1] > 0) {
+                    const lineaDatos2 = cuerpoTablaSeis2Clau.insertRow();
+                    const celdagral1 = lineaDatos2.insertCell(-1);
+                    celdagral1.style.width = "10px";
+                    celdagral1.textContent = i + 1 + "°";
+                    const celdagral2 = lineaDatos2.insertCell(-1);
+                    celdagral2.style.width = "10px";
+                    celdagral2.textContent = matriz2[i][0];
+                    const celdagral3 = lineaDatos2.insertCell(-1);
+                    celdagral3.style.width = "10px";
+                    celdagral3.textContent = matriz2[i][2];
+                }
+            }
+            /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            //   Arma el anual
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+            giras = await leerDatosGiras();
+
+            let matrizValores = Array.from({ length: 12 }, () => ["", 0]); // Cada fila tendrá un arreglo con valores iniciales
+            //  Arma la matriz con los nombres de los jugadores
+            //  suma los valores anuales obtenidos en cada sábado
+            for (const player of players2) {
+                if (player.play !== "Presi") {
+                    const textoBuscado = player.play;
+                    for (let i = 0; i < 12; i++) {
+                        if (matrizValores[i][1] == textoBuscado) {
+                            matrizValores[i][3] += player.anual;
+                            break;
+                        } else if
+                            (matrizValores[i][1] == "" || matrizValores[i][1] == undefined) {
+                            matrizValores[i][1] = textoBuscado;
+                            matrizValores[i][3] = player.anual;
+                            break;
+                        }
+                    }
+                }
+            }
+            //  leo el localstorage con los puntos por mejor score mensual.
+            const ganadoresScore = localStorage.getItem('ganadoresScore');
+            if (ganadoresScore) {
+                const matrizGanadoresScore = JSON.parse(ganadoresScore);
+                for (let i = 0; i < 12; i++) { // borrra los acumuladores
+                    matrizValores[i][4] = 0;
+                }
+                matrizGanadoresScore.forEach(ganador => {
+                    const player = ganador[0];
+                    const puntos = parseFloat(ganador[1]);
+
+                    for (let i = 0; i < 12; i++) {
+                        if (matrizValores[i][1] == player) {
+                            matrizValores[i][4] = (parseFloat(matrizValores[i][4]) || 0) + puntos;
+                        }
+                    }
+                })
+            }
+
+            //  tengo que agregar a la matriz los valores de las giras y torneos
+            for (const jugador of giras) {
+                const textoBuscado = jugador.Jugador;
                 for (let i = 0; i < 12; i++) {
                     if (matrizValores[i][1] == textoBuscado) {
-                        matrizValores[i][3] += player.anual;
-                        break;
-                    } else if
-                        (matrizValores[i][1] == "" || matrizValores[i][1] == undefined) {
-                        matrizValores[i][1] = textoBuscado;
-                        matrizValores[i][3] = player.anual;
+                        matrizValores[i][5] = parseFloat(jugador.Sierra);
+                        matrizValores[i][6] = jugador.Ryder;
+                        matrizValores[i][9] = jugador.Carilo;
+                        matrizValores[i][10] = jugador.Desafio;
+
+                        matrizValores[i][7] = parseFloat(jugador.Apertura);
+                        matrizValores[i][8] = parseFloat(jugador.Clausura);
                         break;
                     }
                 }
             }
-        }
-        //  leo el localstorage con los puntos por mejor score mensual.
-        const ganadoresScore = localStorage.getItem('ganadoresScore');
-        if (ganadoresScore) {
-            const matrizGanadoresScore = JSON.parse(ganadoresScore);
-            for (let i = 0; i < 12; i++) { // borrra los acumuladores
-                matrizValores[i][4] = 0;
-            }
-            matrizGanadoresScore.forEach(ganador => {
-                const player = ganador[0];
-                const puntos = parseFloat(ganador[1]);
 
-                for (let i = 0; i < 12; i++) {
-                    if (matrizValores[i][1] == player) {
-                        matrizValores[i][4] = (parseFloat(matrizValores[i][4]) || 0) + puntos;
+            for (let i = 0; i < 11; i++) {
+                // Asegurate de que empiece en número (y no en undefined o string)
+                matrizValores[i][2] = 0;
+
+                for (let j = 3; j < 11; j++) {
+                    const valor = matrizValores[i][j];
+                    // esto por si hay algun valor NaN
+                    if (isNaN(valor)) {
+                        console.warn(`Valor inválido en matrizValores[${i}][${j}]:`, valor);
+                    } else {
+                        matrizValores[i][2] += valor;
                     }
                 }
-            })
-        }
+            }
 
-        //  tengo que agregar a la matriz los valores de las giras y torneos
-        for (const jugador of giras) {
-            const textoBuscado = jugador.Jugador;
+            // Llamada al método sort() con la función de comparación
+            matrizValores.sort(compararPorColumna2);
+
+            // Función de comparación para ordenar por la columna 2
+            function compararPorColumna2(filaA, filaB) {
+                const valorA = parseFloat(filaA[2]);
+                const valorB = parseFloat(filaB[2]);
+                return valorB - valorA;
+            }
             for (let i = 0; i < 12; i++) {
-                if (matrizValores[i][1] == textoBuscado) {
-                    matrizValores[i][5] = parseFloat(jugador.Sierra);
-                    matrizValores[i][6] = jugador.Ryder;
-                    matrizValores[i][9] = jugador.Carilo;
-                    matrizValores[i][10] = jugador.Desafio;
+                matrizValores[i][0] = i + 1;
+            }
 
-                    matrizValores[i][7] = parseFloat(jugador.Apertura);
-                    matrizValores[i][8] = parseFloat(jugador.Clausura);
-                    break;
+            let tbody = document.getElementById("clasificaAnual"); // Selecciona el tbody de la tabla
+
+            tbody.innerHTML = "";
+            for (let i = 0; i < 6; i++) {
+                let fila = tbody.insertRow(); // Crea una nueva fila
+                for (let j = 0; j < 3; j++) {
+                    let celda = fila.insertCell(j); // Crea una nueva celda en la posición j
+                    celda.textContent = matrizValores[i][j]; // Asigna el valor a la celda
+                    if (j == 0) {
+                        celda.textContent = matrizValores[i][j] + "°"; // Asigna el valor a la celda
+                    }
                 }
             }
-        }
+        };
 
-        for (let i = 0; i < 11; i++) {
-            // Asegurate de que empiece en número (y no en undefined o string)
-            matrizValores[i][2] = 0;
+        let offset = 0;
+        let hasMore = true;
 
-            for (let j = 3; j < 11; j++) {
-                const valor = matrizValores[i][j];
-                // esto por si hay algun valor NaN
-                if (isNaN(valor)) {
-                    console.warn(`Valor inválido en matrizValores[${i}][${j}]:`, valor);
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   leeTablaBerdis 
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function leeTablaBerdis() {
+            try {
+                const response = await fetch(`/leerTablaBerdis`);
+                if (response.ok) {
+                    const resultados = await response.json();
+
+                    // Validación explícita si viene vacío
+                    if (!Array.isArray(resultados)) {
+                        console.warn("Respuesta inesperada del servidor:", resultados);
+                        return null;
+                    }
+
+                    if (resultados.length === 0) {
+                        console.info("No hay registros disponibles en la tabla Berdis.");
+                        return []; // devuelve array vacío para seguir usando filter/map sin errores
+                    }
+
+                    return resultados; // datos válidos
                 } else {
-                    matrizValores[i][2] += valor;
-                }
-            }
-        }
-
-        // Llamada al método sort() con la función de comparación
-        matrizValores.sort(compararPorColumna2);
-
-        // Función de comparación para ordenar por la columna 2
-        function compararPorColumna2(filaA, filaB) {
-            const valorA = parseFloat(filaA[2]);
-            const valorB = parseFloat(filaB[2]);
-            return valorB - valorA;
-        }
-        for (let i = 0; i < 12; i++) {
-            matrizValores[i][0] = i + 1;
-        }
-
-        let tbody = document.getElementById("clasificaAnual"); // Selecciona el tbody de la tabla
-
-        tbody.innerHTML = "";
-        for (let i = 0; i < 6; i++) {
-            let fila = tbody.insertRow(); // Crea una nueva fila
-            for (let j = 0; j < 3; j++) {
-                let celda = fila.insertCell(j); // Crea una nueva celda en la posición j
-                celda.textContent = matrizValores[i][j]; // Asigna el valor a la celda
-                if (j == 0) {
-                    celda.textContent = matrizValores[i][j] + "°"; // Asigna el valor a la celda
-                }
-            }
-        }
-    };
-
-    let offset = 0;
-    let hasMore = true;
-
-    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //   leeTablaBerdis 
-    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    async function leeTablaBerdis() {
-        try {
-            const response = await fetch(`/leerTablaBerdis`);
-            if (response.ok) {
-                const resultados = await response.json();
-
-                // Validación explícita si viene vacío
-                if (!Array.isArray(resultados)) {
-                    console.warn("Respuesta inesperada del servidor:", resultados);
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
                     return null;
                 }
-
-                if (resultados.length === 0) {
-                    console.info("No hay registros disponibles en la tabla Berdis.");
-                    return []; // devuelve array vacío para seguir usando filter/map sin errores
-                }
-
-                return resultados; // datos válidos
-            } else {
-                console.error(
-                    "Error en la respuesta:",
-                    response.status,
-                    response.statusText
-                );
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
                 return null;
             }
-        } catch (error) {
-            console.error("Error en la solicitud:", error);
-            return null;
         }
-    }
 
-    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //   leeTablaNegros ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
-    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    async function leeTablaNegros() {
-        try {
-            const response = await fetch(`/leerTablaNegros`);
-            if (response.ok) {
-                const resultados = await response.json();
-                return resultados; // Devuelve datos si respuesta OK
-            } else {
-                console.error(
-                    "Error en la respuesta:",
-                    response.status,
-                    response.statusText
-                );
-                return null;
-            }
-        } catch (error) {
-            console.error("Error en la solicitud:", error);
-            return null;
-        }
-    }
-
-    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //   leeTablaColapinto  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
-    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    async function leeTablaColapinto() {
-        try {
-            const response = await fetch(`/leerColapinto`);
-            if (response.ok) {
-                const resultados = await response.json();
-                return resultados; // Devuelve datos si respuesta OK
-            } else {
-                console.error(
-                    "Error en la respuesta:",
-                    response.status,
-                    response.statusText
-                );
-                return null;
-            }
-        } catch (error) {
-            console.error("Error en la solicitud:", error);
-            return null;
-        }
-    }
-
-    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //   mostrarTablaBerdis  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
-    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    function mostrarTablaBerdis() {
-        const tabla = document.querySelector("#tablaBerdis tbody");
-
-        // Limpiar contenido anterior, si lo hubiera
-        tabla.innerHTML = "";
-
-        tablaBerdis.forEach(registro => {
-            const fila = tabla.insertRow();
-
-            // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
-            fila.insertCell(0).textContent = registro.hoyo;
-            fila.insertCell(1).textContent = registro.par;
-            fila.insertCell(2).textContent = registro.golpes;
-            fila.insertCell(3).textContent = registro.jugador;
-            fila.insertCell(4).textContent = registro.handicap;
-        });
-    }
-
-    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //   mostrarHistoricoBerdis  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
-    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    function mostrarHistoricoBerdis(berdisLeidos, todasLasFechas) {
-
-        const filtradosYOrdenados = berdisLeidos
-            .filter(registro => registro.fechakey > 1)
-            .sort((a, b) => a.hoyo - b.hoyo);
-
-        const tabla = document.getElementById("berdixHoyo")
-
-        // Limpiar contenido anterior, si lo hubiera
-        tabla.innerHTML = "";
-
-
-        filtradosYOrdenados.forEach(registro => {
-            const fechaObj = todasLasFechas.find(f => f.fec == registro.fechakey);
-            const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
-
-            const fila = tabla.insertRow();
-
-            // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
-            fila.insertCell(0).textContent = registro.hoyo;
-            fila.insertCell(1).textContent = registro.par;
-            fila.insertCell(2).textContent = registro.golpes;
-            fila.insertCell(3).textContent = registro.jugador;
-            fila.insertCell(4).textContent = registro.handicap;
-            fila.insertCell(5).textContent = fechaTexto;
-        });
-
-        const ordenadosPorJugador = filtradosYOrdenados
-            .sort((a, b) => a.jugador - b.jugador);
-
-        const tabla2 = document.getElementById("berdixJugador")
-
-        // Limpiar contenido anterior, si lo hubiera
-        tabla2.innerHTML = "";
-
-        ordenadosPorJugador.forEach(registro => {
-            const fechaObj = todasLasFechas.find(f => f.fec == registro.fechakey);
-            const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
-
-            const fila = tabla2.insertRow();
-
-            // Insertar celdas en orden:
-            fila.insertCell(0).textContent = registro.jugador;
-            fila.insertCell(1).textContent = registro.hoyo;
-            fila.insertCell(2).textContent = registro.par;
-            fila.insertCell(3).textContent = registro.golpes;
-            fila.insertCell(4).textContent = registro.handicap;
-            fila.insertCell(5).textContent = fechaTexto;
-        });
-
-    }
-
-    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //   mostrarTablaColapintoHoy  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
-    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    function mostrarTablaColapintoHoy() {
-        const tabla = document.querySelector("#tablaColapintoHoy tbody");
-
-        // Limpiar contenido anterior, si lo hubiera
-        tabla.innerHTML = "";
-
-        colapintoHoy.sort((a, b) => a.plus - b.plus);
-        colapintoHoy.forEach(registro => {
-            const fila = tabla.insertRow();
-
-            // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
-            // fila.insertCell(0).textContent = registro.fecha;
-            fila.insertCell(0).textContent = registro.player;
-            fila.insertCell(1).textContent = registro.handicap;
-            let cincuenta = registro.handicap / 2;
-            fila.insertCell(2).textContent = cincuenta;
-            let unoymedio = registro.handicap + cincuenta;
-            fila.insertCell(3).textContent = unoymedio;
-            let maximo = 72 + unoymedio;
-            fila.insertCell(4).textContent = maximo;
-            fila.insertCell(5).textContent = registro.gross;
-            let plus = registro.gross - maximo
-            fila.insertCell(6).textContent = plus;
-        });
-    }
-
-    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    //   mostrarTablaColapinto  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
-    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    function mostrarTablaColapinto() {
-
-        const tabla = document.querySelector("#tablaColapinto tbody");
-
-        // Limpiar contenido anterior, si lo hubiera
-        tabla.innerHTML = "";
-
-        datosColapinto.forEach(registro => {
-            const fila = tabla.insertRow();
-
-            const fecha = registro.fecha;
-            const partes = fecha.split("-"); // ["2025", "07", "05"]
-            const formato = `${partes[2]}-${partes[1]}`; // "05-07"
-            fila.insertCell(0).textContent = formato;
-
-            fila.insertCell(1).textContent = registro.player;
-            fila.insertCell(2).textContent = registro.handicap;
-            let cincuenta = registro.handicap / 2;
-            fila.insertCell(3).textContent = cincuenta;
-            let unoymedio = registro.handicap + cincuenta;
-            fila.insertCell(4).textContent = unoymedio;
-            let maximo = 72 + unoymedio;
-            fila.insertCell(5).textContent = maximo;
-            fila.insertCell(6).textContent = registro.gross;
-            let plus = registro.gross - maximo
-            fila.insertCell(7).textContent = plus;
-        });
-    }
-
-    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    // 🥎  mostrarTablaNegros   ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽  
-    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    function mostrarTablaNegros() {
-
-        const tabla = document.querySelector("#tablaNegros tbody");
-
-        // Limpiar contenido anterior, si lo hubiera
-        tabla.innerHTML = "";
-
-        tablaNegros.sort((a, b) => a.hoyoNG - b.hoyoNG);
-
-        console.table(tablaNegros);
-
-        tablaNegros.forEach(registroNeg => {
-            const fila = tabla.insertRow();
-
-            // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
-            fila.insertCell(0).textContent = registroNeg.hoyoNG;
-            fila.insertCell(1).textContent = registroNeg.parNG;
-            fila.insertCell(2).textContent = registroNeg.jugadorNG;
-            fila.insertCell(3).textContent = registroNeg.golpesNG;
-            fila.insertCell(4).textContent = registroNeg.handicapNG;
-        });
-    }
-
-    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    // 🥎  mostrarTablaNegros   ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽  
-    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    function mostrarHistoricoNegros(negrosLeidos, todasLasFechas) {
-
-        const filtradosYOrdenados = negrosLeidos
-            .filter(registro => registro.fechakeyNG > 1)
-            .sort((a, b) => {
-                if (a.hoyoNG !== b.hoyoNG) {
-                    return a.hoyoNG - b.hoyoNG;
-                } else if (a.golpesNG !== b.golpesNG) {
-                    return a.golpesNG - b.golpesNG;
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   leeTablaNegros ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function leeTablaNegros() {
+            try {
+                const response = await fetch(`/leerTablaNegros`);
+                if (response.ok) {
+                    const resultados = await response.json();
+                    return resultados; // Devuelve datos si respuesta OK
                 } else {
-                    return a.handicapNG - b.handicapNG;
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
                 }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
+            }
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   leeTablaColapinto  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function leeTablaColapinto() {
+            try {
+                const response = await fetch(`/leerColapinto`);
+                if (response.ok) {
+                    const resultados = await response.json();
+                    return resultados; // Devuelve datos si respuesta OK
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
+            }
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   mostrarTablaBerdis  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        function mostrarTablaBerdis() {
+            const tabla = document.querySelector("#tablaBerdis tbody");
+
+            // Limpiar contenido anterior, si lo hubiera
+            tabla.innerHTML = "";
+
+            tablaBerdis.forEach(registro => {
+                const fila = tabla.insertRow();
+
+                // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
+                fila.insertCell(0).textContent = registro.hoyo;
+                fila.insertCell(1).textContent = registro.par;
+                fila.insertCell(2).textContent = registro.golpes;
+                fila.insertCell(3).textContent = registro.jugador;
+                fila.insertCell(4).textContent = registro.handicap;
+            });
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   mostrarHistoricoBerdis  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        function mostrarHistoricoBerdis(berdisLeidos, todasLasFechas) {
+
+            const filtradosYOrdenados = berdisLeidos
+                .filter(registro => registro.fechakey > 1)
+                .sort((a, b) => a.hoyo - b.hoyo);
+
+            const tabla = document.getElementById("berdixHoyo")
+
+            // Limpiar contenido anterior, si lo hubiera
+            tabla.innerHTML = "";
+
+
+            filtradosYOrdenados.forEach(registro => {
+                const fechaObj = todasLasFechas.find(f => f.fec == registro.fechakey);
+                const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
+
+                const fila = tabla.insertRow();
+
+                // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
+                fila.insertCell(0).textContent = registro.hoyo;
+                fila.insertCell(1).textContent = registro.par;
+                fila.insertCell(2).textContent = registro.golpes;
+                fila.insertCell(3).textContent = registro.jugador;
+                fila.insertCell(4).textContent = registro.handicap;
+                fila.insertCell(5).textContent = fechaTexto;
             });
 
-        let tabla = document.getElementById("negroxHoyo")
+            const ordenadosPorJugador = filtradosYOrdenados
+                .sort((a, b) => a.jugador - b.jugador);
 
-        tabla.innerHTML = "";
-        let hoyoAnterior = null;
+            const tabla2 = document.getElementById("berdixJugador")
 
-        filtradosYOrdenados.forEach(registroNeg => {
-            const fila = tabla.insertRow();
+            // Limpiar contenido anterior, si lo hubiera
+            tabla2.innerHTML = "";
 
-            const fechaObj = todasLasFechas.find(f => f.fec == registroNeg.fechakeyNG);
-            const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
+            ordenadosPorJugador.forEach(registro => {
+                const fechaObj = todasLasFechas.find(f => f.fec == registro.fechakey);
+                const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
 
-            // Insertar celdas en orden: Hoyo, Par, Score, Player, Hcp, Fecha
-            fila.insertCell(0).textContent = (registroNeg.hoyoNG !== hoyoAnterior) ? registroNeg.hoyoNG : '';
-            fila.insertCell(1).textContent = (registroNeg.hoyoNG !== hoyoAnterior) ? registroNeg.parNG : '';
-            fila.insertCell(2).textContent = registroNeg.golpesNG;
-            fila.insertCell(3).textContent = registroNeg.jugadorNG;
-            fila.insertCell(4).textContent = registroNeg.handicapNG;
-            fila.insertCell(5).textContent = fechaTexto;
+                const fila = tabla2.insertRow();
 
-            // Actualizar valores anteriores
-            hoyoAnterior = registroNeg.hoyoNG;
-
-        });
-
-        tabla = document.getElementById("negroxJugador")
-
-        tabla.innerHTML = "";
-        let jugadorAnterior = null;
-
-        const ordenadosPorJugador = filtradosYOrdenados
-            .sort((a, b) => {
-                if (a.jugadorNG !== b.jugadorNG) {
-                    return a.jugadorNG.localeCompare(b.jugadorNG); // para strings
-                } else if (a.hoyoNG !== b.hoyoNG) {
-                    return a.hoyoNG - b.hoyoNG; // numérico
-                } else {
-                    return 0;
-                }
+                // Insertar celdas en orden:
+                fila.insertCell(0).textContent = registro.jugador;
+                fila.insertCell(1).textContent = registro.hoyo;
+                fila.insertCell(2).textContent = registro.par;
+                fila.insertCell(3).textContent = registro.golpes;
+                fila.insertCell(4).textContent = registro.handicap;
+                fila.insertCell(5).textContent = fechaTexto;
             });
 
-        ordenadosPorJugador.forEach(registroNeg => {
-            const fila = tabla.insertRow();
-
-            const fechaObj = todasLasFechas.find(f => f.fec == registroNeg.fechakeyNG);
-            const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
-
-            // Insertar celdas en orden: Hoyo, Par, Score, Player, Hcp, Fecha
-            fila.insertCell(0).textContent = (registroNeg.jugadorNG !== jugadorAnterior) ? registroNeg.jugadorNG : '';
-            fila.insertCell(1).textContent = registroNeg.hoyoNG;
-            fila.insertCell(2).textContent = registroNeg.parNG;
-            fila.insertCell(3).textContent = registroNeg.golpesNG;
-            fila.insertCell(4).textContent = registroNeg.handicapNG;
-            fila.insertCell(5).textContent = fechaTexto;
-
-            // Actualizar valores anteriores
-            jugadorAnterior = registroNeg.jugadorNG;
-
-        });
-
-
-    }
-    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    // 🥎  buscaUltimaFecha  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽           
-    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    async function buscaUltimaFecha() {
-        try {
-            const response = await fetch(`/leerUltimaFecha`);
-
-            if (response.ok) {
-                const data = await response.json();
-                return data; // Devuelve los datos obtenidos si la respuesta es exitosa
-            } else {
-                console.error(
-                    "Error en la respuesta:",
-                    response.status,
-                    response.statusText
-                );
-                return null;
-            }
-        } catch (error) {
-            console.error("Error en la solicitud:", error);
-            return null;
         }
-    }
 
-    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    // 🥎  leeDatosFechs  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽           
-    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    async function leeDatosFechas() {
-        try {
-            const response = await fetch(`/leerDatosFechas`);
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   mostrarTablaColapintoHoy  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        function mostrarTablaColapintoHoy() {
+            const tabla = document.querySelector("#tablaColapintoHoy tbody");
 
-            if (response.ok) {
-                const data = await response.json();
-                return data; // Devuelve los datos obtenidos si la respuesta es exitosa
-            } else {
-                console.error(
-                    "Error en la respuesta:",
-                    response.status,
-                    response.statusText
-                );
-                return null;
-            }
-        } catch (error) {
-            console.error("Error en la solicitud:", error);
-            return null;
+            // Limpiar contenido anterior, si lo hubiera
+            tabla.innerHTML = "";
+
+            colapintoHoy.sort((a, b) => a.plus - b.plus);
+            colapintoHoy.forEach(registro => {
+                const fila = tabla.insertRow();
+
+                // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
+                // fila.insertCell(0).textContent = registro.fecha;
+                fila.insertCell(0).textContent = registro.player;
+                fila.insertCell(1).textContent = registro.handicap;
+                let cincuenta = registro.handicap / 2;
+                fila.insertCell(2).textContent = cincuenta;
+                let unoymedio = registro.handicap + cincuenta;
+                fila.insertCell(3).textContent = unoymedio;
+                let maximo = 72 + unoymedio;
+                fila.insertCell(4).textContent = maximo;
+                fila.insertCell(5).textContent = registro.gross;
+                let plus = registro.gross - maximo
+                fila.insertCell(6).textContent = plus;
+            });
         }
-    }
 
-    /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    // 🥎  cargarPromedios ult 6 ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽   
-    // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    async function cargarPromedios() {
-        try {
-            const response = await fetch('/api/promedios');
-            if (!response.ok) throw new Error('Error al obtener los promedios');
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   mostrarTablaColapinto  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        function mostrarTablaColapinto() {
 
-            const datos = await response.json();
-            // console.log('datos promedios')
-            // console.table(datos)
-            const tbody = document.getElementById('tablaPromedios');
-            tbody.innerHTML = '';
+            const tabla = document.querySelector("#tablaColapinto tbody");
 
-            datos.forEach(({ jugador, handicap, promedio, cantidad }) => {
-                const dif = handicap - promedio;
-                // Definir colores según valor
-                let colorFondo, colorTexto;
+            // Limpiar contenido anterior, si lo hubiera
+            tabla.innerHTML = "";
 
-                if (dif > 0) {
-                    colorFondo = "red"; // verde claro"
-                    colorTexto = "white"//'#155724'; // verde oscuro
-                } else if (dif < 0) {
-                    colorFondo = 'white' //'#f8d7da'; // rojo claro
-                    // colorTexto = '#721c24'; // rojo oscuro
+            datosColapinto.forEach(registro => {
+                const fila = tabla.insertRow();
+
+                const fecha = registro.fecha;
+                const partes = fecha.split("-"); // ["2025", "07", "05"]
+                const formato = `${partes[2]}-${partes[1]}`; // "05-07"
+                fila.insertCell(0).textContent = formato;
+
+                fila.insertCell(1).textContent = registro.player;
+                fila.insertCell(2).textContent = registro.handicap;
+                let cincuenta = registro.handicap / 2;
+                fila.insertCell(3).textContent = cincuenta;
+                let unoymedio = registro.handicap + cincuenta;
+                fila.insertCell(4).textContent = unoymedio;
+                let maximo = 72 + unoymedio;
+                fila.insertCell(5).textContent = maximo;
+                fila.insertCell(6).textContent = registro.gross;
+                let plus = registro.gross - maximo
+                fila.insertCell(7).textContent = plus;
+            });
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        // 🥎  mostrarTablaNegros   ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽  
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        function mostrarTablaNegros() {
+
+            const tabla = document.querySelector("#tablaNegros tbody");
+
+            // Limpiar contenido anterior, si lo hubiera
+            tabla.innerHTML = "";
+
+            tablaNegros.sort((a, b) => a.hoyoNG - b.hoyoNG);
+
+            console.table(tablaNegros);
+
+            tablaNegros.forEach(registroNeg => {
+                const fila = tabla.insertRow();
+
+                // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
+                fila.insertCell(0).textContent = registroNeg.hoyoNG;
+                fila.insertCell(1).textContent = registroNeg.parNG;
+                fila.insertCell(2).textContent = registroNeg.jugadorNG;
+                fila.insertCell(3).textContent = registroNeg.golpesNG;
+                fila.insertCell(4).textContent = registroNeg.handicapNG;
+            });
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        // 🥎  mostrarTablaNegros   ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽  
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        function mostrarHistoricoNegros(negrosLeidos, todasLasFechas) {
+
+            const filtradosYOrdenados = negrosLeidos
+                .filter(registro => registro.fechakeyNG > 1)
+                .sort((a, b) => {
+                    if (a.hoyoNG !== b.hoyoNG) {
+                        return a.hoyoNG - b.hoyoNG;
+                    } else if (a.golpesNG !== b.golpesNG) {
+                        return a.golpesNG - b.golpesNG;
+                    } else {
+                        return a.handicapNG - b.handicapNG;
+                    }
+                });
+
+            let tabla = document.getElementById("negroxHoyo")
+
+            tabla.innerHTML = "";
+            let hoyoAnterior = null;
+
+            filtradosYOrdenados.forEach(registroNeg => {
+                const fila = tabla.insertRow();
+
+                const fechaObj = todasLasFechas.find(f => f.fec == registroNeg.fechakeyNG);
+                const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
+
+                // Insertar celdas en orden: Hoyo, Par, Score, Player, Hcp, Fecha
+                fila.insertCell(0).textContent = (registroNeg.hoyoNG !== hoyoAnterior) ? registroNeg.hoyoNG : '';
+                fila.insertCell(1).textContent = (registroNeg.hoyoNG !== hoyoAnterior) ? registroNeg.parNG : '';
+                fila.insertCell(2).textContent = registroNeg.golpesNG;
+                fila.insertCell(3).textContent = registroNeg.jugadorNG;
+                fila.insertCell(4).textContent = registroNeg.handicapNG;
+                fila.insertCell(5).textContent = fechaTexto;
+
+                // Actualizar valores anteriores
+                hoyoAnterior = registroNeg.hoyoNG;
+
+            });
+
+            tabla = document.getElementById("negroxJugador")
+
+            tabla.innerHTML = "";
+            let jugadorAnterior = null;
+
+            const ordenadosPorJugador = filtradosYOrdenados
+                .sort((a, b) => {
+                    if (a.jugadorNG !== b.jugadorNG) {
+                        return a.jugadorNG.localeCompare(b.jugadorNG); // para strings
+                    } else if (a.hoyoNG !== b.hoyoNG) {
+                        return a.hoyoNG - b.hoyoNG; // numérico
+                    } else {
+                        return 0;
+                    }
+                });
+
+            ordenadosPorJugador.forEach(registroNeg => {
+                const fila = tabla.insertRow();
+
+                const fechaObj = todasLasFechas.find(f => f.fec == registroNeg.fechakeyNG);
+                const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
+
+                // Insertar celdas en orden: Hoyo, Par, Score, Player, Hcp, Fecha
+                fila.insertCell(0).textContent = (registroNeg.jugadorNG !== jugadorAnterior) ? registroNeg.jugadorNG : '';
+                fila.insertCell(1).textContent = registroNeg.hoyoNG;
+                fila.insertCell(2).textContent = registroNeg.parNG;
+                fila.insertCell(3).textContent = registroNeg.golpesNG;
+                fila.insertCell(4).textContent = registroNeg.handicapNG;
+                fila.insertCell(5).textContent = fechaTexto;
+
+                // Actualizar valores anteriores
+                jugadorAnterior = registroNeg.jugadorNG;
+
+            });
+
+
+        }
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        // 🥎  buscaUltimaFecha  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽           
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function buscaUltimaFecha() {
+            try {
+                const response = await fetch(`/leerUltimaFecha`);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    return data; // Devuelve los datos obtenidos si la respuesta es exitosa
                 } else {
-                    colorFondo = 'lightblue'; // amarillo claro
-                    colorTexto = 'white'; // amarillo oscuro
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
                 }
-                const fila = `
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
+            }
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        // 🥎  leeDatosFechs  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽           
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function leeDatosFechas() {
+            try {
+                const response = await fetch(`/leerDatosFechas`);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    return data; // Devuelve los datos obtenidos si la respuesta es exitosa
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
+            }
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        // 🥎  cargarPromedios ult 6 ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽   
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function cargarPromedios() {
+            try {
+                const response = await fetch('/api/promedios');
+                if (!response.ok) throw new Error('Error al obtener los promedios');
+
+                const datos = await response.json();
+                // console.log('datos promedios')
+                // console.table(datos)
+                const tbody = document.getElementById('tablaPromedios');
+                tbody.innerHTML = '';
+
+                datos.forEach(({ jugador, handicap, promedio, cantidad }) => {
+                    const dif = handicap - promedio;
+                    // Definir colores según valor
+                    let colorFondo, colorTexto;
+
+                    if (dif > 0) {
+                        colorFondo = "red"; // verde claro"
+                        colorTexto = "white"//'#155724'; // verde oscuro
+                    } else if (dif < 0) {
+                        colorFondo = 'white' //'#f8d7da'; // rojo claro
+                        // colorTexto = '#721c24'; // rojo oscuro
+                    } else {
+                        colorFondo = 'lightblue'; // amarillo claro
+                        colorTexto = 'white'; // amarillo oscuro
+                    }
+                    const fila = `
           <tr>
             <td>${jugador}</td>
             <td>${handicap}</td>
@@ -1799,124 +1581,145 @@ Bootstrap 5 Dashboard Admin Template
             <td>${cantidad}</td>
           </tr>
         `;
-                tbody.innerHTML += fila;
-            });
-        } catch (error) {
-            console.error('Error al cargar promedios:', error);
+                    tbody.innerHTML += fila;
+                });
+            } catch (error) {
+                console.error('Error al cargar promedios:', error);
+            }
         }
-    }
 
-    // :::::::::::::::::::::::::::::::::::
-    // :::::::::::::::::: leer datos Netos
-    // :::::::::::::::::::::::::::::::::::::::::::::::
+        // :::::::::::::::::::::::::::::::::::
+        // :::::::::::::::::: leer datos Netos
+        // :::::::::::::::::::::::::::::::::::::::::::::::
 
-    async function leerDatosNetos() {
-        try {
-            const response = await fetch(`/leerDatosNetos`);
-            if (response.ok) {
-                const resultados = await response.json();
-                return resultados; // Devuelve los datos obtenidos si la respuesta es exitosa
-            } else {
-                console.error(
-                    "Error en la respuesta:",
-                    response.status,
-                    response.statusText
-                );
+        async function leerDatosNetos() {
+            try {
+                const response = await fetch(`/leerDatosNetos`);
+                if (response.ok) {
+                    const resultados = await response.json();
+                    return resultados; // Devuelve los datos obtenidos si la respuesta es exitosa
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
                 return null;
             }
-        } catch (error) {
-            console.error("Error en la solicitud:", error);
-            return null;
         }
-    }
 
-    // :::::::::::::::::::::::::::::::::::::::::::::::
-    // :::::::::::::::::: leer datos Fechas Clau
-    // :::::::::::::::::::::::::::::::::::::::::::::::
-    async function leerDatosFechasClau() {
-        try {
-            const responseC = await fetch(`/leerDatosFechas`);
-            if (responseC.ok) {
-                const fechasClau = await responseC.json();
-                const fechasFiltradasClau = fechasClau.filter(
-                    (fecha) => fecha.fec > 44 && fecha.fec < 90
-                );
-                return fechasFiltradasClau;
-            } else {
-                console.error(
-                    "Error en la respuesta:",
-                    responseC.status,
-                    responseC.statusText
-                );
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+        // :::::::::::::::::: leer datos Fechas Clau
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+        async function leerDatosFechasClau() {
+            try {
+                const responseC = await fetch(`/leerDatosFechas`);
+                if (responseC.ok) {
+                    const fechasClau = await responseC.json();
+                    const fechasFiltradasClau = fechasClau.filter(
+                        (fecha) => fecha.fec > 44 && fecha.fec < 90
+                    );
+                    return fechasFiltradasClau;
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        responseC.status,
+                        responseC.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
                 return null;
             }
-        } catch (error) {
-            console.error("Error en la solicitud:", error);
-            return null;
         }
-    }
 
-    // :::::::::::::::::::::::::::::::::::::::::::::::
-    // :::::::::::::::::: leer datos Fechas
-    // :::::::::::::::::::::::::::::::::::::::::::::::
-    async function leerDatosFechas() {
-        try {
-            const response = await fetch(`/leerDatosFechas`);
-            if (response.ok) {
-                const fechas = await response.json();
-                const fechasFiltradas = fechas.filter(
-                    (fecha) => fecha.fec > 31 && fecha.fec < 90
-                );
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+        // :::::::::::::::::: leer datos Fechas
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+        async function leerDatosFechas() {
+            try {
+                const response = await fetch(`/leerDatosFechas`);
+                if (response.ok) {
+                    const fechas = await response.json();
+                    const fechasFiltradas = fechas.filter(
+                        (fecha) => fecha.fec > 31 && fecha.fec < 90
+                    );
 
-                return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
-            } else {
-                console.error(
-                    "Error en la respuesta:",
-                    response.status,
-                    response.statusText
-                );
+                    return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
                 return null;
             }
-        } catch (error) {
-            console.error("Error en la solicitud:", error);
-            return null;
         }
-    }
-    // :::::::::::::::::::::::::::::::::::::::::::::::
-    // :::::::::::::::::: leer datos Giras
-    // :::::::::::::::::::::::::::::::::::::::::::::::
-    async function leerDatosGiras() {
-        try {
-            const results = await fetch(`/leerDatosGiras`);
-            if (results.ok) {
-                const resultadosGira = await results.json();
-                return resultadosGira;
-            } else {
-                console.error(
-                    "Error en la respuesta:",
-                    results.status,
-                    results.statusText
-                );
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+        // :::::::::::::::::: leer datos Giras
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+        async function leerDatosGiras() {
+            try {
+                const results = await fetch(`/leerDatosGiras`);
+                if (results.ok) {
+                    const resultadosGira = await results.json();
+                    return resultadosGira;
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        results.status,
+                        results.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud lectura Gira:", error);
                 return null;
             }
-        } catch (error) {
-            console.error("Error en la solicitud lectura Gira:", error);
-            return null;
         }
-    }
 
-</script>
 
-<!-- JAVASCRIPT FILES -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/apexcharts.min.js"></script>
-<script src="js/custom.js"></script>
+        const toggle = document.getElementById("fullscreen-toggle");
+        const iconEnter = document.getElementById("fullscreen-icon-enter");
+        const iconExit = document.getElementById("fullscreen-icon-exit");
 
-<!-- <script src="js/berdinegro.js" defer></script> -->
-<script src="js/ultimodia.js" defer></script>
-<!-- <script src="js/ctaregresiva.js"></script> -->
-<!-- <script src="js/pelotas.js"></script> -->
+        toggle.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().then(() => {
+                    iconEnter.style.display = "none";
+                    iconExit.style.display = "inline";
+                }).catch(err => console.error(err));
+            } else {
+                document.exitFullscreen().then(() => {
+                    iconEnter.style.display = "inline";
+                    iconExit.style.display = "none";
+                }).catch(err => console.error(err));
+            }
+        });
+
+    </script>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/apexcharts.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <!-- <script src="js/berdinegro.js" defer></script> -->
+    <script src="js/ultimodia.js" defer></script>
+    <!-- <script src="js/ctaregresiva.js"></script> -->
+    <!-- <script src="js/pelotas.js"></script> -->
 
 </body>
 
