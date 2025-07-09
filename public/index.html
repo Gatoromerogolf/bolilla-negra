@@ -905,9 +905,6 @@ Bootstrap 5 Dashboard Admin Template
             );
 
             const fechasFiltradasClau = await leerDatosFechasClau();
-            console.table(fechasFiltradasClau);
-
-            console.table(players2Clau)
 
             const filasMat = 12;
             const columnas = 1;
@@ -970,9 +967,6 @@ Bootstrap 5 Dashboard Admin Template
                 playersDataClau[play] = playersDataClau[play].slice(0, 6);
                 playersDataClau[play].sort((a, b) => a.fec - b.fec);
             }
-            console.log("tabla con players");
-            console.table(playersDataClau);
-
 
             // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
             //:::::::::::::: agrega suma netos y promedio
@@ -1030,7 +1024,6 @@ Bootstrap 5 Dashboard Admin Template
                 matriz2[i] = matriz2[i] || [];
 
                 for (let j = 0; j < playersDataClau[elemento].length; j++) {
-                    console.log(`j: ${j}, elemento ${elemento} y otro ${playersDataClau[elemento][j].fec}`)
                     let col = playersDataClau[elemento][j].fec - 41;
 
                     // Si `col` es mayor que la longitud actual del array, puedes ajustar el array.
@@ -1043,8 +1036,7 @@ Bootstrap 5 Dashboard Admin Template
                 }
                 i++;
             }
-            console.log("matriz ordenada");
-            console.table(matriz2);
+
             matriz2.sort((filaA, filaB) => filaA[2] - filaB[2]);
 
             /** @type {HTMLTableSectionElement} */
@@ -1284,9 +1276,7 @@ Bootstrap 5 Dashboard Admin Template
 
             const tabla = document.getElementById("berdixHoyo")
 
-            // Limpiar contenido anterior, si lo hubiera
             tabla.innerHTML = "";
-
 
             filtradosYOrdenados.forEach(registro => {
                 const fechaObj = todasLasFechas.find(f => f.fec == registro.fechakey);
@@ -1303,13 +1293,23 @@ Bootstrap 5 Dashboard Admin Template
                 fila.insertCell(5).textContent = fechaTexto;
             });
 
+            // ordenados por Jugador
             const ordenadosPorJugador = filtradosYOrdenados
-                .sort((a, b) => a.jugador - b.jugador);
+                .sort((a, b) => {
+                    if (a.jugador !== b.jugador) {
+                        return (a.jugador.localeCompare(b.jugador))
+                    } else {
+                        return a.hoyo - b.hoyo;
+                    }
+                })
+
 
             const tabla2 = document.getElementById("berdixJugador")
 
             // Limpiar contenido anterior, si lo hubiera
             tabla2.innerHTML = "";
+
+            let jugadorAnterior = '';
 
             ordenadosPorJugador.forEach(registro => {
                 const fechaObj = todasLasFechas.find(f => f.fec == registro.fechakey);
@@ -1318,12 +1318,15 @@ Bootstrap 5 Dashboard Admin Template
                 const fila = tabla2.insertRow();
 
                 // Insertar celdas en orden:
-                fila.insertCell(0).textContent = registro.jugador;
+
+                fila.insertCell(0).textContent = (registro.jugador !== jugadorAnterior) ? registro.jugador : '';
                 fila.insertCell(1).textContent = registro.hoyo;
                 fila.insertCell(2).textContent = registro.par;
                 fila.insertCell(3).textContent = registro.golpes;
                 fila.insertCell(4).textContent = registro.handicap;
                 fila.insertCell(5).textContent = fechaTexto;
+
+                jugadorAnterior = registro.jugador;
             });
 
         }
@@ -1400,8 +1403,6 @@ Bootstrap 5 Dashboard Admin Template
             tabla.innerHTML = "";
 
             tablaNegros.sort((a, b) => a.hoyoNG - b.hoyoNG);
-
-            console.table(tablaNegros);
 
             tablaNegros.forEach(registroNeg => {
                 const fila = tabla.insertRow();
