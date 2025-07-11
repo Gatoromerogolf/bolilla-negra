@@ -65,7 +65,7 @@ app.get("/", (req, res) => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
-  console.log(`llegó con ${username} y con ${password}`);
+
   pool.query(
     "SELECT * FROM users WHERE username = ? AND password = ?",
     [username, password],
@@ -147,7 +147,6 @@ cron.schedule("*/30 * * * *", () => {
       console.error("Error al eliminar la base de logs:", err);
       return;
     }
-    console.log("Registro eliminado correctamente:", results);
   });
 });
 
@@ -160,7 +159,7 @@ app.get("/leerDatosNetos", (req, res) => {
   pool.query(query, (error, results, fields) => {
     if (error) {
       res.status(500).json({ error: "Error al obtener los DatosFecha" });
-      console.log("error servidor al obtener registros");
+      console.log("error servidor al obtener registros datosnetos");
       return;
     }
 
@@ -181,14 +180,14 @@ app.get("/leerDatosGiras", (req, res) => {
   pool.query(query, (error, results, fields) => {
     if (error) {
       res.status(500).json({ error: "Error al obtener los DatosGiras" });
-      console.log("error servidor al obtener registros");
+      console.log("error servidor al obtener registros datosgiras");
       return;
     }
 
     if (results.length > 0) {
-      console.log(results); // Para ver todo el array
-      console.log(results[0]); // Para ver solo la primera fila
-      console.log(Object.keys(results[0])); // Para ver las propiedades (columnas)
+      // console.log(results); // Para ver todo el array
+      // console.log(results[0]); // Para ver solo la primera fila
+      // console.log(Object.keys(results[0])); // Para ver las propiedades (columnas)
       res.json(results);
     } else {
       res.status(404).json({ error: "No se encontraron registros Giras" });
@@ -285,7 +284,7 @@ app.post("/grabaUltimaFecha", (req, res) => {
     ctddJugadores,
   ];
 
-  console.log("Datos a insertar:", datosAPasar);
+
   pool.query(nuevaFecha, datosAPasar, function (error, lista) {
     if (error) {
       if (error.code === "ER_DUP_ENTRY") {
@@ -827,7 +826,6 @@ app.get("/api/canchas", (req, res) => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get("/api/hoyos/:idCancha", async (req, res) => {
   const idCancha = req.params.idCancha;
-  // console.log(`cancha recibida  ${idCancha}`);
   const query =
     "SELECT hoyo, par, handicap FROM hoyos WHERE cancha_id = ? ORDER BY hoyo";
 
@@ -851,7 +849,7 @@ app.get("/api/hoyos/:idCancha", async (req, res) => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // Guardar resultados de un jugador
 app.post("/api/tarjetas", (req, res) => {
-  console.log("entro a grabar tarjeta");
+
   const { jugador, fecha, cancha, handicap, hoyos } = req.body;
 
   if (!jugador || !fecha || !cancha || !handicap || !Array.isArray(hoyos)) {
@@ -884,7 +882,6 @@ app.post("/api/tarjetas", (req, res) => {
     res.json({ message: "Tarjeta guardada con éxito" });
   });
 
-  console.log("termino de grabar la tarjeta");
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
