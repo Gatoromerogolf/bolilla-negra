@@ -27,6 +27,282 @@ Tooplate 2135 Mini Finance
 https://www.tooplate.com/view/2135-mini-finance
 Bootstrap 5 Dashboard Admin Template
 -->
+    <style>
+        .countdown-wrapper {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+            border: 3px solid #fff !important;
+            border-radius: 20px !important;
+            padding: 40px !important;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 255, 255, 0.1) !important;
+            max-width: 800px !important;
+            margin: 20px auto !important;
+            position: relative !important;
+        }
+
+        .countdown-wrapper::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 10px !important;
+            left: 10px !important;
+            right: 10px !important;
+            bottom: 10px !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 15px !important;
+            pointer-events: none !important;
+        }
+
+        .countdown-title {
+            color: #fff !important;
+            text-align: center !important;
+            margin-bottom: 10px !important;
+            font-size: 32px !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
+            letter-spacing: 2px !important;
+            font-weight: bold !important;
+        }
+
+        .countdown-subtitle {
+            text-align: center !important;
+            color: #fff !important;
+            margin-bottom: 30px !important;
+            font-size: 20px !important;
+            font-weight: 300 !important;
+            opacity: 0.9 !important;
+        }
+
+        .countdown-title::before {
+            content: '⚫' !important;
+            margin-right: 10px !important;
+        }
+
+        .countdown-title::after {
+            content: '⚪' !important;
+            margin-left: 10px !important;
+        }
+
+        .countdown-hourglass-container {
+            display: flex !important;
+            justify-content: center !important;
+            margin-bottom: 30px !important;
+        }
+
+        .countdown-hourglass {
+            width: 120px !important;
+            height: 160px !important;
+            position: relative !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .countdown-hourglass-top,
+        .countdown-hourglass-bottom {
+            width: 80px !important;
+            height: 70px !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        .countdown-hourglass-top {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent) !important;
+            clip-path: polygon(10% 0%, 90% 0%, 50% 100%) !important;
+        }
+
+        .countdown-hourglass-bottom {
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.1), transparent) !important;
+            clip-path: polygon(50% 0%, 10% 100%, 90% 100%) !important;
+        }
+
+        .countdown-sand-top {
+            position: absolute !important;
+            bottom: 0 !important;
+            left: 10% !important;
+            right: 10% !important;
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%) !important;
+            transition: height 1s linear !important;
+            clip-path: polygon(15% 0%, 85% 0%, 50% 100%) !important;
+        }
+
+        .countdown-sand-bottom {
+            position: absolute !important;
+            bottom: 0 !important;
+            left: 10% !important;
+            right: 10% !important;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%) !important;
+            transition: height 1s linear !important;
+            clip-path: polygon(50% 0%, 15% 100%, 85% 100%) !important;
+        }
+
+        .countdown-hourglass-middle {
+            width: 20px !important;
+            height: 8px !important;
+            background: #fff !important;
+            border: 2px solid #000 !important;
+            border-radius: 50% !important;
+            margin: -2px 0 !important;
+            z-index: 10 !important;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .countdown-hourglass-frame {
+            position: absolute !important;
+            width: 100% !important;
+            height: 100% !important;
+            border: 4px solid #fff !important;
+            border-radius: 10px !important;
+            pointer-events: none !important;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .countdown-sand-stream {
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 3px !important;
+            height: 20px !important;
+            background: linear-gradient(to bottom, #fff, #666) !important;
+            opacity: 0 !important;
+            animation: countdown-sandFall 2s infinite !important;
+        }
+
+        @keyframes countdown-sandFall {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .countdown-grid {
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 15px !important;
+            margin-bottom: 30px !important;
+        }
+
+        .countdown-time-unit {
+            background: linear-gradient(135deg, #000 0%, #2d2d2d 100%) !important;
+            border: 2px solid #fff !important;
+            padding: 20px !important;
+            border-radius: 12px !important;
+            text-align: center !important;
+            color: white !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        .countdown-time-unit::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.03) 10px,
+                    rgba(255, 255, 255, 0.03) 20px) !important;
+            pointer-events: none !important;
+        }
+
+        .countdown-time-number {
+            font-size: 32px !important;
+            font-weight: bold !important;
+            display: block !important;
+            margin-bottom: 5px !important;
+            position: relative !important;
+            z-index: 1 !important;
+            color: #fff !important;
+        }
+
+        .countdown-time-label {
+            font-size: 12px !important;
+            text-transform: uppercase !important;
+            opacity: 0.9 !important;
+            position: relative !important;
+            z-index: 1 !important;
+            color: #fff !important;
+        }
+
+        .countdown-progress-bars {
+            margin-top: 20px !important;
+        }
+
+        .countdown-progress-item {
+            margin-bottom: 15px !important;
+        }
+
+        .countdown-progress-label {
+            display: flex !important;
+            justify-content: space-between !important;
+            margin-bottom: 5px !important;
+            font-size: 14px !important;
+            color: #fff !important;
+        }
+
+        .countdown-progress-bar {
+            height: 8px !important;
+            background: #1a1a1a !important;
+            border: 1px solid #fff !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+        }
+
+        .countdown-progress-fill {
+            height: 100% !important;
+            background: repeating-linear-gradient(90deg,
+                    #fff 0px,
+                    #fff 10px,
+                    #000 10px,
+                    #000 20px) !important;
+            border-radius: 10px !important;
+            transition: width 0.5s ease !important;
+        }
+
+        .countdown-total-time {
+            text-align: center !important;
+            margin-top: 25px !important;
+            padding: 20px !important;
+            background: #000 !important;
+            border: 2px solid #fff !important;
+            border-radius: 12px !important;
+            font-size: 18px !important;
+            color: #fff !important;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .countdown-total-time strong {
+            color: #fff !important;
+            letter-spacing: 1px !important;
+        }
+
+        @media (max-width: 768px) {
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .countdown-wrapper {
+                padding: 20px !important;
+            }
+
+            .countdown-title {
+                font-size: 24px !important;
+            }
+
+            .countdown-subtitle {
+                font-size: 16px !important;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -110,60 +386,7 @@ Bootstrap 5 Dashboard Admin Template
                     </ul>
                 </div>
 
-                <!-- <div class="dropdown ps-1">
-                    <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="bi-three-dots-vertical"></i>
-                    </a>
 
-                    <div class="dropdown-menu dropdown-menu-social bg-white shadow">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-4">
-                                    <a class="dropdown-item text-center" href="#">
-                                        <img src="images/social/search.png" class="profile-image img-fluid" alt="">
-                                        <span class="d-block">Google</span>
-                                    </a>
-                                </div>
-
-                                <div class="col-lg-4 col-md-4 col-4">
-                                    <a class="dropdown-item text-center" href="#">
-                                        <img src="images/social/spotify.png" class="profile-image img-fluid" alt="">
-                                        <span class="d-block">Spotify</span>
-                                    </a>
-                                </div>
-
-                                <div class="col-lg-4 col-md-4 col-4">
-                                    <a class="dropdown-item text-center" href="#">
-                                        <img src="images/social/telegram.png" class="profile-image img-fluid" alt="">
-                                        <span class="d-block">Telegram</span>
-                                    </a>
-                                </div>
-
-                                <div class="col-lg-4 col-md-4 col-4">
-                                    <a class="dropdown-item text-center" href="#">
-                                        <img src="images/social/snapchat.png" class="profile-image img-fluid" alt="">
-                                        <span class="d-block">Snapchat</span>
-                                    </a>
-                                </div>
-
-                                <div class="col-lg-4 col-md-4 col-4">
-                                    <a class="dropdown-item text-center" href="#">
-                                        <img src="images/social/tiktok.png" class="profile-image img-fluid" alt="">
-                                        <span class="d-block">Tiktok</span>
-                                    </a>
-                                </div>
-
-                                <div class="col-lg-4 col-md-4 col-4">
-                                    <a class="dropdown-item text-center" href="#">
-                                        <img src="images/social/youtube.png" class="profile-image img-fluid" alt="">
-                                        <span class="d-block">Youtube</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
 
                 <div class="dropdown px-3">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -264,6 +487,34 @@ Bootstrap 5 Dashboard Admin Template
                 <div class="title-group mb-3">
                     <h1 class="h2 mb-0">Bienvenidos</h1>
                 </div>
+
+                <div class="countdown-wrapper">
+                    <h1 class="countdown-title">Última Gira 2025</h1>
+                    <h2 class="countdown-subtitle">Bolilla Negra - 22 de Octubre 2025 - 12:00 hs</h2>
+
+                    <div class="countdown-hourglass-container">
+                        <div class="countdown-hourglass">
+                            <div class="countdown-hourglass-frame"></div>
+                            <div class="countdown-hourglass-top">
+                                <div class="countdown-sand-top" id="countdownSandTop"></div>
+                            </div>
+                            <div class="countdown-hourglass-middle">
+                                <div class="countdown-sand-stream"></div>
+                            </div>
+                            <div class="countdown-hourglass-bottom">
+                                <div class="countdown-sand-bottom" id="countdownSandBottom"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="countdown-grid" id="countdownGrid"></div>
+
+                    <div class="countdown-progress-bars" id="countdownProgressBars"></div>
+
+                    <div class="countdown-total-time" id="countdownTotalTime"></div>
+                </div>
+
+
 
                 <div class="row my-4">
                     <div class="col-lg-5 col-12">
@@ -854,7 +1105,9 @@ Bootstrap 5 Dashboard Admin Template
 
     <!--   /* 🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎 */ -->
 
+
     <script>
+
         window.addEventListener("DOMContentLoaded", () => {
             iniciar();
         })
@@ -1688,7 +1941,6 @@ Bootstrap 5 Dashboard Admin Template
             }
         }
 
-
         const toggle = document.getElementById("fullscreen-toggle");
         const iconEnter = document.getElementById("fullscreen-icon-enter");
         const iconExit = document.getElementById("fullscreen-icon-exit");
@@ -1722,6 +1974,162 @@ Bootstrap 5 Dashboard Admin Template
     <!-- <script src="js/ctaregresiva.js"></script> -->
     <!-- <script src="js/pelotas.js"></script> -->
 
+
+
+    <script>
+        (function () {
+            // Función principal para calcular el tiempo faltante
+            function calcularTiempoFaltante(fechaObjetivo) {
+                const ahora = new Date();
+                const objetivo = new Date(fechaObjetivo);
+
+                if (objetivo < ahora) {
+                    return {
+                        pasado: true,
+                        dias: 0,
+                        horas: 0,
+                        minutos: 0,
+                        segundos: 0
+                    };
+                }
+
+                const diff = objetivo - ahora;
+
+                const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+                const meses = Math.floor(dias / 30);
+                const diasRestantes = dias % 30;
+
+                const totalHoras = Math.floor(diff / (1000 * 60 * 60));
+                const totalMinutos = Math.floor(diff / (1000 * 60));
+                const totalSegundos = Math.floor(diff / 1000);
+
+                return {
+                    pasado: false,
+                    dias,
+                    horas,
+                    minutos,
+                    segundos,
+                    meses,
+                    diasRestantes,
+                    totalHoras,
+                    totalMinutos,
+                    totalSegundos
+                };
+            }
+
+            // Fecha objetivo fija: 22 de octubre de 2025 a las 12:00
+            const FECHA_OBJETIVO = new Date('2025-10-22T12:00:00');
+
+            function actualizarContador() {
+                const tiempo = calcularTiempoFaltante(FECHA_OBJETIVO);
+
+                const gridEl = document.getElementById('countdownGrid');
+                const barsEl = document.getElementById('countdownProgressBars');
+                const totalEl = document.getElementById('countdownTotalTime');
+                const sandTopEl = document.getElementById('countdownSandTop');
+                const sandBottomEl = document.getElementById('countdownSandBottom');
+
+                if (!gridEl || !barsEl || !totalEl || !sandTopEl || !sandBottomEl) return;
+
+                if (tiempo.pasado) {
+                    gridEl.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 20px; color: #fff; font-size: 20px;">¡La fecha ya pasó!</div>';
+                    barsEl.innerHTML = '';
+                    totalEl.innerHTML = '';
+                    sandTopEl.style.height = '0%';
+                    sandBottomEl.style.height = '100%';
+                    return;
+                }
+
+                // Calcular porcentaje del tiempo transcurrido
+                const fechaInicio = new Date('2025-01-01T00:00:00');
+                const tiempoTotal = FECHA_OBJETIVO - fechaInicio;
+                const tiempoTranscurrido = new Date() - fechaInicio;
+                const porcentajeTranscurrido = (tiempoTranscurrido / tiempoTotal) * 100;
+
+                // Actualizar reloj de arena
+                sandTopEl.style.height = Math.max(0, 100 - porcentajeTranscurrido) + '%';
+                sandBottomEl.style.height = Math.min(100, porcentajeTranscurrido) + '%';
+
+                // Actualizar contador
+                gridEl.innerHTML = `
+                <div class="countdown-time-unit">
+                    <span class="countdown-time-number">${tiempo.dias}</span>
+                    <span class="countdown-time-label">Días</span>
+                </div>
+                <div class="countdown-time-unit">
+                    <span class="countdown-time-number">${tiempo.horas}</span>
+                    <span class="countdown-time-label">Horas</span>
+                </div>
+                <div class="countdown-time-unit">
+                    <span class="countdown-time-number">${tiempo.minutos}</span>
+                    <span class="countdown-time-label">Minutos</span>
+                </div>
+                <div class="countdown-time-unit">
+                    <span class="countdown-time-number">${tiempo.segundos}</span>
+                    <span class="countdown-time-label">Segundos</span>
+                </div>
+            `;
+
+                // Calcular porcentajes para las barras de progreso
+                const porcDias = Math.min((tiempo.dias / 365) * 100, 100);
+                const porcHoras = (tiempo.horas / 24) * 100;
+                const porcMinutos = (tiempo.minutos / 60) * 100;
+
+                // Actualizar barras de progreso
+                barsEl.innerHTML = `
+                <div class="countdown-progress-item">
+                    <div class="countdown-progress-label">
+                        <span>Días (${tiempo.dias})</span>
+                        <span>${porcDias.toFixed(1)}% del año</span>
+                    </div>
+                    <div class="countdown-progress-bar">
+                        <div class="countdown-progress-fill" style="width: ${porcDias}%"></div>
+                    </div>
+                </div>
+                <div class="countdown-progress-item">
+                    <div class="countdown-progress-label">
+                        <span>Horas (${tiempo.horas})</span>
+                        <span>${porcHoras.toFixed(1)}% del día</span>
+                    </div>
+                    <div class="countdown-progress-bar">
+                        <div class="countdown-progress-fill" style="width: ${porcHoras}%"></div>
+                    </div>
+                </div>
+                <div class="countdown-progress-item">
+                    <div class="countdown-progress-label">
+                        <span>Minutos (${tiempo.minutos})</span>
+                        <span>${porcMinutos.toFixed(1)}% de la hora</span>
+                    </div>
+                    <div class="countdown-progress-bar">
+                        <div class="countdown-progress-fill" style="width: ${porcMinutos}%"></div>
+                    </div>
+                </div>
+            `;
+
+                // Actualizar tiempo total
+                totalEl.innerHTML = `
+                <strong>Tiempo total:</strong><br>
+                ${tiempo.meses} meses y ${tiempo.diasRestantes} días<br>
+                <small>(${tiempo.totalHoras.toLocaleString()} horas • ${tiempo.totalMinutos.toLocaleString()} minutos)</small>
+            `;
+            }
+
+            // Iniciar cuando el DOM esté listo
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function () {
+                    actualizarContador();
+                    setInterval(actualizarContador, 1000);
+                });
+            } else {
+                actualizarContador();
+                setInterval(actualizarContador, 1000);
+            }
+        })();
+    </script>
 </body>
 
 </html>
