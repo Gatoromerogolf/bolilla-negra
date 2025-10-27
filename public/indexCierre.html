@@ -1,0 +1,2135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Tooplate">
+
+    <title>Bolilla Negra - Inicio</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/apexcharts.css" rel="stylesheet">
+    <link href="css/tooplate-mini-finance.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Courgette&family=Gupter:wght@400;500;700&family=PT+Sans+Narrow:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+        rel="stylesheet">
+    <!--
+Tooplate 2135 Mini Finance
+https://www.tooplate.com/view/2135-mini-finance
+Bootstrap 5 Dashboard Admin Template
+-->
+    <style>
+        .countdown-wrapper {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+            border: 3px solid #fff !important;
+            border-radius: 20px !important;
+            padding: 40px !important;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 255, 255, 0.1) !important;
+            max-width: 800px !important;
+            margin: 20px auto !important;
+            position: relative !important;
+        }
+
+        .countdown-wrapper::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 10px !important;
+            left: 10px !important;
+            right: 10px !important;
+            bottom: 10px !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 15px !important;
+            pointer-events: none !important;
+        }
+
+        .countdown-title {
+            color: #fff !important;
+            text-align: center !important;
+            margin-bottom: 10px !important;
+            font-size: 32px !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
+            letter-spacing: 2px !important;
+            font-weight: bold !important;
+        }
+
+        .countdown-subtitle {
+            text-align: center !important;
+            color: #fff !important;
+            margin-bottom: 30px !important;
+            font-size: 20px !important;
+            font-weight: 300 !important;
+            opacity: 0.9 !important;
+        }
+
+        .countdown-title::before {
+            content: '⚫' !important;
+            margin-right: 10px !important;
+        }
+
+        .countdown-title::after {
+            content: '⚪' !important;
+            margin-left: 10px !important;
+        }
+
+        .countdown-hourglass-container {
+            display: flex !important;
+            justify-content: center !important;
+            margin-bottom: 30px !important;
+        }
+
+        .countdown-hourglass {
+            width: 80px !important;
+            height: 20px !important;
+            position: relative !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .countdown-hourglass-top,
+        .countdown-hourglass-bottom {
+            width: 80px !important;
+            height: 70px !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        .countdown-hourglass-top {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent) !important;
+            clip-path: polygon(10% 0%, 90% 0%, 50% 100%) !important;
+        }
+
+        .countdown-hourglass-bottom {
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.1), transparent) !important;
+            clip-path: polygon(50% 0%, 10% 100%, 90% 100%) !important;
+        }
+
+        .countdown-sand-top {
+            position: absolute !important;
+            bottom: 0 !important;
+            left: 10% !important;
+            right: 10% !important;
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%) !important;
+            transition: height 1s linear !important;
+            clip-path: polygon(15% 0%, 85% 0%, 50% 100%) !important;
+        }
+
+        .countdown-sand-bottom {
+            position: absolute !important;
+            bottom: 0 !important;
+            left: 10% !important;
+            right: 10% !important;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%) !important;
+            transition: height 1s linear !important;
+            clip-path: polygon(50% 0%, 15% 100%, 85% 100%) !important;
+        }
+
+        .countdown-hourglass-middle {
+            width: 20px !important;
+            height: 8px !important;
+            background: #fff !important;
+            border: 2px solid #000 !important;
+            border-radius: 50% !important;
+            margin: -2px 0 !important;
+            z-index: 10 !important;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .countdown-hourglass-frame {
+            position: absolute !important;
+            width: 100% !important;
+            height: 100% !important;
+            border: 4px solid #fff !important;
+            border-radius: 10px !important;
+            pointer-events: none !important;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .countdown-sand-stream {
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 3px !important;
+            height: 20px !important;
+            background: linear-gradient(to bottom, #fff, #666) !important;
+            opacity: 0 !important;
+            animation: countdown-sandFall 2s infinite !important;
+        }
+
+        @keyframes countdown-sandFall {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .countdown-grid {
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 15px !important;
+            margin-bottom: 30px !important;
+        }
+
+        .countdown-time-unit {
+            background: linear-gradient(135deg, #000 0%, #2d2d2d 100%) !important;
+            border: 2px solid #fff !important;
+            padding: 20px !important;
+            border-radius: 12px !important;
+            text-align: center !important;
+            color: white !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        .countdown-time-unit::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.03) 10px,
+                    rgba(255, 255, 255, 0.03) 20px) !important;
+            pointer-events: none !important;
+        }
+
+        .countdown-time-number {
+            font-size: 32px !important;
+            font-weight: bold !important;
+            display: block !important;
+            margin-bottom: 5px !important;
+            position: relative !important;
+            z-index: 1 !important;
+            color: #fff !important;
+        }
+
+        .countdown-time-label {
+            font-size: 12px !important;
+            text-transform: uppercase !important;
+            opacity: 0.9 !important;
+            position: relative !important;
+            z-index: 1 !important;
+            color: #fff !important;
+        }
+
+        .countdown-progress-bars {
+            margin-top: 20px !important;
+        }
+
+        .countdown-progress-item {
+            margin-bottom: 15px !important;
+        }
+
+        .countdown-progress-label {
+            display: flex !important;
+            justify-content: space-between !important;
+            margin-bottom: 5px !important;
+            font-size: 14px !important;
+            color: #fff !important;
+        }
+
+        .countdown-progress-bar {
+            height: 8px !important;
+            background: #1a1a1a !important;
+            border: 1px solid #fff !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+        }
+
+        .countdown-progress-fill {
+            height: 100% !important;
+            background: repeating-linear-gradient(90deg,
+                    #fff 0px,
+                    #fff 10px,
+                    #000 10px,
+                    #000 20px) !important;
+            border-radius: 10px !important;
+            transition: width 0.5s ease !important;
+        }
+
+        .countdown-total-time {
+            text-align: center !important;
+            margin-top: 25px !important;
+            padding: 20px !important;
+            background: #000 !important;
+            border: 2px solid #fff !important;
+            border-radius: 12px !important;
+            font-size: 18px !important;
+            color: #fff !important;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .countdown-total-time strong {
+            color: #fff !important;
+            letter-spacing: 1px !important;
+        }
+
+        @media (max-width: 768px) {
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .countdown-wrapper {
+                padding: 20px !important;
+            }
+
+            .countdown-title {
+                font-size: 24px !important;
+            }
+
+            .countdown-subtitle {
+                font-size: 16px !important;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header class="navbar sticky-top flex-md-nowrap">
+        <div class="col-md-3 col-lg-3 me-0 px-3 fs-6">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/bn.ico" alt="Bolilla Negra Icono"
+                    style="width: 60px; height: 60px; vertical-align: middle;">
+                Bolilla Negra
+            </a>
+        </div>
+
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+            class="motivational-text ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0 p-3 border rounded">
+            <p class="mb-0" style="font-size: 14px;">"Aguante Bolilla!"</p>
+        </div>
+
+        <div class="navbar-nav me-lg-2">
+            <div class="nav-item text-nowrap d-flex align-items-center">
+                <div class="dropdown ps-3">
+
+                    <!--begin::Fullscreen Toggle-->
+                    <li class="nav-item ps-3">
+                        <a class="nav-link" href="#" id="fullscreen-toggle">
+                            <i id="fullscreen-icon-enter" class="bi bi-arrows-fullscreen"></i>
+                            <i id="fullscreen-icon-exit" class="bi bi-fullscreen-exit" style="display: none;"></i>
+                        </a>
+                    </li>
+                    <!--end::Fullscreen Toggle-->
+                </div>
+                <div>
+                    <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" id="navbarLightDropdownMenuLink">
+                        <i class="bi-bell"></i>
+                        <span
+                            class="position-absolute start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                            <span class="visually-hidden">New alerts</span>
+                        </span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-lg-end notifications-block-wrap bg-white shadow"
+                        aria-labelledby="navbarLightDropdownMenuLink">
+                        <small>Matriculas</small>
+
+                        <li class="notifications-block border-bottom pb-2 mb-2">
+                            <a class="dropdown-item d-flex  align-items-center" href="#">
+                                <div class="notifications-icon-wrap bg-success">
+                                    <i class="notifications-icon bi-check-circle-fill"></i>
+                                </div>
+
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>Diegui - 38.534</p>
+                                            <p>Edu - 93.293</p>
+                                            <p>Fer - 126.578</p>
+                                            <p>Gaby - 119.817</p>
+                                            <p>Joaco - 119.807</p>
+                                            <p>Juancho - 119.811</p>
+                                        </div>
+
+                                        <div class="col">
+                                            <p>Julito - 87.561</p>
+                                            <p>Negro - 136.262</p>
+                                            <p>Panza - 114.566</p>
+                                            <p>Sensei - 97.189</p>
+                                            <p>Torni - 122.252</p>
+                                            <p>Vacante - 999.999</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+
+                <div class="dropdown px-3">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <img src="images/medium-shot-happy-man-smiling.jpg" class="profile-image img-fluid" alt="">
+                    </a>
+                    <ul class="dropdown-menu bg-white shadow">
+                        <li>
+                            <div class="dropdown-menu-profile-thumb d-flex">
+                                <img src="images/medium-shot-happy-man-smiling.jpg" class="profile-image img-fluid me-3"
+                                    alt="">
+
+                                <div class="d-flex flex-column">
+                                    <small>Bolilla Negra</small>
+                                    <a href="#">hcdt-bolilla@gmail.com</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="login2.html?redirect=carga">
+                                <i class="bi-person me-2"></i>
+                                Exclusivo HCDT
+                            </a>
+                        </li>
+
+
+                        <li class="border-top mt-3 pt-2 mx-4">
+                            <a class="dropdown-item ms-0 me-0" href="#">
+                                <i class="bi-box-arrow-left me-2"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-3 d-md-block sidebar collapse">
+                <div class="position-sticky py-4 px-3 sidebar-sticky">
+                    <ul class="nav flex-column h-100">
+                        <li class="nav-item">
+                            <a class="nav-link  active" aria-current="page" href="index.html">
+                                <i class="bi-house-fill me-2"></i>
+                                Inicio
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="wallet.html">
+                                <i class="bi-wallet me-2"></i>
+                                Resultados
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="jugadoranual.html">
+                                <i class="bi-award-fill me-2"></i>
+                                Jugador del Año
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="sociales.html">
+                                <i class="bi-person me-2"></i>
+                                Sociales
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="calendario25.html">
+                                <i class="bi-calendar3 me-2"></i>
+                                Calendario 2025
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="resumen24.html">
+                                <i class="bi-trophy"></i>
+                                Resumen Deportivo 2024
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index2.html">
+                                <i class="bi-gear me-2"></i>
+                                Nuestra historia
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
+                <div class="title-group mb-3">
+                    <h1 class="h2 mb-0">Bienvenidos</h1>
+                </div>
+
+                <!-- <div class="countdown-wrapper">
+                    <h1 class="countdown-title">Última Gira 2025</h1>
+                    <h2 class="countdown-subtitle">Bolilla Negra - 22 de Octubre 2025 - 12:00 hs</h2>
+
+                    <div class="countdown-hourglass-container">
+                        <div class="countdown-hourglass">
+                            <div class="countdown-hourglass-frame"></div>
+                            <div class="countdown-hourglass-top">
+                                <div class="countdown-sand-top" id="countdownSandTop"></div>
+                            </div>
+                            <div class="countdown-hourglass-middle">
+                                <div class="countdown-sand-stream"></div>
+                            </div>
+                            <div class="countdown-hourglass-bottom">
+                                <div class="countdown-sand-bottom" id="countdownSandBottom"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="countdown-grid" id="countdownGrid"></div>
+
+                    <div class="countdown-progress-bars" id="countdownProgressBars"></div>
+
+                    <div class="countdown-total-time" id="countdownTotalTime"></div>
+                </div> -->
+
+
+
+                <div class="row my-4">
+                    <div class="col-lg-5 col-12">
+                        <div class="custom-block custom-block-transations"> <!-- ultimo torneo disputado -->
+                            <center>
+                                <h4 class="mb-4">📅 Último torneo disputado 📅</h4>
+                                <div>
+                                    <h6 id="ultimaFecha"></h6>
+                                    <span style="font-size: 1rem; font-weight: bold;">Jugadores:</span>
+                                    <span id="ctddJugadores" style="font-size: 1rem; font-weight: bold;">...</span>
+                                </div>
+                            </center>
+
+                            <div style="width:100%; height: 520px;">
+                                <table id="resultadoFecha" style="width: 200px; position: relative;">
+                                    <thead>
+                                        <colgroup>
+                                            <col style="width: 10px;" ;>
+                                            <col style="background-color: rgb(250, 250, 32)" ;>
+                                            <col style="width: 10px;" ;>
+                                            <col style="width: 10px;" ;>
+                                            <col style="width: 10px;" ;>
+
+                                        <tr>
+                                            <th>Pos</th>
+                                            <th id="namePlayer">Jugador</th>
+                                            <th>Neto</th>
+                                            <th>Pelotas</th>
+                                            <th>Puntos</th>
+                                            <th>NPT</th>
+                                        </tr>
+                                        </colgroup>
+                                    </thead>
+
+                                    <tbody>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                            <div class="container oculto mt-3" id="paso5">
+                                <div id="tablaBerdisFS">
+                                    <center>
+                                        <span style="font-size: 1rem; font-weight: bold;">🏆🏆 Birdies 🏆🏆</span>
+                                    </center>
+                                    <table id="tablaBerdis" class="otraTablaLinda" style="max-height: 20px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Hoyo</th>
+                                                <th>Par</th>
+                                                <th>Score</th>
+                                                <th>Jugador</th>
+                                                <th>Hcp</th>
+                                                <!-- <th>⛳</th>
+                                                <th>Antes</th>
+                                                <th>Hcp</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="container oculto mt-4" id="paso6">
+                                <fieldset id="tablaNegroFS">
+                                    <center>
+                                        <span style="font-size: 1rem; font-weight: bold;">🏴‍☠️🏴‍☠️ Hoyos negros
+                                            🏴‍☠️🏴‍☠️</span>
+                                    </center>
+                                    <table id="tablaNegros" class="otraTablaLinda" style="max-height: 20px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Hoyo</th>
+                                                <th>Par</th>
+                                                <th>Jugador</th>
+                                                <th>Score</th>
+                                                <th>Hcp</th>
+                                                <!-- <th>⛳</th>
+                                                <th>Antes</th>
+                                                <th>Sco</th>
+                                                <th>Hcp</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </div>
+
+                            <div class="container oculto mt-4" id="paso7">
+                                <fieldset id="tablaColapintoFS">
+                                    <center>
+                                        <span style="font-size: 1rem; font-weight: bold;">🚒🚒 Colapinto 🚒🚒</span>
+                                    </center>
+                                    <table id="tablaColapintoHoy" class="otraTablaLinda" style="max-height: 20px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Player</th>
+                                                <th>Hcp</th>
+                                                <th>50%</th>
+                                                <th>Tot H</th>
+                                                <th>Max</th>
+                                                <th>Gross</th>
+                                                <th>Plus</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </div>
+
+                            <div class="border-top pt-4 mt-4 text-center">
+                                <a class="btn custom-btn" href="wallet.html">
+                                    Ver todos los resultados
+                                    <i class="bi-arrow-up-right-circle-fill ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 col-12">
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <!-- mejor Score del mes -->
+                            <h5 class="mb-3">🎰 Mejor score del mes 🎰</h5>
+                            <table id="tablaMejorScore">
+                                <thead>
+                                    <tr>
+                                        <th>Mes</th>
+                                        <th>Dia</th>
+                                        <th>Score</th>
+                                        <th>Player</th>
+                                        <th>Jugad</th>
+                                        <th>Puntos</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyScore">
+                                    <tr></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div
+                            class="custom-block custom-block-profile-front custom-block-profile text-center bg-warning">
+                            <h5 class="mb-3">🥇🥈 Clasificación 🥈🥇</h5>
+                            <div style="display: flex; justify-content:center; gap: 40px;">
+                                <div>
+                                    <h6 class="mb-3">Clausura</h6>
+                                    <table border="1">
+                                        <thead>
+                                            <th>Pos</th>
+                                            <th>Jugador</th>
+                                            <th>Prom</th>
+                                        </thead>
+                                        <tbody id="clasificaClausura">
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                                <div>
+                                    <h6 class="mb-3">Anual</h6>
+                                    <table border="1">
+                                        <thead>
+                                            <th>Pos</th>
+                                            <th>Jugador</th>
+                                            <th>Puntos</th>
+                                        </thead>
+                                        <tbody id="clasificaAnual">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="border-top pt-4 mt-4 text-center">
+                                <a class="btn custom-btn" href="wallet.html">
+                                    Ver detalles
+                                    <i class="bi-arrow-up-right-circle-fill ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <!-- pelotas ganadas -->
+                            <h5 class="mb-3">⚽ Pelotas Ganadas ⚽</h5>
+                            <p class="mb-2">El jugador con la mayor cantidad de pelotas ganadas al día de
+                                la fecha:</p>
+                            <div class="custom-block-profile-front custom-block-profile-image-wrap mb-3">
+                                <img id="imagenDinamica" src="images/profile/marco-tiger.png"
+                                    class="custom-block-profile-image img-fluid" alt="">
+                            </div>
+                            <p>Nuestro compañero <strong><span id="pelotudo"
+                                        style="font-size: 25px;">...</span></strong>ha acumulado la cantidad de
+                                <span id="pelotas" class="centrado" style="font-size: 40px;">...</span> pelotas ganadas.
+                            </p>
+                            <div class="border-top pt-4 mt-4 text-center">
+                                <a class="btn custom-btn" href="pelotas-detail.html">
+                                    Ver detalles
+                                    <i class="bi-arrow-up-right-circle-fill ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+
+                <div class="row my-4">
+                    <div class="col-lg-5 col-12">
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center"
+                            style="background-color: #FFECB3">
+                            <h5 class="mb-3">🏆 🏆 Birdies histórico 🏆 🏆 </h5>
+                            <!-- <div style="display: flex; justify-content:center; gap: 40px;"> -->
+                            <div>
+                                <h6 class="mb-2">Por hoyo</h6>
+                                <table border="1">
+                                    <thead>
+                                        <th>Hoyo</th>
+                                        <th>Par</th>
+                                        <th>Score</th>
+                                        <th>Jugador</th>
+                                        <th>Hcp</th>
+                                        <th>Fecha</th>
+                                    </thead>
+                                    <tbody id="berdixHoyo">
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                            <div>
+                                <h6 class="mb-2 mt-3">Por Jugador</h6>
+                                <table border="1">
+                                    <thead>
+                                        <th>Jugador</th>
+                                        <th>Hoyo</th>
+                                        <th>Par</th>
+                                        <th>Score</th>
+                                        <th>Hcp</th>
+                                        <th>Fecha</th>
+                                    </thead>
+                                    <tbody id="berdixJugador">
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div> <!-- </div> -->
+
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center"
+                            style="background-color: #bcbcbe">
+                            <h5 class="mb-3">🏴‍☠️🏴‍☠️ Negros histórico 🏴‍☠️🏴‍☠️</h5>
+
+                            <div>
+                                <h6 class="mb-2">Por hoyo</h6>
+                                <table border="1">
+                                    <thead>
+                                        <th>Hoyo</th>
+                                        <th>Par</th>
+                                        <th>Score</th>
+                                        <th>Jugador</th>
+                                        <th>Hcp</th>
+                                        <th>Fecha</th>
+                                    </thead>
+                                    <tbody id="negroxHoyo">
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div>
+                                <h6 class="mb-3 mt-3">Por Jugador</h6>
+                                <table border="1">
+                                    <thead>
+                                        <th>Jugador</th>
+                                        <th>Hoyo</th>
+                                        <th>Par</th>
+                                        <th>Score</th>
+                                        <th>Hcp</th>
+                                        <th>Fecha</th>
+                                    </thead>
+                                    <tbody id="negroxJugador">
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <p class="mt-2 mb-3">Hoyo negro: le sacó al jugador más golpes que el máximo establecido
+                                para su handicap</p>
+                            <table>
+                                <tr>
+                                    <th colspan="4">🏴‍☠️ Máximos 🏴‍☠️</th>
+                                </tr>
+                                <tr>
+                                    <th>HDCP</th>
+                                    <th>Par 3</th>
+                                    <th>Par 4</th>
+                                    <th>Par 5</th>
+                                </tr>
+
+                                <tr>
+                                    <td>0 - 11</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>12 - 22</td>
+                                    <td>6</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>23 - 50</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 col-12">
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center"
+                            style="background-color:#F5F5DC">
+                            <!-- La vuelta Colapinto -->
+                            <h5 class="mb-3">🚒🚒 Colapinto histórico 🚒🚒</h5>
+                            <p class="mb-2">Los que hicieron un gross mayor a la suma del par más una vez
+                                y media su handicap.</p>
+                            <table id="tablaColapinto">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Player</th>
+                                        <th>Hcp</th>
+                                        <th>50%</th>
+                                        <th>TotalH</th>
+                                        <th>Max</th>
+                                        <th>Gross</th>
+                                        <th>Plus</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <br>
+                        </div>
+
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <h5 class="mb-3">📈📉 Handicap Bolilla 📈📉</h5>
+                            <p class="mb-2">Los números verdaderos según las últimas 6 tarjetas.</p>
+                            <table id="tablaHandicapBolilla">
+                                <thead>
+                                    <tr>
+                                        <th>Jugador</th>
+                                        <th>Hcp</th>
+                                        <th>Hcp Bol</th>
+                                        <th>DIF</th>
+                                        <th>Tarjetas</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaPromedios">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-12">
+                    <div class="custom-block custom-block-exchange"> <!-- Presupuesto y Gastos -->
+
+                        <h3>Resultados Gira Sierra 2025</h3>
+
+                        <div style="width:100%px; height: 490px;">
+                            <table id="resultadoSierra" style="width: 220px; position: relative;">
+                                <thead>
+                                    <colgroup>
+                                        <col style="width: 10px;" ;>
+                                        <col style="background-color: rgb(250, 250, 32)" ;>
+                                        <col style="background-color: rgb(95, 242, 122)" ;>
+                                        <col style="width: 10px;" ;>
+                                        <col style="width: 10px;" ;>
+                                        <col style="width: 10px;" ;>
+                                        <col style="background-color: rgb(246, 84, 168)" ;>
+                                        <col style="background-color: rgb(165, 171, 166)" ;>
+                                    </colgroup>
+
+                                    <tr>
+                                        <th>Pos</th>
+                                        <th id="namePlayer2">Jugador</th>
+                                        <th>Neto</th>
+                                        <th>Cari</th>
+                                        <th>Acan</th>
+                                        <th>Sier</th>
+                                        <th>Anual</th>
+                                        <th>Pelo</th>
+
+                                    </tr>
+                                    <tr>
+                                        <td>1°</td>
+                                        <td>Juancho</td>
+                                        <td>237</td>
+                                        <td>77</td>
+                                        <td>72</td>
+                                        <td>88</td>
+                                        <td>25</td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2°</td>
+                                        <td>Panza</td>
+                                        <td>246</td>
+                                        <td>75</td>
+                                        <td>75</td>
+                                        <td>96</td>
+                                        <td>17</td>
+                                        <td>8</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3°</td>
+                                        <td>Diegui</td>
+                                        <td>249</td>
+                                        <td>90</td>
+                                        <td>76</td>
+                                        <td>83</td>
+                                        <td>13</td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4°</td>
+                                        <td>Torni</td>
+                                        <td>250</td>
+                                        <td>80</td>
+                                        <td>85</td>
+                                        <td>85</td>
+                                        <td>11</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5°</td>
+                                        <td>Sensei</td>
+                                        <td>251</td>
+                                        <td>87</td>
+                                        <td>78</td>
+                                        <td>86</td>
+                                        <td>9</td>
+                                        <td>4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6°</td>
+                                        <td>Fer</td>
+                                        <td>254</td>
+                                        <td>81</td>
+                                        <td>80</td>
+                                        <td>93</td>
+                                        <td>7</td>
+                                        <td>3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7°</td>
+                                        <td>Edu</td>
+                                        <td>258</td>
+                                        <td>92</td>
+                                        <td>81</td>
+                                        <td>85</td>
+                                        <td>5</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8°</td>
+                                        <td>Julito</td>
+                                        <td>258</td>
+                                        <td>92</td>
+                                        <td>76</td>
+                                        <td>90</td>
+                                        <td>3</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9°</td>
+                                        <td>Gaby</td>
+                                        <td>259</td>
+                                        <td>89</td>
+                                        <td>83</td>
+                                        <td>87</td>
+                                        <td>2</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10°</td>
+                                        <td>Negro</td>
+                                        <td>259</td>
+                                        <td>82</td>
+                                        <td>86</td>
+                                        <td>91</td>
+                                        <td>2</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>11°</td>
+                                        <td>Joaco</td>
+                                        <td>262</td>
+                                        <td>85</td>
+                                        <td>86</td>
+                                        <td>91</td>
+                                        <td>1</td>
+                                        <td>-</td>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p class="mt-4">Agradecemos la particiación de Ricky quien finalizó la gira con un
+                            excelente
+                            score de 240 golpes.</p>
+
+
+                        <h3 class="mt-4">Resultados Ryder 2025</h3>
+                        <div style="width:100%px; ">
+                            <table id="RyderSierra" style="width: 300px; position: relative;">
+                                <thead>
+                                    <colgroup>
+                                        <col style="background-color: rgb(250, 250, 32)" ;>
+                                        <col style="width: 10px;" ;>
+                                        <col style="background-color: rgb(250, 250, 32)" ;>
+                                        <col style="width: 10px;" ;>
+                                    </colgroup>
+
+                                    <tr>
+                                        <th>Altos de Campo Grande</th>
+                                        <th>7 puntos</th>
+                                        <th>Campo Grande</th>
+                                        <th>7 puntos</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <p class="mt-4">Se define en proxima fecha en la que se encuentren igual cantidad de
+                            jugadores de Altos y de Campo, en la modalidad match, con el handicap otorgado
+                            en la
+                            cancha. Los capitanes decidirán los enfrentamientos y se comunicará el inicio de
+                            la
+                            ronda.</p>
+                    </div>
+                </div>
+                <!-- </main> -->
+
+                <div class="custom-block custom-block-bottom d-flex flex-wrap">
+                    <div class="custom-block-bottom-item">
+                    </div>
+                    <div class="custom-block-bottom-item">
+                    </div>
+                    <div class="custom-block-bottom-item">
+                    </div>
+                    <div class="custom-block-bottom-item">
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-12">
+                </div>
+
+                <footer class="site-footer">
+                    <div class="container">
+                        <div class="row">
+                        </div>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+    <!-- </body> -->
+
+    <div id="modalPelotasGanadas" class="modal-Pelotas" style="display:none">
+        <div class="modal-contenido-Pelotas">
+            <table id="tablaModalGeneralPelotas">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                </tr>
+                <tr id="lineaModalGeneralPelotas">
+                </tr>
+            </table>
+            <button id="cerrarPelotas">Cerrar</button>
+        </div>
+    </div>
+
+    <!--   /* 🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎🥎 */ -->
+
+
+    <script>
+
+        window.addEventListener("DOMContentLoaded", () => {
+            iniciar();
+        })
+
+        async function iniciar() {
+            ultimaFecha = await buscaUltimaFecha();
+            todasLasFechas = await leeDatosFechas();
+
+            const berdisLeidos = await leeTablaBerdis();
+            const datosBerdis = berdisLeidos.filter((resultado) => resultado.fechakey == ultimaFecha.fec);
+
+            if (datosBerdis && datosBerdis.length > 0) {
+                tablaBerdis = datosBerdis; // variable global
+                mostrarTablaBerdis();
+                mostrarHistoricoBerdis(berdisLeidos, todasLasFechas);
+            }
+
+            const negrosLeidos = await leeTablaNegros();
+            const datosNegros = negrosLeidos.filter((resultado) => resultado.fechakeyNG == ultimaFecha.fec);
+            if (datosNegros && datosNegros.length > 0) {
+                tablaNegros = datosNegros;
+                mostrarTablaNegros();
+                mostrarHistoricoNegros(negrosLeidos, todasLasFechas);
+            }
+
+            const colapintos = await leeTablaColapinto();
+            if (colapintos.length > 0) {
+                colapintoHoy = colapintos.filter((resultado) => resultado.fechaKey == ultimaFecha.fec);
+                if (colapintoHoy && colapintoHoy.length > 0) {
+                    // let datosColapintoHoy = colapintoHoy;
+                    mostrarTablaColapintoHoy();
+                }
+                else {
+                    tablaColapintoHoy = [];
+                }
+            }
+            datosColapinto = colapintos;
+            mostrarTablaColapinto();
+
+            cargarPromedios();
+
+            // let resultadosClau;
+            let resultadosClau = await leerDatosNetos();
+
+            // let players2Clau = {};
+            let players2Clau = resultadosClau.filter(
+                (resultado) => resultado.fec > 44 && resultado.fec < 90
+            );
+
+            const fechasFiltradasClau = await leerDatosFechasClau();
+
+            const filasMat = 12;
+            const columnas = 1;
+            const matriz2 = new Array(filasMat)
+                .fill(0)
+                .map(() => new Array(columnas).fill(0));
+
+            // Paso 1: Agrupar los datos por jugador, manteniendo solo pares de fec y neto
+            const playersDataClau = {};
+
+            //if (!playersDataClau[play]): verifica si no existe ningún dato para el jugador con índice play en el arreglo playersData. El ! antes de playersData[play] verifica si es falso, es decir, si es nulo, undefined, 0, false o una cadena vacía.
+
+            players2Clau.forEach(({ play, fec, neto }) => {
+                if (fec > 44 && fec < 90) {
+                    if (neto > 0) {
+                        // Filtra los pares donde neto es mayor a 0
+                        if (!playersDataClau[play]) {
+                            playersDataClau[play] = []; //Inicializ el arreglo para el jugador play asignándole un nuevo arreglo vacío.
+                        }
+                        playersDataClau[play].push({ fec, neto }); // Esto agrega un nuevo objeto al arreglo del jugador play. El objeto tiene dos propiedades: fec y neto.
+                    }
+                }
+            });
+
+            // :::::::::::::::::::::::::::::::::::::::::::::
+            // ::::::::: CUENTA EL TOTAL DE NPT DE CADA UNO
+            // :::::::::::::::::::::::::::::::::::::::::::::
+            let nptCount = {};
+
+            // Recorre players2 y cuenta las veces que npt es 1 para cada play
+            players2Clau.forEach(({ play, npt }) => {
+                // Si npt es 1, incrementa el contador para ese jugador (play)
+                if (npt === 1) {
+                    if (!nptCount[play]) {
+                        nptCount[play] = 0; // Inicializa si no existe
+                    }
+                    nptCount[play] += 1; // Incrementa el contador de npt
+                }
+            });
+
+            // ::::::::::::::::::::::::::::::::::::::::::::::
+            // :::::::::     LO GUARDA EN UNA MATRIZ
+            // ::::::::::::::::::::::::::::::::::::::::::::::
+            let matrizNpt = [];
+
+            // Recorre el objeto nptCount para construir la matriz
+            for (const play in nptCount) {
+                if (nptCount.hasOwnProperty(play)) {
+                    matrizNpt.push([play, nptCount[play]]);
+                }
+            }
+
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            //:::::::::::::: selecciona los seis mejores
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            // ordena por score neto de menor a mayor
+            // Slice devuelve una copia de una porción del arreglo.  Toma los seis primeros
+            for (const play in playersDataClau) {
+                playersDataClau[play].sort((a, b) => a.neto - b.neto);
+                playersDataClau[play] = playersDataClau[play].slice(0, 6);
+                playersDataClau[play].sort((a, b) => a.fec - b.fec);
+            }
+
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            //:::::::::::::: agrega suma netos y promedio
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            for (let play in playersDataClau) {
+                let sumaNetos = 0;
+                let promedios = 0;
+                for (let i = 0; i < playersDataClau[play].length; i++) {
+                    sumaNetos += playersDataClau[play][i].neto;
+                }
+                playersDataClau[play].sumaNetos = sumaNetos;
+                promedios = sumaNetos / playersDataClau[play].length;
+
+                // Agrega el total de npt del objeto nptCount
+                playersDataClau[play].totalNpt = nptCount[play] || 0;
+
+                let promedioDec = parseFloat(promedios.toFixed(1)) || 0;
+                // playersData[play].promedios = promedioDec;
+
+                let sumar = 2 * playersDataClau[play].totalNpt;
+                // Asegúrate de que promedioDec sea un número
+                // promedioDec = parseFloat(promedioDec) || 0; // Esto asegura que promedioDec sea un número
+                promedioDec += sumar;
+
+                playersDataClau[play].promedios = promedioDec;
+            }
+
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            //:::::::::::::: ordena por promedio ascendente
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+            for (const key in playersDataClau) {
+                if (Array.isArray(playersDataClau[key])) {
+                    playersDataClau[key].sort((a, b) => a.promedios - b.promedios);
+                }
+            }
+            //
+
+            let i = 0;
+            let j = 0;
+
+            for (const play in playersDataClau) {
+                matriz2[i][0] = play;
+                matriz2[i][1] = playersDataClau[play].sumaNetos;
+                matriz2[i][2] = playersDataClau[play].promedios;
+                matriz2[i][3] = playersDataClau[play].totalNpt;
+                i++;
+            }
+
+            i = 0;
+            let col = 0;
+
+            for (const elemento in playersDataClau) {
+                // Asegura que haya una fila en la matriz para este índice
+                matriz2[i] = matriz2[i] || [];
+
+                for (let j = 0; j < playersDataClau[elemento].length; j++) {
+                    let col = playersDataClau[elemento][j].fec - 41;
+
+                    // Si `col` es mayor que la longitud actual del array, puedes ajustar el array.
+                    while (matriz2[i].length <= col) {
+                        matriz2[i].push("--"); // Rellena con `null` o cualquier valor por defecto
+                    }
+
+                    // Luego agrega el valor deseado
+                    matriz2[i][col] = playersDataClau[elemento][j].neto;
+                }
+                i++;
+            }
+
+            matriz2.sort((filaA, filaB) => filaA[2] - filaB[2]);
+
+            /** @type {HTMLTableSectionElement} */
+            const cuerpoTablaSeis2Clau = document.getElementById("clasificaClausura");
+
+            for (i = 0; i < 6; i++) {
+                if (matriz2[i][1] > 0) {
+                    const lineaDatos2 = cuerpoTablaSeis2Clau.insertRow();
+                    const celdagral1 = lineaDatos2.insertCell(-1);
+                    celdagral1.style.width = "10px";
+                    celdagral1.textContent = i + 1 + "°";
+                    const celdagral2 = lineaDatos2.insertCell(-1);
+                    celdagral2.style.width = "10px";
+                    celdagral2.textContent = matriz2[i][0];
+                    const celdagral3 = lineaDatos2.insertCell(-1);
+                    celdagral3.style.width = "10px";
+                    celdagral3.textContent = matriz2[i][2];
+                }
+            }
+            /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            //   Arma el anual
+            // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+            giras = await leerDatosGiras();
+
+            let matrizValores = Array.from({ length: 12 }, () => ["", 0]); // Cada fila tendrá un arreglo con valores iniciales
+            //  Arma la matriz con los nombres de los jugadores
+            //  suma los valores anuales obtenidos en cada sábado
+            for (const player of players2) {
+                if (player.play !== "Presi") {
+                    const textoBuscado = player.play;
+                    for (let i = 0; i < 12; i++) {
+                        if (matrizValores[i][1] == textoBuscado) {
+                            matrizValores[i][3] += player.anual;
+                            break;
+                        } else if
+                            (matrizValores[i][1] == "" || matrizValores[i][1] == undefined) {
+                            matrizValores[i][1] = textoBuscado;
+                            matrizValores[i][3] = player.anual;
+                            break;
+                        }
+                    }
+                }
+            }
+            //  leo el localstorage con los puntos por mejor score mensual.
+            const ganadoresScore = localStorage.getItem('ganadoresScore');
+            if (ganadoresScore) {
+                const matrizGanadoresScore = JSON.parse(ganadoresScore);
+                for (let i = 0; i < 12; i++) { // borrra los acumuladores
+                    matrizValores[i][4] = 0;
+                }
+                matrizGanadoresScore.forEach(ganador => {
+                    const player = ganador[0];
+                    const puntos = parseFloat(ganador[1]);
+
+                    for (let i = 0; i < 12; i++) {
+                        if (matrizValores[i][1] == player) {
+                            matrizValores[i][4] = (parseFloat(matrizValores[i][4]) || 0) + puntos;
+                        }
+                    }
+                })
+            }
+
+            //  tengo que agregar a la matriz los valores de las giras y torneos
+            for (const jugador of giras) {
+                const textoBuscado = jugador.Jugador;
+                for (let i = 0; i < 12; i++) {
+                    if (matrizValores[i][1] == textoBuscado) {
+                        matrizValores[i][5] = parseFloat(jugador.Sierra);
+                        matrizValores[i][6] = jugador.Ryder;
+                        matrizValores[i][9] = jugador.Carilo;
+                        matrizValores[i][10] = jugador.Desafio;
+
+                        matrizValores[i][7] = parseFloat(jugador.Apertura);
+                        matrizValores[i][8] = parseFloat(jugador.Clausura);
+                        break;
+                    }
+                }
+            }
+
+            for (let i = 0; i < 11; i++) {
+                // Asegurate de que empiece en número (y no en undefined o string)
+                matrizValores[i][2] = 0;
+
+                for (let j = 3; j < 11; j++) {
+                    const valor = matrizValores[i][j];
+                    // esto por si hay algun valor NaN
+                    if (isNaN(valor)) {
+                        console.warn(`Valor inválido en matrizValores[${i}][${j}]:`, valor);
+                    } else {
+                        matrizValores[i][2] += valor;
+                    }
+                }
+            }
+
+            // Llamada al método sort() con la función de comparación
+            matrizValores.sort(compararPorColumna2);
+
+            // Función de comparación para ordenar por la columna 2
+            function compararPorColumna2(filaA, filaB) {
+                const valorA = parseFloat(filaA[2]);
+                const valorB = parseFloat(filaB[2]);
+                return valorB - valorA;
+            }
+            for (let i = 0; i < 12; i++) {
+                matrizValores[i][0] = i + 1;
+            }
+
+            let tbody = document.getElementById("clasificaAnual"); // Selecciona el tbody de la tabla
+
+            tbody.innerHTML = "";
+            for (let i = 0; i < 6; i++) {
+                let fila = tbody.insertRow(); // Crea una nueva fila
+                for (let j = 0; j < 3; j++) {
+                    let celda = fila.insertCell(j); // Crea una nueva celda en la posición j
+                    celda.textContent = matrizValores[i][j]; // Asigna el valor a la celda
+                    if (j == 0) {
+                        celda.textContent = matrizValores[i][j] + "°"; // Asigna el valor a la celda
+                    }
+                }
+            }
+        };
+
+        let offset = 0;
+        let hasMore = true;
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   leeTablaBerdis 
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function leeTablaBerdis() {
+            try {
+                const response = await fetch(`/leerTablaBerdis`);
+                if (response.ok) {
+                    const resultados = await response.json();
+
+                    // Validación explícita si viene vacío
+                    if (!Array.isArray(resultados)) {
+                        console.warn("Respuesta inesperada del servidor:", resultados);
+                        return null;
+                    }
+
+                    if (resultados.length === 0) {
+                        console.info("No hay registros disponibles en la tabla Berdis.");
+                        return []; // devuelve array vacío para seguir usando filter/map sin errores
+                    }
+
+                    return resultados; // datos válidos
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
+            }
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   leeTablaNegros ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function leeTablaNegros() {
+            try {
+                const response = await fetch(`/leerTablaNegros`);
+                if (response.ok) {
+                    const resultados = await response.json();
+                    return resultados; // Devuelve datos si respuesta OK
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
+            }
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   leeTablaColapinto  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function leeTablaColapinto() {
+            try {
+                const response = await fetch(`/leerColapinto`);
+                if (response.ok) {
+                    const resultados = await response.json();
+                    return resultados; // Devuelve datos si respuesta OK
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
+            }
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   mostrarTablaBerdis  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        function mostrarTablaBerdis() {
+            const tabla = document.querySelector("#tablaBerdis tbody");
+
+            // Limpiar contenido anterior, si lo hubiera
+            tabla.innerHTML = "";
+
+            tablaBerdis.forEach(registro => {
+                const fila = tabla.insertRow();
+
+                // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
+                fila.insertCell(0).textContent = registro.hoyo;
+                fila.insertCell(1).textContent = registro.par;
+                fila.insertCell(2).textContent = registro.golpes;
+                fila.insertCell(3).textContent = registro.jugador;
+                fila.insertCell(4).textContent = registro.handicap;
+            });
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   mostrarHistoricoBerdis  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        function mostrarHistoricoBerdis(berdisLeidos, todasLasFechas) {
+
+            const filtradosYOrdenados = berdisLeidos
+                .filter(registro => registro.fechakey > 1)
+                .sort((a, b) => a.hoyo - b.hoyo);
+
+            const tabla = document.getElementById("berdixHoyo")
+
+            tabla.innerHTML = "";
+
+            filtradosYOrdenados.forEach(registro => {
+                const fechaObj = todasLasFechas.find(f => f.fec == registro.fechakey);
+                const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
+
+                const fila = tabla.insertRow();
+
+                // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
+                fila.insertCell(0).textContent = registro.hoyo;
+                fila.insertCell(1).textContent = registro.par;
+                fila.insertCell(2).textContent = registro.golpes;
+                fila.insertCell(3).textContent = registro.jugador;
+                fila.insertCell(4).textContent = registro.handicap;
+                fila.insertCell(5).textContent = fechaTexto;
+            });
+
+            // ordenados por Jugador
+            const ordenadosPorJugador = filtradosYOrdenados
+                .sort((a, b) => {
+                    if (a.jugador !== b.jugador) {
+                        return (a.jugador.localeCompare(b.jugador))
+                    } else {
+                        return a.hoyo - b.hoyo;
+                    }
+                })
+
+
+            const tabla2 = document.getElementById("berdixJugador")
+
+            // Limpiar contenido anterior, si lo hubiera
+            tabla2.innerHTML = "";
+
+            let jugadorAnterior = '';
+
+            ordenadosPorJugador.forEach(registro => {
+                const fechaObj = todasLasFechas.find(f => f.fec == registro.fechakey);
+                const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
+
+                const fila = tabla2.insertRow();
+
+                // Insertar celdas en orden:
+
+                fila.insertCell(0).textContent = (registro.jugador !== jugadorAnterior) ? registro.jugador : '';
+                fila.insertCell(1).textContent = registro.hoyo;
+                fila.insertCell(2).textContent = registro.par;
+                fila.insertCell(3).textContent = registro.golpes;
+                fila.insertCell(4).textContent = registro.handicap;
+                fila.insertCell(5).textContent = fechaTexto;
+
+                jugadorAnterior = registro.jugador;
+            });
+
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   mostrarTablaColapintoHoy  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        function mostrarTablaColapintoHoy() {
+            const tabla = document.querySelector("#tablaColapintoHoy tbody");
+
+            // Limpiar contenido anterior, si lo hubiera
+            tabla.innerHTML = "";
+
+            colapintoHoy.sort((a, b) => a.plus - b.plus);
+            colapintoHoy.forEach(registro => {
+                const fila = tabla.insertRow();
+
+                // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
+                // fila.insertCell(0).textContent = registro.fecha;
+                fila.insertCell(0).textContent = registro.player;
+                fila.insertCell(1).textContent = registro.handicap;
+                let cincuenta = registro.handicap / 2;
+                fila.insertCell(2).textContent = cincuenta;
+                let unoymedio = registro.handicap + cincuenta;
+                fila.insertCell(3).textContent = unoymedio;
+                let maximo = 72 + unoymedio;
+                fila.insertCell(4).textContent = maximo;
+                fila.insertCell(5).textContent = registro.gross;
+                let plus = registro.gross - maximo
+                fila.insertCell(6).textContent = plus;
+            });
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //   mostrarTablaColapinto  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        function mostrarTablaColapinto() {
+
+            const tabla = document.querySelector("#tablaColapinto tbody");
+
+            // Limpiar contenido anterior, si lo hubiera
+            tabla.innerHTML = "";
+
+            datosColapinto.forEach(registro => {
+                const fila = tabla.insertRow();
+
+                const fecha = registro.fecha;
+                const partes = fecha.split("-"); // ["2025", "07", "05"]
+                const formato = `${partes[2]}-${partes[1]}`; // "05-07"
+                fila.insertCell(0).textContent = formato;
+
+                fila.insertCell(1).textContent = registro.player;
+                fila.insertCell(2).textContent = registro.handicap;
+                let cincuenta = registro.handicap / 2;
+                fila.insertCell(3).textContent = cincuenta;
+                let unoymedio = registro.handicap + cincuenta;
+                fila.insertCell(4).textContent = unoymedio;
+                let maximo = 72 + unoymedio;
+                fila.insertCell(5).textContent = maximo;
+                fila.insertCell(6).textContent = registro.gross;
+                let plus = registro.gross - maximo
+                fila.insertCell(7).textContent = plus;
+            });
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        // 🥎  mostrarTablaNegros   ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽  
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        function mostrarTablaNegros() {
+
+            const tabla = document.querySelector("#tablaNegros tbody");
+
+            // Limpiar contenido anterior, si lo hubiera
+            tabla.innerHTML = "";
+
+            tablaNegros.sort((a, b) => a.hoyoNG - b.hoyoNG);
+
+            tablaNegros.forEach(registroNeg => {
+                const fila = tabla.insertRow();
+
+                // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
+                fila.insertCell(0).textContent = registroNeg.hoyoNG;
+                fila.insertCell(1).textContent = registroNeg.parNG;
+                fila.insertCell(2).textContent = registroNeg.jugadorNG;
+                fila.insertCell(3).textContent = registroNeg.golpesNG;
+                fila.insertCell(4).textContent = registroNeg.handicapNG;
+            });
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        // 🥎  mostrarTablaNegros   ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽  
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        function mostrarHistoricoNegros(negrosLeidos, todasLasFechas) {
+
+            const filtradosYOrdenados = negrosLeidos
+                .filter(registro => registro.fechakeyNG > 1)
+                .sort((a, b) => {
+                    if (a.hoyoNG !== b.hoyoNG) {
+                        return a.hoyoNG - b.hoyoNG;
+                    } else if (a.golpesNG !== b.golpesNG) {
+                        return a.golpesNG - b.golpesNG;
+                    } else {
+                        return a.handicapNG - b.handicapNG;
+                    }
+                });
+
+            let tabla = document.getElementById("negroxHoyo")
+
+            tabla.innerHTML = "";
+            let hoyoAnterior = null;
+
+            filtradosYOrdenados.forEach(registroNeg => {
+                const fila = tabla.insertRow();
+
+                const fechaObj = todasLasFechas.find(f => f.fec == registroNeg.fechakeyNG);
+                const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
+
+                // Insertar celdas en orden: Hoyo, Par, Score, Player, Hcp, Fecha
+                fila.insertCell(0).textContent = (registroNeg.hoyoNG !== hoyoAnterior) ? registroNeg.hoyoNG : '';
+                fila.insertCell(1).textContent = (registroNeg.hoyoNG !== hoyoAnterior) ? registroNeg.parNG : '';
+                fila.insertCell(2).textContent = registroNeg.golpesNG;
+                fila.insertCell(3).textContent = registroNeg.jugadorNG;
+                fila.insertCell(4).textContent = registroNeg.handicapNG;
+                fila.insertCell(5).textContent = fechaTexto;
+
+                // Actualizar valores anteriores
+                hoyoAnterior = registroNeg.hoyoNG;
+
+            });
+
+            tabla = document.getElementById("negroxJugador")
+
+            tabla.innerHTML = "";
+            let jugadorAnterior = null;
+
+            const ordenadosPorJugador = filtradosYOrdenados
+                .sort((a, b) => {
+                    if (a.jugadorNG !== b.jugadorNG) {
+                        return a.jugadorNG.localeCompare(b.jugadorNG); // para strings
+                    } else if (a.hoyoNG !== b.hoyoNG) {
+                        return a.hoyoNG - b.hoyoNG; // numérico
+                    } else {
+                        return 0;
+                    }
+                });
+
+            ordenadosPorJugador.forEach(registroNeg => {
+                const fila = tabla.insertRow();
+
+                const fechaObj = todasLasFechas.find(f => f.fec == registroNeg.fechakeyNG);
+                const fechaTexto = `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
+
+                // Insertar celdas en orden: Hoyo, Par, Score, Player, Hcp, Fecha
+                fila.insertCell(0).textContent = (registroNeg.jugadorNG !== jugadorAnterior) ? registroNeg.jugadorNG : '';
+                fila.insertCell(1).textContent = registroNeg.hoyoNG;
+                fila.insertCell(2).textContent = registroNeg.parNG;
+                fila.insertCell(3).textContent = registroNeg.golpesNG;
+                fila.insertCell(4).textContent = registroNeg.handicapNG;
+                fila.insertCell(5).textContent = fechaTexto;
+
+                // Actualizar valores anteriores
+                jugadorAnterior = registroNeg.jugadorNG;
+
+            });
+
+
+        }
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        // 🥎  buscaUltimaFecha  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽           
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function buscaUltimaFecha() {
+            try {
+                const response = await fetch(`/leerUltimaFecha`);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    return data; // Devuelve los datos obtenidos si la respuesta es exitosa
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
+            }
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        // 🥎  leeDatosFechs  ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽           
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function leeDatosFechas() {
+            try {
+                const response = await fetch(`/leerDatosFechas`);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    return data; // Devuelve los datos obtenidos si la respuesta es exitosa
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
+            }
+        }
+
+        /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        // 🥎  cargarPromedios ult 6 ⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽   
+        // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+        async function cargarPromedios() {
+            try {
+                const response = await fetch('/api/promedios');
+                if (!response.ok) throw new Error('Error al obtener los promedios');
+
+                const datos = await response.json();
+                // console.log('datos promedios')
+                // console.table(datos)
+                const tbody = document.getElementById('tablaPromedios');
+                tbody.innerHTML = '';
+
+                datos.forEach(({ jugador, handicap, promedio, cantidad }) => {
+                    const dif = handicap - promedio;
+                    // Definir colores según valor
+                    let colorFondo, colorTexto;
+
+                    if (dif > 0) {
+                        colorFondo = "red"; // verde claro"
+                        colorTexto = "white"//'#155724'; // verde oscuro
+                    } else if (dif < 0) {
+                        colorFondo = 'white' //'#f8d7da'; // rojo claro
+                        // colorTexto = '#721c24'; // rojo oscuro
+                    } else {
+                        colorFondo = 'lightblue'; // amarillo claro
+                        colorTexto = 'white'; // amarillo oscuro
+                    }
+                    const fila = `
+          <tr>
+            <td>${jugador}</td>
+            <td>${handicap}</td>
+            <td>${promedio}</td>
+            <td style="background-color:${colorFondo}; color:${colorTexto}; font-weight:bold;">
+                ${dif}
+            </td>
+            <td>${cantidad}</td>
+          </tr>
+        `;
+                    tbody.innerHTML += fila;
+                });
+            } catch (error) {
+                console.error('Error al cargar promedios:', error);
+            }
+        }
+
+        // :::::::::::::::::::::::::::::::::::
+        // :::::::::::::::::: leer datos Netos
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+
+        async function leerDatosNetos() {
+            try {
+                const response = await fetch(`/leerDatosNetos`);
+                if (response.ok) {
+                    const resultados = await response.json();
+                    return resultados; // Devuelve los datos obtenidos si la respuesta es exitosa
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
+            }
+        }
+
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+        // :::::::::::::::::: leer datos Fechas Clau
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+        async function leerDatosFechasClau() {
+            try {
+                const responseC = await fetch(`/leerDatosFechas`);
+                if (responseC.ok) {
+                    const fechasClau = await responseC.json();
+                    const fechasFiltradasClau = fechasClau.filter(
+                        (fecha) => fecha.fec > 44 && fecha.fec < 90
+                    );
+                    return fechasFiltradasClau;
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        responseC.status,
+                        responseC.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
+            }
+        }
+
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+        // :::::::::::::::::: leer datos Fechas
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+        async function leerDatosFechas() {
+            try {
+                const response = await fetch(`/leerDatosFechas`);
+                if (response.ok) {
+                    const fechas = await response.json();
+                    const fechasFiltradas = fechas.filter(
+                        (fecha) => fecha.fec > 31 && fecha.fec < 90
+                    );
+
+                    return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        response.status,
+                        response.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return null;
+            }
+        }
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+        // :::::::::::::::::: leer datos Giras
+        // :::::::::::::::::::::::::::::::::::::::::::::::
+        async function leerDatosGiras() {
+            try {
+                const results = await fetch(`/leerDatosGiras`);
+                if (results.ok) {
+                    const resultadosGira = await results.json();
+                    return resultadosGira;
+                } else {
+                    console.error(
+                        "Error en la respuesta:",
+                        results.status,
+                        results.statusText
+                    );
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error en la solicitud lectura Gira:", error);
+                return null;
+            }
+        }
+
+        const toggle = document.getElementById("fullscreen-toggle");
+        const iconEnter = document.getElementById("fullscreen-icon-enter");
+        const iconExit = document.getElementById("fullscreen-icon-exit");
+
+        toggle.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().then(() => {
+                    iconEnter.style.display = "none";
+                    iconExit.style.display = "inline";
+                }).catch(err => console.error(err));
+            } else {
+                document.exitFullscreen().then(() => {
+                    iconEnter.style.display = "inline";
+                    iconExit.style.display = "none";
+                }).catch(err => console.error(err));
+            }
+        });
+
+    </script>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/apexcharts.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <!-- <script src="js/berdinegro.js" defer></script> -->
+    <script src="js/ultimodia.js" defer></script>
+    <!-- <script src="js/ctaregresiva.js"></script> -->
+    <!-- <script src="js/pelotas.js"></script> -->
+
+
+
+<!--     <script>
+        (function () {
+            // Función principal para calcular el tiempo faltante
+            function calcularTiempoFaltante(fechaObjetivo) {
+                const ahora = new Date();
+                const objetivo = new Date(fechaObjetivo);
+
+                if (objetivo < ahora) {
+                    return {
+                        pasado: true,
+                        dias: 0,
+                        horas: 0,
+                        minutos: 0,
+                        segundos: 0
+                    };
+                }
+
+                const diff = objetivo - ahora;
+
+                const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+                const meses = Math.floor(dias / 30);
+                const diasRestantes = dias % 30;
+
+                const totalHoras = Math.floor(diff / (1000 * 60 * 60));
+                const totalMinutos = Math.floor(diff / (1000 * 60));
+                const totalSegundos = Math.floor(diff / 1000);
+
+                return {
+                    pasado: false,
+                    dias,
+                    horas,
+                    minutos,
+                    segundos,
+                    meses,
+                    diasRestantes,
+                    totalHoras,
+                    totalMinutos,
+                    totalSegundos
+                };
+            }
+
+            // Fecha objetivo fija: 22 de octubre de 2025 a las 12:00
+            const FECHA_OBJETIVO = new Date('2025-10-22T12:00:00');
+
+            function actualizarContador() {
+                const tiempo = calcularTiempoFaltante(FECHA_OBJETIVO);
+
+                const gridEl = document.getElementById('countdownGrid');
+                const barsEl = document.getElementById('countdownProgressBars');
+                const totalEl = document.getElementById('countdownTotalTime');
+                const sandTopEl = document.getElementById('countdownSandTop');
+                const sandBottomEl = document.getElementById('countdownSandBottom');
+
+                if (!gridEl || !barsEl || !totalEl || !sandTopEl || !sandBottomEl) return;
+
+                if (tiempo.pasado) {
+                    gridEl.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 20px; color: #fff; font-size: 20px;">¡La fecha ya pasó!</div>';
+                    barsEl.innerHTML = '';
+                    totalEl.innerHTML = '';
+                    sandTopEl.style.height = '0%';
+                    sandBottomEl.style.height = '100%';
+                    return;
+                }
+
+                // Calcular porcentaje del tiempo transcurrido
+                const fechaInicio = new Date('2025-01-01T00:00:00');
+                const tiempoTotal = FECHA_OBJETIVO - fechaInicio;
+                const tiempoTranscurrido = new Date() - fechaInicio;
+                const porcentajeTranscurrido = (tiempoTranscurrido / tiempoTotal) * 100;
+
+                // Actualizar reloj de arena
+                sandTopEl.style.height = Math.max(0, 100 - porcentajeTranscurrido) + '%';
+                sandBottomEl.style.height = Math.min(100, porcentajeTranscurrido) + '%';
+
+                // Actualizar contador
+                gridEl.innerHTML = `
+                <div class="countdown-time-unit">
+                    <span class="countdown-time-number">${tiempo.dias}</span>
+                    <span class="countdown-time-label">Días</span>
+                </div>
+                <div class="countdown-time-unit">
+                    <span class="countdown-time-number">${tiempo.horas}</span>
+                    <span class="countdown-time-label">Horas</span>
+                </div>
+                <div class="countdown-time-unit">
+                    <span class="countdown-time-number">${tiempo.minutos}</span>
+                    <span class="countdown-time-label">Minutos</span>
+                </div>
+                <div class="countdown-time-unit">
+                    <span class="countdown-time-number">${tiempo.segundos}</span>
+                    <span class="countdown-time-label">Segundos</span>
+                </div>
+            `;
+
+                // Calcular porcentajes para las barras de progreso
+                const porcDias = Math.min((tiempo.dias / 365) * 100, 100);
+                const porcHoras = (tiempo.horas / 24) * 100;
+                const porcMinutos = (tiempo.minutos / 60) * 100;
+
+                // Actualizar barras de progreso
+                barsEl.innerHTML = `
+                <div class="countdown-progress-item">
+                    <div class="countdown-progress-label">
+                        <span>Días (${tiempo.dias})</span>
+                        <span>${porcDias.toFixed(1)}% del año</span>
+                    </div>
+                    <div class="countdown-progress-bar">
+                        <div class="countdown-progress-fill" style="width: ${porcDias}%"></div>
+                    </div>
+                </div>
+                <div class="countdown-progress-item">
+                    <div class="countdown-progress-label">
+                        <span>Horas (${tiempo.horas})</span>
+                        <span>${porcHoras.toFixed(1)}% del día</span>
+                    </div>
+                    <div class="countdown-progress-bar">
+                        <div class="countdown-progress-fill" style="width: ${porcHoras}%"></div>
+                    </div>
+                </div>
+                <div class="countdown-progress-item">
+                    <div class="countdown-progress-label">
+                        <span>Minutos (${tiempo.minutos})</span>
+                        <span>${porcMinutos.toFixed(1)}% de la hora</span>
+                    </div>
+                    <div class="countdown-progress-bar">
+                        <div class="countdown-progress-fill" style="width: ${porcMinutos}%"></div>
+                    </div>
+                </div>
+            `;
+
+                // Actualizar tiempo total
+                totalEl.innerHTML = `
+                <strong>Tiempo total:</strong><br>
+                ${tiempo.meses} meses y ${tiempo.diasRestantes} días<br>
+                <small>(${tiempo.totalHoras.toLocaleString()} horas • ${tiempo.totalMinutos.toLocaleString()} minutos)</small>
+            `;
+            }
+
+            // Iniciar cuando el DOM esté listo
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function () {
+                    actualizarContador();
+                    setInterval(actualizarContador, 1000);
+                });
+            } else {
+                actualizarContador();
+                setInterval(actualizarContador, 1000);
+            }
+        })();
+    </script> -->
+</body>
+
+</html>
