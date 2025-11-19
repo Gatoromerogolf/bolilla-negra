@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reunión Bolilla Negra</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .flyer {
+            width: 600px;
+            background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d6a3e 100%);
+            padding: 50px 40px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .logo-container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.3));
+        }
+        
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .group-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            color: #d4af37;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #d4af37, #1a4d2e, #d4af37);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+        
+        .message {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        
+        .details {
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d6a3e 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(26, 77, 46, 0.2);
+        }
+        
+        .detail-item {
+            color: #fff;
+            font-size: 20px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .detail-item strong {
+            color: #d4af37;
+            font-weight: 700;
+        }
+        
+        .icon {
+            font-size: 24px;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .footer-text {
+            color: #1a4d2e;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .decoration {
+            font-size: 30px;
+            margin: 0 10px;
+            color: #d4af37;
+        }
+    </style>
+</head>
+<body>
+    <div class="flyer">
+        <div class="header">
+            <!-- <div class="logo-container">
+                <img src="TU_URL_DE_IMAGEN_AQUI" alt="Logo Bolilla Negra">
+            </div> -->
+
+
+            <a class="navbar-brand" href="index.html">
+                <img src="images/grupo_bolilla-removebg-preview.png" alt="Bolilla Negra Icono"
+                    style="width: 180px; vertical-align: middle;">
+            </a>
+
+
+            <h1 class="group-name">BOLILLA NEGRA</h1>
+            <p class="subtitle">Buenos Amigos</p>
+        </div>
+        
+        <div class="content">
+            <!-- <div class="divider"></div> -->
+            
+            <p class="message">
+                Ser parte de un grupo de 11 adultos<br>con intereses similares, buena onda,<br>
+                mejores principios y excelentes personas<br>
+                es una inmensa fortuna que no se da todos los días.<br><br>
+                <strong style="color: #1a4d2e;">¡Eso merece una celebración especial!</strong>
+            </p>
+            
+            <div class="details">
+                <div class="detail-item">
+                    <span class="icon">📅</span>
+                    <span><strong>Fecha:</strong> 22 de Noviembre de 2025</span>
+                </div>
+                <div class="detail-item">
+                    <span class="icon">🕐</span>
+                    <span><strong>Hora:</strong> 21:00 hs</span>
+                </div>
+                <div class="detail-item">
+                    <span class="icon">📍</span>
+                    <span><strong>Lugar:</strong> La Taberna</span>
+                </div>
+            </div>
+            
+            <p class="message" style="margin-top: 30px;  color: #2d6a3e;">
+                Un año más de golf y grandes momentos.<br>
+                ¡Celebrémoslo junto a nuestras compañeras, que son parte de esta historia y en gran medida, las que hacen posible la continuidad y el crecimiento de esta amistad!
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p class="footer-text">¡Los esperamos!</p>
+        </div>
+    </div>
+</body>
+</html>
