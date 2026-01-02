@@ -9,10 +9,14 @@ async function main() {
     return;
   }
 
-  if (año === "2025") {
-    players2 = resultados.filter((resultado) => resultado.fec > 31);
+  if (año === "2026") {
+    players2 = resultados.filter((resultado) => resultado.fec > 60);
   } else {
-    players2 = resultados.filter((resultado) => resultado.fec < 32);
+    if (año === "2025") {
+      players2 = resultados.filter((resultado) => resultado.fec > 31);
+    }
+    else
+      players2 = resultados.filter((resultado) => resultado.fec < 32);
   }
 
   fechas = await leerDatosFechas();
