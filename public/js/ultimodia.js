@@ -12,12 +12,15 @@ async function main() {
   const resultados = await leerDatosNetos();
   let año = "2025";
 
-  if (año === "2025") {
-    players2 = resultados.filter((resultado) => resultado.fec > 31);
-  } else {
-    players2 = resultados.filter((resultado) => resultado.fec < 32);
-  }
-  puntosRanking = await leerPuntosRanking();
+  // if (año === "2025") {
+  //   players2 = resultados.filter((resultado) => resultado.fec > 31);
+  // } else {
+  //   players2 = resultados.filter((resultado) => resultado.fec < 32);
+  // }
+
+  players2 = resultados.filter((resultado) => resultado.fec > 60);
+
+  let puntosRanking = await leerPuntosRanking();
 
   mejoresScore = players2.filter((player) => player.pos == 1);
 }

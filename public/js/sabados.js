@@ -50,7 +50,14 @@ async function main() {
       diaJugadoRow2.appendChild(newTd2); // Agregar el nuevo td a la segunda fila
     }
 
-    if (fecha.fec > 44 && fecha.fec < 90) {
+    if (fecha.fec > 44 && fecha.fec < 61) {
+      let newTd3 = document.createElement("td");
+      newTd3.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
+      newTd3.style.minWidth = "35px"; // Cambia el valor según tus necesidades
+      diaJugadoRow2Clau.appendChild(newTd3); // Agregar el nuevo td a la segunda fila
+    }
+
+    if (fecha.fec > 60 && fecha.fec < 90) {
       let newTd3 = document.createElement("td");
       newTd3.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
       newTd3.style.minWidth = "35px"; // Cambia el valor según tus necesidades
@@ -325,7 +332,7 @@ async function leerDatosFechas() {
     if (response.ok) {
       const fechas = await response.json();
       const fechasFiltradas = fechas.filter(
-        (fecha) => fecha.fec > 31 && fecha.fec < 90
+        (fecha) => fecha.fec > 60 && fecha.fec < 90
       );
       return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
     } else {
