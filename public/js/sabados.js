@@ -9,17 +9,23 @@ async function main() {
     return;
   }
 
-  if (año === "2026") {
-    players2 = resultados.filter((resultado) => resultado.fec > 60);
-  } else {
-    if (año === "2025") {
+  // if (año === "2026") {
+  //   players2 = resultados.filter((resultado) => resultado.fec > 60);
+  // } else {
+  //   if (año === "2025") {
+  //     players2 = resultados.filter((resultado) => resultado.fec > 31);
+  //   }
+  //   else
+  //     players2 = resultados.filter((resultado) => resultado.fec < 32);
+  // }
+
+
       players2 = resultados.filter((resultado) => resultado.fec > 31);
-    }
-    else
-      players2 = resultados.filter((resultado) => resultado.fec < 32);
-  }
+
 
   fechas = await leerDatosFechas();
+
+  console.table(fechas);
 
   // Crear un objeto para contar las celdas por cada mesFecha
   const mesesConteo = {};
@@ -50,19 +56,19 @@ async function main() {
       diaJugadoRow2.appendChild(newTd2); // Agregar el nuevo td a la segunda fila
     }
 
-    if (fecha.fec > 44 && fecha.fec < 61) {
-      let newTd3 = document.createElement("td");
-      newTd3.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
-      newTd3.style.minWidth = "35px"; // Cambia el valor según tus necesidades
-      diaJugadoRow2Clau.appendChild(newTd3); // Agregar el nuevo td a la segunda fila
-    }
+    // if (fecha.fec > 44 && fecha.fec < 61) {
+    //   let newTd3 = document.createElement("td");
+    //   newTd3.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
+    //   newTd3.style.minWidth = "35px"; // Cambia el valor según tus necesidades
+    //   diaJugadoRow2Clau.appendChild(newTd3); // Agregar el nuevo td a la segunda fila
+    // }
 
-    if (fecha.fec > 60 && fecha.fec < 90) {
-      let newTd3 = document.createElement("td");
-      newTd3.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
-      newTd3.style.minWidth = "35px"; // Cambia el valor según tus necesidades
-      diaJugadoRow2Clau.appendChild(newTd3); // Agregar el nuevo td a la segunda fila
-    }
+    // if (fecha.fec > 60 && fecha.fec < 90) {
+    //   let newTd3 = document.createElement("td");
+    //   newTd3.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
+    //   newTd3.style.minWidth = "35px"; // Cambia el valor según tus necesidades
+    //   diaJugadoRow2Clau.appendChild(newTd3); // Agregar el nuevo td a la segunda fila
+    // }
   });
 }
 
@@ -332,13 +338,15 @@ async function leerDatosFechas() {
     if (response.ok) {
       const fechas = await response.json();
       const fechasFiltradas = fechas.filter(
-        (fecha) => fecha.fec > 60 && fecha.fec < 90
+        (fecha) => fecha.fec > 45 && fecha.fec < 90
       );
+      alert ('fechas filtradas: ' + JSON.stringify(fechasFiltradas));
       return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
+
     } else {
       console.error(
         "Error en la respuesta:",
-        response.status,
+        response.status,  
         response.statusText
       );
       return null;
