@@ -360,7 +360,7 @@
                     <option value="Julito">Julito</option>
                     <option value="Negro">Negro</option>
                     <option value="Panza">Panza</option>
-                    <option value="Presi">Presi</option>
+                    <option value="Marcos">Marcos</option>
                     <option value="Sensei">Sensei</option>
                     <option value="Torni">Torni</option>
                 </select>
@@ -993,6 +993,8 @@
 
             // Ordenar los datos por el valor de "Neto" y luego por "Orden"
 
+            console.log('entro en terminoDeCargar')
+
             datosJugadores.sort((a, b) => {
                 const netoA = a.neto === "-" ? Infinity : parseInt(a.neto);
                 const netoB = b.neto === "-" ? Infinity : parseInt(b.neto);
@@ -1138,7 +1140,7 @@
             });
 
             mostrarTablaBerdis();
-            mostrarTablaNegros();
+            // mostrarTablaNegros();
             actualizaUltimaFecha();
 
             mensajeFinal.classList.add("oculto");
@@ -1354,38 +1356,38 @@
             }
 
             // ⚽⚽⚽⚽ graba Colapinto ⚽⚽⚽⚽⚽⚽
-            let grossColapinto = hcpcancha + hcpcancha * 0.5 + 72;
+            // let grossColapinto = hcpcancha + hcpcancha * 0.5 + 72;
 
-            if (gross > grossColapinto) {
-                let body = {
-                    fecha,
-                    fechaKey,
-                    jugador,
-                    handicap,
-                    gross,
-                };
-                try {
-                    const res = await fetch("/colapinto", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(body),
-                        credentials: "include",
-                    });
+            // if (gross > grossColapinto) {
+            //     let body = {
+            //         fecha,
+            //         fechaKey,
+            //         jugador,
+            //         handicap,
+            //         gross,
+            //     };
+            //     try {
+            //         const res = await fetch("/colapinto", {
+            //             method: "POST",
+            //             headers: { "Content-Type": "application/json" },
+            //             body: JSON.stringify(body),
+            //             credentials: "include",
+            //         });
 
-                    if (!res.ok) {
-                        throw new Error(
-                            `Error del servidor: ${res.status} ${res.statusText}`
-                        );
-                    }
+            //         if (!res.ok) {
+            //             throw new Error(
+            //                 `Error del servidor: ${res.status} ${res.statusText}`
+            //             );
+            //         }
 
-                    const data = await res.json(); // 👈 opcional para usar la respuesta
-                    console.log("Guardado correctamente:", data);
-                } catch (err) {
-                    console.error("Error al guardar resultados:", err.message);
-                    alert(`Error al guardar resultados: ${err.message}`);
-                    return; // Detener la ejecución si hay error
-                }
-            }
+            //         const data = await res.json(); // 👈 opcional para usar la respuesta
+            //         console.log("Guardado correctamente:", data);
+            //     } catch (err) {
+            //         console.error("Error al guardar resultados:", err.message);
+            //         alert(`Error al guardar resultados: ${err.message}`);
+            //         return; // Detener la ejecución si hay error
+            //     }
+            // }
 
             // ⚽⚽⚽⚽ calcula los birdies ⚽⚽⚽⚽⚽⚽
             for (let i = 0; i < valoresGross.length; i++) {
@@ -1434,98 +1436,98 @@
             }
 
             // ⚽⚽⚽⚽ calcula los negros  ⚽⚽⚽⚽⚽⚽
-            for (let i = 0; i < valoresGross.length; i++) {
-                const val = valoresGross[i];
-                const par = hoyos[i].par;
-                let limite;
+            // for (let i = 0; i < valoresGross.length; i++) {
+            //     const val = valoresGross[i];
+            //     const par = hoyos[i].par;
+            //     let limite;
 
-                if (handicap < 12) {
-                    limite = par === 3 ? 5 : par === 4 ? 6 : 7;
-                } else if (handicap < 23) {
-                    limite = par === 3 ? 6 : par === 4 ? 7 : 8;
-                } else {
-                    limite = par === 3 ? 7 : par === 4 ? 8 : 9;
-                }
+            //     if (handicap < 12) {
+            //         limite = par === 3 ? 5 : par === 4 ? 6 : 7;
+            //     } else if (handicap < 23) {
+            //         limite = par === 3 ? 6 : par === 4 ? 7 : 8;
+            //     } else {
+            //         limite = par === 3 ? 7 : par === 4 ? 8 : 9;
+            //     }
 
-                // calcula que proporción del hcp le llevo el hoyo y el que más le llevó es más negro...
-                const indiceEsteNegro = (valoresGross[i] - par) / handicap;
-                const indiceViejoNegro =
-                    (berdiNegro[i]["negroScore"] - par) / berdiNegro[i]["negrohcp"];
+            //     // calcula que proporción del hcp le llevo el hoyo y el que más le llevó es más negro...
+            //     const indiceEsteNegro = (valoresGross[i] - par) / handicap;
+            //     const indiceViejoNegro =
+            //         (berdiNegro[i]["negroScore"] - par) / berdiNegro[i]["negrohcp"];
 
-                if (val > limite && indiceEsteNegro > indiceViejoNegro) {
-                    const nuevoNegro = {
-                        jugador,
-                        hoyo: i + 1,
-                        par,
-                        golpes: val,
-                        handicap,
-                    };
+            //     if (val > limite && indiceEsteNegro > indiceViejoNegro) {
+            //         const nuevoNegro = {
+            //             jugador,
+            //             hoyo: i + 1,
+            //             par,
+            //             golpes: val,
+            //             handicap,
+            //         };
 
-                    // Asegurate de que `fecha` sea un objeto Date
-                    const fechaObj = new Date(fecha);
-                    // Obtener día y mes
-                    const numeroDia = fechaObj.getUTCDate();
-                    const numeroMes = fechaObj.getUTCMonth() + 1;
+            //         // Asegurate de que `fecha` sea un objeto Date
+            //         const fechaObj = new Date(fecha);
+            //         // Obtener día y mes
+            //         const numeroDia = fechaObj.getUTCDate();
+            //         const numeroMes = fechaObj.getUTCMonth() + 1;
 
-                    const fechaBerdiNegro = numeroDia + "-" + numeroMes;
+            //         const fechaBerdiNegro = numeroDia + "-" + numeroMes;
 
-                    const negroActual = berdiNegro[i]["negrohcp"];
-                    if (negroActual === null || negroActual > handicap) {
-                        nuevoNegro.ok = "🧥"; // 👈 agregás la propiedad directamente
-                    }
+            //         const negroActual = berdiNegro[i]["negrohcp"];
+            //         if (negroActual === null || negroActual > handicap) {
+            //             nuevoNegro.ok = "🧥"; // 👈 agregás la propiedad directamente
+            //         }
 
-                    fetch("/actualizaNegro", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            hoyo: i + 1,
-                            negroFecha: fec + 1,
-                            negroPlayer: jugador,
-                            negroScore: val,
-                            negrohcp: handicap,
-                        }),
-                    })
-                        .then((res) => res.json())
-                        .then(console.log)
-                        .catch(console.error);
-                }
+            //         fetch("/actualizaNegro", {
+            //             method: "POST",
+            //             headers: { "Content-Type": "application/json" },
+            //             body: JSON.stringify({
+            //                 hoyo: i + 1,
+            //                 negroFecha: fec + 1,
+            //                 negroPlayer: jugador,
+            //                 negroScore: val,
+            //                 negrohcp: handicap,
+            //             }),
+            //         })
+            //             .then((res) => res.json())
+            //             .then(console.log)
+            //             .catch(console.error);
+            //     }
 
-                if (val > limite) {
-                    const okNG = 0;
-                    const jugadorantesNG = berdiNegro[i].negroPlayer;
-                    const handicapantesNG = berdiNegro[i].handicapantesNG;
-                    const golpesantesNG = berdiNegro[i].golpesantesNG;
-                    if (indiceEsteNegro > indiceViejoNegro) {
-                        const okNG = 1;
-                    }
+            //     if (val > limite) {
+            //         const okNG = 0;
+            //         const jugadorantesNG = berdiNegro[i].negroPlayer;
+            //         const handicapantesNG = berdiNegro[i].handicapantesNG;
+            //         const golpesantesNG = berdiNegro[i].golpesantesNG;
+            //         if (indiceEsteNegro > indiceViejoNegro) {
+            //             const okNG = 1;
+            //         }
 
-                    fetch("/guardar-negros", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            fechakeyNG: fec + 1,
-                            hoyoNG: i + 1,
-                            parNG: par,
-                            jugadorNG: jugador,
-                            golpesNG: val,
-                            handicapNG: handicap,
-                            jugadorantesNG,
-                            handicapantesNG,
-                            golpesantesNG,
-                            okNG,
-                        }),
-                    });
-                    const nuevoNegro = {
-                        jugador,
-                        hoyo: i + 1,
-                        par,
-                        golpes: val,
-                        handicap,
-                    };
-                    tablaNegros.push(nuevoNegro);
-                }
-            }
+            //         fetch("/guardar-negros", {
+            //             method: "POST",
+            //             headers: { "Content-Type": "application/json" },
+            //             body: JSON.stringify({
+            //                 fechakeyNG: fec + 1,
+            //                 hoyoNG: i + 1,
+            //                 parNG: par,
+            //                 jugadorNG: jugador,
+            //                 golpesNG: val,
+            //                 handicapNG: handicap,
+            //                 jugadorantesNG,
+            //                 handicapantesNG,
+            //                 golpesantesNG,
+            //                 okNG,
+            //             }),
+            //         });
+            //         const nuevoNegro = {
+            //             jugador,
+            //             hoyo: i + 1,
+            //             par,
+            //             golpes: val,
+            //             handicap,
+            //         };
+            //         tablaNegros.push(nuevoNegro);
+            //     }
             // }
+            // // }
 
             console.table(tablaBerdis);
             console.table(tablaNegros);
@@ -1707,26 +1709,26 @@
         //-----------------------------------------
         // 🥎  mostrarTablaNegros
         //-----------------------------------------
-        function mostrarTablaNegros() {
-            console.log("tabla negros");
-            console.table(tablaNegros);
-            const tabla = document.querySelector("#tablaNegros tbody");
+        // function mostrarTablaNegros() {
+        //     console.log("tabla negros");
+        //     console.table(tablaNegros);
+        //     const tabla = document.querySelector("#tablaNegros tbody");
 
-            // Limpiar contenido anterior, si lo hubiera
-            tabla.innerHTML = "";
+        //     // Limpiar contenido anterior, si lo hubiera
+        //     tabla.innerHTML = "";
 
-            tablaNegros.forEach((registro) => {
-                const fila = tabla.insertRow();
+        //     tablaNegros.forEach((registro) => {
+        //         const fila = tabla.insertRow();
 
-                // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
-                fila.insertCell(0).textContent = registro.hoyo;
-                fila.insertCell(1).textContent = registro.jugador;
-                fila.insertCell(2).textContent = registro.par;
-                fila.insertCell(3).textContent = registro.golpes;
-                fila.insertCell(4).textContent = registro.handicap;
-                fila.insertCell(5).textContent = registro.ok;
-            });
-        }
+        //         // Insertar celdas en orden: Hoyo, Player, Par, Score, Hcp, OK
+        //         fila.insertCell(0).textContent = registro.hoyo;
+        //         fila.insertCell(1).textContent = registro.jugador;
+        //         fila.insertCell(2).textContent = registro.par;
+        //         fila.insertCell(3).textContent = registro.golpes;
+        //         fila.insertCell(4).textContent = registro.handicap;
+        //         fila.insertCell(5).textContent = registro.ok;
+        //     });
+        // }
 
         //-----------------------------------------
         // 🥎  grabarNuevoNeto
