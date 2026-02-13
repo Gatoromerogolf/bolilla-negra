@@ -376,7 +376,7 @@ Bootstrap 5 Dashboard Admin Template
                                             <p>Panza - 114.566</p>
                                             <p>Sensei - 97.189</p>
                                             <p>Torni - 122.252</p>
-                                            <p>Vacante - 999.999</p>
+                                            <p>Marcos - 999.999</p>
                                         </div>
                                     </div>
                                 </div>
@@ -428,7 +428,7 @@ Bootstrap 5 Dashboard Admin Template
 
     <div class="container-fluid">
         <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-3 d-md-block sidebar collapse">
+            <nav id="sidebarMenu" class="col-md-2 col-lg-2 d-md-block sidebar collapse">
                 <div class="position-sticky py-4 px-3 sidebar-sticky">
                     <ul class="nav flex-column h-100">
                         <li class="nav-item">
@@ -490,7 +490,7 @@ Bootstrap 5 Dashboard Admin Template
                 </div>
             </nav>
 
-            <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
+            <main class="main-wrapper col-md-10 ms-sm-auto py-4 col-lg-10 px-md-4 border-start">
                 <div class="title-group mb-3">
                     <h1 class="h2 mb-0">Bienvenidos</h1>
                 </div>
@@ -1127,27 +1127,27 @@ Bootstrap 5 Dashboard Admin Template
                 mostrarHistoricoBerdis(berdisLeidos, todasLasFechas);
             }
 
-            const negrosLeidos = await leeTablaNegros();
-            const datosNegros = negrosLeidos.filter((resultado) => resultado.fechakeyNG == ultimaFecha.fec);
-            if (datosNegros && datosNegros.length > 0) {
-                tablaNegros = datosNegros;
-                mostrarTablaNegros();
-                mostrarHistoricoNegros(negrosLeidos, todasLasFechas);
-            }
+            // const negrosLeidos = await leeTablaNegros();
+            // const datosNegros = negrosLeidos.filter((resultado) => resultado.fechakeyNG == ultimaFecha.fec);
+            // if (datosNegros && datosNegros.length > 0) {
+            //     tablaNegros = datosNegros;
+            //     mostrarTablaNegros();
+            //     mostrarHistoricoNegros(negrosLeidos, todasLasFechas);
+            // }
 
-            const colapintos = await leeTablaColapinto();
-            if (colapintos.length > 0) {
-                colapintoHoy = colapintos.filter((resultado) => resultado.fechaKey == ultimaFecha.fec);
-                if (colapintoHoy && colapintoHoy.length > 0) {
-                    // let datosColapintoHoy = colapintoHoy;
-                    mostrarTablaColapintoHoy();
-                }
-                else {
-                    tablaColapintoHoy = [];
-                }
-            }
-            datosColapinto = colapintos;
-            mostrarTablaColapinto();
+            // const colapintos = await leeTablaColapinto();
+            // if (colapintos.length > 0) {
+            //     colapintoHoy = colapintos.filter((resultado) => resultado.fechaKey == ultimaFecha.fec);
+            //     if (colapintoHoy && colapintoHoy.length > 0) {
+            //         // let datosColapintoHoy = colapintoHoy;
+            //         mostrarTablaColapintoHoy();
+            //     }
+            //     else {
+            //         tablaColapintoHoy = [];
+            //     }
+            // }
+            // datosColapinto = colapintos;
+            // mostrarTablaColapinto();
 
             cargarPromedios();
 
@@ -1526,7 +1526,7 @@ Bootstrap 5 Dashboard Admin Template
         function mostrarHistoricoBerdis(berdisLeidos, todasLasFechas) {
 
             const filtradosYOrdenados = berdisLeidos
-                .filter(registro => registro.fechakey > 1)
+                .filter(registro => registro.fechakey > 60)
                 .sort((a, b) => a.hoyo - b.hoyo);
 
             const tabla = document.getElementById("berdixHoyo")

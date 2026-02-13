@@ -20,9 +20,9 @@ async function main() {
   // }
 
 
-      players2 = resultados.filter((resultado) => resultado.fec > 31);
+      players2 = resultados.filter((resultado) => resultado.fec > 60);
 
-
+      console.table(players2)
   fechas = await leerDatosFechas();
 
   console.table(fechas);
@@ -49,12 +49,12 @@ async function main() {
     // console.log(`Agregando diaJugado: ${fecha.diafecha}`);
     diaJugadoRow.appendChild(newTd1); // Agregar el nuevo td a la primera fila
 
-    if (fecha.fec < 45) {
-      let newTd2 = document.createElement("td");
-      newTd2.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
-      newTd2.style.minWidth = "35px"; // Cambia el valor según tus necesidades
-      diaJugadoRow2.appendChild(newTd2); // Agregar el nuevo td a la segunda fila
-    }
+    // if (fecha.fec < 90) {
+    //   let newTd2 = document.createElement("td");
+    //   newTd2.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
+    //   newTd2.style.minWidth = "35px"; // Cambia el valor según tus necesidades
+    //   diaJugadoRow2.appendChild(newTd2); // Agregar el nuevo td a la segunda fila
+    // }
 
     // if (fecha.fec > 44 && fecha.fec < 61) {
     //   let newTd3 = document.createElement("td");
@@ -99,6 +99,8 @@ main().then(() => {
 
   for (const player of players2) {
     const textoBuscado = player.play;
+    if (textoBuscado === "Marcos") {
+      alert("encontre a Marcos con " + player.neto);}
     for (let i = 1; i < filas.length; i++) {
       const celdaPrimera = filas[i].getElementsByTagName("td")[0];
       if (celdaPrimera) {
@@ -333,12 +335,13 @@ async function leerDatosNetos() {
 // :::::::::::::::::::::::::::::::::::::::::::::::
 
 async function leerDatosFechas() {
+
   try {
     const response = await fetch(`/leerDatosFechas`);
     if (response.ok) {
       const fechas = await response.json();
       const fechasFiltradas = fechas.filter(
-        (fecha) => fecha.fec > 45 && fecha.fec < 90
+        (fecha) => fecha.fec > 60 && fecha.fec < 90
       );
       alert ('fechas filtradas: ' + JSON.stringify(fechasFiltradas));
       return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
