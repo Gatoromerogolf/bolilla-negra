@@ -99,8 +99,7 @@ main().then(() => {
 
   for (const player of players2) {
     const textoBuscado = player.play;
-    if (textoBuscado === "Marcos") {
-      alert("encontre a Marcos con " + player.neto);}
+
     for (let i = 1; i < filas.length; i++) {
       const celdaPrimera = filas[i].getElementsByTagName("td")[0];
       if (celdaPrimera) {
@@ -343,7 +342,7 @@ async function leerDatosFechas() {
       const fechasFiltradas = fechas.filter(
         (fecha) => fecha.fec > 60 && fecha.fec < 90
       );
-      alert ('fechas filtradas: ' + JSON.stringify(fechasFiltradas));
+
       return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
 
     } else {
