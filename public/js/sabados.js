@@ -49,12 +49,12 @@ async function main() {
     // console.log(`Agregando diaJugado: ${fecha.diafecha}`);
     diaJugadoRow.appendChild(newTd1); // Agregar el nuevo td a la primera fila
 
-    // if (fecha.fec < 90) {
-    //   let newTd2 = document.createElement("td");
-    //   newTd2.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
-    //   newTd2.style.minWidth = "35px"; // Cambia el valor según tus necesidades
-    //   diaJugadoRow2.appendChild(newTd2); // Agregar el nuevo td a la segunda fila
-    // }
+    if (fecha.fec < 90) {
+      let newTd2 = document.createElement("td");
+      newTd2.textContent = fecha.diafecha + "-" + fecha.mesFecha || "Sin fecha";
+      newTd2.style.minWidth = "35px"; // Cambia el valor según tus necesidades
+      diaJugadoRow2.appendChild(newTd2); // Agregar el nuevo td a la segunda fila
+    }
 
     // if (fecha.fec > 44 && fecha.fec < 61) {
     //   let newTd3 = document.createElement("td");

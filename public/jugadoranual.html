@@ -97,7 +97,7 @@ Bootstrap 5 Dashboard Admin Template
                                             <p>Panza - 114.566</p>
                                             <p>Sensei - 97.189</p>
                                             <p>Torni - 122.252</p>
-                                            <p>Vacante - 999.999</p>
+                                            <p>Marcos - 999.999</p>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@ Bootstrap 5 Dashboard Admin Template
                     </ul>
                 </div>
 
-                <div class="dropdown ps-1">
+                <!-- <div class="dropdown ps-1">
                     <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <i class="bi-three-dots-vertical"></i>
@@ -187,7 +187,7 @@ Bootstrap 5 Dashboard Admin Template
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="dropdown px-3">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -314,7 +314,7 @@ Bootstrap 5 Dashboard Admin Template
                                             <th scope="col">Player</th>
                                             <th scope="col">Puntos</th>
                                             <th scope="col">Birdies</th>
-                                            <th scope="col">Score</th>
+                                            <th scope="col">Score Mes</th>
                                             <!-- <th scope="col">Sierra</th> -->
                                             <th scope="col">Córdoba</th>
                                             <th scope="col">Apertura</th>
@@ -366,18 +366,22 @@ Bootstrap 5 Dashboard Admin Template
         let giras = [];
 
         async function main() {
-            const resultados = await leerDatosNetos();
+            const resultadosFull = await leerDatosNetos();
+            resultados = resultadosFull.filter((resultado) => resultado.fec > 60);
+
             giras = await leerDatosGiras();
             if (!resultados || resultados.length === 0) {
                 console.error("No se obtuvieron datos de leerDatosNetos o están vacíos.");
                 return;
             }
 
-            if (año === "2025") {
-                players2 = resultados.filter((resultado) => resultado.fec > 31);
-            } else {
-                players2 = resultados.filter((resultado) => resultado.fec < 32);
-            }
+            // if (año === "2025") {
+            //     players2 = resultados.filter((resultado) => resultado.fec > 31);
+            // } else {
+            //     players2 = resultados.filter((resultado) => resultado.fec < 32);
+            // }
+
+            players2 = resultados.filter((resultado) => resultado.fec > 60);
 
             fechas = await leerDatosFechas();
         }
@@ -438,13 +442,13 @@ Bootstrap 5 Dashboard Admin Template
                 const textoBuscado = jugador.Jugador;
                 for (let i = 0; i < 12; i++) {
                     if (matrizValores[i][1] == textoBuscado) {
-                        matrizValores[i][5] = parseFloat(jugador.Sierra);
-                        matrizValores[i][6] = jugador.Ryder;
-                        matrizValores[i][9] = jugador.Carilo;
-                        matrizValores[i][10] = jugador.Desafio;
+                        matrizValores[i][5] = parseFloat(jugador.Cordoba);
+                        // matrizValores[i][6] = jugador.Ryder;
+                        matrizValores[i][8] = jugador.Carilo;
+                        // matrizValores[i][10] = jugador.Desafio;
 
-                        matrizValores[i][7] = parseFloat(jugador.Apertura);
-                        matrizValores[i][8] = parseFloat(jugador.Clausura);
+                        matrizValores[i][6] = parseFloat(jugador.Apertura);
+                        matrizValores[i][7] = parseFloat(jugador.Clausura);
                         break;
                     }
                 }
@@ -532,7 +536,7 @@ Bootstrap 5 Dashboard Admin Template
                 if (response.ok) {
                     const fechas = await response.json();
                     const fechasFiltradas = fechas.filter(
-                        (fecha) => fecha.fec > 31 && fecha.fec < 90
+                        (fecha) => fecha.fec > 60 && fecha.fec < 90
                     );
 
                     return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado

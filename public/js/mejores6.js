@@ -83,7 +83,7 @@ main().then(() => {
 
         playersData[play].forEach(({ fec, neto }) => {
 
-            let col = fec + 3 - 31;
+            let col = fec + 3 - 60;
 
             while (fila.length <= col) {
                 fila.push("--");
@@ -123,55 +123,55 @@ main().then(() => {
     // =========================================================
     // =========================================================
 
-    let matrizAnual = [];
+    // let matrizAnual = [];
 
-    for (const play in playersData) {
+    // for (const play in playersData) {
 
-        let fila = [];
-        let sumaAnual = 0;
+    //     let fila = [];
+    //     let sumaAnual = 0;
 
-        fila[0] = play;
+    //     fila[0] = play;
 
-        playersData[play].forEach(({ fec, anual }) => {
+    //     playersData[play].forEach(({ fec, anual }) => {
 
-            sumaAnual += anual;
+    //         sumaAnual += anual;
 
-            let col = fec + 3 - 31;
+    //         let col = fec + 3 - 31;
 
-            while (fila.length <= col) {
-                fila.push("--");
-            }
+    //         while (fila.length <= col) {
+    //             fila.push("--");
+    //         }
 
-            fila[col] = anual;
-        });
+    //         fila[col] = anual;
+    //     });
 
-        fila[1] = sumaAnual;
+    //     fila[1] = sumaAnual;
 
-        matrizAnual.push(fila);
-    }
+    //     matrizAnual.push(fila);
+    // }
 
     // ORDEN DESCENDENTE
-    matrizAnual.sort((a, b) => b[1] - a[1]);
+    // matrizAnual.sort((a, b) => b[1] - a[1]);
 
-    let tbodyAnual = document.querySelector("#tablaAnual tbody");
+    // let tbodyAnual = document.querySelector("#tablaAnual tbody");
 
-    matrizAnual.forEach(fila => {
+    // matrizAnual.forEach(fila => {
 
-        if (fila[1] > 0) {
+    //     if (fila[1] > 0) {
 
-            const row = tbodyAnual.insertRow();
+    //         const row = tbodyAnual.insertRow();
 
-            fila.forEach(valor => {
+    //         fila.forEach(valor => {
 
-                const cell = row.insertCell(-1);
-                cell.textContent = valor ?? "--";
+    //             const cell = row.insertCell(-1);
+    //             cell.textContent = valor ?? "--";
 
-                if (valor === "--") {
-                    cell.style.backgroundColor = "white";
-                }
-            });
-        }
-    });
+    //             if (valor === "--") {
+    //                 cell.style.backgroundColor = "white";
+    //             }
+    //         });
+    //     }
+    // });
 });
 
 
