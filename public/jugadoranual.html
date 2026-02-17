@@ -534,11 +534,11 @@ Bootstrap 5 Dashboard Admin Template
             const celda = fila.insertCell(j);
 
             if (j === 3) {
-              const enlace = document.createElement("a");
-              enlace.href = `transation-detail.html?player=${encodeURIComponent(matrizValores[i][1])}`;
-              enlace.textContent = matrizValores[i][j];
-              celda.appendChild(enlace);
-            } else {
+                const enlace = document.createElement("a");
+                // enlace.href = `transation-detail.html?player=${encodeURIComponent(matrizValores[i][1])}`;
+                enlace.textContent = matrizValores[i][j];
+                celda.appendChild(enlace);
+              } else {
               celda.textContent = matrizValores[i][j];
             }
           }
@@ -557,8 +557,7 @@ Bootstrap 5 Dashboard Admin Template
 
       main();
 
-
-            async function leerDatosNetos() {
+      async function leerDatosNetos() {
         try {
           const response = await fetch(`/leerDatosNetos`);
           if (response.ok) {
