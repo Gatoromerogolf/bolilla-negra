@@ -74,10 +74,10 @@ main().then(() => {
     pelotas.textContent =
       filteredPlayers[i - 1].pg > 0 ? filteredPlayers[i - 1].pg : "--";
 
-    let puntos = filaResultado.insertCell(-1);
-    // puntos.textContent = filteredPlayers[i-1].anual;
-    puntos.textContent =
-      filteredPlayers[i - 1].anual == 0 ? "--" : filteredPlayers[i - 1].anual;
+    // let puntos = filaResultado.insertCell(-1);
+    // // puntos.textContent = filteredPlayers[i-1].anual;
+    // puntos.textContent =
+    //   filteredPlayers[i - 1].anual == 0 ? "--" : filteredPlayers[i - 1].anual;
 
     let npt = filaResultado.insertCell(-1);
     npt.textContent = filteredPlayers[i - 1].npt;

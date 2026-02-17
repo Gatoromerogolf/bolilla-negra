@@ -354,11 +354,13 @@ Bootstrap 5 Dashboard Admin Template
         const resultados = await leerDatosNetos();
         let año = "2025"; 
 
-        if (año === "2025") {
-            players2 = resultados.filter((resultado) => resultado.fec > 31);
-        } else {
-            players2 = resultados.filter((resultado) => resultado.fec < 32);
-        }
+        // if (año === "2025") {
+        //     players2 = resultados.filter((resultado) => resultado.fec > 31);
+        // } else {
+        //     players2 = resultados.filter((resultado) => resultado.fec < 32);
+        // }
+
+        players2 = resultados.filter((resultado) => resultado.fec > 60);
 
         pelotasGanadas = players2.filter((player => player.pg > 0))
 
