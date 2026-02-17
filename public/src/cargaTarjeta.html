@@ -1394,6 +1394,7 @@
                 const val = valoresGross[i];
                 const fechakey = fec + 1;
                 if (val < hoyos[i].par) {
+
                     const berdieActual = berdiNegro[i]["berdihcp"];
                     const nuevoBirdie = {
                         fechakey,
@@ -1402,6 +1403,9 @@
                         jugador,
                         golpes: val,
                         handicap,
+                        puntos: handicap < 16 ? 1 
+                        : handicap <= 25 ? 2 
+                        : 4,
                         jugadorantes: berdiNegro[i]["berdiPlayer"],
                         handicapantes: berdieActual,
                     };
@@ -1417,6 +1421,7 @@
                                 berdiFecha: nuevaFecha,
                                 berdiPlayer: nuevoBirdie.jugador,
                                 berdihcp: nuevoBirdie.handicap,
+                                puntos: nuevoBirdie.puntos,
                             }),
                         })
                             .then((res) => res.json())

@@ -575,8 +575,9 @@ Bootstrap 5 Dashboard Admin Template
                                                 <th>Score</th>
                                                 <th>Jugador</th>
                                                 <th>Hcp</th>
+                                                <th>Bonus</th>
                                                 <!-- <th>⛳</th>
-                                                <th>Antes</th>
+                                                <th>Bonus</th>
                                                 <th>Hcp</th> -->
                                             </tr>
                                         </thead>
@@ -741,6 +742,7 @@ Bootstrap 5 Dashboard Admin Template
                                         <th>Jugador</th>
                                         <th>Hcp</th>
                                         <th>Fecha</th>
+                                        <th>Bonus</th>
                                     </thead>
                                     <tbody id="berdixHoyo">
                                     </tbody>
@@ -758,6 +760,7 @@ Bootstrap 5 Dashboard Admin Template
                                         <th>Score</th>
                                         <th>Hcp</th>
                                         <th>Fecha</th>
+                                        <th>Bonus</th>
                                     </thead>
                                     <tbody id="berdixJugador">
                                     </tbody>
@@ -1517,6 +1520,7 @@ Bootstrap 5 Dashboard Admin Template
                 fila.insertCell(2).textContent = registro.golpes;
                 fila.insertCell(3).textContent = registro.jugador;
                 fila.insertCell(4).textContent = registro.handicap;
+                fila.insertCell(5).textContent = registro.puntos;
             });
         }
 
@@ -1546,6 +1550,7 @@ Bootstrap 5 Dashboard Admin Template
                 fila.insertCell(3).textContent = registro.jugador;
                 fila.insertCell(4).textContent = registro.handicap;
                 fila.insertCell(5).textContent = fechaTexto;
+                fila.insertCell(6).textContent = registro.puntos;
             });
 
             // ordenados por Jugador
@@ -1580,6 +1585,8 @@ Bootstrap 5 Dashboard Admin Template
                 fila.insertCell(3).textContent = registro.golpes;
                 fila.insertCell(4).textContent = registro.handicap;
                 fila.insertCell(5).textContent = fechaTexto;
+                fila.insertCell(6).textContent = registro.puntos;
+
 
                 jugadorAnterior = registro.jugador;
             });

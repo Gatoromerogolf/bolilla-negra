@@ -393,7 +393,7 @@ app.post("/actualizaBerdiNegro", (req, res) => {
 // 📢 actualiza Berdi
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post("/actualizaBerdi", (req, res) => {
-  const { hoyo, berdiFecha, berdiPlayer, berdihcp } = req.body;
+  const { hoyo, berdiFecha, berdiPlayer, berdihcp, puntos } = req.body;
 
   if (!hoyo || berdihcp === undefined) {
     return res
@@ -428,7 +428,7 @@ app.post("/actualizaBerdi", (req, res) => {
 
       pool.query(
         updateQuery,
-        [berdiFecha, berdiPlayer, berdihcp, hoyo],
+        [berdiFecha, berdiPlayer, berdihcp, hoyo, puntos],
         (error, result) => {
           if (error) {
             console.error("Error al actualizar el birdie:", error);
@@ -457,7 +457,7 @@ app.post("/actualizaBerdi", (req, res) => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.post("/guardar-berdis", (req, res) => {
   const {
-    fechakey, hoyo, par, jugador, golpes, handicap, jugadorantes, handicapantes,
+    fechakey, hoyo, par, jugador, golpes, handicap, puntos, jugadorantes, handicapantes,
   } = req.body;
 
   const cambioberdi =
