@@ -1725,29 +1725,40 @@ Bootstrap 5 Dashboard Admin Template
     <!-- <script src="js/pelotas.js"></script> -->
 
     <script>
-        function calcularTiempoRestanteUTC(year, month, day, hour, minute) {
+function calcularTiempoRestanteUTC(year, month, day, hour, minute) {
 
-            const destinoUTC = Date.UTC(year, month - 1, day, hour, minute);
-            const ahoraUTC = new Date().getTime();
-            const diferencia = destinoUTC - ahoraUTC;
+    const destinoUTC = Date.UTC(year, month - 1, day, hour, minute);
+    const ahoraUTC = ahoraEnUTCms();
 
-            if (diferencia <= 0) {
-                return { finalizado: true, dias: 0, horas: 0, minutos: 0 };
-            }
+    const diferencia = destinoUTC - ahoraUTC;
 
-            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+    if (diferencia <= 0) {
+        return { finalizado: true, dias: 0, horas: 0, minutos: 0 };
+    }
 
-            return { finalizado: false, dias, horas, minutos };
-        }
+    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
 
+    return { finalizado: false, dias, horas, minutos };
+}
 
+function ahoraEnUTCms() {
+    const ahora = new Date();
+    return Date.UTC(
+        ahora.getUTCFullYear(),
+        ahora.getUTCMonth(),
+        ahora.getUTCDate(),
+        ahora.getUTCHours(),
+        ahora.getUTCMinutes(),
+        ahora.getUTCSeconds()
+    );
+}
         // 🎯 CONFIGURAR FECHA UTC
         const fechaObjetivo = {
             year: 2026,
             month: 3,
-            day: 31,
+            day: 23,
             hour: 23,
             minute: 59
         };
