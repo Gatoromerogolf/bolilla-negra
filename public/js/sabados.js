@@ -20,9 +20,9 @@ async function main() {
   // }
 
 
-      players2 = resultados.filter((resultado) => resultado.fec > 60);
+  players2 = resultados.filter((resultado) => resultado.fec > 60);
 
-      console.table(players2)
+  console.table(players2)
   fechas = await leerDatosFechas();
 
   console.table(fechas);
@@ -154,22 +154,22 @@ main().then(() => {
   //   agrega columnas con el score de la fecha
   for (let i = 0; i < 12; i++) {
     const celdaTotalPremios = filas[i + 2].insertCell(1);
-    celdaTotalPremios.textContent = totalPremios[i];
+    celdaTotalPremios.textContent = `${totalPremios[i]}`;
 
     const celdaPrimeraPosicion = filas[i + 2].insertCell(2);
-    celdaPrimeraPosicion.textContent = primeraPosicion[i];
+    celdaPrimeraPosicion.textContent = `${primeraPosicion[i]}`;
 
     const celdaSegundaPosicion = filas[i + 2].insertCell(3);
-    celdaSegundaPosicion.textContent = segundaPosicion[i];
+    celdaSegundaPosicion.textContent = `${segundaPosicion[i]}`;
 
     const celdaTerceraPosicion = filas[i + 2].insertCell(4);
-    celdaTerceraPosicion.textContent = terceraPosicion[i];
+    celdaTerceraPosicion.textContent = `${terceraPosicion[i]}`;
 
     const celdaPelotasGanadas = filas[i + 2].insertCell(5);
-    celdaPelotasGanadas.textContent = pelotasGanadas[i];
+    celdaPelotasGanadas.textContent = `${pelotasGanadas[i]}`;
 
     const celdaCtdd = filas[i + 2].insertCell(6);
-    celdaCtdd.textContent = cantidadTarjetas[i];
+    celdaCtdd.textContent = `${cantidadTarjetas[i]}`;
 
     const celdaSuma = filas[i + 2].insertCell(7);
     celdaSuma.textContent = sumaGolpes[i];
@@ -229,6 +229,8 @@ main().then(() => {
       }
     }
   }
+
+
 
   // Ahora matrizOriginal contiene las filas ordenadas
   let tablaOrdenada = document.getElementById("tablaOrdenada");
@@ -348,7 +350,7 @@ async function leerDatosFechas() {
     } else {
       console.error(
         "Error en la respuesta:",
-        response.status,  
+        response.status,
         response.statusText
       );
       return null;

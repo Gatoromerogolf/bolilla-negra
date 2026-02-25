@@ -109,6 +109,7 @@ main().then(() => {
 
                 const cell = row.insertCell(-1);
                 cell.textContent = valor ?? "--";
+                cell.style.width = "10px";
 
                 if (valor === "--") {
                     cell.style.backgroundColor = "white";
