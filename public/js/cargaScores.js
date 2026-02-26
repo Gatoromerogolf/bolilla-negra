@@ -2,7 +2,7 @@
 const nombresJugadores = [
     "Diegui", "Edu", "Fer", "Gaby",
     "Joaco", "Juancho", "Julito",
-    "Negro", "Panza", "Presi",
+    "Marcos", "Negro", "Panza",
     "Sensei", "Torni",
 ];
 
@@ -44,7 +44,7 @@ function generarTablaJugadores() {
     const tablaBerdies = document
         .getElementById("tablaBerdies")
         .getElementsByTagName("tbody")[0];
-    for (i = 1; i < 6; i++) {
+    for (let i = 1; i < 6; i++) {
         let fila = tablaBerdies.insertRow();
         let celdaHoyo = fila.insertCell(0);
         let celdaNombre = fila.insertCell(1);
@@ -378,7 +378,7 @@ function guardarResultados() {
 
 
     // 📌 Guarda los netos.
-    indice = 0;
+    let indice = 0;
     let fecnueva = ++fec;
 
     datosJugadores.forEach((jugador) => {
