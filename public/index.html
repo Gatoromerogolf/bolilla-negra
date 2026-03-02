@@ -1725,35 +1725,35 @@ Bootstrap 5 Dashboard Admin Template
     <!-- <script src="js/pelotas.js"></script> -->
 
     <script>
-function calcularTiempoRestanteUTC(year, month, day, hour, minute) {
+        function calcularTiempoRestanteUTC(year, month, day, hour, minute) {
 
-    const destinoUTC = Date.UTC(year, month - 1, day, hour, minute);
-    const ahoraUTC = ahoraEnUTCms();
+            const destinoUTC = Date.UTC(year, month - 1, day, hour, minute);
+            const ahoraUTC = ahoraEnUTCms();
 
-    const diferencia = destinoUTC - ahoraUTC;
+            const diferencia = destinoUTC - ahoraUTC;
 
-    if (diferencia <= 0) {
-        return { finalizado: true, dias: 0, horas: 0, minutos: 0 };
-    }
+            if (diferencia <= 0) {
+                return { finalizado: true, dias: 0, horas: 0, minutos: 0 };
+            }
 
-    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
 
-    return { finalizado: false, dias, horas, minutos };
-}
+            return { finalizado: false, dias, horas, minutos };
+        }
 
-function ahoraEnUTCms() {
-    const ahora = new Date();
-    return Date.UTC(
-        ahora.getUTCFullYear(),
-        ahora.getUTCMonth(),
-        ahora.getUTCDate(),
-        ahora.getUTCHours(),
-        ahora.getUTCMinutes(),
-        ahora.getUTCSeconds()
-    );
-}
+        function ahoraEnUTCms() {
+            const ahora = new Date();
+            return Date.UTC(
+                ahora.getUTCFullYear(),
+                ahora.getUTCMonth(),
+                ahora.getUTCDate(),
+                ahora.getUTCHours(),
+                ahora.getUTCMinutes(),
+                ahora.getUTCSeconds()
+            );
+        }
         // 🎯 CONFIGURAR FECHA UTC
         const fechaObjetivo = {
             year: 2026,
