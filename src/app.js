@@ -461,9 +461,9 @@ app.post("/guardar-berdis", (req, res) => {
   } = req.body;
 
   const cambioberdi =
-    "INSERT INTO nuevoberdi (fechakey, hoyo, par, jugador, golpes, handicap, jugadorantes, handicapantes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO nuevoberdi (fechakey, hoyo, par, jugador, golpes, handicap, puntos, jugadorantes, handicapantes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
   const datosAPasar = [
-    fechakey, hoyo, par, jugador, golpes, handicap, jugadorantes, handicapantes,
+    fechakey, hoyo, par, jugador, golpes, handicap, puntos, jugadorantes, handicapantes,
   ];
 
   pool.query(cambioberdi, datosAPasar, function (error, lista) {
