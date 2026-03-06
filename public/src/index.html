@@ -92,75 +92,6 @@ Bootstrap 5 Dashboard Admin Template
                 gap: 30px;
             }
         }
-
-
-        .tablaBirdies {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: Arial;
-            margin-bottom: 30px;
-        }
-
-        .tablaBirdies th,
-        .tablaBirdies td {
-            border: 1px solid #ddd;
-            padding: 6px;
-            text-align: left;
-        }
-
-        .tablaBirdies thead {
-            background: #f2f2f2;
-        }
-
-        .filaResumen {
-            cursor: pointer;
-            font-weight: bold;
-            background: white;
-            transition: background 0.2s;
-        }
-
-        .filaResumen:hover {
-            background: #f5f5f5;
-        }
-
-        .flecha {
-            width: 20px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .detalleFila {
-            background: #fafafa;
-        }
-
-        .detalleTabla {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-
-        .detalleTabla td,
-        .detalleTabla th {
-            border: 1px solid #eee;
-            padding: 4px;
-        }
-
-        .animacion {
-            animation: expandir 0.25s ease;
-        }
-
-        @keyframes expandir {
-            from {
-                opacity: 0;
-                transform: translateY(-5px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     </style>
 
 </head>
@@ -541,57 +472,8 @@ Bootstrap 5 Dashboard Admin Template
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center"
                             style="background-color: #FFECB3">
                             <h5 class="mb-3">🏆 🏆 Birdies histórico 🏆 🏆 </h5>
-
-                            <h5>Birdies por Hoyo</h5>
-
-                            <table class="tablaBirdies">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Hoyo</th>
-                                        <th>Birdies</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="berdixHoyo"></tbody>
-                            </table>
-
-
-                            <h5>Birdies por Jugador</h5>
-
-                            <table class="tablaBirdies">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Jugador</th>
-                                        <th>Birdies</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="berdixJugador"></tbody>
-                            </table>
-
-                            <h5>Birdies por Fecha</h5>
-
-                            <table class="tablaBirdies">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Fecha</th>
-                                        <th>Birdies</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="berdixFecha"></tbody>
-                            </table>
-                        </div>
-
-
-
-
-
-                        <!-- <div class="custom-block custom-block-profile-front custom-block-profile text-center"
-                            style="background-color: #FFECB3">
-                            <h5 class="mb-3">🏆 🏆 Birdies histórico 🏆 🏆 </h5> -->
-                        <!-- <div style="display: flex; justify-content:center; gap: 40px;"> -->
-                        <!-- <div>
+                            <!-- <div style="display: flex; justify-content:center; gap: 40px;"> -->
+                            <div>
                                 <h6 class="mb-2">Por hoyo</h6>
                                 <table border="1">
                                     <thead>
@@ -627,7 +509,7 @@ Bootstrap 5 Dashboard Admin Template
                                 </table>
                             </div>
 
-                        </div> </div> -->
+                        </div> <!-- </div> -->
 
                         <!-- <div class="custom-block custom-block-profile-front custom-block-profile text-center"
                             style="background-color: #bcbcbe">
@@ -980,11 +862,7 @@ Bootstrap 5 Dashboard Admin Template
             ultimaFecha = await buscaUltimaFecha();
             todasLasFechas = await leeDatosFechas();
 
-            const todosLosBerdis = await leeTablaBerdis();
-            const berdisLeidos = todosLosBerdis.filter((resultado) => resultado.fechakey > 60 && resultado.fechakey < 90);
-
-
-
+            const berdisLeidos = await leeTablaBerdis();
             const datosBerdis = berdisLeidos.filter((resultado) => resultado.fechakey == ultimaFecha.fec);
 
             if (datosBerdis && datosBerdis.length > 0) {
@@ -992,16 +870,6 @@ Bootstrap 5 Dashboard Admin Template
                 mostrarTablaBerdis();
                 mostrarHistoricoBerdis(berdisLeidos, todasLasFechas);
             }
-
-            mostrarBirdiesPorHoyo(berdisLeidos, todasLasFechas);
-
-            mostrarBirdiesPorJugador(berdisLeidos, todasLasFechas);
-
-            mostrarBirdiesPorFecha(berdisLeidos, todasLasFechas);
-
-
-
-
 
             // const negrosLeidos = await leeTablaNegros();
             // const datosNegros = negrosLeidos.filter((resultado) => resultado.fechakeyNG == ultimaFecha.fec);
@@ -1757,7 +1625,7 @@ Bootstrap 5 Dashboard Admin Template
                 if (responseC.ok) {
                     const fechasClau = await responseC.json();
                     const fechasFiltradasClau = fechasClau.filter(
-                        (fecha) => fecha.fec > 70 && fecha.fec < 90
+                        (fecha) => fecha.fec > 44 && fecha.fec < 90
                     );
                     return fechasFiltradasClau;
                 } else {
@@ -1783,7 +1651,7 @@ Bootstrap 5 Dashboard Admin Template
                 if (response.ok) {
                     const fechas = await response.json();
                     const fechasFiltradas = fechas.filter(
-                        (fecha) => fecha.fec > 60 && fecha.fec < 90
+                        (fecha) => fecha.fec > 31 && fecha.fec < 90
                     );
 
                     return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
@@ -1842,260 +1710,6 @@ Bootstrap 5 Dashboard Admin Template
                 }).catch(err => console.error(err));
             }
         });
-
-        function formatearFecha(fechakey, todasLasFechas) {
-
-            const fechaObj = todasLasFechas.find(f => f.fec == fechakey);
-
-            if (!fechaObj) return "";
-
-            return `${fechaObj.diafecha}-${fechaObj.mesFecha}`;
-        }
-
-
-
-        function mostrarBirdiesPorHoyo(berdisLeidos, todasLasFechas) {
-
-            const tabla = document.getElementById("berdixHoyo");
-            tabla.innerHTML = "";
-
-            const grupos = {};
-
-            berdisLeidos.forEach(b => {
-
-                if (!grupos[b.hoyo]) {
-                    grupos[b.hoyo] = [];
-                }
-
-                grupos[b.hoyo].push(b);
-
-            });
-
-
-            Object.keys(grupos)
-                .sort((a, b) => a - b)
-                .forEach(hoyo => {
-
-                    const lista = grupos[hoyo];
-
-                    const fila = tabla.insertRow();
-                    fila.className = "filaResumen";
-
-                    const celdaFlecha = fila.insertCell();
-                    celdaFlecha.className = "flecha";
-                    celdaFlecha.textContent = "▼";
-
-                    fila.insertCell().textContent = hoyo;
-                    fila.insertCell().textContent = lista.length;
-
-                    fila.onclick = () => toggleDetalle(fila, lista, todasLasFechas, "hoyo");
-
-                });
-
-        }
-
-
-
-        function mostrarBirdiesPorJugador(berdisLeidos, todasLasFechas) {
-
-            const tabla = document.getElementById("berdixJugador");
-            tabla.innerHTML = "";
-
-            const grupos = {};
-
-            berdisLeidos.forEach(b => {
-
-                if (!grupos[b.jugador]) {
-                    grupos[b.jugador] = [];
-                }
-
-                grupos[b.jugador].push(b);
-
-            });
-
-
-            Object.keys(grupos)
-                .sort()
-                .forEach(jugador => {
-
-                    const lista = grupos[jugador];
-
-                    const fila = tabla.insertRow();
-                    fila.className = "filaResumen";
-
-                    const celdaFlecha = fila.insertCell();
-                    celdaFlecha.className = "flecha";
-                    celdaFlecha.textContent = "▼";
-
-                    fila.insertCell().textContent = jugador;
-                    fila.insertCell().textContent = lista.length;
-
-                    fila.onclick = () => toggleDetalle(fila, lista, todasLasFechas, "jugador");
-
-                });
-
-        }
-
-
-
-        function toggleDetalle(fila, lista, todasLasFechas, tipo) {
-
-            const tabla = fila.parentNode;
-
-            if (fila.nextSibling && fila.nextSibling.classList.contains("detalleFila")) {
-
-                fila.nextSibling.remove();
-                fila.querySelector(".flecha").textContent = "▼";
-                return;
-            }
-
-            fila.querySelector(".flecha").textContent = "▲";
-
-            const filaDetalle = tabla.insertRow(fila.rowIndex);
-            filaDetalle.className = "detalleFila animacion";
-
-            const celda = filaDetalle.insertCell();
-            celda.colSpan = 3;
-
-            let html = `<table class="detalleTabla">`;
-
-            if (tipo == "hoyo") {
-
-                html += `<tr>
-        <th>Jugador</th>
-        <th>Fecha</th>
-        <th>Hcp</th>
-        <th>Bonus</th>
-        </tr>`;
-
-                lista.forEach(b => {
-
-                    html += `<tr>
-            <td>${b.jugador}</td>
-            <td>${formatearFecha(b.fechakey, todasLasFechas)}</td>
-                        <td>${b.handicap}</td>
-                        <td>${b.puntos}</td>
-            </tr>`;
-
-                });
-
-            } else {
-
-                html += `<tr>
-        <th>Hoyo</th>
-        <th>Fecha</th>
-        <th>Hcp</th>
-        <th>Bonus</th>
-        </tr>`;
-
-                lista.forEach(b => {
-
-                    html += `<tr>
-            <td>${b.hoyo}</td>
-            <td>${formatearFecha(b.fechakey, todasLasFechas)}</td>
-                                    <td>${b.handicap}</td>
-                        <td>${b.puntos}</td>
-            </tr>`;
-
-                });
-
-            }
-
-            html += `</table>`;
-
-            celda.innerHTML = html;
-
-        }
-
-function mostrarBirdiesPorFecha(berdisLeidos, todasLasFechas){
-
-    const tabla = document.getElementById("berdixFecha");
-    tabla.innerHTML = "";
-
-    const grupos = {};
-
-    // Agrupar por fecha
-    berdisLeidos.forEach(b => {
-
-        if(!grupos[b.fechakey]){
-            grupos[b.fechakey] = [];
-        }
-
-        grupos[b.fechakey].push(b);
-
-    });
-
-
-    Object.keys(grupos)
-    .sort((a,b)=>b-a) // orden descendente (fecha más reciente primero)
-    .forEach(fechakey => {
-
-        const lista = grupos[fechakey];
-
-        const fila = tabla.insertRow();
-        fila.className="filaResumen";
-
-        const celdaFlecha = fila.insertCell();
-        celdaFlecha.className="flecha";
-        celdaFlecha.textContent="▼";
-
-        const fechaTexto = formatearFecha(fechakey, todasLasFechas);
-
-        fila.insertCell().textContent = fechaTexto;
-        fila.insertCell().textContent = lista.length;
-
-        fila.onclick = () => toggleDetalleFecha(fila, lista, todasLasFechas);
-
-    });
-
-}
-
-function toggleDetalleFecha(fila, lista, todasLasFechas){
-
-    const tabla = fila.parentNode;
-
-    if(fila.nextSibling && fila.nextSibling.classList.contains("detalleFila")){
-
-        fila.nextSibling.remove();
-        fila.querySelector(".flecha").textContent="▼";
-        return;
-    }
-
-    fila.querySelector(".flecha").textContent="▲";
-
-    const filaDetalle = tabla.insertRow(fila.rowIndex);
-    filaDetalle.className="detalleFila animacion";
-
-    const celda = filaDetalle.insertCell();
-    celda.colSpan = 3;
-
-    let html = `
-    <table class="detalleTabla">
-    <tr>
-        <th>Jugador</th>
-        <th>Hoyo</th>
-        <th>Hcp</th>
-        <th>Bonus</th>
-    </tr>`;
-
-    lista.forEach(b=>{
-
-        html+=`
-        <tr>
-        <td>${b.jugador}</td>
-        <td>${b.hoyo}</td>
-        <td>${b.handicap}</td>
-        <td>${b.puntos}</td>
-        </tr>`;
-
-    });
-
-    html+=`</table>`;
-
-    celda.innerHTML = html;
-
-}
-
 
     </script>
 
