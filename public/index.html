@@ -1862,7 +1862,7 @@ Bootstrap 5 Dashboard Admin Template
             }
         });
 
-        function formatearFecha(fechakey, todasLasFechas) {
+        function formatearFecha2(fechakey, todasLasFechas) {
 
             const fechaObj = todasLasFechas.find(f => f.fec == fechakey);
 
@@ -1991,7 +1991,7 @@ Bootstrap 5 Dashboard Admin Template
 
                     html += `<tr>
             <td>${b.jugador}</td>
-            <td>${formatearFecha(b.fechakey, todasLasFechas)}</td>
+            <td>${formatearFecha2(b.fechakey, todasLasFechas)}</td>
                         <td>${b.handicap}</td>
                         <td>${b.puntos}</td>
             </tr>`;
@@ -2011,7 +2011,7 @@ Bootstrap 5 Dashboard Admin Template
 
                     html += `<tr>
             <td>${b.hoyo}</td>
-            <td>${formatearFecha(b.fechakey, todasLasFechas)}</td>
+            <td>${formatearFecha2(b.fechakey, todasLasFechas)}</td>
                                     <td>${b.handicap}</td>
                         <td>${b.puntos}</td>
             </tr>`;
@@ -2058,7 +2058,7 @@ Bootstrap 5 Dashboard Admin Template
                     celdaFlecha.className = "flecha";
                     celdaFlecha.textContent = "▼";
 
-                    const fechaTexto = formatearFecha(fechakey, todasLasFechas);
+                    const fechaTexto = formatearFecha2(fechakey, todasLasFechas);
 
                     fila.insertCell().textContent = fechaTexto;
                     fila.insertCell().textContent = lista.length;
