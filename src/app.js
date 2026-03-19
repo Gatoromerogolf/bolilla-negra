@@ -929,6 +929,35 @@ app.get("/api/tarjetas/jugadores-cargados", async (req, res) => {
   });
 });
 
+
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📢 lee tarjetas
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 📌 ENDPOINT: obtener tarjetas
+app.get('/api/tarjetas', async (req, res) => {
+    try {
+
+        const [rows] = await pool.query(`
+            SELECT 
+                jugador,
+                fecha,
+                hoyo,
+                golpes
+            FROM tarjetas
+            ORDER BY fecha, jugador, hoyo
+        `);
+
+        res.json(rows);
+
+    } catch (error) {
+        console.error("Error al obtener tarjetas:", error);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+});
+
+
+
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 calculo de 6 handicap bolilla
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
