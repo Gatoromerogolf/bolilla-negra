@@ -743,129 +743,26 @@ Bootstrap 5 Dashboard Admin Template
                             </table>
                         </div>
 
+                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+                            <h5>Mejores vueltas - Año 2026</h5>
 
-                        <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-green">
-                            <h5>Resultados Gira Córdoba 2026</h3>
-
-                                <div style="width:100%px; height: 490px;">
-                                    <table id="resultadoCordoba" style="width: 220px; position: relative;">
-                                        <thead>
-                                            <colgroup>
-                                                <col style="width: 10px;" ;>
-                                                <col style="background-color: rgb(250, 250, 32)" ;>
-                                                <col style="background-color: rgb(95, 242, 122)" ;>
-                                                <col style="width: 10px;" ;>
-                                                <col style="width: 10px;" ;>
-                                                <col style="width: 10px;" ;>
-                                                <col style="background-color: rgb(246, 84, 168)" ;>
-                                                <col style="background-color: rgb(165, 171, 166)" ;>
-                                            </colgroup>
-
-                                            <tr>
-                                                <th>Pos</th>
-                                                <th id="namePlayer2">Jugador</th>
-                                                <th>1ra</th>
-                                                <th>2da</th>
-                                                <th>Total</th>
-                                                <th>Puntos</th>
-                                            </tr>
-                                            <tr>
-                                                <td>1°</td>
-                                                <td>Diegui</td>
-                                                <td>73</td>
-                                                <td>79</td>
-                                                <td>152</td>
-                                                <td>30</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2°</td>
-                                                <td>Juancho</td>
-                                                <td>76</td>
-                                                <td>77</td>
-                                                <td>153</td>
-                                                <td>22</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>3°</td>
-                                                <td>Torni</td>
-                                                <td>76</td>
-                                                <td>81</td>
-                                                <td>157</td>
-                                                <td>18</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4°</td>
-                                                <td>Edu</td>
-                                                <td>80</td>
-                                                <td>78</td>
-                                                <td>158</td>
-                                                <td>14</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5°</td>
-                                                <td>Julito</td>
-                                                <td>79</td>
-                                                <td>82</td>
-                                                <td>161</td>
-                                                <td>10</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6°</td>
-                                                <td>Joaco</td>
-                                                <td>80</td>
-                                                <td>83</td>
-                                                <td>163</td>
-                                                <td>6</td>
-                                            </tr>
-                                            <tr>
-                                                <td>7°</td>
-                                                <td>Negro</td>
-                                                <td>77</td>
-                                                <td>88</td>
-                                                <td>165</td>
-                                                <td>4</td>
-                                            </tr>
-                                            <tr>
-                                                <td>8°</td>
-                                                <td>Fer</td>
-                                                <td>75</td>
-                                                <td>90</td>
-                                                <td>165</td>
-                                                <td>2</td>
-                                            </tr>
-                                            <tr>
-                                                <td>9°</td>
-                                                <td>Panza</td>
-                                                <td>82</td>
-                                                <td>85</td>
-                                                <td>167</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>10°</td>
-                                                <td>Gaby</td>
-                                                <td>86</td>
-                                                <td>87</td>
-                                                <td>173</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>11°</td>
-                                                <td>Sensei</td>
-                                                <td>88</td>
-                                                <td>93</td>
-                                                <td>181</td>
-                                                <td>-</td>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        </tbody>
-                                    </table>
-                                </div>
-
+                            <table id="tablaResultados">
+                                <thead>
+                                    <tr>
+                                        <th>Jugador</th>
+                                        <th>Mejor Ida</th>
+                                        <th>Fecha Ida</th>
+                                        <th>Mejor Vlta</th>
+                                        <th>Fecha Vlta</th>
+                                        <th>Tarj Ideal</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
                         </div>
+
+                    </div>
+                </div>
 
                         <!-- <div class="col-lg-6 col-12">
                     <div class="custom-block custom-block-exchange">  -->
@@ -2087,7 +1984,7 @@ Bootstrap 5 Dashboard Admin Template
             }
         });
 
-        function formatearFecha(fechakey, todasLasFechas) {
+        function formatearFecha2(fechakey, todasLasFechas) {
 
             const fechaObj = todasLasFechas.find(f => f.fec == fechakey);
 
@@ -2216,7 +2113,7 @@ Bootstrap 5 Dashboard Admin Template
 
                     html += `<tr>
             <td>${b.jugador}</td>
-            <td>${formatearFecha(b.fechakey, todasLasFechas)}</td>
+            <td>${formatearFecha2(b.fechakey, todasLasFechas)}</td>
                         <td>${b.handicap}</td>
                         <td>${b.puntos}</td>
             </tr>`;
@@ -2236,7 +2133,7 @@ Bootstrap 5 Dashboard Admin Template
 
                     html += `<tr>
             <td>${b.hoyo}</td>
-            <td>${formatearFecha(b.fechakey, todasLasFechas)}</td>
+            <td>${formatearFecha2(b.fechakey, todasLasFechas)}</td>
                                     <td>${b.handicap}</td>
                         <td>${b.puntos}</td>
             </tr>`;
@@ -2283,7 +2180,7 @@ Bootstrap 5 Dashboard Admin Template
                     celdaFlecha.className = "flecha";
                     celdaFlecha.textContent = "▼";
 
-                    const fechaTexto = formatearFecha(fechakey, todasLasFechas);
+        const fechaTexto = formatearFecha(fechakey, todasLasFechas);
 
                     fila.insertCell().textContent = fechaTexto;
                     fila.insertCell().textContent = lista.length;
@@ -2341,6 +2238,139 @@ Bootstrap 5 Dashboard Admin Template
         }
 
 
+        async function cargarDatos() {
+            try {
+                const response = await fetch("/api/tarjetas");
+                const data = await response.json();
+
+                const resultados = procesarDatos(data);
+                renderTabla(resultados);
+            } catch (error) {
+                console.error("Error cargando datos:", error);
+            }
+        }
+
+        function procesarDatos(data) {
+            // 1. Agrupar por jugador + fecha + tramo
+            const rondas = {};
+
+            data.forEach((item) => {
+                const { jugador, fecha, hoyo, golpes } = item;
+
+                const año = new Date(fecha).getFullYear();
+                if (año !== 2026) return;
+
+                const tramo = hoyo >= 1 && hoyo <= 9 ? "ida" : "vuelta";
+
+                const key = `${jugador}_${fecha}_${tramo}`;
+
+                if (!rondas[key]) {
+                    rondas[key] = {
+                        jugador,
+                        fecha,
+                        tramo,
+                        total: 0,
+                    };
+                }
+
+                rondas[key].total += golpes;
+            });
+
+            // 2. Buscar mínimos por jugador
+            const mejores = {};
+
+            Object.values(rondas).forEach((r) => {
+                const { jugador, tramo, total, fecha } = r;
+
+                if (!mejores[jugador]) {
+                    mejores[jugador] = {
+                        ida: { score: Infinity, fecha: null },
+                        vuelta: { score: Infinity, fecha: null },
+                    };
+                }
+
+                if (total < mejores[jugador][tramo].score) {
+                    mejores[jugador][tramo] = {
+                        score: total,
+                        fecha: fecha,
+                    };
+                }
+            });
+
+            return mejores;
+        }
+
+        function formatearFecha(fecha) {
+            const d = new Date(fecha);
+            return d.toLocaleDateString("es-AR");
+        }
+
+        // function renderTabla(resultados) {
+        //   const tbody = document.querySelector("#tablaResultados tbody");
+        //   tbody.innerHTML = "";
+
+        //   Object.entries(resultados).forEach(([jugador, datos]) => {
+        //     const tr = document.createElement("tr");
+        //     const tarjIdeal = (datos.ida.score + datos.vuelta.score);
+
+        //     tr.innerHTML = `
+        //       <td>${jugador}</td>
+        //       <td>${datos.ida.score}</td>
+        //       <td>${datos.ida.fecha ? formatearFecha(datos.ida.fecha) : ""}</td>
+        //       <td>${datos.vuelta.score}</td>
+        //       <td>${datos.vuelta.fecha ? formatearFecha(datos.vuelta.fecha) : ""}</td>
+        //       <td>${tarjIdeal}</td>
+
+        //   `;
+
+        //     tbody.appendChild(tr);
+        //   });
+        // }
+
+        function renderTabla(resultados) {
+            const tbody = document.querySelector("#tablaResultados tbody");
+            tbody.innerHTML = "";
+
+            // Convertir a array y ordenar
+            const ordenados = Object.entries(resultados).sort((a, b) => {
+                const datosA = a[1];
+                const datosB = b[1];
+
+                const tarjA = datosA.ida.score + datosA.vuelta.score;
+                const tarjB = datosB.ida.score + datosB.vuelta.score;
+
+                // 1. Orden por Tarjeta Ideal
+                if (tarjA !== tarjB) return tarjA - tarjB;
+
+                // 2. Orden por Mejor Vuelta
+                if (datosA.vuelta.score !== datosB.vuelta.score) {
+                    return datosA.vuelta.score - datosB.vuelta.score;
+                }
+
+                // 3. Orden por Mejor Ida
+                return datosA.ida.score - datosB.ida.score;
+            });
+
+            // Render
+            ordenados.forEach(([jugador, datos]) => {
+                const tr = document.createElement("tr");
+                const tarjIdeal = datos.ida.score + datos.vuelta.score;
+
+                tr.innerHTML = `
+      <td>${jugador}</td>
+      <td>${datos.ida.score}</td>
+      <td>${datos.ida.fecha ? formatearFecha(datos.ida.fecha) : ""}</td>
+      <td>${datos.vuelta.score}</td>
+      <td>${datos.vuelta.fecha ? formatearFecha(datos.vuelta.fecha) : ""}</td>
+      <td>${tarjIdeal}</td>
+    `;
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        cargarDatos();
+
     </script>
 
     <!-- JAVASCRIPT FILES -->
@@ -2388,9 +2418,9 @@ Bootstrap 5 Dashboard Admin Template
         const fechaObjetivo = {
             year: 2026,
             month: 3,
-            day: 23,
-            hour: 23,
-            minute: 59
+            day: 24,
+            hour: 3,
+            minute: 1
         };
 
         let prev = { dias: null, horas: null, minutos: null };

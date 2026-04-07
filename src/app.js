@@ -935,27 +935,41 @@ app.get("/api/tarjetas/jugadores-cargados", async (req, res) => {
 // 📢 lee tarjetas
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📌 ENDPOINT: obtener tarjetas
-app.get('/api/tarjetas', async (req, res) => {
-    try {
+// app.get('/api/tarjetas', async (req, res) => {
+//     try {
 
-        const [rows] = await pool.query(`
-            SELECT 
-                jugador,
-                fecha,
-                hoyo,
-                golpes
-            FROM tarjetas
-            ORDER BY fecha, jugador, hoyo
-        `);
+//         const [rows] = await pool.query(`
+//             SELECT 
+//                 jugador,
+//                 fecha,
+//                 hoyo,
+//                 golpes
+//             FROM tarjetas
+//             ORDER BY fecha, jugador, hoyo
+//         `);
 
-        res.json(rows);
+//         res.json(rows);
 
-    } catch (error) {
-        console.error("Error al obtener tarjetas:", error);
-        res.status(500).json({ error: 'Error en el servidor' });
+//     } catch (error) {
+//         console.error("Error al obtener tarjetas:", error);
+//         res.status(500).json({ error: 'Error en el servidor' });
+//     }
+// });
+
+
+app.get('/api/tarjetas', (req, res) => {
+  const query = "SELECT * FROM tarjetas";
+
+  pool.query(query, (error, results, fields) => {
+    if (error) {
+      res.status(500).json({ error: "Error al obtener las tarjetas" });
+      console.log("error servidor al obtener registros");
+      return;
     }
-});
 
+    res.json(results); // siempre devuelve un array (vacío o no)
+  });
+});
 
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

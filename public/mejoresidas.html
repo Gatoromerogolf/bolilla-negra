@@ -1,143 +1,192 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Mejores Scores 2026</title>
 
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
+<head>
+  <meta charset="UTF-8" />
+  <title>Mejores Scores 2026</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Mejores vueltas - Año 2026</h2>
+
+  <table id="tablaResultados">
+    <thead>
+      <tr>
+        <th>Jugador</th>
+        <th>Mejor Ida</th>
+        <th>Fecha Ida</th>
+        <th>Mejor Vuelta</th>
+        <th>Fecha Vuelta</th>
+        <th>Tarj Ideal</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- <script src="app.js"></script> -->
+
+  <script>
+    async function cargarDatos() {
+      try {
+        const response = await fetch("/api/tarjetas");
+        const data = await response.json();
+
+        const resultados = procesarDatos(data);
+        renderTabla(resultados);
+      } catch (error) {
+        console.error("Error cargando datos:", error);
       }
+    }
 
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        max-width: 800px;
-      }
+    function procesarDatos(data) {
+      // 1. Agrupar por jugador + fecha + tramo
+      const rondas = {};
 
-      th,
-      td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: center;
-      }
+      data.forEach((item) => {
+        const { jugador, fecha, hoyo, golpes } = item;
 
-      th {
-        background-color: #f4f4f4;
-      }
+        const año = new Date(fecha).getFullYear();
+        if (año !== 2026) return;
 
-      tr:hover {
-        background-color: #f9f9f9;
-      }
-    </style>
-  </head>
-  <body>
-    <h2>Mejores vueltas - Año 2026</h2>
+        const tramo = hoyo >= 1 && hoyo <= 9 ? "ida" : "vuelta";
 
-    <table id="tablaResultados">
-      <thead>
-        <tr>
-          <th>Jugador</th>
-          <th>Mejor Ida</th>
-          <th>Fecha Ida</th>
-          <th>Mejor Vuelta</th>
-          <th>Fecha Vuelta</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+        const key = `${jugador}_${fecha}_${tramo}`;
 
-    <!-- <script src="app.js"></script> -->
-
-    <script>
-      async function cargarDatos() {
-        try {
-          const response = await fetch("/api/tarjetas");
-          const data = await response.json();
-
-          const resultados = procesarDatos(data);
-          renderTabla(resultados);
-        } catch (error) {
-          console.error("Error cargando datos:", error);
+        if (!rondas[key]) {
+          rondas[key] = {
+            jugador,
+            fecha,
+            tramo,
+            total: 0,
+          };
         }
-      }
 
-      function procesarDatos(data) {
-        // 1. Agrupar por jugador + fecha + tramo
-        const rondas = {};
+        rondas[key].total += golpes;
+      });
 
-        data.forEach((item) => {
-          const { jugador, fecha, hoyo, golpes } = item;
+      // 2. Buscar mínimos por jugador
+      const mejores = {};
 
-          const año = new Date(fecha).getFullYear();
-          if (año !== 2026) return;
+      Object.values(rondas).forEach((r) => {
+        const { jugador, tramo, total, fecha } = r;
 
-          const tramo = hoyo >= 1 && hoyo <= 9 ? "ida" : "vuelta";
+        if (!mejores[jugador]) {
+          mejores[jugador] = {
+            ida: { score: Infinity, fecha: null },
+            vuelta: { score: Infinity, fecha: null },
+          };
+        }
 
-          const key = `${jugador}_${fecha}_${tramo}`;
+        if (total < mejores[jugador][tramo].score) {
+          mejores[jugador][tramo] = {
+            score: total,
+            fecha: fecha,
+          };
+        }
+      });
 
-          if (!rondas[key]) {
-            rondas[key] = {
-              jugador,
-              fecha,
-              tramo,
-              total: 0,
-            };
-          }
+      return mejores;
+    }
 
-          rondas[key].total += golpes;
-        });
+    function formatearFecha(fecha) {
+      const d = new Date(fecha);
+      return d.toLocaleDateString("es-AR");
+    }
 
-        // 2. Buscar mínimos por jugador
-        const mejores = {};
+    // function renderTabla(resultados) {
+    //   const tbody = document.querySelector("#tablaResultados tbody");
+    //   tbody.innerHTML = "";
 
-        Object.values(rondas).forEach((r) => {
-          const { jugador, tramo, total, fecha } = r;
+    //   Object.entries(resultados).forEach(([jugador, datos]) => {
+    //     const tr = document.createElement("tr");
+    //     const tarjIdeal = (datos.ida.score + datos.vuelta.score);
 
-          if (!mejores[jugador]) {
-            mejores[jugador] = {
-              ida: { score: Infinity, fecha: null },
-              vuelta: { score: Infinity, fecha: null },
-            };
-          }
+    //     tr.innerHTML = `
+    //       <td>${jugador}</td>
+    //       <td>${datos.ida.score}</td>
+    //       <td>${datos.ida.fecha ? formatearFecha(datos.ida.fecha) : ""}</td>
+    //       <td>${datos.vuelta.score}</td>
+    //       <td>${datos.vuelta.fecha ? formatearFecha(datos.vuelta.fecha) : ""}</td>
+    //       <td>${tarjIdeal}</td>
 
-          if (total < mejores[jugador][tramo].score) {
-            mejores[jugador][tramo] = {
-              score: total,
-              fecha: fecha,
-            };
-          }
-        });
+    //   `;
 
-        return mejores;
-      }
+    //     tbody.appendChild(tr);
+    //   });
+    // }
 
-      function formatearFecha(fecha) {
-        const d = new Date(fecha);
-        return d.toLocaleDateString("es-AR");
-      }
+    function renderTabla(resultados) {
+      const tbody = document.querySelector("#tablaResultados tbody");
+      tbody.innerHTML = "";
 
-      function renderTabla(resultados) {
-        const tbody = document.querySelector("#tablaResultados tbody");
-        tbody.innerHTML = "";
+      // Convertir a array y ordenar
+      const ordenados = Object.entries(resultados).sort((a, b) => {
+        const datosA = a[1];
+        const datosB = b[1];
 
-        Object.entries(resultados).forEach(([jugador, datos]) => {
-          const tr = document.createElement("tr");
+        const tarjA = datosA.ida.score + datosA.vuelta.score;
+        const tarjB = datosB.ida.score + datosB.vuelta.score;
 
-          tr.innerHTML = `
-            <td>${jugador}</td>
-            <td>${datos.ida.score}</td>
-            <td>${datos.ida.fecha ? formatearFecha(datos.ida.fecha) : ""}</td>
-            <td>${datos.vuelta.score}</td>
-            <td>${datos.vuelta.fecha ? formatearFecha(datos.vuelta.fecha) : ""}</td>
-        `;
+        // 1. Orden por Tarjeta Ideal
+        if (tarjA !== tarjB) return tarjA - tarjB;
 
-          tbody.appendChild(tr);
-        });
-      }
+        // 2. Orden por Mejor Vuelta
+        if (datosA.vuelta.score !== datosB.vuelta.score) {
+          return datosA.vuelta.score - datosB.vuelta.score;
+        }
 
-      cargarDatos();
-    </script>
-  </body>
+        // 3. Orden por Mejor Ida
+        return datosA.ida.score - datosB.ida.score;
+      });
+
+      // Render
+      ordenados.forEach(([jugador, datos]) => {
+        const tr = document.createElement("tr");
+        const tarjIdeal = datos.ida.score + datos.vuelta.score;
+
+        tr.innerHTML = `
+      <td>${jugador}</td>
+      <td>${datos.ida.score}</td>
+      <td>${datos.ida.fecha ? formatearFecha(datos.ida.fecha) : ""}</td>
+      <td>${datos.vuelta.score}</td>
+      <td>${datos.vuelta.fecha ? formatearFecha(datos.vuelta.fecha) : ""}</td>
+      <td>${tarjIdeal}</td>
+    `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    cargarDatos();
+  </script>
+</body>
+
 </html>
