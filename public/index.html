@@ -2308,13 +2308,23 @@ Bootstrap 5 Dashboard Admin Template
             return mejores;
         }
 
-        function formatearFecha(fecha) {
+        function ZZZformatearFecha(fecha) {
             const d = new Date(fecha);
             return d.toLocaleDateString("es-AR", {
                 timeZone: "America/Argentina/Buenos_Aires"
             });
         }
 
+        function formatearFecha(fecha) {
+            if (!fecha) return "";
+
+            // Tomar solo la parte YYYY-MM-DD
+            const soloFecha = fecha.split("T")[0];
+
+            const [anio, mes, dia] = soloFecha.split("-");
+
+            return `${dia}/${mes}/${anio}`;
+        }
         // function renderTabla(resultados) {
         //   const tbody = document.querySelector("#tablaResultados tbody");
         //   tbody.innerHTML = "";
