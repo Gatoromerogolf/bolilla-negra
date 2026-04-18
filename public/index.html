@@ -918,7 +918,7 @@ Bootstrap 5 Dashboard Admin Template
                             score de 240 golpes.</p><-->
 
                         <div class="custom-block custom-block-profile-front custom-block-profile text-center ">
-                            <h5>- Resultados Gira Córdoba 2026  </h5>
+                            <h5>- Resultados Gira Córdoba 2026 </h5>
 
                             <div style="width:100%px; height: 490px;">
                                 <table id="resultadoSierra" style="width: 220px; position: relative;">
@@ -2306,7 +2306,9 @@ Bootstrap 5 Dashboard Admin Template
 
         function formatearFecha(fecha) {
             const d = new Date(fecha);
-            return d.toLocaleDateString("es-AR");
+            return d.toLocaleDateString("es-AR", {
+                timeZone: "America/Argentina/Buenos_Aires"
+            });
         }
 
         // function renderTabla(resultados) {
