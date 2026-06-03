@@ -39,6 +39,14 @@ const sessionStore = new MySQLStore({
   database: process.env.MYSQL_DB,
 });
 
+sessionStore.on("error", function (error) {
+  console.error("Error Session Store:", error);
+});
+
+sessionStore.on("error", (error) => {
+  console.error("Session Store Error:", error);
+});
+
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // 📢 sesión del usuario?
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -101,7 +109,7 @@ app.get("/leerDatosFechas", (req, res) => {
   pool.query(query, (error, results, fields) => {
     if (error) {
       res.status(500).json({ error: "Error al obtener los DatosFecha" });
-      console.log("error servidor al obtener registros");
+      console.log("error servidor al obtener registros - leerDatosFechas");
       return;
     }
 
@@ -204,7 +212,7 @@ app.get("/leerBerdiNegro", (req, res) => {
   pool.query(query, (error, results, fields) => {
     if (error) {
       res.status(500).json({ error: "Error al obtener los BerdiNegro" });
-      console.log("error servidor al obtener registros");
+      console.log("error servidor al obtener registros leerBerdiNegro");
       return;
     }
 
@@ -242,7 +250,7 @@ app.get("/leerTablaNegros", (req, res) => {
   pool.query(query, (error, results, fields) => {
     if (error) {
       res.status(500).json({ error: "Error al obtener los nuevonegro" });
-      console.log("error servidor al obtener registros");
+      console.log("error servidor al obtener registros - leerTablaNegros");
       return;
     }
 
@@ -308,7 +316,7 @@ app.get("/leerPuntosRanking", (req, res) => {
   pool.query(query, (error, results, fields) => {
     if (error) {
       res.status(500).json({ error: "Error al obtener los DatosFecha" });
-      console.log("error servidor al obtener registros");
+      console.log("error servidor al obtener registros - leerPuntosRanking");
       return;
     }
 
@@ -690,7 +698,7 @@ app.get("/leerColapinto", (req, res) => {
   pool.query(query, (error, results, fields) => {
     if (error) {
       res.status(500).json({ error: "Error al obtener los DatosFecha" });
-      console.log("error servidor al obtener registros");
+      console.log("error servidor al obtener registros - leerColapinto");
       return;
     }
 
@@ -963,7 +971,7 @@ app.get('/api/tarjetas', (req, res) => {
   pool.query(query, (error, results, fields) => {
     if (error) {
       res.status(500).json({ error: "Error al obtener las tarjetas" });
-      console.log("error servidor al obtener registros");
+      console.log("error servidor al obtener registros - leerTarjetas");
       return;
     }
 
