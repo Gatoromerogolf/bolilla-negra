@@ -11,7 +11,9 @@ async function main() {
       (resultado) => resultado.fec > 44 && resultado.fec < 90
     );
   } else {
-    players2Clau = resultadosClau.filter((resultado) => resultado.fec < 32);
+players2Clau = resultadosClau.filter(
+    (resultado) => resultado.fec > 74 && resultado.fec < 90
+);
   }
   fechasFiltradasClau = await leerDatosFechasClau();
 }
@@ -32,7 +34,7 @@ main().then(() => {
     const playersDataClau = {};
 
   players2Clau.forEach(({ play, fec, neto }) => {
-    if (fec > 44 && fec < 90) {
+    if (fec > 74 && fec < 90) {
       if (neto > 0) {
         // Filtra los pares donde neto es mayor a 0
         if (!playersDataClau[play]) {
@@ -147,7 +149,7 @@ main().then(() => {
             console.log(
                 `j: ${j}, elemento ${elemento} y otro ${playersDataClau[elemento][j].fec}`
             );
-            let col = playersDataClau[elemento][j].fec - 41;
+            let col = playersDataClau[elemento][j].fec - 73;
 
             // Si `col` es mayor que la longitud actual del array, puedes ajustar el array.
             while (matriz2[i].length <= col) {
@@ -222,7 +224,7 @@ async function leerDatosFechasClau() {
     if (responseC.ok) {
       const fechasClau = await responseC.json();
       const fechasFiltradasClau = fechasClau.filter(
-        (fecha) => fecha.fec > 44 && fecha.fec < 90
+        (fecha) => fecha.fec > 74 && fecha.fec < 90
       );
       return fechasFiltradasClau;
     } else {

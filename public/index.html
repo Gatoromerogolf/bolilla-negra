@@ -905,6 +905,7 @@ Bootstrap 5 Dashboard Admin Template
                                             <th id="namePlayer2">Jugador</th>
                                             <th>Promedio</th>
                                             <th>Puntos</th>
+                                            <th>Premio $</th>
 
                                         </tr>
                                         <tr>
@@ -912,6 +913,7 @@ Bootstrap 5 Dashboard Admin Template
                                             <td>Diegui</td>
                                             <td>72.5</td>
                                             <td>50</td>
+                                            <td>385.000</td>
 
                                         </tr>
                                         <tr>
@@ -919,7 +921,7 @@ Bootstrap 5 Dashboard Admin Template
                                             <td>Torni</td>
                                             <td>72.5</td>
                                             <td>36</td>
-
+                                            <td>190.000</td>
 
                                         </tr>
                                         <tr>
@@ -927,34 +929,35 @@ Bootstrap 5 Dashboard Admin Template
                                             <td>Sensei</td>
                                             <td>73.2</td>
                                             <td>30</td>
-
+                                            <td>145.000</td>
                                         </tr>
                                         <tr>
                                             <td>4°</td>
                                             <td>Gaby</td>
                                             <td>73.3</td>
                                             <td>24</td>
-
+                                            <td>115.000</td>
                                         </tr>
                                         <tr>
                                             <td>5°</td>
                                             <td>Marcos</td>
                                             <td>73.8</td>
                                             <td>20</td>
-
+                                            <td>75.000</td>
                                         </tr>
                                         <tr>
                                             <td>6°</td>
                                             <td>Negro</td>
                                             <td>75.7</td>
                                             <td>16</td>
-
+                                            <td>50.000</td>
                                         </tr>
                                         <tr>
                                             <td>7°</td>
                                             <td>Panza</td>
                                             <td>76.2</td>
                                             <td>12</td>
+                                            <td>---</td>
 
                                         </tr>
                                         <tr>
@@ -962,6 +965,7 @@ Bootstrap 5 Dashboard Admin Template
                                             <td>Fer</td>
                                             <td>76.3</td>
                                             <td>8</td>
+                                            <td>---</td>
                                         </tr>
 
                                     </thead>
@@ -1767,8 +1771,14 @@ Bootstrap 5 Dashboard Admin Template
                 if (!response.ok) throw new Error('Error al obtener los promedios');
 
                 const datos = await response.json();
-                // console.log('datos promedios')
-                // console.table(datos)
+                datos.sort((a, b) => {
+                    // const difA = a.handicap - a.promedio;
+                    // const difB = b.handicap - b.promedio;
+
+                    // return difB - difA; // mayor a menor
+
+                    return a.promedio - b.promedio; // menor a mayor
+                });
                 const tbody = document.getElementById('tablaPromedios');
                 tbody.innerHTML = '';
 
@@ -1788,16 +1798,19 @@ Bootstrap 5 Dashboard Admin Template
                         colorTexto = 'white'; // amarillo oscuro
                     }
                     const fila = `
-          <tr>
-            <td>${jugador}</td>
-            <td>${handicap}</td>
-            <td>${promedio}</td>
-            <td style="background-color:${colorFondo}; color:${colorTexto}; font-weight:bold;">
-                ${dif}
-            </td>
-            <td>${cantidad}</td>
-          </tr>
-        `;
+                        <tr>
+                            <td>${jugador}</td>
+                            <td>${handicap}</td>
+                            <td>${promedio}</td>
+                            <td style="background-color:${colorFondo}; color:${colorTexto}; font-weight:bold;">
+                                ${dif}
+                            </td>
+                            <td>${cantidad}</td>
+                        </tr>
+                        `;
+
+                    // ordenar la tabla de mayor a menor según dif  
+
                     tbody.innerHTML += fila;
                 });
             } catch (error) {

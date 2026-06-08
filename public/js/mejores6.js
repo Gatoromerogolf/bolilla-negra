@@ -6,7 +6,7 @@ async function main() {
     }
 
     players2 = resultados.filter(
-        (resultado) => resultado.fec > 60 && resultado.fec < 90
+        (resultado) => resultado.fec > 60 && resultado.fec < 75
     );
 
     fechas = await leerDatosFechas();
@@ -25,7 +25,7 @@ main().then(() => {
     // ==============================
     players2.forEach(({ play, fec, neto, anual, npt }) => {
 
-        if (fec > 60 && fec < 90 && neto > 0) {
+        if (fec > 60 && fec < 75 && neto > 0) {
 
             if (!playersData[play]) {
                 playersData[play] = [];
@@ -199,7 +199,7 @@ async function leerDatosFechas() {
         if (response.ok) {
             const fechas = await response.json();
             return fechas.filter(
-                (fecha) => fecha.fec > 60 && fecha.fec < 90
+                (fecha) => fecha.fec > 60 && fecha.fec < 75
             );
         }
         return null;
