@@ -125,7 +125,7 @@ app.get("/leerDatosFechas", (req, res) => {
 // 📢 Ruta para obtener leer ultima fecha grabada (sin gira)
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 app.get("/leerUltimaFecha", (req, res) => {
-  const query = "SELECT * FROM fechas WHERE fec < 90 ORDER BY fec DESC LIMIT 1";
+  const query = "SELECT * FROM fechas WHERE fec < 95 ORDER BY fec DESC LIMIT 1";
   pool.query(query, (error, results, fields) => {
     if (error) {
       res.status(500).json({ error: "Error al obtener los DatosFecha" });

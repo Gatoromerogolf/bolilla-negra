@@ -177,11 +177,11 @@ async function apertura() {
 async function clausura() {
 
     let players2Clau = resultados.filter(
-        (resultado) => resultado.fec > 74 && resultado.fec < 90
+        (resultado) => resultado.fec > 74 && resultado.fec < 95
     );
 
     const fechasFiltradasClau = fechas.filter(
-        (fecha) => fecha.fec > 74 && fecha.fec < 90
+        (fecha) => fecha.fec > 74 && fecha.fec < 95
     );
 
     const filasMat = 12;
@@ -209,6 +209,8 @@ async function clausura() {
 
     let nptCount = {};
 
+    console.table(players2Clau);
+
     // Recorre players2 y cuenta las veces que npt es 1 para cada play
     players2Clau.forEach(({ play, npt }) => {
         // Si npt es 1, incrementa el contador para ese jugador (play)
@@ -220,6 +222,7 @@ async function clausura() {
         }
     });
 
+    console.table(nptCount);
     // :::::::::     LO GUARDA EN UNA MATRIZ
     // Crea una matriz para almacenar los resultados
     let matrizNpt = [];
@@ -374,6 +377,9 @@ main().then(() => {
                 if (contenidoCelda === textoBuscado) {
                     const filaEncontrada = filas[i];
                     let nuevaCelda = filaEncontrada.insertCell(-1);
+                    if (player.play == "Torni") {
+                        console.log(`Agregando celda para ${player.play} con neto: ${player.neto} y posición: ${player.pos}`);
+                    }
                     switch (player.pos) {
                         case 1:
                             nuevaCelda.textContent = player.neto + 900;
@@ -605,7 +611,7 @@ async function leerDatosFechas() {
         if (response.ok) {
             const fechas = await response.json();
             const fechasFiltradas = fechas.filter(
-                (fecha) => fecha.fec > 60 && fecha.fec < 90,
+                (fecha) => fecha.fec > 60 && fecha.fec < 93,
             );
             return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
         } else {
