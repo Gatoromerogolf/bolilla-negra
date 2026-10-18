@@ -357,13 +357,13 @@ Bootstrap 5 Dashboard Admin Template
                 <h3>Cartelera rápida</h3>
                 <h5>2da Gira 2026</h5>
                 11 al 15 de noviembre - Sede Central
-                <br><br >
+                <br><br>
 
                 <h5>Definiciones</h5>
                 <ul>
                     <li>Gira: 4 noches o más</li>
                     <li>Minigira: 3 noches</li>
-                    <li>Gira express: 2 noches    </li>
+                    <li>Gira express: 2 noches </li>
                     <li>Gira rápida: 1 noche</li>
                     <li>Gira flash: en el día</li>
                 </ul>
@@ -1076,9 +1076,7 @@ Bootstrap 5 Dashboard Admin Template
             todasLasFechas = await leeDatosFechas();
 
             const todosLosBerdis = await leeTablaBerdis();
-            const berdisLeidos = todosLosBerdis.filter((resultado) => resultado.fechakey > 60 && resultado.fechakey < 90);
-
-
+            const berdisLeidos = todosLosBerdis.filter((resultado) => resultado.fechakey > 60 && resultado.fechakey < 96);
 
             const datosBerdis = berdisLeidos.filter((resultado) => resultado.fechakey == ultimaFecha.fec);
 
@@ -1092,36 +1090,9 @@ Bootstrap 5 Dashboard Admin Template
 
             mostrarBirdiesPorJugador(berdisLeidos, todasLasFechas);
 
-
             console.log("Berdis leidos:", berdisLeidos);
             console.log("Todas las fechas:", todasLasFechas);
             mostrarBirdiesPorFecha(berdisLeidos, todasLasFechas);
-
-
-
-
-
-            // const negrosLeidos = await leeTablaNegros();
-            // const datosNegros = negrosLeidos.filter((resultado) => resultado.fechakeyNG == ultimaFecha.fec);
-            // if (datosNegros && datosNegros.length > 0) {
-            //     tablaNegros = datosNegros;
-            //     mostrarTablaNegros();
-            //     mostrarHistoricoNegros(negrosLeidos, todasLasFechas);
-            // }
-
-            // const colapintos = await leeTablaColapinto();
-            // if (colapintos.length > 0) {
-            //     colapintoHoy = colapintos.filter((resultado) => resultado.fechaKey == ultimaFecha.fec);
-            //     if (colapintoHoy && colapintoHoy.length > 0) {
-            //         // let datosColapintoHoy = colapintoHoy;
-            //         mostrarTablaColapintoHoy();
-            //     }
-            //     else {
-            //         tablaColapintoHoy = [];
-            //     }
-            // }
-            // datosColapinto = colapintos;
-            // mostrarTablaColapinto();
 
             cargarPromedios();
 
@@ -1271,20 +1242,22 @@ Bootstrap 5 Dashboard Admin Template
             /** @type {HTMLTableSectionElement} */
             const cuerpoTablaSeis2Clau = document.getElementById("clasificaClausura");
 
-            for (i = 0; i < 6; i++) {
-                if (matriz2[i][1] > 0) {
-                    const lineaDatos2 = cuerpoTablaSeis2Clau.insertRow();
-                    const celdagral1 = lineaDatos2.insertCell(-1);
-                    celdagral1.style.width = "10px";
-                    celdagral1.textContent = i + 1 + "°";
-                    const celdagral2 = lineaDatos2.insertCell(-1);
-                    celdagral2.style.width = "10px";
-                    celdagral2.textContent = matriz2[i][0];
-                    const celdagral3 = lineaDatos2.insertCell(-1);
-                    celdagral3.style.width = "10px";
-                    celdagral3.textContent = matriz2[i][2];
-                }
-            }
+            console.log(cuerpoTablaSeis2Clau);
+
+            // for (i = 0; i < 6; i++) {
+            //     if (matriz2[i][1] > 0) {
+            //         const lineaDatos2 = cuerpoTablaSeis2Clau.insertRow();
+            //         const celdagral1 = lineaDatos2.insertCell(-1);
+            //         celdagral1.style.width = "10px";
+            //         celdagral1.textContent = i + 1 + "°";
+            //         const celdagral2 = lineaDatos2.insertCell(-1);
+            //         celdagral2.style.width = "10px";
+            //         celdagral2.textContent = matriz2[i][0];
+            //         const celdagral3 = lineaDatos2.insertCell(-1);
+            //         celdagral3.style.width = "10px";
+            //         celdagral3.textContent = matriz2[i][2];
+            //     }
+            // }
             /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
             //   Arma el anual
             // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
@@ -1400,7 +1373,7 @@ Bootstrap 5 Dashboard Admin Template
                 const response = await fetch(`/leerTablaBerdis`);
                 if (response.ok) {
                     const resultados = await response.json();
-
+                    console.log("Resultados de la tabla Berdis:", resultados);
                     // Validación explícita si viene vacío
                     if (!Array.isArray(resultados)) {
                         console.warn("Respuesta inesperada del servidor:", resultados);

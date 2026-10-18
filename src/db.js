@@ -3,12 +3,27 @@ const mysql = require("mysql2");
 require("dotenv").config();
 
 // Crear un pool de conexiones usando la URL completa
+// const pool = mysql.createPool({
+//   uri: process.env.MYSQL_URL,        // Usar la URL completa desde la variable de entorno
+//   waitForConnections: true,          // Esperar conexiones si todas están en uso
+//   connectionLimit: 10,               // Número máximo de conexiones en el pool
+//   queueLimit: 0                      // Límite de la cola de solicitudes (0 = sin límite)
+// });
+
 const pool = mysql.createPool({
-  uri: process.env.MYSQL_URL,        // Usar la URL completa desde la variable de entorno
-  waitForConnections: true,          // Esperar conexiones si todas están en uso
-  connectionLimit: 10,               // Número máximo de conexiones en el pool
-  queueLimit: 0                      // Límite de la cola de solicitudes (0 = sin límite)
+  uri: process.env.MYSQL_URL,
+  waitForConnections: true,
+  connectionLimit: 10,
+  maxIdle: 5,            // cierra las ociosas sobrantes
+  idleTimeout: 60000,    // y las que llevan 60 s sin uso
+  queueLimit: 0,
+  enableKeepAlive: true
 });
+
+// Cerrar el pool limpio cuando Railway apaga el contenedor
+const cerrar = () => pool.end(() => process.exit(0));
+process.on("SIGTERM", cerrar);
+process.on("SIGINT", cerrar);
 
 // Verificar la conexión inicial
 pool.getConnection((err, connection) => {
