@@ -161,6 +161,20 @@ Bootstrap 5 Dashboard Admin Template
                 transform: translateY(0);
             }
         }
+
+
+        .resultados-fila {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
+            /* en pantallas chicas se apilan solas */
+        }
+
+        .resultado-bloque {
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -780,7 +794,7 @@ Bootstrap 5 Dashboard Admin Template
                             <h5>Resultados Córdoba 2026</h5>
 
                             <div style="width:100%px; height: 490px;">
-                                <table id="resultadoSierra" style="width: 220px; position: relative;">
+                                <table id="resultadoCordoba2026" style="width: 220px; position: relative;">
                                     <thead>
                                         <colgroup>
                                             <col style="width: 10px;" ;>
@@ -897,95 +911,180 @@ Bootstrap 5 Dashboard Admin Template
                                 </table>
                             </div>
 
-                            <!-- </div>
-                    </div> -->
+                            <div class="resultados-fila">
+                                <div class="resultado-bloque">
 
-                            <h5>Resultados Apertura 2026</h5>
+                                    <h5>Resultados Apertura 2026</h5>
 
-                            <div style="width:100%px; height: 490px;">
-                                <table id="resultadoSierra" style="width: 220px; position: relative;">
-                                    <thead>
+                                    <div style="width:100%">
+                                        <table id="resultadoApertura" style="width: 220px; position: relative;">
+                                            <thead>
+                                                <colgroup>
+                                                    <col style="width: 10px;" ;>
+                                                    <col style="background-color: rgb(250, 250, 32)" ;>
+                                                    <col style="background-color: rgb(95, 242, 122)" ;>
+                                                    <col style="width: 10px;" ;>
+
+                                                </colgroup>
+
+                                                <tr>
+                                                    <th>Pos</th>
+                                                    <th id="namePlayer2">Jugador</th>
+                                                    <th>Promedio</th>
+                                                    <th>Puntos</th>
+                                                    <th>Premio $</th>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>1°</td>
+                                                    <td>Diegui</td>
+                                                    <td>72.5</td>
+                                                    <td>50</td>
+                                                    <td>385.000</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>2°</td>
+                                                    <td>Torni</td>
+                                                    <td>72.5</td>
+                                                    <td>36</td>
+                                                    <td>190.000</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>3°</td>
+                                                    <td>Sensei</td>
+                                                    <td>73.2</td>
+                                                    <td>30</td>
+                                                    <td>145.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4°</td>
+                                                    <td>Gaby</td>
+                                                    <td>73.3</td>
+                                                    <td>24</td>
+                                                    <td>115.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5°</td>
+                                                    <td>Marcos</td>
+                                                    <td>73.8</td>
+                                                    <td>20</td>
+                                                    <td>75.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>6°</td>
+                                                    <td>Negro</td>
+                                                    <td>75.7</td>
+                                                    <td>16</td>
+                                                    <td>50.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>7°</td>
+                                                    <td>Panza</td>
+                                                    <td>76.2</td>
+                                                    <td>12</td>
+                                                    <td>---</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>8°</td>
+                                                    <td>Fer</td>
+                                                    <td>76.3</td>
+                                                    <td>8</td>
+                                                    <td>---</td>
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="resultado-bloque">
+                                    <h5>Resultados Clausura 2026</h5>
+
+                                    <table class="tabla-resultados" style="width: 220px; position: relative;">
                                         <colgroup>
-                                            <col style="width: 10px;" ;>
-                                            <col style="background-color: rgb(250, 250, 32)" ;>
-                                            <col style="background-color: rgb(95, 242, 122)" ;>
-                                            <col style="width: 10px;" ;>
-
+                                            <col style="width: 10px;">
+                                            <col style="background-color: rgb(250, 250, 32);">
+                                            <col style="background-color: rgb(95, 242, 122);">
+                                            <col style="width: 10px;">
+                                            <col style="width: 10px;">
                                         </colgroup>
 
-                                        <tr>
-                                            <th>Pos</th>
-                                            <th id="namePlayer2">Jugador</th>
-                                            <th>Promedio</th>
-                                            <th>Puntos</th>
-                                            <th>Premio $</th>
+                                        <thead>
+                                            <tr>
+                                                <th>Pos</th>
+                                                <th>Jugador</th>
+                                                <th>Promedio</th>
+                                                <th>Puntos</th>
+                                                <th>Premio $</th>
+                                            </tr>
+                                        </thead>
 
-                                        </tr>
-                                        <tr>
-                                            <td>1°</td>
-                                            <td>Diegui</td>
-                                            <td>72.5</td>
-                                            <td>50</td>
-                                            <td>385.000</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>2°</td>
-                                            <td>Torni</td>
-                                            <td>72.5</td>
-                                            <td>36</td>
-                                            <td>190.000</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>3°</td>
-                                            <td>Sensei</td>
-                                            <td>73.2</td>
-                                            <td>30</td>
-                                            <td>145.000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4°</td>
-                                            <td>Gaby</td>
-                                            <td>73.3</td>
-                                            <td>24</td>
-                                            <td>115.000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5°</td>
-                                            <td>Marcos</td>
-                                            <td>73.8</td>
-                                            <td>20</td>
-                                            <td>75.000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6°</td>
-                                            <td>Negro</td>
-                                            <td>75.7</td>
-                                            <td>16</td>
-                                            <td>50.000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7°</td>
-                                            <td>Panza</td>
-                                            <td>76.2</td>
-                                            <td>12</td>
-                                            <td>---</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>8°</td>
-                                            <td>Fer</td>
-                                            <td>76.3</td>
-                                            <td>8</td>
-                                            <td>---</td>
-                                        </tr>
-
-                                    </thead>
-
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                                        <tbody>
+                                            <tr>
+                                                <td>1°</td>
+                                                <td>Diegui</td>
+                                                <td>70.8</td>
+                                                <td>50</td>
+                                                <td>385.000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2°</td>
+                                                <td>Marcos</td>
+                                                <td>72</td>
+                                                <td>36</td>
+                                                <td>190.000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3°</td>
+                                                <td>Torni</td>
+                                                <td>72.7</td>
+                                                <td>30</td>
+                                                <td>145.000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4°</td>
+                                                <td>Joaco</td>
+                                                <td>74.2</td>
+                                                <td>24</td>
+                                                <td>115.000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5°</td>
+                                                <td>Panza</td>
+                                                <td>76.8</td>
+                                                <td>20</td>
+                                                <td>75.000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6°</td>
+                                                <td>Fer</td>
+                                                <td>77.2</td>
+                                                <td>16</td>
+                                                <td>50.000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7°</td>
+                                                <td>Negro</td>
+                                                <td>77.5</td>
+                                                <td>12</td>
+                                                <td>---</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8°</td>
+                                                <td>Edu</td>
+                                                <td>79.5</td>
+                                                <td>8</td>
+                                                <td>---</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
                         </div>

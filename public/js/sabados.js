@@ -177,11 +177,11 @@ async function apertura() {
 async function clausura() {
 
     let players2Clau = resultados.filter(
-        (resultado) => resultado.fec > 74 && resultado.fec < 95
+        (resultado) => resultado.fec > 74 && resultado.fec < 97
     );
 
     const fechasFiltradasClau = fechas.filter(
-        (fecha) => fecha.fec > 74 && fecha.fec < 95
+        (fecha) => fecha.fec > 74 && fecha.fec < 97
     );
 
     const filasMat = 12;
@@ -611,7 +611,7 @@ async function leerDatosFechas() {
         if (response.ok) {
             const fechas = await response.json();
             const fechasFiltradas = fechas.filter(
-                (fecha) => fecha.fec > 60 && fecha.fec < 93,
+                (fecha) => fecha.fec > 60 && fecha.fec < 97,
             );
             return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
         } else {
