@@ -334,9 +334,16 @@ Bootstrap 5 Dashboard Admin Template
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="calendario26.html">
+                            <a class="nav-link" href="calendario27.html">
                                 <i class="bi-calendar3 me-2"></i>
-                                Calendario 2026
+                                Calendario 2027
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="resumen26.html">
+                                <i class="bi-trophy"></i>
+                                Resultados 2026
                             </a>
                         </li>
 
@@ -365,43 +372,24 @@ Bootstrap 5 Dashboard Admin Template
             </nav>
 
             <main class="main-wrapper col-md-10 ms-sm-auto py-4 col-lg-10 px-md-4 border-start">
-                <div class="title-group mb-3">
-                    <h1 class="h2 mb-0">Bienvenidos</h1>
-                </div>
-                <h3>Cartelera rápida</h3>
-                <h5>2da Gira 2026</h5>
-                11 al 15 de noviembre - Sede Central
-                <br><br>
-
-                <h5>Definiciones</h5>
-                <ul>
-                    <li>Gira: 4 noches o más</li>
-                    <li>Minigira: 3 noches</li>
-                    <li>Gira express: 2 noches </li>
-                    <li>Gira rápida: 1 noche</li>
-                    <li>Gira flash: en el día</li>
-                </ul>
-
-                <!-- <div class="container">
-                    <div class="title">Preparate que se viene CULIAO !!!!!!</div>
-                    <p class="title">Solo faltan...: </p>
-                    <div class="time">
-                        <div class="unit">
-                            <div id="dias" class="number">00</div>
-                            <div class="label">DÍAS</div>
-                        </div>
-                        <div class="unit">
-                            <div id="horas" class="number">00</div>
-                            <div class="label">HORAS</div>
-                        </div>
-                        <div class="unit">
-                            <div id="minutos" class="number">00</div>
-                            <div class="label">MINUTOS</div>
-                        </div>
+                <h1>Bienvenidos</h1>
+                <div class="d-flex flex-wrap flex-md-nowrap gap-5 pt-3 pb-2 mb-3 border-bottom">
+                    <div>
+                        <h3>Cartelera rápida</h3>
+                        <h5>1ra Gira 2027</h5>
+                        <h6>14 al 18 de abril - Córdoba</h6>
                     </div>
-                </div> -->
-
-
+                    <div>
+                        <h3>Definiciones</h3>
+                        <ul>
+                            <li>Gira: 4 noches o más</li>
+                            <li>Minigira: 3 noches</li>
+                            <li>Gira express: 2 noches </li>
+                            <li>Gira rápida: 1 noche</li>
+                            <li>Gira flash: en el día</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="row my-4">
                     <div class="col-lg-5 col-12">
@@ -1086,62 +1074,7 @@ Bootstrap 5 Dashboard Admin Template
                                     </table>
                                 </div>
                             </div>
-
                         </div>
-
-
-                        <!-- 
-                        <h3 class="mt-4">Resultados Ryder 2025</h3>
-                        <div style="width:100%px; ">
-                            <table id="RyderSierra" style="width: 300px; position: relative;">
-                                <thead>
-                                    <colgroup>
-                                        <col style="background-color: rgb(250, 250, 32)" ;>
-                                        <col style="width: 10px;" ;>
-                                        <col style="background-color: rgb(250, 250, 32)" ;>
-                                        <col style="width: 10px;" ;>
-                                    </colgroup>
-
-                                    <tr>
-                                        <th>Altos de Campo Grande</th>
-                                        <th>7 puntos</th>
-                                        <th>Campo Grande</th>
-                                        <th>7 puntos</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div> -->
-
-                        <!-- <p class="mt-4">Se define en proxima fecha en la que se encuentren igual cantidad de
-                            jugadores de Altos y de Campo, en la modalidad match, con el handicap otorgado
-                            en la
-                            cancha. Los capitanes decidirán los enfrentamientos y se comunicará el inicio de
-                            la
-                            ronda.</p> -->
-                        <!-- </div>
-                </div> -->
-                        <!-- </main> -->
-
-                        <!-- <div class="custom-block custom-block-bottom d-flex flex-wrap">
-                    <div class="custom-block-bottom-item">
-                    </div>
-                    <div class="custom-block-bottom-item">
-                    </div>
-                    <div class="custom-block-bottom-item">
-                    </div>
-                    <div class="custom-block-bottom-item">
-                    </div>
-                </div> -->
-
-                        <!-- <div class="col-lg-6 col-12">
-                </div> -->
-
-                        <!-- <footer class="site-footer">
-                    <div class="container">
-                        <div class="row">
-                        </div>
-                    </div>
-                </footer> -->
             </main>
         </div>
     </div>
@@ -1175,7 +1108,7 @@ Bootstrap 5 Dashboard Admin Template
             todasLasFechas = await leeDatosFechas();
 
             const todosLosBerdis = await leeTablaBerdis();
-            const berdisLeidos = todosLosBerdis.filter((resultado) => resultado.fechakey > 60 && resultado.fechakey < 96);
+            const berdisLeidos = todosLosBerdis.filter((resultado) => resultado.fechakey > 94 && resultado.fechakey < 190);
 
             const datosBerdis = berdisLeidos.filter((resultado) => resultado.fechakey == ultimaFecha.fec);
 
@@ -1217,7 +1150,7 @@ Bootstrap 5 Dashboard Admin Template
             //if (!playersDataClau[play]): verifica si no existe ningún dato para el jugador con índice play en el arreglo playersData. El ! antes de playersData[play] verifica si es falso, es decir, si es nulo, undefined, 0, false o una cadena vacía.
 
             players2Clau.forEach(({ play, fec, neto }) => {
-                if (fec > 44 && fec < 90) {
+                if (fec > 94 && fec < 190) {
                     if (neto > 0) {
                         // Filtra los pares donde neto es mayor a 0
                         if (!playersDataClau[play]) {
@@ -1343,20 +1276,7 @@ Bootstrap 5 Dashboard Admin Template
 
             console.log(cuerpoTablaSeis2Clau);
 
-            // for (i = 0; i < 6; i++) {
-            //     if (matriz2[i][1] > 0) {
-            //         const lineaDatos2 = cuerpoTablaSeis2Clau.insertRow();
-            //         const celdagral1 = lineaDatos2.insertCell(-1);
-            //         celdagral1.style.width = "10px";
-            //         celdagral1.textContent = i + 1 + "°";
-            //         const celdagral2 = lineaDatos2.insertCell(-1);
-            //         celdagral2.style.width = "10px";
-            //         celdagral2.textContent = matriz2[i][0];
-            //         const celdagral3 = lineaDatos2.insertCell(-1);
-            //         celdagral3.style.width = "10px";
-            //         celdagral3.textContent = matriz2[i][2];
-            //     }
-            // }
+
             /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::
             //   Arma el anual
             // ::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
@@ -1936,7 +1856,7 @@ Bootstrap 5 Dashboard Admin Template
                 if (responseC.ok) {
                     const fechasClau = await responseC.json();
                     const fechasFiltradasClau = fechasClau.filter(
-                        (fecha) => fecha.fec > 70 && fecha.fec < 90
+                        (fecha) => fecha.fec > 94 && fecha.fec < 190
                     );
                     return fechasFiltradasClau;
                 } else {
@@ -1962,7 +1882,7 @@ Bootstrap 5 Dashboard Admin Template
                 if (response.ok) {
                     const fechas = await response.json();
                     const fechasFiltradas = fechas.filter(
-                        (fecha) => fecha.fec > 60 && fecha.fec < 90
+                        (fecha) => fecha.fec > 94 && fecha.fec < 190
                     );
 
                     return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
@@ -2110,11 +2030,8 @@ Bootstrap 5 Dashboard Admin Template
                     fila.insertCell().textContent = lista.length;
 
                     fila.onclick = () => toggleDetalle(fila, lista, todasLasFechas, "jugador");
-
                 });
-
         }
-
 
 
         function toggleDetalle(fila, lista, todasLasFechas, tipo) {
@@ -2177,13 +2094,10 @@ Bootstrap 5 Dashboard Admin Template
             </tr>`;
 
                 });
-
             }
 
             html += `</table>`;
-
             celda.innerHTML = html;
-
         }
 
         function mostrarBirdiesPorFecha(berdisLeidos, todasLasFechas) {
@@ -2225,9 +2139,7 @@ Bootstrap 5 Dashboard Admin Template
                     fila.insertCell().textContent = lista.length;
 
                     fila.onclick = () => toggleDetalleFecha(fila, lista, todasLasFechas);
-
                 });
-
         }
 
         function toggleDetalleFecha(fila, lista, todasLasFechas) {
@@ -2356,27 +2268,7 @@ Bootstrap 5 Dashboard Admin Template
 
             return `${dia}/${mes}/${anio}`;
         }
-        // function renderTabla(resultados) {
-        //   const tbody = document.querySelector("#tablaResultados tbody");
-        //   tbody.innerHTML = "";
 
-        //   Object.entries(resultados).forEach(([jugador, datos]) => {
-        //     const tr = document.createElement("tr");
-        //     const tarjIdeal = (datos.ida.score + datos.vuelta.score);
-
-        //     tr.innerHTML = `
-        //       <td>${jugador}</td>
-        //       <td>${datos.ida.score}</td>
-        //       <td>${datos.ida.fecha ? formatearFecha(datos.ida.fecha) : ""}</td>
-        //       <td>${datos.vuelta.score}</td>
-        //       <td>${datos.vuelta.fecha ? formatearFecha(datos.vuelta.fecha) : ""}</td>
-        //       <td>${tarjIdeal}</td>
-
-        //   `;
-
-        //     tbody.appendChild(tr);
-        //   });
-        // }
 
         function renderTabla(resultados) {
             const tbody = document.querySelector("#tablaResultados tbody");
@@ -2434,96 +2326,5 @@ Bootstrap 5 Dashboard Admin Template
     <script src="js/ultimodia.js" defer></script>
     <!-- <script src="js/ctaregresiva.js"></script> -->
     <!-- <script src="js/pelotas.js"></script> -->
-
-    <!-- <script>
-        function calcularTiempoRestanteUTC(year, month, day, hour, minute) {
-
-            const destinoUTC = Date.UTC(year, month - 1, day, hour, minute);
-            const ahoraUTC = ahoraEnUTCms();
-
-            const diferencia = destinoUTC - ahoraUTC;
-
-            if (diferencia <= 0) {
-                return { finalizado: true, dias: 0, horas: 0, minutos: 0 };
-            }
-
-            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-
-            return { finalizado: false, dias, horas, minutos };
-        }
-
-        function ahoraEnUTCms() {
-            const ahora = new Date();
-            return Date.UTC(
-                ahora.getUTCFullYear(),
-                ahora.getUTCMonth(),
-                ahora.getUTCDate(),
-                ahora.getUTCHours(),
-                ahora.getUTCMinutes(),
-                ahora.getUTCSeconds()
-            );
-        }
-        // 🎯 CONFIGURAR FECHA UTC
-        const fechaObjetivo = {
-            year: 2026,
-            month: 3,
-            day: 24,
-            hour: 3,
-            minute: 1
-        };
-
-        let prev = { dias: null, horas: null, minutos: null };
-
-        function animarCambio(el) {
-            el.classList.add("animate");
-            setTimeout(() => el.classList.remove("animate"), 300);
-        }
-
-        function actualizarContador() {
-
-            const t = calcularTiempoRestanteUTC(
-                fechaObjetivo.year,
-                fechaObjetivo.month,
-                fechaObjetivo.day,
-                fechaObjetivo.hour,
-                fechaObjetivo.minute
-            );
-
-            const diasEl = document.getElementById("dias");
-            const horasEl = document.getElementById("horas");
-            const minutosEl = document.getElementById("minutos");
-
-            if (t.finalizado) {
-                diasEl.textContent = "00";
-                horasEl.textContent = "00";
-                minutosEl.textContent = "00";
-                return;
-            }
-
-            if (t.dias !== prev.dias) {
-                diasEl.textContent = t.dias.toString().padStart(2, "0");
-                animarCambio(diasEl);
-                prev.dias = t.dias;
-            }
-
-            if (t.horas !== prev.horas) {
-                horasEl.textContent = t.horas.toString().padStart(2, "0");
-                animarCambio(horasEl);
-                prev.horas = t.horas;
-            }
-
-            if (t.minutos !== prev.minutos) {
-                minutosEl.textContent = t.minutos.toString().padStart(2, "0");
-                animarCambio(minutosEl);
-                prev.minutos = t.minutos;
-            }
-        }
-
-        actualizarContador();
-        setInterval(actualizarContador, 60000); // actualiza cada minuto
-    </script> -->
-
 
 </html>

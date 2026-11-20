@@ -10,7 +10,7 @@ async function main() {
   ultimaFecha = await buscaUltimaFecha();
 
   const resultados = await leerDatosNetos();
-  let año = "2025";
+  let año = "2027";
 
   // if (año === "2025") {
   //   players2 = resultados.filter((resultado) => resultado.fec > 31);
@@ -18,7 +18,7 @@ async function main() {
   //   players2 = resultados.filter((resultado) => resultado.fec < 32);
   // }
 
-  players2 = resultados.filter((resultado) => resultado.fec > 60);
+  players2 = resultados.filter((resultado) => resultado.fec > 94);
 
   let puntosRanking = await leerPuntosRanking();
 
