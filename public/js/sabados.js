@@ -64,7 +64,7 @@ async function main() {
 async function apertura() {
 
     players2ape = resultados.filter(
-        (resultado) => resultado.fec > 60 && resultado.fec < 75
+        (resultado) => resultado.fec > 94 && resultado.fec < 190
     );
 
     const filasMat = 50;
@@ -177,11 +177,11 @@ async function apertura() {
 async function clausura() {
 
     let players2Clau = resultados.filter(
-        (resultado) => resultado.fec > 74 && resultado.fec < 97
+        (resultado) => resultado.fec > 94 && resultado.fec < 190
     );
 
     const fechasFiltradasClau = fechas.filter(
-        (fecha) => fecha.fec > 74 && fecha.fec < 97
+        (fecha) => fecha.fec > 94 && fecha.fec < 190
     );
 
     const filasMat = 12;
@@ -587,7 +587,7 @@ async function leerDatosNetos() {
         const response = await fetch(`/leerDatosNetos`);
         if (response.ok) {
             const resultados = await response.json();
-            const resultadosFiltrados = resultados.filter((resultado) => resultado.fec > 60);
+            const resultadosFiltrados = resultados.filter((resultado) => resultado.fec > 94);
             return resultadosFiltrados; // Devuelve los datos obtenidos si la respuesta es exitosa
         } else {
             console.error(
@@ -611,7 +611,7 @@ async function leerDatosFechas() {
         if (response.ok) {
             const fechas = await response.json();
             const fechasFiltradas = fechas.filter(
-                (fecha) => fecha.fec > 60 && fecha.fec < 97,
+                (fecha) => fecha.fec > 94 && fecha.fec < 190,
             );
             return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
         } else {

@@ -298,9 +298,16 @@ Bootstrap 5 Dashboard Admin Template
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="calendario26.html">
+                <a class="nav-link" href="calendario27.html">
                   <i class="bi-calendar3 me-2"></i>
-                  Calendario 2026
+                  Calendario 2027
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="resumen26.html">
+                  <i class="bi-trophy"></i>
+                  Resultados 2026
                 </a>
               </li>
 
@@ -337,7 +344,7 @@ Bootstrap 5 Dashboard Admin Template
           class="main-wrapper col-md-10 ms-sm-auto py-4 col-lg-10 px-md-4 border-start"
         >
           <div class="title-group mb-3">
-            <h1 class="h2 mb-0">Jugador del Año 2026</h1>
+            <h1 class="h2 mb-0">Jugador del Año 2027</h1>
           </div>
 
           <div class="row my-4">
@@ -400,7 +407,7 @@ Bootstrap 5 Dashboard Admin Template
     <!-- <script src="../js/anual.js"></script> -->
 
     <script>
-      let año = "2025";
+      let año = "2027";
       let players2 = [];
       let giras = [];
 
@@ -413,8 +420,8 @@ Bootstrap 5 Dashboard Admin Template
           return;
         }
 
-        const resultados = resultadosFull.filter((r) => r.fec > 60);
-        players2 = resultados.filter((r) => r.fec > 60);
+        const resultados = resultadosFull.filter((r) => r.fec > 94);
+        players2 = resultados.filter((r) => r.fec > 94);
 
         giras = await leerDatosGiras();
         const fechas = await leerDatosFechas();
@@ -583,7 +590,7 @@ Bootstrap 5 Dashboard Admin Template
           if (response.ok) {
             const fechas = await response.json();
             const fechasFiltradas = fechas.filter(
-              (fecha) => fecha.fec > 60 && fecha.fec < 90,
+              (fecha) => fecha.fec > 94 && fecha.fec < 190,
             );
 
             return fechasFiltradas; // Devuelve las fechas filtradas con diaJugado
@@ -658,7 +665,7 @@ Bootstrap 5 Dashboard Admin Template
 
       function totalizarPuntos(berdies) {
         return berdies
-          .filter((b) => b.fechakey > 60) // filtra
+          .filter((b) => b.fechakey > 94) // filtra
           .reduce((acc, b) => {
             if (!acc[b.jugador]) {
               acc[b.jugador] = 0;
